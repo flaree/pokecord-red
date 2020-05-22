@@ -58,9 +58,10 @@ class Pokecord(commands.Cog):
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id) 
             if pokemonspawn is not None:
-                if pokemon == pokemonspawn["name"]:
-                    await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}")
+                if pokemon.lower() in [pokemonspawn["name"].lower(), pokemonspawn["name"].strip(string.punctuation).lower()]:
+                    await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}.")
                     del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
+                    # TODO: Persist data
                     return
                 else:
                     return await ctx.send("That's not the correct pokemon")
@@ -75,5 +76,7 @@ class Pokecord(commands.Cog):
             log.info(pokemon)
             self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
             await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
+
+        # TODO: Random delivery times
             
 
