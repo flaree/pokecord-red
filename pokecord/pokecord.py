@@ -5,6 +5,9 @@ from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path
 import json
 import string
+import logging
+
+log = logging.getLogger("red.flare.pokecord")
 
 
 class Pokecord(commands.Cog):
@@ -24,6 +27,7 @@ class Pokecord(commands.Cog):
         self.config.register_global(isglobal=True)
         self.config.register_guild
         self.datapath = f"{bundled_data_path(self)}"
+        self.spawnedpokemon = {}
 
     async def initalize(self):
         with open(f"{self.datapath}/pokemon.json") as f:
@@ -37,7 +41,6 @@ class Pokecord(commands.Cog):
 
     def pokemon_choose(self):
         num = random.randint(1, 200)
-        print(self.pokemondata["normal"])
         if num > 2:
             return random.choice(self.pokemondata["normal"])
         return random.choice(self.pokemondata["mega"])
@@ -48,3 +51,29 @@ class Pokecord(commands.Cog):
         img = self.pokemon_choose()
         await ctx.send(img)
         await ctx.send(file=discord.File(f"{self.datapath}/{img['name']}.png"))
+
+    @commands.command()
+    async def catch(self, ctx, *, pokemon: str):
+        """."""
+        if self.spawnedpokemon.get(ctx.guild.id) is not None:
+            pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id) 
+            if pokemonspawn is not None:
+                if pokemon == pokemonspawn["name"]:
+                    await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}")
+                    del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
+                    return
+                else:
+                    return await ctx.send("That's not the correct pokemon")
+        await ctx.send("No pokemon is ready to be caught.")
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content == "spawn":
+            if message.guild.id not in self.spawnedpokemon:
+                self.spawnedpokemon[message.guild.id] = {}
+            pokemon = self.pokemon_choose()
+            log.info(pokemon)
+            self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
+            await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
+            
+
