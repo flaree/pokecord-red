@@ -159,7 +159,6 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}.")
                     pokemonspawn["level"] = random.randint(1, 13)
                     pokemonspawn["xp"] = 0
-                    print(pokemonspawn)
                     self.cursor.execute(
                         "INSERT INTO users (user_id, message_id, pokemon)" "VALUES (?, ?, ?)",
                         (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
@@ -178,19 +177,27 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        # if message.content == "spawn":
-        #     if message.guild.id not in self.spawnedpokemon:
-        #         self.spawnedpokemon[message.guild.id] = {}
-        #     pokemon = self.pokemon_choose()
-        #     log.info(pokemon)
-        #     self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
-        #     await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
+        # if message.author.id == 95932766180343808:
+        #     if message.content == "spawn":
+        #         if message.guild.id not in self.spawnedpokemon:
+        #             self.spawnedpokemon[message.guild.id] = {}
+        #         pokemon = self.pokemon_choose()
+        #         # log.info(pokemon)
+        #         self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
+        #         prefixes = await self.bot.get_valid_prefixes(guild=message.guild)
+        #         embed = discord.Embed(
+        #             title="‌‌A wild pokémon has аppeаred!",
+        #             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
+        #         )
+        #         hashe = await self.get_hash(f"{pokemon['name']}.png")
+        #         embed.set_image(url=f"https://flaree.xyz/data/{hashe}.png")
+        #         await message.channel.send(embed=embed)
 
         if not message.guild:
             return
         if message.author.bot:
             return
-        guildcache = self.guildcache.get(str(message.guild.id))
+        guildcache = self.guildcache.get(message.guild.id)
         if guildcache is None:
             return
         if not guildcache["toggle"]:
@@ -233,7 +240,6 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         conf = await self.user_is_global(user)
         userconf = await conf.all()
         if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 120:
-            print("too close for xp")
             return
         await conf.timestamp.set(datetime.datetime.utcnow().timestamp())
         result = self.cursor.execute(
