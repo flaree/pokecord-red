@@ -44,6 +44,10 @@ class SettingsMixin(MixinMeta):
     async def channel(self, ctx, channel: discord.TextChannel):
         """Set the channel that pokemon are to spawn in."""
         async with self.config.guild(ctx.guild).activechannels() as channels:
+            if channel.id in channels:
+                channels.remove(channel.id)
+                await ctx.send("Channel has been removed.")
+                return
             channels.append(channel.id)
         await self.update_guild_cache()
         await ctx.tick()
