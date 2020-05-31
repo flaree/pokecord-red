@@ -1,6 +1,7 @@
 import asyncio
 import base64
 import concurrent.futures
+import datetime
 import functools
 import hashlib
 import json
@@ -177,19 +178,21 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.content == "spawn":
-            if message.guild.id not in self.spawnedpokemon:
-                self.spawnedpokemon[message.guild.id] = {}
-            pokemon = self.pokemon_choose()
-            log.info(pokemon)
-            self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
-            await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
+        # if message.content == "spawn":
+        #     if message.guild.id not in self.spawnedpokemon:
+        #         self.spawnedpokemon[message.guild.id] = {}
+        #     pokemon = self.pokemon_choose()
+        #     log.info(pokemon)
+        #     self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
+        #     await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
 
         if not message.guild:
             return
         if message.author.bot:
             return
-        guildcache = self.guildcache[message.guild.id]
+        guildcache = self.guildcache.get(str(message.guild.id))
+        if guildcache is None:
+            return
         if not guildcache["toggle"]:
             return
         await self.exp_gain(message.channel, message.author)
@@ -212,7 +215,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if message.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[message.guild.id] = {}
         pokemon = self.pokemon_choose()
-        log.info(pokemon)
+        # log.info(pokemon)
         self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=message.guild)
         embed = discord.Embed(
@@ -228,6 +231,11 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     async def exp_gain(self, channel, user):
         conf = await self.user_is_global(user)
+        userconf = await conf.all()
+        if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 120:
+            print("too close for xp")
+            return
+        await conf.timestamp.set(datetime.datetime.utcnow().timestamp())
         result = self.cursor.execute(
             """SELECT pokemon, message_id from users where user_id = ?""", (user.id,)
         ).fetchall()
@@ -248,7 +256,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     log.info(f"{pokemon['name']} levelled up for {user}")
                     for stat in pokemon["stats"]:
                         pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
-                    if not await conf.silence():
+                    if not userconf["toggle"]:
                         embed = discord.Embed(
                             title=f"Congratulations {user}!",
                             description=f"Your {pokemon['name']} has levelled up to level {pokemon['level']}!",
