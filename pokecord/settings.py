@@ -2,6 +2,7 @@ from .abc import MixinMeta
 import discord
 
 from redbot.core import commands
+from redbot.core.utils.chat_formatting import humanize_list
 
 
 class SettingsMixin(MixinMeta):
@@ -52,4 +53,5 @@ class SettingsMixin(MixinMeta):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
         await self.update_guild_cache()
-        await ctx.send(data)
+        msg = f"**Toggle**: {data['toggle']}\n**Active Channels**: {humanize_list(data['activechannels'])}"
+        await ctx.send(msg)
