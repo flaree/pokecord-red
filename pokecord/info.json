@@ -4,12 +4,12 @@
     ],
     "install_msg": "Don't even try use this.",
     "name": "Pokecord",
-    "disabled": true,
+    "disabled": false,
     "short": "Pokecord",
     "description": "Pokecord..",
     "tags": [
       "pokemon",
       "pokecord"
     ],
-    "hidden": true
+    "hidden": false
   }

@@ -6,7 +6,7 @@ from redbot.core import commands
 
 class SettingsMixin(MixinMeta):
     """Pokecord Settings"""
-    
+
     @commands.command(usage="type")
     @commands.guild_only()
     async def silence(self, ctx, _type: bool = None):
@@ -37,16 +37,19 @@ class SettingsMixin(MixinMeta):
             await ctx.send("Pokécord has been toggled on!")
             return
         await ctx.send("Pokécord has been toggled off!")
+        await self.update_guild_cache()
 
     @pokecordset.command()
     async def channel(self, ctx, channel: discord.TextChannel):
         """Set the channel that pokemon are to spawn in."""
         async with self.config.guild(ctx.guild).activechannels() as channels:
             channels.append(channel.id)
+        await self.update_guild_cache()
         await ctx.tick()
 
     @pokecordset.command()
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
+        await self.update_guild_cache()
         await ctx.send(data)

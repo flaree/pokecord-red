@@ -1,20 +1,28 @@
+import asyncio
 import base64
+import concurrent.futures
+import functools
 import hashlib
 import json
 import logging
 import os
 import random
+import re
 import string
 from abc import ABC
 
 import discord
+import tabulate
 from PIL import Image
 from redbot.core import Config, checks, commands
-from redbot.core.data_manager import bundled_data_path
-from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
+from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.utils.chat_formatting import humanize_list
+from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
+
+import apsw
 
 from .settings import SettingsMixin
+from .statements import *
 
 log = logging.getLogger("red.flare.pokecord")
 
@@ -48,6 +56,24 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         self.datapath = f"{bundled_data_path(self)}"
         self.spawnedpokemon = {}
         self.maybe_spawn = {}
+        self.guildcache = {}
+        self._connection = apsw.Connection(str(cog_data_path(self) / "pokemon.db"))
+        self.cursor = self._connection.cursor()
+        self.cursor.execute(PRAGMA_journal_mode)
+        self.cursor.execute(PRAGMA_wal_autocheckpoint)
+        self.cursor.execute(PRAGMA_read_uncommitted)
+        self.cursor.execute(
+            "CREATE TABLE IF NOT EXISTS users ("
+            "user_id INTEGER NOT NULL,"
+            "message_id INTEGER NOT NULL UNIQUE,"
+            "pokemon JSON,"
+            "PRIMARY KEY (user_id, message_id)"
+            ");"  # TODO: members table instead
+        )
+        self._executor = concurrent.futures.ThreadPoolExecutor(1)
+
+    def cog_unload(self):
+        self._executor.shutdown()
 
     async def initalize(self):
         with open(f"{self.datapath}/pokemon.json") as f:
@@ -70,6 +96,10 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             await self.config.hashes.set(hashes)
             await self.config.hashed.set(True)
             log.info("Hashing complete")
+        await self.update_guild_cache()
+
+    async def update_guild_cache(self):
+        self.guildcache = await self.config.all_guilds()
 
     async def is_global(self, guild):
         toggle = await self.config.isglobal()
@@ -93,17 +123,27 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     async def list(self, ctx):
         """List your pokémon!"""
         conf = await self.user_is_global(ctx.author)
-        pokemons = await conf.pokemon()
+        result = self.cursor.execute(
+            """SELECT pokemon from users where user_id = ?""", (ctx.author.id,)
+        ).fetchall()
+        pokemons = []
+        for data in result:
+            pokemons.append(json.loads(data[0]))
         if not pokemons:
             return await ctx.send("You don't have any pokémon, go get catching trainer!")
         embeds = []
         for i, pokemon in enumerate(pokemons, 1):
-            desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}"
+            desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n"
             embed = discord.Embed(title=pokemon["name"], description=desc)
             embed.set_image(url=f"https://flaree.xyz/data/{pokemon['name']}.png")
-            embed.set_footer(text=f"Pokémon ID: {i}")
+            embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
+
+    def safe_write(self, query, data):
+        """Func for safely writing in another thread."""
+        cursor = self._connection.cursor()
+        cursor.executemany(query, data)
 
     @commands.command()
     async def catch(self, ctx, *, pokemon: str):
@@ -116,11 +156,13 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     pokemonspawn["name"].strip(string.punctuation).lower(),
                 ]:
                     await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}.")
-                    conf = await self.user_is_global(ctx.author)
-                    async with conf.pokemon() as pokemon:
-                        pokemonspawn["level"] = random.randint(1, 13)
-                        pokemonspawn["xp"] = 0
-                        pokemon.append(pokemonspawn)
+                    pokemonspawn["level"] = random.randint(1, 13)
+                    pokemonspawn["xp"] = 0
+                    print(pokemonspawn)
+                    self.cursor.execute(
+                        "INSERT INTO users (user_id, message_id, pokemon)" "VALUES (?, ?, ?)",
+                        (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
+                    )
                     del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
                     return
                 else:
@@ -135,20 +177,20 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        # if message.content == "spawn":
-        #     if message.guild.id not in self.spawnedpokemon:
-        #         self.spawnedpokemon[message.guild.id] = {}
-        #     pokemon = self.pokemon_choose()
-        #     log.info(pokemon)
-        #     self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
-        #     await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
+        if message.content == "spawn":
+            if message.guild.id not in self.spawnedpokemon:
+                self.spawnedpokemon[message.guild.id] = {}
+            pokemon = self.pokemon_choose()
+            log.info(pokemon)
+            self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
+            await message.channel.send(file=discord.File(f"{self.datapath}/{pokemon['name']}.png"))
 
         if not message.guild:
             return
         if message.author.bot:
             return
-        guild_data = await self.config.guild(message.guild).all()
-        if not guild_data["toggle"]:
+        guildcache = self.guildcache[message.guild.id]
+        if not guildcache["toggle"]:
             return
         await self.exp_gain(message.channel, message.author)
         if message.guild.id not in self.maybe_spawn:
@@ -161,10 +203,10 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if not should_spawn:
             return
         del self.maybe_spawn[message.guild.id]
-        if not guild_data["activechannels"]:
+        if not guildcache["activechannels"]:
             channel = message.channel
         else:
-            channel = message.guild.get_channel(int(random.choice(guild_data["activechannels"])))
+            channel = message.guild.get_channel(int(random.choice(guildcache["activechannels"])))
             if channel is None:
                 return  # TODO: Remove channel from config
         if message.guild.id not in self.spawnedpokemon:
@@ -186,22 +228,37 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     async def exp_gain(self, channel, user):
         conf = await self.user_is_global(user)
-        async with conf.pokemon() as pokemons:
-            if not pokemons:
+        result = self.cursor.execute(
+            """SELECT pokemon, message_id from users where user_id = ?""", (user.id,)
+        ).fetchall()
+        pokemons = []
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return
+        pokemon = None
+        for i, poke in enumerate(pokemons):
+            if poke[0]["level"] < 100:
+                pokemon = poke[0]
+                xp = random.randint(1, 4)
+                pokemon["xp"] += xp
+                if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
+                    pokemon["level"] += 1
+                    pokemon["xp"] = 0
+                    log.info(f"{pokemon['name']} levelled up for {user}")
+                    for stat in pokemon["stats"]:
+                        pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
+                    if not await conf.silence():
+                        embed = discord.Embed(
+                            title=f"Congratulations {user}!",
+                            description=f"Your {pokemon['name']} has levelled up to level {pokemon['level']}!",
+                        )
+                        await channel.send(embed=embed)
+                self.cursor.execute(
+                    "INSERT INTO users (user_id, message_id, pokemon)"
+                    "VALUES (?, ?, ?)"
+                    "ON CONFLICT (message_id) DO UPDATE SET "
+                    "pokemon = excluded.pokemon;",
+                    (user.id, poke[1], json.dumps(pokemon)),
+                )
                 return
-            pokemon = None
-            for i, poke in enumerate(pokemons):
-                if poke["level"] < 100:
-                    pokemon = poke
-                    xp = random.randint(1, 4)
-                    poke["xp"] += xp
-                    if poke["xp"] >= self.calc_xp(poke["level"]):
-                        poke["level"] += 1
-                        poke["xp"] = 0
-                        log.info(f"{poke['name']} levelled up for {user}")
-                        for stat in poke["stats"]:
-                            poke["stats"][stat] = int(poke["stats"][stat]) + random.randint(1, 3)
-                        if not await conf.silence():
-                            embed = discord.Embed(title=f"Congratulations {user}!", description=f"Your {poke['name']} has levelled up to level {poke['level']}!")
-                            await channel.send(embed=embed)
-                    return

@@ -16,3 +16,4 @@ class MixinMeta(ABC):
         self.datapath: str
         self.spawnedpokemon: dict
         self.maybe_spawn: dict
+        self.guildcache: dict
