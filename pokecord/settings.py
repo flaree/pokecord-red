@@ -57,5 +57,5 @@ class SettingsMixin(MixinMeta):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
         await self.update_guild_cache()
-        msg = f"**Toggle**: {data['toggle']}\n**Active Channels**: {humanize_list(data['activechannels'])}"
+        msg = f"**Toggle**: {data['toggle']}\n**Active Channels**: {humanize_list(data['activechannels']) if data['activechannels'] else 'All' if data['toggle'] else 'None'}"
         await ctx.send(msg)

@@ -10,6 +10,7 @@ import os
 import random
 import re
 import string
+import urllib
 from abc import ABC
 
 import discord
@@ -136,7 +137,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         for i, pokemon in enumerate(pokemons, 1):
             desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n"
             embed = discord.Embed(title=pokemon["name"], description=desc)
-            embed.set_image(url=f"https://flaree.xyz/data/{pokemon['name']}.png")
+            embed.set_image(url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png")
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
@@ -230,7 +231,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
         )
         hashe = await self.get_hash(f"{pokemon['name']}.png")
-        embed.set_image(url=f"https://flaree.xyz/data/{hashe}.png")
+        embed.set_image(url=f"https://flaree.xyz/data/{urllib.parse.quote(hashe)}.png")
         await channel.send(embed=embed)
 
     def calc_xp(self, lvl):
