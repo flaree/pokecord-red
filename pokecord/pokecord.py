@@ -185,7 +185,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         return (await self.config.hashes())[pokemon]
 
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message_without_command(self, message):
         # if message.author.id == 95932766180343808:
         #     if message.content == "spawn":
         #         await self.spawn_pokemon(message.channel)
@@ -262,7 +262,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     log.info(f"{pokemon['name']} levelled up for {user}")
                     for stat in pokemon["stats"]:
                         pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
-                    if not userconf["toggle"]:
+                    if not userconf["silence"]:
                         embed = discord.Embed(
                             title=f"Congratulations {user}!",
                             description=f"Your {pokemon['name']} has levelled up to level {pokemon['level']}!",
