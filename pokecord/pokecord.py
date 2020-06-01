@@ -186,9 +186,9 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author.id == 95932766180343808:
-            if message.content == "spawn":
-                await self.spawn_pokemon(message.channel)
+        # if message.author.id == 95932766180343808:
+        #     if message.content == "spawn":
+        #         await self.spawn_pokemon(message.channel)
 
         if not message.guild:
             return
@@ -222,7 +222,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        log.info(pokemon)
+        # log.info(pokemon)
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
