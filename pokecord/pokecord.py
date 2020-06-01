@@ -81,7 +81,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     async def initalize(self):
         with open(f"{self.datapath}/pokemon.json") as f:
             self.pokemondata = json.load(f)
-        if await self.config.hashed():
+        if not await self.config.hashed():
             log.info("hashing...")
             hashes = {}
             for file in os.listdir(f"{self.datapath}/pokemon/"):
