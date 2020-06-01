@@ -59,3 +59,16 @@ class SettingsMixin(MixinMeta):
         await self.update_guild_cache()
         msg = f"**Toggle**: {data['toggle']}\n**Active Channels**: {humanize_list(data['activechannels']) if data['activechannels'] else 'All' if data['toggle'] else 'None'}"
         await ctx.send(msg)
+        
+    @pokecordset.command(usage="<min amount of messages> <max amount of messages>")
+    @commands.is_owner()
+    async def spawnchance(self, ctx, _min: int, _max: int):
+        """Change the range of messages required for a spawn."""
+        if _min < 15:
+            return await ctx.send("Min must be more than 15.")
+        if _max < _min:
+            return await ctx.send("Max must be more than the minimum.")
+        await self.config.spawnchance.set([_min, _max])
+        await self.update_spawn_chance()
+        await ctx.tick()
+        

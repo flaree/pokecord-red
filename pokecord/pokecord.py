@@ -18,7 +18,7 @@ import tabulate
 from PIL import Image
 from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
-from redbot.core.utils.chat_formatting import humanize_list
+from redbot.core.utils.chat_formatting import humanize_list, box
 from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 
 import apsw
@@ -49,7 +49,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         super().__init__()
         self.bot = bot
         self.config = Config.get_conf(self, identifier=95932766180343808, force_registration=True)
-        self.config.register_global(isglobal=True, hashed=False, hashes={})
+        self.config.register_global(isglobal=True, hashed=False, hashes={}, spawnchance=[20, 120])
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)
         defaults_user = {"pokemon": [], "silence": False, "timestamp": 0}
@@ -59,6 +59,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         self.spawnedpokemon = {}
         self.maybe_spawn = {}
         self.guildcache = {}
+        self.spawnchance = []
         self._connection = apsw.Connection(str(cog_data_path(self) / "pokemon.db"))
         self.cursor = self._connection.cursor()
         self.cursor.execute(PRAGMA_journal_mode)
@@ -99,9 +100,13 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             await self.config.hashed.set(True)
             log.info("Hashing complete")
         await self.update_guild_cache()
+        await self.update_spawn_chance()
 
     async def update_guild_cache(self):
         self.guildcache = await self.config.all_guilds()
+        
+    async def update_spawn_chance(self):
+        self.spawnchance = await self.config.spawnchance()
 
     async def is_global(self, guild):
         toggle = await self.config.isglobal()
@@ -135,7 +140,9 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             return await ctx.send("You don't have any pokémon, go get catching trainer!")
         embeds = []
         for i, pokemon in enumerate(pokemons, 1):
-            desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n"
+            stats = pokemon["stats"]
+            pokestats = tabulate.tabulate([["HP", stats["HP"]], ["Attack", stats["Attack"]], ["Defence", stats["Defence"]], ["Sp. Atk", stats["Sp. Atk"]], ["Sp. Def", stats["Sp. Def"]], ["Speed", stats["Speed"]]], headers=["Ability", "Value"])
+            desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
             embed = discord.Embed(title=pokemon["name"], description=desc)
             embed.set_image(url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png")
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
@@ -180,19 +187,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     async def on_message(self, message):
         # if message.author.id == 95932766180343808:
         #     if message.content == "spawn":
-        #         if message.guild.id not in self.spawnedpokemon:
-        #             self.spawnedpokemon[message.guild.id] = {}
-        #         pokemon = self.pokemon_choose()
-        #         # log.info(pokemon)
-        #         self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
-        #         prefixes = await self.bot.get_valid_prefixes(guild=message.guild)
-        #         embed = discord.Embed(
-        #             title="‌‌A wild pokémon has аppeаred!",
-        #             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
-        #         )
-        #         hashe = await self.get_hash(f"{pokemon['name']}.png")
-        #         embed.set_image(url=f"https://flaree.xyz/data/{hashe}.png")
-        #         await message.channel.send(embed=embed)
+        #         await self.spawn_pokemon(message.channel)
 
         if not message.guild:
             return
@@ -207,7 +202,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if message.guild.id not in self.maybe_spawn:
             self.maybe_spawn[message.guild.id] = {
                 "amount": 0,
-                "spawnchance": random.randint(40, 170),
+                "spawnchance": random.randint(self.spawnchance[0], self.spawnchance[1]),
             }  # TODO: big value
         self.maybe_spawn[message.guild.id]["amount"] += 1
         should_spawn = self.spawn_chance(message.guild.id)
@@ -220,12 +215,15 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             channel = message.guild.get_channel(int(random.choice(guildcache["activechannels"])))
             if channel is None:
                 return  # TODO: Remove channel from config
-        if message.guild.id not in self.spawnedpokemon:
-            self.spawnedpokemon[message.guild.id] = {}
+        await self.spawn_pokemon(channel)
+    
+    async def spawn_pokemon(self, channel):
+        if channel.guild.id not in self.spawnedpokemon:
+            self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
         # log.info(pokemon)
-        self.spawnedpokemon[message.guild.id][message.channel.id] = pokemon
-        prefixes = await self.bot.get_valid_prefixes(guild=message.guild)
+        self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
+        prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
             title="‌‌A wild pokémon has аppeаred!",
             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
