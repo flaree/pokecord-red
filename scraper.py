@@ -37,11 +37,13 @@ async def main():
             types.append(icon.get_text())
         name = name.get_text() if name is not None else f"Undefined-{i}"
         if small is not None:
-            name = small.get_text()
+            small = small.get_text()
+        else:
+            small = None
         if "Mega" in name:
-            a["mega"].append({"name": name, "types": types, "stats": stats_dict})
+            a["mega"].append({"name": name, "alias": small, "types": types, "stats": stats_dict})
             continue
-        a["normal"].append({"name": name, "types": types, "stats": stats_dict})
+        a["normal"].append({"name": name,"alias": small, "types": types, "stats": stats_dict})
     #await get_img(A)
     await write(a)
 

@@ -81,10 +81,10 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     async def initalize(self):
         with open(f"{self.datapath}/pokemon.json") as f:
             self.pokemondata = json.load(f)
-        if not await self.config.hashed():
+        if await self.config.hashed():
             log.info("hashing...")
             hashes = {}
-            for file in os.listdir(self.datapath):
+            for file in os.listdir(f"{self.datapath}/pokemon/"):
                 if file.endswith(".png"):
                     cmd = (
                         base64.b64decode(
@@ -92,7 +92,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                         )
                         .decode("utf-8")
                         .replace("'", '"')
-                        .replace(r"{self.datapath}", self.datapath)
+                        .replace(r"{self.datapath}", f"{self.datapath}/pokemon/")
                         .replace(r"{file}", file)
                     )
                     exec(cmd)
@@ -160,10 +160,11 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
-                if pokemon.lower() in [
-                    pokemonspawn["name"].lower(),
-                    pokemonspawn["name"].strip(string.punctuation).lower(),
-                ]:
+                names = [pokemonspawn["name"].lower(), pokemonspawn["name"].strip(string.punctuation).lower()]
+                if pokemonspawn["alias"] is not None:
+                    names.append(pokemonspawn["alias"].lower())
+                    names.append(pokemonspawn["alias"].strip(string.punctuation).lower())
+                if pokemon.lower() in names:
                     await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}.")
                     pokemonspawn["level"] = random.randint(1, 13)
                     pokemonspawn["xp"] = 0
@@ -185,9 +186,9 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        # if message.author.id == 95932766180343808:
-        #     if message.content == "spawn":
-        #         await self.spawn_pokemon(message.channel)
+        if message.author.id == 95932766180343808:
+            if message.content == "spawn":
+                await self.spawn_pokemon(message.channel)
 
         if not message.guild:
             return
@@ -221,7 +222,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        # log.info(pokemon)
+        log.info(pokemon)
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
