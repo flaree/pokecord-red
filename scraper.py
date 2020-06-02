@@ -6,20 +6,23 @@ from io import BytesIO
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import html5lib
-driver = webdriver.Chrome(executable_path=r'chromedriver.exe')
+
+driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
+
 URL = "https://pokemondb.net/pokedex/all"
 CNDURL = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{}.png"
 
 
 # DOESNT DO MEGAS ETC.
 
+
 async def main():
     a = {"mega": [], "normal": []}
     driver.get(URL)
-    parse = BeautifulSoup(driver.page_source, 'html5lib')
+    parse = BeautifulSoup(driver.page_source, "html5lib")
     await asyncio.sleep(3)
-    soup = bs4.BeautifulSoup(driver.page_source,'html.parser')
+    soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
     da = soup.find_all("table", {"id": "pokedex"})[0]
     tags = da.find_all("tr")
     stat_headlines = ["HP", "Attack", "Defence", "Sp. Atk", "Sp. Def", "Speed"]
@@ -41,15 +44,21 @@ async def main():
         else:
             small = None
         if "Mega" in name:
-            a["mega"].append({"name": name, "alias": small, "types": types, "stats": stats_dict})
+            a["mega"].append(
+                {"name": name, "alias": small, "types": types, "stats": stats_dict}
+            )
             continue
-        a["normal"].append({"name": name,"alias": small, "types": types, "stats": stats_dict})
-    #await get_img(A)
+        a["normal"].append(
+            {"name": name, "alias": small, "types": types, "stats": stats_dict}
+        )
+    # await get_img(A)
     await write(a)
+
 
 async def write(lst):
     with open("pokecord/data/pokemon.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(lst))
+
 
 async def get_img(lst):
     session = aiohttp.ClientSession()
@@ -64,4 +73,3 @@ async def get_img(lst):
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
-
