@@ -129,7 +129,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                         if channel is None:
                             continue
                         await self.spawn_pokemon(channel)
-                await asyncio.sleep(1500)
+                await asyncio.sleep(2400)
             except Exception as exc:
                 log.error("Exception in pokemon auto spawning: ", exc_info=exc)
 
@@ -280,7 +280,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        log.info(pokemon)
+        # log.info(pokemon)
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
