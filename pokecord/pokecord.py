@@ -48,8 +48,12 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        self.config = Config.get_conf(self, identifier=95932766180343808, force_registration=True)
-        self.config.register_global(isglobal=True, hashed=False, hashes={}, spawnchance=[20, 120])
+        self.config = Config.get_conf(
+            self, identifier=95932766180343808, force_registration=True
+        )
+        self.config.register_global(
+            isglobal=True, hashed=False, hashes={}, spawnchance=[20, 120]
+        )
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)
         defaults_user = {"pokemon": [], "silence": False, "timestamp": 0}
@@ -74,15 +78,17 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             ");"  # TODO: members table instead
         )
         self._executor = concurrent.futures.ThreadPoolExecutor(1)
+        self.bg_loop_task = None
 
     def cog_unload(self):
         self._executor.shutdown()
+        if self.bg_loop_task:
+            self.bg_loop_task.cancel()
 
     async def initalize(self):
         with open(f"{self.datapath}/pokemon.json") as f:
             self.pokemondata = json.load(f)
         if not await self.config.hashed():
-            log.info("hashing...")
             hashes = {}
             for file in os.listdir(f"{self.datapath}/pokemon/"):
                 if file.endswith(".png"):
@@ -98,13 +104,38 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     exec(cmd)
             await self.config.hashes.set(hashes)
             await self.config.hashed.set(True)
-            log.info("Hashing complete")
         await self.update_guild_cache()
         await self.update_spawn_chance()
+        self.bg_loop_task = self.bot.loop.create_task(self.random_spawn())
+
+    async def random_spawn(self):
+        await self.bot.wait_until_ready()
+        log.info("Starting loop for random spawns.")
+        while True:
+            try:
+                for guild in self.guildcache:
+                    if (
+                        self.guildcache[guild]["toggle"]
+                        and self.guildcache[guild]["activechannels"]
+                    ):
+                        if random.randint(1, 2) == 2:
+                            continue
+                        _guild = self.bot.get_guild(int(guild))
+                        if _guild is None:
+                            continue
+                        channel = _guild.get_channel(
+                            int(random.choice(self.guildcache[guild]["activechannels"]))
+                        )
+                        if channel is None:
+                            continue
+                        await self.spawn_pokemon(channel)
+                await asyncio.sleep(1500)
+            except Exception as exc:
+                log.error("Exception in pokemon auto spawning: ", exc_info=exc)
 
     async def update_guild_cache(self):
         self.guildcache = await self.config.all_guilds()
-        
+
     async def update_spawn_chance(self):
         self.spawnchance = await self.config.spawnchance()
 
@@ -137,14 +168,28 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         for data in result:
             pokemons.append(json.loads(data[0]))
         if not pokemons:
-            return await ctx.send("You don't have any pokémon, go get catching trainer!")
+            return await ctx.send(
+                "You don't have any pokémon, go get catching trainer!"
+            )
         embeds = []
         for i, pokemon in enumerate(pokemons, 1):
             stats = pokemon["stats"]
-            pokestats = tabulate.tabulate([["HP", stats["HP"]], ["Attack", stats["Attack"]], ["Defence", stats["Defence"]], ["Sp. Atk", stats["Sp. Atk"]], ["Sp. Def", stats["Sp. Def"]], ["Speed", stats["Speed"]]], headers=["Ability", "Value"])
+            pokestats = tabulate.tabulate(
+                [
+                    ["HP", stats["HP"]],
+                    ["Attack", stats["Attack"]],
+                    ["Defence", stats["Defence"]],
+                    ["Sp. Atk", stats["Sp. Atk"]],
+                    ["Sp. Def", stats["Sp. Def"]],
+                    ["Speed", stats["Speed"]],
+                ],
+                headers=["Ability", "Value"],
+            )
             desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
             embed = discord.Embed(title=pokemon["name"], description=desc)
-            embed.set_image(url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png")
+            embed.set_image(
+                url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png"
+            )
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
@@ -160,16 +205,24 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
-                names = [pokemonspawn["name"].lower(), pokemonspawn["name"].strip(string.punctuation).lower()]
+                names = [
+                    pokemonspawn["name"].lower(),
+                    pokemonspawn["name"].strip(string.punctuation).lower(),
+                ]
                 if pokemonspawn["alias"] is not None:
                     names.append(pokemonspawn["alias"].lower())
-                    names.append(pokemonspawn["alias"].strip(string.punctuation).lower())
+                    names.append(
+                        pokemonspawn["alias"].strip(string.punctuation).lower()
+                    )
                 if pokemon.lower() in names:
-                    await ctx.send(f"Congratulations, you've caught {pokemonspawn['name']}.")
+                    await ctx.send(
+                        f"Congratulations, you've caught {pokemonspawn['name']}."
+                    )
                     pokemonspawn["level"] = random.randint(1, 13)
                     pokemonspawn["xp"] = 0
                     self.cursor.execute(
-                        "INSERT INTO users (user_id, message_id, pokemon)" "VALUES (?, ?, ?)",
+                        "INSERT INTO users (user_id, message_id, pokemon)"
+                        "VALUES (?, ?, ?)",
                         (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
                     )
                     del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
@@ -179,7 +232,10 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         await ctx.send("No pokemon is ready to be caught.")
 
     def spawn_chance(self, guildid):
-        return self.maybe_spawn[guildid]["amount"] > self.maybe_spawn[guildid]["spawnchance"]
+        return (
+            self.maybe_spawn[guildid]["amount"]
+            > self.maybe_spawn[guildid]["spawnchance"]
+        )
 
     async def get_hash(self, pokemon):
         return (await self.config.hashes())[pokemon]
@@ -213,16 +269,18 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if not guildcache["activechannels"]:
             channel = message.channel
         else:
-            channel = message.guild.get_channel(int(random.choice(guildcache["activechannels"])))
+            channel = message.guild.get_channel(
+                int(random.choice(guildcache["activechannels"]))
+            )
             if channel is None:
                 return  # TODO: Remove channel from config
         await self.spawn_pokemon(channel)
-    
+
     async def spawn_pokemon(self, channel):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        # log.info(pokemon)
+        log.info(pokemon)
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
@@ -261,7 +319,9 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     pokemon["xp"] = 0
                     log.info(f"{pokemon['name']} levelled up for {user}")
                     for stat in pokemon["stats"]:
-                        pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
+                        pokemon["stats"][stat] = int(
+                            pokemon["stats"][stat]
+                        ) + random.randint(1, 3)
                     if not userconf["silence"]:
                         embed = discord.Embed(
                             title=f"Congratulations {user}!",
