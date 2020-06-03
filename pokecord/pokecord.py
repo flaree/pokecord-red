@@ -312,7 +312,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         for i, poke in enumerate(pokemons):
             if poke[0]["level"] < 100:
                 pokemon = poke[0]
-                xp = random.randint(1, 4)
+                xp = random.randint(5, 20)
                 pokemon["xp"] += xp
                 if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
                     pokemon["level"] += 1
