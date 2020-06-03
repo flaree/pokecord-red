@@ -16,7 +16,7 @@ from abc import ABC
 import discord
 import tabulate
 from PIL import Image
-from redbot.core import Config, checks, commands
+from redbot.core import Config, checks, commands, bank
 from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.utils.chat_formatting import humanize_list, box
 from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
@@ -37,7 +37,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1a"
+    __version__ = "0.0.1alpha1"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -52,7 +52,11 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             self, identifier=95932766180343808, force_registration=True
         )
         self.config.register_global(
-            isglobal=True, hashed=False, hashes={}, spawnchance=[20, 120]
+            isglobal=True,
+            hashed=False,
+            hashes={},
+            spawnchance=[20, 120],
+            hintcost=1000,
         )
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)
@@ -238,14 +242,10 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         )
 
     async def get_hash(self, pokemon):
-        return (await self.config.hashes())[pokemon]
+        return (await self.config.hashes()).get(pokemon, None)
 
     @commands.Cog.listener()
     async def on_message_without_command(self, message):
-        # if message.author.id == 95932766180343808:
-        #     if message.content == "spawn":
-        #         await self.spawn_pokemon(message.channel)
-
         if not message.guild:
             return
         if message.author.bot:
@@ -280,7 +280,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        # log.info(pokemon)
+        log.debug(f"{pokemon['name']} has spawned in {channel}")
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
@@ -288,16 +288,18 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
         )
         hashe = await self.get_hash(f"{pokemon['name']}.png")
+        if hashe is None:
+            return
         embed.set_image(url=f"https://flaree.xyz/data/{urllib.parse.quote(hashe)}.png")
         await channel.send(embed=embed)
 
     def calc_xp(self, lvl):
-        return 5 * lvl * 5
+        return 25 * lvl
 
     async def exp_gain(self, channel, user):
         conf = await self.user_is_global(user)
         userconf = await conf.all()
-        if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 120:
+        if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 20:
             return
         await conf.timestamp.set(datetime.datetime.utcnow().timestamp())
         result = self.cursor.execute(
