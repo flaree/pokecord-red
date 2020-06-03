@@ -12,13 +12,14 @@ import re
 import string
 import urllib
 from abc import ABC
+from typing import Union
 
 import discord
 import tabulate
 from PIL import Image
-from redbot.core import Config, checks, commands, bank
+from redbot.core import Config, bank, checks, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
-from redbot.core.utils.chat_formatting import humanize_list, box
+from redbot.core.utils.chat_formatting import box, humanize_list
 from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 
 import apsw
@@ -37,7 +38,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1alpha1"
+    __version__ = "0.0.1alpha2"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -189,7 +190,9 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 ],
                 headers=["Ability", "Value"],
             )
-            desc = f"**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
+            nick = pokemon.get("nickname")
+            alias = f"**Nickname**: {nick}\n" if nick is not None else ""
+            desc = f"{alias}**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
             embed = discord.Embed(title=pokemon["name"], description=desc)
             embed.set_image(
                 url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png"
@@ -198,10 +201,76 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
-    def safe_write(self, query, data):
-        """Func for safely writing in another thread."""
-        cursor = self._connection.cursor()
-        cursor.executemany(query, data)
+    @commands.command()
+    async def nick(self, ctx, id: int, *, nickname: str):
+        """Set a pokemons nickname."""
+        if id <= 0:
+            return await ctx.send("The ID must be greater than 0!")
+        result = self.cursor.execute(
+            """SELECT pokemon, message_id from users where user_id = ?""",
+            (ctx.author.id,),
+        ).fetchall()
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send("You don't have any pokémon, trainer!")
+        if id > len(pokemons):
+            return await ctx.send("You don't have a pokemon at that slot.")
+        pokemon = pokemons[id]
+        pokemon[0]["nickname"] = nickname
+        self.cursor.execute(
+            "INSERT INTO users (user_id, message_id, pokemon)"
+            "VALUES (?, ?, ?)"
+            "ON CONFLICT (message_id) DO UPDATE SET "
+            "pokemon = excluded.pokemon;",
+            (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
+        )
+        await ctx.send(f"Your {pokemon[0]['name']} has been named `{nickname}`")
+
+    @commands.command()
+    async def free(self, ctx, id: int):
+        """Free a pokemon."""
+        if id <= 0:
+            return await ctx.send("The ID must be greater than 0!")
+        result = self.cursor.execute(
+            """SELECT pokemon, message_id from users where user_id = ?""",
+            (ctx.author.id,),
+        ).fetchall()
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send("You don't have any pokémon, trainer!")
+        if id > len(pokemons):
+            return await ctx.send("You don't have a pokemon at that slot.")
+        pokemon = pokemons[id]
+        self.cursor.execute(
+            "DELETE FROM users where message_id = ?", (pokemon[1],),
+        )
+        await ctx.send(f"Your {pokemon[0]['name']} has been freed.")
+
+    @commands.command()
+    @commands.cooldown(1, 30, commands.BucketType.member)
+    async def hint(self, ctx):
+        """Get a hint on the pokemon!"""
+        if self.spawnedpokemon.get(ctx.guild.id) is not None:
+            pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
+            if pokemonspawn is not None:
+                name = pokemonspawn["name"]
+                inds = [i for i, _ in enumerate(name)]
+                if len(name) > 6:
+                    amount = random.randint(2, 5)
+                else:
+                    amount = random.randint(1, 3)
+                sam = random.sample(inds, amount)
+
+                lst = list(name)
+                for ind in sam:
+                    lst[ind] = random.choice("_")
+                await ctx.send("This wild pokemon is a {}".format("".join(lst)))
+                return
+        await ctx.send("No pokemon is ready to be caught.")
 
     @commands.command()
     async def catch(self, ctx, *, pokemon: str):
@@ -219,10 +288,11 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                         pokemonspawn["alias"].strip(string.punctuation).lower()
                     )
                 if pokemon.lower() in names:
+                    lvl = random.randint(1, 13)
                     await ctx.send(
-                        f"Congratulations, you've caught {pokemonspawn['name']}."
+                        f"Congratulations {ctx.author.mention}! You've caught a level {lvl} {pokemonspawn['name']}!"
                     )
-                    pokemonspawn["level"] = random.randint(1, 13)
+                    pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
                     self.cursor.execute(
                         "INSERT INTO users (user_id, message_id, pokemon)"
@@ -286,6 +356,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         embed = discord.Embed(
             title="‌‌A wild pokémon has аppeаred!",
             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
+            color=await self.bot.get_embed_color(channel),
         )
         hashe = await self.get_hash(f"{pokemon['name']}.png")
         if hashe is None:
@@ -314,7 +385,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         for i, poke in enumerate(pokemons):
             if poke[0]["level"] < 100:
                 pokemon = poke[0]
-                xp = random.randint(5, 20)
+                xp = random.randint(5, 25)
                 pokemon["xp"] += xp
                 if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
                     pokemon["level"] += 1
@@ -325,9 +396,15 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                             pokemon["stats"][stat]
                         ) + random.randint(1, 3)
                     if not userconf["silence"]:
+                        name = (
+                            pokemon["name"]
+                            if pokemon.get("nickname") is None
+                            else f'"{pokemon.get("nickname")}"'
+                        )
                         embed = discord.Embed(
                             title=f"Congratulations {user}!",
-                            description=f"Your {pokemon['name']} has levelled up to level {pokemon['level']}!",
+                            description=f"Your {name} has levelled up to level {pokemon['level']}!",
+                            color=await self.bot.get_embed_color(channel),
                         )
                         await channel.send(embed=embed)
                 self.cursor.execute(

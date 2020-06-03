@@ -6,6 +6,7 @@ from io import BytesIO
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import html5lib
+import os
 
 driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
@@ -28,7 +29,7 @@ async def main():
     stat_headlines = ["HP", "Attack", "Defence", "Sp. Atk", "Sp. Def", "Speed"]
     for i, poke in enumerate(tags[1:]):
         name = poke.find("a")
-        _id = poke.find("span", {"class": "infocard-cell-data"})
+        _id = poke.find("span", {"class": "infocard-cell-data"}).get_text()
         small = poke.find("small", {"class": "text-muted"})
         stats = poke.find_all("td", {"class": "cell-num"})
         stats_dict = {}
@@ -45,13 +46,25 @@ async def main():
             small = None
         if "Mega" in name:
             a["mega"].append(
-                {"name": name, "alias": small, "types": types, "stats": stats_dict}
+                {
+                    "name": name,
+                    "alias": small,
+                    "types": types,
+                    "stats": stats_dict,
+                    "id": _id,
+                }
             )
             continue
         a["normal"].append(
-            {"name": name, "alias": small, "types": types, "stats": stats_dict}
+            {
+                "name": name,
+                "alias": small,
+                "types": types,
+                "stats": stats_dict,
+                "id": _id,
+            }
         )
-    # await get_img(A)
+    await get_img(a)
     await write(a)
 
 
@@ -62,11 +75,15 @@ async def write(lst):
 
 async def get_img(lst):
     session = aiohttp.ClientSession()
-    for name, id in lst:
-        print(id, "getting img")
+    for pokemon in lst["normal"]:
         async with session.get(CNDURL.format(id)) as img:
-            with open(f"data/{name}.png", "wb") as f:
+            if os.path.exists(f'data/{pokemon["name"]}.png'):
+                name = f"data/{pokemon['name']}-{pokemon['alias']}.png"
+            else:
+                name = f"data/{pokemon['name']}.png"
+            with open(name, "wb") as f:
                 f.write(BytesIO(await img.read()).getbuffer())
+        print(pokemon["id"], name)
 
     await session.close()
 
