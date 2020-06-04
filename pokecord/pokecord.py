@@ -19,7 +19,7 @@ import tabulate
 from PIL import Image
 from redbot.core import Config, bank, checks, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
-from redbot.core.utils.chat_formatting import box, humanize_list
+from redbot.core.utils.chat_formatting import box, humanize_list, escape
 from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 
 import apsw
@@ -267,8 +267,8 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
                 lst = list(name)
                 for ind in sam:
-                    lst[ind] = random.choice("_")
-                await ctx.send("This wild pokemon is a {}".format("".join(lst)))
+                    lst[ind] = "_"
+                await ctx.send("This wild pokemon is a {}".format(escape("".join(lst))))
                 return
         await ctx.send("No pokemon is ready to be caught.")
 
@@ -390,7 +390,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
                     pokemon["level"] += 1
                     pokemon["xp"] = 0
-                    log.info(f"{pokemon['name']} levelled up for {user}")
+                    log.debug(f"{pokemon['name']} levelled up for {user}")
                     for stat in pokemon["stats"]:
                         pokemon["stats"][stat] = int(
                             pokemon["stats"][stat]
