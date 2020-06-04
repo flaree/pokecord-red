@@ -38,7 +38,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1alpha2"
+    __version__ = "0.0.1alpha3"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -58,6 +58,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             hashes={},
             spawnchance=[20, 120],
             hintcost=1000,
+            spawnloop=False
         )
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)
@@ -111,7 +112,8 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             await self.config.hashed.set(True)
         await self.update_guild_cache()
         await self.update_spawn_chance()
-        self.bg_loop_task = self.bot.loop.create_task(self.random_spawn())
+        if await self.config.spawnloop():
+            self.bg_loop_task = self.bot.loop.create_task(self.random_spawn())
 
     async def random_spawn(self):
         await self.bot.wait_until_ready()
