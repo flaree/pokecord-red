@@ -58,7 +58,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             hashes={},
             spawnchance=[20, 120],
             hintcost=1000,
-            spawnloop=False
+            spawnloop=False,
         )
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)

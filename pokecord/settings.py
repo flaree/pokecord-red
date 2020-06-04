@@ -71,14 +71,18 @@ class SettingsMixin(MixinMeta):
         await self.config.spawnchance.set([_min, _max])
         await self.update_spawn_chance()
         await ctx.tick()
-        
+
     @pokecordset.command()
     @commands.is_owner()
-    async def spawnloop(self, ctx, state:bool):
+    async def spawnloop(self, ctx, state: bool):
         """Turn the bot loop on or off."""
         if state:
-            await ctx.send("Random spawn loop has been enabled, please reload the cog for this change to take effect.")
+            await ctx.send(
+                "Random spawn loop has been enabled, please reload the cog for this change to take effect."
+            )
         else:
-            await ctx.send("Random spawn loop has been disabled, please reload the cog for this change to take effect.")
+            await ctx.send(
+                "Random spawn loop has been disabled, please reload the cog for this change to take effect."
+            )
         await self.config.spawnloop.set(state)
         await ctx.tick()
