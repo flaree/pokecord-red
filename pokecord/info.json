@@ -2,7 +2,7 @@
     "author": [
       "flare(flare#0001)"
     ],
-    "install_msg": "Gratz, you found a repo that's in progress. Any errors then you're on your own unless you know flare. hf.",
+    "install_msg": "Thanks for installing and testing out the Pokecord rewrite for Red. If any issues pop up, feel free to create an issue or join my support server @ https://discord.gg/nyuSWd. Alternatively, you can post in the Red Cog Support server.",
     "name": "Pokecord",
     "disabled": false,
     "short": "Pokecord",
