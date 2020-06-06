@@ -38,7 +38,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1alpha3"
+    __version__ = "0.0.1-realllllly-pre-alpha-3"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -270,7 +270,8 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 lst = list(name)
                 for ind in sam:
                     lst[ind] = "_"
-                await ctx.send("This wild pokemon is a {}".format(escape("".join(lst))))
+                word = escape("".join(lst), formatting=True)
+                await ctx.send("This wild pokemon is a {}".format(word))
                 return
         await ctx.send("No pokemon is ready to be caught.")
 
@@ -285,6 +286,8 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     pokemonspawn["name"].strip(string.punctuation).lower(),
                 ]
                 if pokemonspawn["alias"] is not None:
+                    if "Mega" in pokemonspawn["alias"]:
+                        names = []
                     names.append(pokemonspawn["alias"].lower())
                     names.append(
                         pokemonspawn["alias"].strip(string.punctuation).lower()
@@ -352,7 +355,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        log.debug(f"{pokemon['name']} has spawned in {channel}")
+        log.debug(f"{pokemon['name']} has spawned in {channel} on {channel.guild}")
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
