@@ -117,7 +117,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
 
     async def random_spawn(self):
         await self.bot.wait_until_ready()
-        log.info("Starting loop for random spawns.")
+        log.debug("Starting loop for random spawns.")
         while True:
             try:
                 for guild in self.guildcache:
@@ -356,7 +356,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        log.info(f"{pokemon['name']} has spawned in {channel} on {channel.guild}")
+        log.debug(f"{pokemon['name']} has spawned in {channel} on {channel.guild}")
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
