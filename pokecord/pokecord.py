@@ -287,6 +287,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 ]
                 if pokemonspawn["alias"] is not None:
                     if "Mega" in pokemonspawn["alias"]:
+                        pokemonspawn["name"] = pokemonspawn["alias"]
                         names = []
                     names.append(pokemonspawn["alias"].lower())
                     names.append(
@@ -355,7 +356,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        log.debug(f"{pokemon['name']} has spawned in {channel} on {channel.guild}")
+        log.info(f"{pokemon['name']} has spawned in {channel} on {channel.guild}")
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
