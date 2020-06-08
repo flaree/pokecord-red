@@ -26,6 +26,9 @@ class SettingsMixin(MixinMeta):
     @commands.guild_only()
     async def select(self, ctx, _id: int):
         """Select your default pokémon."""
+        conf = await self.user_is_global(ctx.author)
+        if not await conf.has_starter():
+            return await ctx.send(f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information.")
         result = self.cursor.execute(
             """SELECT pokemon, message_id from users where user_id = ?""",
             (ctx.author.id,),

@@ -39,7 +39,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-4"
+    __version__ = "0.0.1-realllllly-pre-alpha-5"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -63,7 +63,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         )
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)
-        defaults_user = {"pokemon": [], "silence": False, "timestamp": 0, "pokeid": 1}
+        defaults_user = {"pokemon": [], "silence": False, "timestamp": 0, "pokeid": 1, "has_starter": False}
         self.config.register_user(**defaults_user)
         self.config.register_member(**defaults_user)
         self.datapath = f"{bundled_data_path(self)}"
@@ -170,6 +170,35 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             if "Mega" in alias:
                 return alias
         return name
+    
+    @commands.command()
+    async def starter(self, ctx, pokemon: str = None):
+        """Choose your starter pokemon"""
+        conf = await self.user_is_global(ctx.author)
+        if await conf.has_starter():
+            return await ctx.send(f"You've already claimed your starter pokemon!")
+        if pokemon is None:
+            msg = ("Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\n"
+                   "In order to get catchin' you must pick one of the starter Pokemon as listed below.\n"
+                   "Bulbasaur, Charmander and Squirtle\n"
+                   f"To pick a pokemon, type {ctx.clean_prefix}starter <pokemon>")
+            await ctx.send(msg)
+            return
+        if pokemon.lower() not in ["bulbasaur", "charmander", "squirtle"]:
+            await ctx.send("That's not a valid starter pokémon, trainer!")
+            return
+        await ctx.send(f"You've chosen {pokemon.title()} as your starter pokémon!")
+        starter_pokemon = {"bulbasaur": {"name": "Bulbasaur", "alias": None, "types": ["Grass", "Poison"], "stats": {"HP": "45", "Attack": "49", "Defence": "49", "Sp. Atk": "65", "Sp. Def": "65", "Speed": "45"}, "id": "001", "level": 1, "xp": 0},
+                           "charmander": {"name": "Charmander", "alias": None, "types": ["Fire"], "stats": {"HP": "39", "Attack": "52", "Defence": "43", "Sp. Atk": "60", "Sp. Def": "50", "Speed": "65"}, "id": "004", "level": 1, "xp": 0},
+                           "squirtle": {"name": "Squirtle", "alias": None, "types": ["Water"], "stats": {"HP": "44", "Attack": "48", "Defence": "65", "Sp. Atk": "50", "Sp. Def": "64", "Speed": "43"}, "id": "007", "level": 1, "xp": 0}}
+
+        self.cursor.execute(
+            "INSERT INTO users (user_id, message_id, pokemon)"
+            "VALUES (?, ?, ?)",
+            (ctx.author.id, ctx.message.id, json.dumps(starter_pokemon[pokemon.lower()])),
+        )
+        await conf.has_starter.set(True)
+        
 
     @commands.command()
     async def list(self, ctx):
@@ -295,15 +324,18 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 lst = list(name)
                 for ind in sam:
                     if lst[ind] != " ":
-                        lst[ind] = "_"
+                        lst[ind] = "_ "
                 word = escape("".join(lst), formatting=True)
-                await ctx.send("This wild pokemon is a {}".format(word))
+                await ctx.send("This wild pokemon is a `{}`".format(word))
                 return
         await ctx.send("No pokemon is ready to be caught.")
 
     @commands.command()
     async def catch(self, ctx, *, pokemon: str):
         """Catch a pokemon!"""
+        conf = await self.user_is_global(ctx.author)
+        if not await conf.has_starter():
+            return await ctx.send(f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information.")
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
