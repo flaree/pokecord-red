@@ -1,5 +1,6 @@
 from .abc import MixinMeta
 import discord
+import json
 
 from redbot.core import commands
 from redbot.core.utils.chat_formatting import humanize_list
@@ -20,6 +21,27 @@ class SettingsMixin(MixinMeta):
             await ctx.send("Pokécord levelling messages have been silenced.")
             return
         await ctx.send("Pokécord levelling messages have been re-enabled!")
+
+    @commands.command(usage="id")
+    @commands.guild_only()
+    async def select(self, ctx, _id: int):
+        """Select your default pokémon."""
+        result = self.cursor.execute(
+            """SELECT pokemon, message_id from users where user_id = ?""",
+            (ctx.author.id,),
+        ).fetchall()
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send("You don't have any pokemon to select.")
+        if _id < 1 or _id > len(pokemons) - 1:
+            return await ctx.send("You've specified an invalid ID.")
+        await ctx.send(
+            f"You have selected {self.get_name(pokemons[_id][0]['name'], pokemons[_id][0]['alias'])} as your default pokémon."
+        )
+        conf = await self.user_is_global(ctx.author)
+        await conf.pokeid.set(_id)
 
     @commands.group(aliases=["pokeset"])
     @commands.admin()
