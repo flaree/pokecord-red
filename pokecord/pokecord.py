@@ -325,7 +325,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 for ind in sam:
                     if lst[ind] != " ":
                         lst[ind] = "_ "
-                word = escape("".join(lst), formatting=True)
+                word = "".join(lst)
                 await ctx.send("This wild pokemon is a `{}`".format(word))
                 return
         await ctx.send("No pokemon is ready to be caught.")
