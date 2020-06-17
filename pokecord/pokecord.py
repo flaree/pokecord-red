@@ -20,12 +20,12 @@ from PIL import Image
 from redbot.core import Config, bank, checks, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.utils.chat_formatting import box, escape, humanize_list
-from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 from redbot.core.utils.predicates import MessagePredicate
 
 import apsw
 
 from .settings import SettingsMixin
+from .general import GeneralMixin
 from .statements import *
 
 log = logging.getLogger("red.flare.pokecord")
@@ -36,7 +36,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
     metaclass."""
 
 
-class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
+class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
     __version__ = "0.0.1-realllllly-pre-alpha-5"
@@ -77,12 +77,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
         self.cursor.execute(PRAGMA_wal_autocheckpoint)
         self.cursor.execute(PRAGMA_read_uncommitted)
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS users ("
-            "user_id INTEGER NOT NULL,"
-            "message_id INTEGER NOT NULL UNIQUE,"
-            "pokemon JSON,"
-            "PRIMARY KEY (user_id, message_id)"
-            ");"  # TODO: members table instead
+            POKECORD_CREATE_POKECORD_TABLE
         )
         self._executor = concurrent.futures.ThreadPoolExecutor(1)
         self.bg_loop_task = None
@@ -95,6 +90,8 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
     async def initalize(self):
         with open(f"{self.datapath}/pokemon.json") as f:
             self.pokemondata = json.load(f)
+        with open(f"{self.datapath}/evolve.json") as f:
+            self.evolvedata = json.load(f)
         if not await self.config.hashed():
             hashes = {}
             for file in os.listdir(f"{self.datapath}/pokemon/"):
@@ -193,118 +190,10 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                            "squirtle": {"name": "Squirtle", "alias": None, "types": ["Water"], "stats": {"HP": "44", "Attack": "48", "Defence": "65", "Sp. Atk": "50", "Sp. Def": "64", "Speed": "43"}, "id": "007", "level": 1, "xp": 0}}
 
         self.cursor.execute(
-            "INSERT INTO users (user_id, message_id, pokemon)"
-            "VALUES (?, ?, ?)",
+            INSERT_POKEMON
             (ctx.author.id, ctx.message.id, json.dumps(starter_pokemon[pokemon.lower()])),
         )
         await conf.has_starter.set(True)
-        
-
-    @commands.command()
-    async def list(self, ctx):
-        """List your pokémon!"""
-        conf = await self.user_is_global(ctx.author)
-        result = self.cursor.execute(
-            """SELECT pokemon from users where user_id = ?""", (ctx.author.id,)
-        ).fetchall()
-        pokemons = []
-        for data in result:
-            pokemons.append(json.loads(data[0]))
-        if not pokemons:
-            return await ctx.send(
-                "You don't have any pokémon, go get catching trainer!"
-            )
-        embeds = []
-        for i, pokemon in enumerate(pokemons, 1):
-            stats = pokemon["stats"]
-            pokestats = tabulate.tabulate(
-                [
-                    ["HP", stats["HP"]],
-                    ["Attack", stats["Attack"]],
-                    ["Defence", stats["Defence"]],
-                    ["Sp. Atk", stats["Sp. Atk"]],
-                    ["Sp. Def", stats["Sp. Def"]],
-                    ["Speed", stats["Speed"]],
-                ],
-                headers=["Ability", "Value"],
-            )
-            nick = pokemon.get("nickname")
-            alias = f"**Nickname**: {nick}\n" if nick is not None else ""
-            desc = f"{alias}**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
-            embed = discord.Embed(title=pokemon["name"], description=desc)
-            embed.set_image(
-                url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png"
-            )
-            embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
-            embeds.append(embed)
-        await menu(ctx, embeds, DEFAULT_CONTROLS)
-
-    @commands.command()
-    async def nick(self, ctx, id: int, *, nickname: str):
-        """Set a pokemons nickname."""
-        if id <= 0:
-            return await ctx.send("The ID must be greater than 0!")
-        result = self.cursor.execute(
-            """SELECT pokemon, message_id from users where user_id = ?""",
-            (ctx.author.id,),
-        ).fetchall()
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokémon, trainer!")
-        if id > len(pokemons):
-            return await ctx.send("You don't have a pokemon at that slot.")
-        pokemon = pokemons[id]
-        pokemon[0]["nickname"] = nickname
-        self.cursor.execute(
-            "INSERT INTO users (user_id, message_id, pokemon)"
-            "VALUES (?, ?, ?)"
-            "ON CONFLICT (message_id) DO UPDATE SET "
-            "pokemon = excluded.pokemon;",
-            (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
-        )
-        await ctx.send(f"Your {pokemon[0]['name']} has been named `{nickname}`")
-
-    @commands.command()
-    async def free(self, ctx, id: int):
-        """Free a pokemon."""
-        if id <= 0:
-            return await ctx.send("The ID must be greater than 0!")
-        result = self.cursor.execute(
-            """SELECT pokemon, message_id from users where user_id = ?""",
-            (ctx.author.id,),
-        ).fetchall()
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokémon, trainer!")
-        if id > len(pokemons):
-            return await ctx.send("You don't have a pokemon at that slot.")
-        pokemon = pokemons[id]
-        name = self.get_name(pokemon[0]["name"], pokemon[0]["alias"])
-        await ctx.send(
-            f"You are about to free {name}, if you wish to continue type `yes`, otherwise type `no`."
-        )
-        try:
-            pred = MessagePredicate.yes_or_no(ctx, user=ctx.author)
-            await ctx.bot.wait_for("message", check=pred, timeout=20)
-        except asyncio.TimeoutError:
-            await ctx.send("Exiting operation.")
-            return
-
-        if pred.result:
-            msg = ""
-            userconf = await self.user_is_global(ctx.author)
-            if id < await userconf.pokeid():
-                msg += "\nYour default pokemon has changed."
-            self.cursor.execute(
-                "DELETE FROM users where message_id = ?", (pokemon[1],),
-            )
-            await ctx.send(f"Your {name} has been freed.{msg}")
-        else:
-            await ctx.send("Operation cancelled.")
 
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.member)
@@ -324,9 +213,9 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 lst = list(name)
                 for ind in sam:
                     if lst[ind] != " ":
-                        lst[ind] = "_ "
+                        lst[ind] = "_"
                 word = "".join(lst)
-                await ctx.send("This wild pokemon is a `{}`".format(word))
+                await ctx.send("This wild pokemon is a {}".format(escape(word, formatting=True)))
                 return
         await ctx.send("No pokemon is ready to be caught.")
 
@@ -341,7 +230,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             if pokemonspawn is not None:
                 names = [
                     pokemonspawn["name"].lower(),
-                    pokemonspawn["name"].strip(string.punctuation).lower(),
+                    pokemonspawn["name"].translate(str.maketrans('', '', string.punctuation)).lower(),
                 ]
                 if pokemonspawn["alias"] is not None:
                     if "Mega" in pokemonspawn["alias"]:
@@ -349,7 +238,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                         names = []
                     names.append(pokemonspawn["alias"].lower())
                     names.append(
-                        pokemonspawn["alias"].strip(string.punctuation).lower()
+                        pokemonspawn["alias"].translate(str.maketrans('', '', string.punctuation)).lower()
                     )
                 if pokemon.lower() in names:
                     lvl = random.randint(1, 13)
@@ -359,8 +248,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
                     self.cursor.execute(
-                        "INSERT INTO users (user_id, message_id, pokemon)"
-                        "VALUES (?, ?, ?)",
+                        INSERT_POKEMON,
                         (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
                     )
                     del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
@@ -441,7 +329,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
             return
         await conf.timestamp.set(datetime.datetime.utcnow().timestamp())
         result = self.cursor.execute(
-            """SELECT pokemon, message_id from users where user_id = ?""", (user.id,)
+            SELECT_POKEMON, (user.id,)
         ).fetchall()
         pokemons = []
         for data in result:
@@ -486,10 +374,7 @@ class Pokecord(SettingsMixin, commands.Cog, metaclass=CompositeMetaClass):
                 )
                 await channel.send(embed=embed)
         self.cursor.execute(
-            "INSERT INTO users (user_id, message_id, pokemon)"
-            "VALUES (?, ?, ?)"
-            "ON CONFLICT (message_id) DO UPDATE SET "
-            "pokemon = excluded.pokemon;",
+            UPDATE_POKEMON,
             (user.id, msg_id, json.dumps(pokemon)),
         )
         return

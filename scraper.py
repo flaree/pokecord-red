@@ -13,6 +13,7 @@ import json
 
 URL = "https://pokemondb.net/pokedex/all"
 CNDURL = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{}.png"
+EVOLVE = "https://pokemondb.net/evolution/level"
 
 
 # DOESNT DO MEGAS ETC.
@@ -65,11 +66,34 @@ async def main():
             }
         )
     await get_img(a)
-    await write(a)
+    await write(a, "pokemon")
+    
+async def evolve():
+    a = {}
+    driver.get(EVOLVE)
+    parse = BeautifulSoup(driver.page_source, "html5lib")
+    await asyncio.sleep(3)
+    soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
+    table = soup.find("table", {"id": "evolution"})
+    evolves = table.find_all("tr")
+    for tag in evolves[1:]:
+        pokes = tag.find_all("span", {"class": "infocard-cell-data"})
+        lvl = tag.find("td", {"class": "cell-num"})
+        if lvl is None:
+            break
+        names = []
+        for pokemon in pokes:
+            small = pokemon.find("small", {"class": "text-muted"})
+            if small is None:
+                small = pokemon.find("a")
+            names.append(small.get_text())
+        a[names[0]] = {"evolution": names[1], "level": lvl.get_text()}
+    print(a)
+    await write(a, "evolve")
 
 
-async def write(lst):
-    with open("pokecord/data/pokemon.json", "w", encoding="utf-8") as f:
+async def write(lst, name):
+    with open(f"pokecord/data/{name}.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(lst))
 
 
@@ -89,4 +113,4 @@ async def get_img(lst):
 
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+loop.run_until_complete(evolve())
