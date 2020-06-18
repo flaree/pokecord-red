@@ -26,7 +26,7 @@ SELECT_POKEMON = """
 SELECT pokemon, message_id from users where user_id = ?
 """
 
-UPDATE_POKEMON = """"
+UPDATE_POKEMON = """
 INSERT INTO users (user_id, message_id, pokemon)
 VALUES (?, ?, ?)"
 ON CONFLICT (message_id) DO UPDATE SET 
