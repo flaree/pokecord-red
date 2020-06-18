@@ -28,7 +28,7 @@ SELECT pokemon, message_id from users where user_id = ?
 
 UPDATE_POKEMON = """
 INSERT INTO users (user_id, message_id, pokemon)
-VALUES (?, ?, ?)"
+VALUES (?, ?, ?)
 ON CONFLICT (message_id) DO UPDATE SET 
-    pokemon = excluded.pokemon;,
+    pokemon = excluded.pokemon;
 """
