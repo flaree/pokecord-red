@@ -19,7 +19,7 @@ PRAGMA read_uncommitted = 1;
 
 INSERT_POKEMON = """
 INSERT INTO users (user_id, message_id, pokemon)
-VALUES (?, ?, ?),
+VALUES (?, ?, ?);
 """
 
 SELECT_POKEMON = """

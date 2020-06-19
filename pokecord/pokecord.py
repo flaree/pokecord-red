@@ -190,8 +190,8 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                            "squirtle": {"name": "Squirtle", "alias": None, "types": ["Water"], "stats": {"HP": "44", "Attack": "48", "Defence": "65", "Sp. Atk": "50", "Sp. Def": "64", "Speed": "43"}, "id": "007", "level": 1, "xp": 0}}
 
         self.cursor.execute(
-            INSERT_POKEMON
-            (ctx.author.id, ctx.message.id, json.dumps(starter_pokemon[pokemon.lower()])),
+            INSERT_POKEMON,
+            (ctx.author.id, ctx.message.id, json.dumps(starter_pokemon[pokemon.lower()]))
         )
         await conf.has_starter.set(True)
 
