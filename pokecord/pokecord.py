@@ -63,7 +63,13 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         )
         defaults_guild = {"activechannels": [], "toggle": False}
         self.config.register_guild(**defaults_guild)
-        defaults_user = {"pokemon": [], "silence": False, "timestamp": 0, "pokeid": 1, "has_starter": False}
+        defaults_user = {
+            "pokemon": [],
+            "silence": False,
+            "timestamp": 0,
+            "pokeid": 1,
+            "has_starter": False,
+        }
         self.config.register_user(**defaults_user)
         self.config.register_member(**defaults_user)
         self.datapath = f"{bundled_data_path(self)}"
@@ -76,9 +82,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         self.cursor.execute(PRAGMA_journal_mode)
         self.cursor.execute(PRAGMA_wal_autocheckpoint)
         self.cursor.execute(PRAGMA_read_uncommitted)
-        self.cursor.execute(
-            POKECORD_CREATE_POKECORD_TABLE
-        )
+        self.cursor.execute(POKECORD_CREATE_POKECORD_TABLE)
         self._executor = concurrent.futures.ThreadPoolExecutor(1)
         self.bg_loop_task = None
 
@@ -167,7 +171,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             if "Mega" in alias:
                 return alias
         return name
-    
+
     @commands.command()
     async def starter(self, ctx, pokemon: str = None):
         """Choose your starter pokemon"""
@@ -175,23 +179,76 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if await conf.has_starter():
             return await ctx.send(f"You've already claimed your starter pokemon!")
         if pokemon is None:
-            msg = ("Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\n"
-                   "In order to get catchin' you must pick one of the starter Pokemon as listed below.\n"
-                   "Bulbasaur, Charmander and Squirtle\n"
-                   f"To pick a pokemon, type {ctx.clean_prefix}starter <pokemon>")
+            msg = (
+                "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\n"
+                "In order to get catchin' you must pick one of the starter Pokemon as listed below.\n"
+                "Bulbasaur, Charmander and Squirtle\n"
+                f"To pick a pokemon, type {ctx.clean_prefix}starter <pokemon>"
+            )
             await ctx.send(msg)
             return
         if pokemon.lower() not in ["bulbasaur", "charmander", "squirtle"]:
             await ctx.send("That's not a valid starter pokémon, trainer!")
             return
         await ctx.send(f"You've chosen {pokemon.title()} as your starter pokémon!")
-        starter_pokemon = {"bulbasaur": {"name": "Bulbasaur", "alias": None, "types": ["Grass", "Poison"], "stats": {"HP": "45", "Attack": "49", "Defence": "49", "Sp. Atk": "65", "Sp. Def": "65", "Speed": "45"}, "id": "001", "level": 1, "xp": 0},
-                           "charmander": {"name": "Charmander", "alias": None, "types": ["Fire"], "stats": {"HP": "39", "Attack": "52", "Defence": "43", "Sp. Atk": "60", "Sp. Def": "50", "Speed": "65"}, "id": "004", "level": 1, "xp": 0},
-                           "squirtle": {"name": "Squirtle", "alias": None, "types": ["Water"], "stats": {"HP": "44", "Attack": "48", "Defence": "65", "Sp. Atk": "50", "Sp. Def": "64", "Speed": "43"}, "id": "007", "level": 1, "xp": 0}}
+        starter_pokemon = {
+            "bulbasaur": {
+                "name": "Bulbasaur",
+                "alias": None,
+                "types": ["Grass", "Poison"],
+                "stats": {
+                    "HP": "45",
+                    "Attack": "49",
+                    "Defence": "49",
+                    "Sp. Atk": "65",
+                    "Sp. Def": "65",
+                    "Speed": "45",
+                },
+                "id": "001",
+                "level": 1,
+                "xp": 0,
+            },
+            "charmander": {
+                "name": "Charmander",
+                "alias": None,
+                "types": ["Fire"],
+                "stats": {
+                    "HP": "39",
+                    "Attack": "52",
+                    "Defence": "43",
+                    "Sp. Atk": "60",
+                    "Sp. Def": "50",
+                    "Speed": "65",
+                },
+                "id": "004",
+                "level": 1,
+                "xp": 0,
+            },
+            "squirtle": {
+                "name": "Squirtle",
+                "alias": None,
+                "types": ["Water"],
+                "stats": {
+                    "HP": "44",
+                    "Attack": "48",
+                    "Defence": "65",
+                    "Sp. Atk": "50",
+                    "Sp. Def": "64",
+                    "Speed": "43",
+                },
+                "id": "007",
+                "level": 1,
+                "xp": 0,
+            },
+        }
 
         self.cursor.execute(
             INSERT_POKEMON,
-            (ctx.author.id, ctx.message.id, json.dumps(starter_pokemon[pokemon.lower()]))
+            (
+                ctx.author.id,
+                ctx.message.id,
+                json.dumps(starter_pokemon[pokemon.lower()]),
+            ),
         )
         await conf.has_starter.set(True)
 
@@ -215,7 +272,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     if lst[ind] != " ":
                         lst[ind] = "_"
                 word = "".join(lst)
-                await ctx.send("This wild pokemon is a {}".format(escape(word, formatting=True)))
+                await ctx.send(
+                    "This wild pokemon is a {}".format(escape(word, formatting=True))
+                )
                 return
         await ctx.send("No pokemon is ready to be caught.")
 
@@ -224,13 +283,17 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         """Catch a pokemon!"""
         conf = await self.user_is_global(ctx.author)
         if not await conf.has_starter():
-            return await ctx.send(f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information.")
+            return await ctx.send(
+                f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information."
+            )
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
                 names = [
                     pokemonspawn["name"].lower(),
-                    pokemonspawn["name"].translate(str.maketrans('', '', string.punctuation)).lower(),
+                    pokemonspawn["name"]
+                    .translate(str.maketrans("", "", string.punctuation))
+                    .lower(),
                 ]
                 if pokemonspawn["alias"] is not None:
                     if "Mega" in pokemonspawn["alias"]:
@@ -238,9 +301,20 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         names = []
                     names.append(pokemonspawn["alias"].lower())
                     names.append(
-                        pokemonspawn["alias"].translate(str.maketrans('', '', string.punctuation)).lower()
+                        pokemonspawn["alias"]
+                        .translate(str.maketrans("", "", string.punctuation))
+                        .lower()
                     )
                 if pokemon.lower() in names:
+                    if self.spawnedpokemon.get(ctx.guild.id) is not None:
+                        if (
+                            self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
+                            is not None
+                        ):
+                            del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
+                    else:
+                        await ctx.send("No pokemon is ready to be caught.")
+                        return
                     lvl = random.randint(1, 13)
                     await ctx.send(
                         f"Congratulations {ctx.author.mention}! You've caught a level {lvl} {pokemonspawn['name']}!"
@@ -251,7 +325,6 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         INSERT_POKEMON,
                         (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
                     )
-                    del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
                     return
                 else:
                     return await ctx.send("That's not the correct pokemon")
@@ -316,7 +389,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         hashe = await self.get_hash(f"{name}.png")
         if hashe is None:
             return
-        embed.set_image(url=f"https://i.flaree.xyz/pokecord/{urllib.parse.quote(hashe)}.png")
+        embed.set_image(
+            url=f"https://i.flaree.xyz/pokecord/{urllib.parse.quote(hashe)}.png"
+        )
         await channel.send(embed=embed)
 
     def calc_xp(self, lvl):
@@ -328,9 +403,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 10:
             return
         await conf.timestamp.set(datetime.datetime.utcnow().timestamp())
-        result = self.cursor.execute(
-            SELECT_POKEMON, (user.id,)
-        ).fetchall()
+        result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
         pokemons = []
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -358,10 +431,10 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             pokemon["xp"] = 0
             # evolve = self.evolvedata.get(pokemon["alias"] or pokemon["name"])
             name = (
-                        pokemon["name"]
-                        if pokemon.get("nickname") is None
-                        else f'"{pokemon.get("nickname")}"'
-                    )
+                pokemon["name"]
+                if pokemon.get("nickname") is None
+                else f'"{pokemon.get("nickname")}"'
+            )
             # if evolve is not None and (int(evolve["level"]) >= pokemon["level"]):
             #     pokemon = self.pokemondata["all"][pokemon["alias"] or pokemon["name"]]
             #     pokemon["xp"] = 0
@@ -386,7 +459,6 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                 )
                 await channel.send(embed=embed)
         self.cursor.execute(
-            UPDATE_POKEMON,
-            (user.id, msg_id, json.dumps(pokemon)),
+            UPDATE_POKEMON, (user.id, msg_id, json.dumps(pokemon)),
         )
         return
