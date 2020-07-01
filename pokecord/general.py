@@ -49,7 +49,7 @@ class GeneralMixin(MixinMeta):
             desc = f"{alias}**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
             embed = discord.Embed(title=pokemon["name"], description=desc)
             embed.set_image(
-                url=f"https://flaree.xyz/data/{urllib.parse.quote(pokemon['name'])}.png"
+                url=f"https://i.flaree.xyz/pokecord/{urllib.parse.quote(pokemon['name'])}.png"
             )
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)

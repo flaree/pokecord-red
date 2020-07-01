@@ -18,9 +18,9 @@ class SettingsMixin(MixinMeta):
             _type = not await conf.silence()
         await conf.silence.set(_type)
         if _type:
-            await ctx.send("Pokécord levelling messages have been silenced.")
+            await ctx.send("Your pokécord levelling messages have been silenced.")
             return
-        await ctx.send("Pokécord levelling messages have been re-enabled!")
+        await ctx.send("Your pokécord levelling messages have been re-enabled!")
 
     @commands.command(usage="id")
     @commands.guild_only()

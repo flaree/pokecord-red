@@ -39,7 +39,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-5"
+    __version__ = "0.0.1-realllllly-pre-alpha-6"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -316,7 +316,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         hashe = await self.get_hash(f"{name}.png")
         if hashe is None:
             return
-        embed.set_image(url=f"https://flaree.xyz/data/{urllib.parse.quote(hashe)}.png")
+        embed.set_image(url=f"https://i.flaree.xyz/pokecord/{urllib.parse.quote(hashe)}.png")
         await channel.send(embed=embed)
 
     def calc_xp(self, lvl):
@@ -356,17 +356,29 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
             pokemon["level"] += 1
             pokemon["xp"] = 0
+            # evolve = self.evolvedata.get(pokemon["alias"] or pokemon["name"])
+            name = (
+                        pokemon["name"]
+                        if pokemon.get("nickname") is None
+                        else f'"{pokemon.get("nickname")}"'
+                    )
+            # if evolve is not None and (int(evolve["level"]) >= pokemon["level"]):
+            #     pokemon = self.pokemondata["all"][pokemon["alias"] or pokemon["name"]]
+            #     pokemon["xp"] = 0
+            #     pokemon["level"] = pokemon["level"]
+            #     embed = discord.Embed(
+            #             title=f"Congratulations {user}!",
+            #             description=f"Your {name} has evolved into {pokemon['alias'] or pokemon['name']}!",
+            #             color=await self.bot.get_embed_color(channel),
+            #         )
+            #     await channel.send(embed=embed)
+            # else:
             log.debug(f"{pokemon['name']} levelled up for {user}")
             for stat in pokemon["stats"]:
                 pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(
                     1, 3
                 )
             if not userconf["silence"]:
-                name = (
-                    pokemon["name"]
-                    if pokemon.get("nickname") is None
-                    else f'"{pokemon.get("nickname")}"'
-                )
                 embed = discord.Embed(
                     title=f"Congratulations {user}!",
                     description=f"Your {name} has levelled up to level {pokemon['level']}!",
