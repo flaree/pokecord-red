@@ -306,12 +306,8 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         .lower()
                     )
                 if pokemon.lower() in names:
-                    if self.spawnedpokemon.get(ctx.guild.id) is not None:
-                        if (
-                            self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
-                            is not None
-                        ):
-                            del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
+                    if self.spawnedpokemon.get(ctx.guild.id) is not None and self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id):
+                        del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
                     else:
                         await ctx.send("No pokemon is ready to be caught.")
                         return
