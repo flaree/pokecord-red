@@ -50,13 +50,13 @@ async def main():
         else:
             small = None
         a["all"][small or name] = {
-                    "name": name,
-                    "alias": small,
-                    "types": types,
-                    "stats": stats_dict,
-                    "id": _id,
-                    "img": img
-                }
+            "name": name,
+            "alias": small,
+            "types": types,
+            "stats": stats_dict,
+            "id": _id,
+            "img": img,
+        }
         if small is not None:
             # print(small)
             a["mega"].append(
@@ -66,7 +66,7 @@ async def main():
                     "types": types,
                     "stats": stats_dict,
                     "id": _id,
-                    "img": img
+                    "img": img,
                 }
             )
             continue
@@ -79,9 +79,10 @@ async def main():
                 "id": _id,
             }
         )
-    #await get_img(a)
+    # await get_img(a)
     await write(a, "pokemon")
-    
+
+
 async def evolve():
     a = {}
     driver.get(EVOLVE)
@@ -122,7 +123,9 @@ async def get_img(lst):
 
     for pokemon in lst["mega"]:
         try:
-            async with session.get(POKEDEX.format(pokemon["img"]).replace("png", "jpg")) as img:
+            async with session.get(
+                POKEDEX.format(pokemon["img"]).replace("png", "jpg")
+            ) as img:
                 if img.status == 200:
                     name = f"data/{pokemon['alias']}.png"
                     with open(name, "wb") as f:

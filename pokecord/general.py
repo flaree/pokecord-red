@@ -15,14 +15,12 @@ from .statements import *
 
 class GeneralMixin(MixinMeta):
     """Pokecord General Commands"""
-    
+
     @commands.command()
     async def list(self, ctx):
         """List your pokémon!"""
         conf = await self.user_is_global(ctx.author)
-        result = self.cursor.execute(
-            SELECT_POKEMON, (ctx.author.id,)
-        ).fetchall()
+        result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,)).fetchall()
         pokemons = []
         for data in result:
             pokemons.append(json.loads(data[0]))
@@ -60,10 +58,7 @@ class GeneralMixin(MixinMeta):
         """Set a pokemons nickname."""
         if id <= 0:
             return await ctx.send("The ID must be greater than 0!")
-        result = self.cursor.execute(
-            SELECT_POKEMON,
-            (ctx.author.id,),
-        ).fetchall()
+        result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -74,8 +69,7 @@ class GeneralMixin(MixinMeta):
         pokemon = pokemons[id]
         pokemon[0]["nickname"] = nickname
         self.cursor.execute(
-            UPDATE_POKEMON,
-            (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
+            UPDATE_POKEMON, (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
         )
         await ctx.send(f"Your {pokemon[0]['name']} has been named `{nickname}`")
 
@@ -84,10 +78,7 @@ class GeneralMixin(MixinMeta):
         """Free a pokemon."""
         if id <= 0:
             return await ctx.send("The ID must be greater than 0!")
-        result = self.cursor.execute(
-            SELECT_POKEMON,
-            (ctx.author.id,),
-        ).fetchall()
+        result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
