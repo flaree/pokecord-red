@@ -409,7 +409,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             return
         if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 10:
             return
-        await self.config.user(user.id).timestamp.set(
+        await self.config.user(user).timestamp.set(
             datetime.datetime.utcnow().timestamp()
         )  # TODO: guild based
         await self.update_user_cache()
