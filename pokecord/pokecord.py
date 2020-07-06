@@ -39,7 +39,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-7"
+    __version__ = "0.0.1-realllllly-pre-alpha-8"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -76,6 +76,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         self.spawnedpokemon = {}
         self.maybe_spawn = {}
         self.guildcache = {}
+        self.usercache = {}
         self.spawnchance = []
         self._connection = apsw.Connection(str(cog_data_path(self) / "pokemon.db"))
         self.cursor = self._connection.cursor()
@@ -114,6 +115,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             await self.config.hashed.set(True)
         await self.update_guild_cache()
         await self.update_spawn_chance()
+        await self.update_user_cache()
         if await self.config.spawnloop():
             self.bg_loop_task = self.bot.loop.create_task(self.random_spawn())
 
@@ -144,6 +146,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
 
     async def update_guild_cache(self):
         self.guildcache = await self.config.all_guilds()
+
+    async def update_user_cache(self):
+        self.usercache = await self.config.all_users()  # TODO: Support guild
 
     async def update_spawn_chance(self):
         self.spawnchance = await self.config.spawnchance()
@@ -306,7 +311,11 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         .lower()
                     )
                 if pokemon.lower() in names:
-                    if self.spawnedpokemon.get(ctx.guild.id) is not None and self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id):
+                    if self.spawnedpokemon.get(
+                        ctx.guild.id
+                    ) is not None and self.spawnedpokemon[ctx.guild.id].get(
+                        ctx.channel.id
+                    ):
                         del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
                     else:
                         await ctx.send("No pokemon is ready to be caught.")
@@ -394,11 +403,16 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         return 25 * lvl
 
     async def exp_gain(self, channel, user):
-        conf = await self.user_is_global(user)
-        userconf = await conf.all()
+        # conf = await self.user_is_global(user) # TODO: guild based
+        userconf = self.usercache.get(user.id)
+        if userconf is None:
+            return
         if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 10:
             return
-        await conf.timestamp.set(datetime.datetime.utcnow().timestamp())
+        await self.config.user(user.id).timestamp.set(
+            datetime.datetime.utcnow().timestamp()
+        )  # TODO: guild based
+        await self.update_user_cache()
         result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
         pokemons = []
         for data in result:
@@ -419,7 +433,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     msg_id = poke[1]
                     break
         if pokemon is None:
-            return
+            return  # No pokemon available to lvl up
         xp = random.randint(5, 25) + (pokemon["level"] // 2)
         pokemon["xp"] += xp
         if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
@@ -436,18 +450,22 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                 pokemon = self.pokemondata["all"][evolve["evolution"]]
                 pokemon["xp"] = 0
                 pokemon["level"] = lvl
-                embed = discord.Embed(
+                if not userconf["silence"]:
+                    embed = discord.Embed(
                         title=f"Congratulations {user}!",
                         description=f"Your {name} has evolved into {pokemon['alias'] or pokemon['name']}!",
                         color=await self.bot.get_embed_color(channel),
                     )
-                await channel.send(embed=embed)
+                    await channel.send(embed=embed)
+                log.debug(
+                    f"{name} has evolved into {pokemon['alias'] or pokemon['name']} for {user}."
+                )
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
                 for stat in pokemon["stats"]:
-                    pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(
-                        1, 3
-                    )
+                    pokemon["stats"][stat] = int(
+                        pokemon["stats"][stat]
+                    ) + random.randint(1, 3)
                 if not userconf["silence"]:
                     embed = discord.Embed(
                         title=f"Congratulations {user}!",
@@ -458,4 +476,3 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         self.cursor.execute(
             UPDATE_POKEMON, (user.id, msg_id, json.dumps(pokemon)),
         )
-        return
