@@ -69,6 +69,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             "timestamp": 0,
             "pokeid": 1,
             "has_starter": False,
+            "locale": "en",
         }
         self.config.register_user(**defaults_user)
         self.config.register_member(**defaults_user)
@@ -93,7 +94,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             self.bg_loop_task.cancel()
 
     async def initalize(self):
-        with open(f"{self.datapath}/pokemon.json") as f:
+        with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
             self.pokemondata = json.load(f)
         with open(f"{self.datapath}/evolve.json") as f:
             self.evolvedata = json.load(f)
@@ -166,16 +167,21 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         return self.config.member(user)
 
     def pokemon_choose(self):
-        num = random.randint(1, 200)
-        if num > 2:
-            return random.choice(self.pokemondata["normal"])
-        return random.choice(self.pokemondata["mega"])
+        # num = random.randint(1, 200)
+        # if num > 2:
+        return random.choice(self.pokemondata)
+        # return random.choice(self.pokemondata["mega"])
 
-    def get_name(self, name, alias=None):
-        if alias is not None:
-            if "Mega" in alias:
-                return alias
-        return name
+    def get_name(self, names, user):
+        if isinstance(names, str):
+            return names
+        localnames = {
+            "en": names["english"],
+            "fr": names["french"],
+            "cn": names["chinese"],
+            "jp": names["japanese"],
+        }
+        return localnames[self.usercache[user.id]["locale"]]
 
     @commands.command()
     async def starter(self, ctx, pokemon: str = None):
@@ -198,8 +204,12 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         await ctx.send(f"You've chosen {pokemon.title()} as your starter pokémon!")
         starter_pokemon = {
             "bulbasaur": {
-                "name": "Bulbasaur",
-                "alias": None,
+                "name": {
+                    "english": "Bulbasaur",
+                    "japanese": "フシギダネ",
+                    "chinese": "妙蛙种子",
+                    "french": "Bulbizarre",
+                },
                 "types": ["Grass", "Poison"],
                 "stats": {
                     "HP": "45",
@@ -209,13 +219,17 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     "Sp. Def": "65",
                     "Speed": "45",
                 },
-                "id": "001",
+                "id": 1,
                 "level": 1,
                 "xp": 0,
             },
             "charmander": {
-                "name": "Charmander",
-                "alias": None,
+                "name": {
+                    "english": "Charmander",
+                    "japanese": "ヒトカゲ",
+                    "chinese": "小火龙",
+                    "french": "Salamèche",
+                },
                 "types": ["Fire"],
                 "stats": {
                     "HP": "39",
@@ -225,13 +239,17 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     "Sp. Def": "50",
                     "Speed": "65",
                 },
-                "id": "004",
+                "id": 4,
                 "level": 1,
                 "xp": 0,
             },
             "squirtle": {
-                "name": "Squirtle",
-                "alias": None,
+                "name": {
+                    "english": "Squirtle",
+                    "japanese": "ゼニガメ",
+                    "chinese": "杰尼龟",
+                    "french": "Carapuce",
+                },
                 "types": ["Water"],
                 "stats": {
                     "HP": "44",
@@ -241,7 +259,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     "Sp. Def": "64",
                     "Speed": "43",
                 },
-                "id": "007",
+                "id": 7,
                 "level": 1,
                 "xp": 0,
             },
@@ -264,7 +282,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
-                name = self.get_name(pokemonspawn["name"], pokemonspawn["alias"])
+                name = self.get_name(pokemonspawn["name"], ctx.author)
                 inds = [i for i, _ in enumerate(name)]
                 if len(name) > 6:
                     amount = len(name) - random.randint(2, 4)
@@ -294,22 +312,14 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
-                names = [
-                    pokemonspawn["name"].lower(),
-                    pokemonspawn["name"]
+                names = set(
+                    pokemonspawn["name"][name].lower() for name in pokemonspawn["name"]
+                )
+                names.add(
+                    pokemonspawn["name"]["english"]
                     .translate(str.maketrans("", "", string.punctuation))
-                    .lower(),
-                ]
-                if pokemonspawn["alias"] is not None:
-                    if "Mega" in pokemonspawn["alias"]:
-                        pokemonspawn["name"] = pokemonspawn["alias"]
-                        names = []
-                    names.append(pokemonspawn["alias"].lower())
-                    names.append(
-                        pokemonspawn["alias"]
-                        .translate(str.maketrans("", "", string.punctuation))
-                        .lower()
-                    )
+                    .lower()
+                )
                 if pokemon.lower() in names:
                     if self.spawnedpokemon.get(
                         ctx.guild.id
@@ -322,7 +332,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         return
                     lvl = random.randint(1, 13)
                     await ctx.send(
-                        f"Congratulations {ctx.author.mention}! You've caught a level {lvl} {pokemonspawn['name']}!"
+                        f"Congratulations {ctx.author.mention}! You've caught a level {lvl} {self.get_name(pokemonspawn['name'], ctx.author)}!"
                     )
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
@@ -387,15 +397,15 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
             color=await self.bot.get_embed_color(channel),
         )
-        name = pokemon["name"] if pokemon["alias"] is None else pokemon["alias"]
+        # name = pokemon["name"] if pokemon["alias"] is None else pokemon["alias"]
         log.debug(
-            f"{self.get_name(pokemon['name'], pokemon['alias'])} has spawned in {channel} on {channel.guild}"
+            f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}"
         )
-        hashe = await self.get_hash(f"{name}.png")
-        if hashe is None:
-            return
+        # hashe = await self.get_hash(f"{name}.png")
+        # if hashe is None:
+        #     return
         embed.set_image(
-            url=f"https://i.flaree.xyz/pokecord/{urllib.parse.quote(hashe)}.png"
+            url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"  # TODO: Hashed images again
         )
         await channel.send(embed=embed)
 
@@ -441,7 +451,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             pokemon["xp"] = 0
             evolve = self.evolvedata.get(pokemon.get("alias") or pokemon["name"])
             name = (
-                pokemon["name"]
+                self.get_name(pokemon["name"], user)
                 if pokemon.get("nickname") is None
                 else f'"{pokemon.get("nickname")}"'
             )
@@ -453,13 +463,11 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                 if not userconf["silence"]:
                     embed = discord.Embed(
                         title=f"Congratulations {user}!",
-                        description=f"Your {name} has evolved into {pokemon['alias'] or pokemon['name']}!",
+                        description=f"Your {name} has evolved into {pokemon['name']}!",
                         color=await self.bot.get_embed_color(channel),
                     )
                     await channel.send(embed=embed)
-                log.debug(
-                    f"{name} has evolved into {pokemon['alias'] or pokemon['name']} for {user}."
-                )
+                log.debug(f"{name} has evolved into {pokemon['name']} for {user}.")
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
                 for stat in pokemon["stats"]:

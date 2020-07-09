@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 import discord
 from redbot.core import Config, commands
@@ -17,3 +17,19 @@ class MixinMeta(ABC):
         self.spawnedpokemon: dict
         self.maybe_spawn: dict
         self.guildcache: dict
+
+    @abstractmethod
+    async def is_global(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    async def user_is_global(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def pokemon_choose(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_name(self):
+        raise NotImplementedError

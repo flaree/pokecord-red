@@ -45,10 +45,13 @@ class GeneralMixin(MixinMeta):
             nick = pokemon.get("nickname")
             alias = f"**Nickname**: {nick}\n" if nick is not None else ""
             desc = f"{alias}**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
-            embed = discord.Embed(title=pokemon["name"], description=desc)
-            embed.set_image(
-                url=f"https://i.flaree.xyz/pokecord/{urllib.parse.quote(pokemon['name'])}.png"
+            embed = discord.Embed(
+                title=self.get_name(pokemon["name"], ctx.author), description=desc
             )
+            if pokemon.get("id"):
+                embed.set_thumbnail(
+                    url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
+                )
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
@@ -84,10 +87,10 @@ class GeneralMixin(MixinMeta):
             pokemons.append([json.loads(data[0]), data[1]])
         if not pokemons:
             return await ctx.send("You don't have any pokémon, trainer!")
-        if id > len(pokemons):
+        if id >= len(pokemons):
             return await ctx.send("You don't have a pokemon at that slot.")
         pokemon = pokemons[id]
-        name = self.get_name(pokemon[0]["name"], pokemon[0]["alias"])
+        name = self.get_name(pokemon[0]["name"], ctx.author)
         await ctx.send(
             f"You are about to free {name}, if you wish to continue type `yes`, otherwise type `no`."
         )
