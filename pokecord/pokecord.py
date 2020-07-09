@@ -175,6 +175,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
     def get_name(self, names, user):
         if isinstance(names, str):
             return names
+        userconf = self.usercache.get(user.id)
+        if userconf is None:
+            return names["english"]
         localnames = {
             "en": names["english"],
             "fr": names["french"],
