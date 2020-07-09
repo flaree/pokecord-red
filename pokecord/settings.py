@@ -49,41 +49,6 @@ class SettingsMixin(MixinMeta):
         await ctx.tick()
         await self.update_user_cache()
 
-    @commands.command(usage="id_or_latest")
-    @commands.guild_only()
-    async def select(self, ctx, _id: Union[int, str]):
-        """Select your default pokémon."""
-        conf = await self.user_is_global(ctx.author)
-        if not await conf.has_starter():
-            return await ctx.send(
-                f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information."
-            )
-        result = self.cursor.execute(
-            """SELECT pokemon, message_id from users where user_id = ?""",
-            (ctx.author.id,),
-        ).fetchall()
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokemon to select.")
-        if isinstance(_id, str):
-            if _id == "latest":
-                _id = len(pokemons) - 1
-            else:
-                await ctx.send(
-                    "Unidentified keyword, the only supported action is `latest` as of now."
-                )
-                return
-        if _id < 1 or _id > len(pokemons) - 1:
-            return await ctx.send("You've specified an invalid ID.")
-        await ctx.send(
-            f"You have selected {self.get_name(pokemons[_id][0]['name'], ctx.author)} as your default pokémon."
-        )
-        conf = await self.user_is_global(ctx.author)
-        await conf.pokeid.set(_id)
-        await self.update_user_cache()
-
     @commands.group(aliases=["pokeset"])
     @commands.admin()
     @commands.guild_only()

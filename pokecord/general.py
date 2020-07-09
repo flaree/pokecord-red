@@ -6,21 +6,37 @@ import discord
 import tabulate
 from redbot.core import commands
 from redbot.core.utils.chat_formatting import *
-from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
+from redbot.core.utils.menus import (
+    DEFAULT_CONTROLS,
+    close_menu,
+    menu,
+    next_page,
+    prev_page,
+)
 from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
+from .functions import select_pokemon
 from .statements import *
+
+controls = {
+    "⬅": prev_page,
+    "❌": close_menu,
+    "➡": next_page,
+    "\N{WHITE HEAVY CHECK MARK}": select_pokemon,
+}
 
 
 class GeneralMixin(MixinMeta):
     """Pokecord General Commands"""
 
+    @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
-    async def list(self, ctx):
-        """List your pokémon!"""
-        conf = await self.user_is_global(ctx.author)
-        result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,)).fetchall()
+    async def list(self, ctx, user: discord.Member = None):
+        """List a trainers or your own pokémon!"""
+        user = user or ctx.author
+        conf = await self.user_is_global(user)
+        result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
         pokemons = []
         for data in result:
             pokemons.append(json.loads(data[0]))
@@ -46,7 +62,7 @@ class GeneralMixin(MixinMeta):
             alias = f"**Nickname**: {nick}\n" if nick is not None else ""
             desc = f"{alias}**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
             embed = discord.Embed(
-                title=self.get_name(pokemon["name"], ctx.author), description=desc
+                title=self.get_name(pokemon["name"], user), description=desc
             )
             if pokemon.get("id"):
                 embed.set_thumbnail(
@@ -54,8 +70,9 @@ class GeneralMixin(MixinMeta):
                 )
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
-        await menu(ctx, embeds, DEFAULT_CONTROLS)
+        await menu(ctx, embeds, DEFAULT_CONTROLS if user != ctx.author else controls)
 
+    @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
     async def nick(self, ctx, id: int, *, nickname: str):
         """Set a pokemons nickname."""
@@ -76,6 +93,7 @@ class GeneralMixin(MixinMeta):
         )
         await ctx.send(f"Your {pokemon[0]['name']} has been named `{nickname}`")
 
+    @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
     async def free(self, ctx, id: int):
         """Free a pokemon."""
@@ -116,3 +134,39 @@ class GeneralMixin(MixinMeta):
             await ctx.send(f"Your {name} has been freed.{msg}")
         else:
             await ctx.send("Operation cancelled.")
+
+    @commands.max_concurrency(1, commands.BucketType.user)
+    @commands.command(usage="id_or_latest")
+    @commands.guild_only()
+    async def select(self, ctx, _id: Union[int, str]):
+        """Select your default pokémon."""
+        conf = await self.user_is_global(ctx.author)
+        if not await conf.has_starter():
+            return await ctx.send(
+                f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information."
+            )
+        result = self.cursor.execute(
+            """SELECT pokemon, message_id from users where user_id = ?""",
+            (ctx.author.id,),
+        ).fetchall()
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send("You don't have any pokemon to select.")
+        if isinstance(_id, str):
+            if _id == "latest":
+                _id = len(pokemons) - 1
+            else:
+                await ctx.send(
+                    "Unidentified keyword, the only supported action is `latest` as of now."
+                )
+                return
+        if _id < 1 or _id > len(pokemons) - 1:
+            return await ctx.send("You've specified an invalid ID.")
+        await ctx.send(
+            f"You have selected {self.get_name(pokemons[_id][0]['name'], ctx.author)} as your default pokémon."
+        )
+        conf = await self.user_is_global(ctx.author)
+        await conf.pokeid.set(_id)
+        await self.update_user_cache()
