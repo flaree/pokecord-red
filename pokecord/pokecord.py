@@ -464,9 +464,18 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             )
             if evolve is not None and (pokemon["level"] >= int(evolve["level"])):
                 lvl = pokemon["level"]
-                pokemon = next((item for item in self.pokemondata if item["name"]["english"] == evolve["evolution"]), None) # Make better
+                pokemon = next(
+                    (
+                        item
+                        for item in self.pokemondata
+                        if item["name"]["english"] == evolve["evolution"]
+                    ),
+                    None,
+                )  # Make better
                 if pokemon is None:
-                    log.info(f"Error occured trying to find {evolve['evolution']} for an evolution.")
+                    log.info(
+                        f"Error occured trying to find {evolve['evolution']} for an evolution."
+                    )
                     return
                 pokemon["xp"] = 0
                 pokemon["level"] = lvl

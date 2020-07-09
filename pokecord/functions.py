@@ -1,8 +1,8 @@
-  
 from redbot.core.utils.menus import menu
 from redbot.core import commands
 import discord
 import contextlib
+
 
 async def select_pokemon(
     ctx: commands.Context,
@@ -18,8 +18,5 @@ async def select_pokemon(
         with contextlib.suppress(discord.NotFound):
             await message.remove_reaction(emoji, ctx.author)
     command = ctx.bot.get_command("select")
-    await ctx.invoke(
-        command,
-        _id = page + 1
-    )
+    await ctx.invoke(command, _id=page + 1)
     return await menu(ctx, pages, controls, message=message, page=page, timeout=timeout)
