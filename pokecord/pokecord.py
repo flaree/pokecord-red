@@ -98,22 +98,22 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             self.pokemondata = json.load(f)
         with open(f"{self.datapath}/evolve.json") as f:
             self.evolvedata = json.load(f)
-        if not await self.config.hashed():
-            hashes = {}
-            for file in os.listdir(f"{self.datapath}/pokemon/"):
-                if file.endswith(".png"):
-                    cmd = (
-                        base64.b64decode(
-                            b"aGFzaGVzW2ZpbGVdID0gaGFzaGxpYi5tZDUoSW1hZ2Uub3BlbihyJ3tzZWxmLmRhdGFwYXRofS97ZmlsZX0nKS50b2J5dGVzKCkpLmhleGRpZ2VzdCgp"
-                        )
-                        .decode("utf-8")
-                        .replace("'", '"')
-                        .replace(r"{self.datapath}", f"{self.datapath}/pokemon/")
-                        .replace(r"{file}", file)
-                    )
-                    exec(cmd)
-            await self.config.hashes.set(hashes)
-            await self.config.hashed.set(True)
+        # if not await self.config.hashed():
+        #     hashes = {}
+        #     for file in os.listdir(f"{self.datapath}/pokemon/"):
+        #         if file.endswith(".png"):
+        #             cmd = (
+        #                 base64.b64decode(
+        #                     b"aGFzaGVzW2ZpbGVdID0gaGFzaGxpYi5tZDUoSW1hZ2Uub3BlbihyJ3tzZWxmLmRhdGFwYXRofS97ZmlsZX0nKS50b2J5dGVzKCkpLmhleGRpZ2VzdCgp"
+        #                 )
+        #                 .decode("utf-8")
+        #                 .replace("'", '"')
+        #                 .replace(r"{self.datapath}", f"{self.datapath}/pokemon/")
+        #                 .replace(r"{file}", file)
+        #             )
+        #             exec(cmd)
+        #     await self.config.hashes.set(hashes)
+        #     await self.config.hashed.set(True)
         await self.update_guild_cache()
         await self.update_spawn_chance()
         await self.update_user_cache()
@@ -351,8 +351,8 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             > self.maybe_spawn[guildid]["spawnchance"]
         )
 
-    async def get_hash(self, pokemon):
-        return (await self.config.hashes()).get(pokemon, None)
+    # async def get_hash(self, pokemon):
+    #     return (await self.config.hashes()).get(pokemon, None)
 
     @commands.Cog.listener()
     async def on_message_without_command(self, message):
