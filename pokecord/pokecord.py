@@ -486,7 +486,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         color=await self.bot.get_embed_color(channel),
                     )
                     if channel.permissions_for(channel.guild.me).send_messages:
-                    await channel.send(embed=embed)
+                        await channel.send(embed=embed)
                 log.debug(f"{name} has evolved into {pokemon['name']} for {user}.")
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
