@@ -44,6 +44,7 @@ class SettingsMixin(MixinMeta):
             await ctx.send(
                 "You've specified an invalid locale. Pokecord only supports English, Japanese, Chinese and French."
             )
+            return
         conf = await self.user_is_global(ctx.author)
         await conf.locale.set(LOCALES[locale.lower()])
         await ctx.tick()
