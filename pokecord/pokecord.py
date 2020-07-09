@@ -39,7 +39,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-9"
+    __version__ = "0.0.1-realllllly-pre-alpha-9.5"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -452,7 +452,11 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
             pokemon["level"] += 1
             pokemon["xp"] = 0
-            evolve = self.evolvedata.get(pokemon.get("alias") or pokemon["name"])
+            if isinstance(pokemon["name"], str):
+                pokename = pokemon["name"]
+            else:
+                pokename = pokemon["name"]["english"]
+            evolve = self.evolvedata.get(pokename)
             name = (
                 self.get_name(pokemon["name"], user)
                 if pokemon.get("nickname") is None
@@ -460,13 +464,16 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             )
             if evolve is not None and (pokemon["level"] >= int(evolve["level"])):
                 lvl = pokemon["level"]
-                pokemon = self.pokemondata["all"][evolve["evolution"]]
+                pokemon = next((item for item in self.pokemondata if item["name"]["english"] == evolve["evolution"]), None) # Make better
+                if pokemon is None:
+                    log.info(f"Error occured trying to find {evolve['evolution']} for an evolution.")
+                    return
                 pokemon["xp"] = 0
                 pokemon["level"] = lvl
                 if not userconf["silence"]:
                     embed = discord.Embed(
                         title=f"Congratulations {user}!",
-                        description=f"Your {name} has evolved into {pokemon['name']}!",
+                        description=f"Your {name} has evolved into {self.get_name(pokemon['name'], user)}!",
                         color=await self.bot.get_embed_color(channel),
                     )
                     await channel.send(embed=embed)
