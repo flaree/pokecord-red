@@ -476,7 +476,6 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         description=f"Your {name} has evolved into {self.get_name(pokemon['name'], user)}!",
                         color=await self.bot.get_embed_color(channel),
                     )
-                    await channel.send(embed=embed)
                 log.debug(f"{name} has evolved into {pokemon['name']} for {user}.")
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
@@ -490,7 +489,8 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         description=f"Your {name} has levelled up to level {pokemon['level']}!",
                         color=await self.bot.get_embed_color(channel),
                     )
-                    await channel.send(embed=embed)
+            if channel.permissions_for(channel.guild.me).send_messages:
+                await channel.send(embed=embed)
         self.cursor.execute(
             UPDATE_POKEMON, (user.id, msg_id, json.dumps(pokemon)),
         )
