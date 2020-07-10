@@ -197,84 +197,58 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             msg = (
                 "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\n"
                 "In order to get catchin' you must pick one of the starter Pokemon as listed below.\n"
-                "Bulbasaur, Charmander and Squirtle\n"
-                f"To pick a pokemon, type {ctx.clean_prefix}starter <pokemon>"
+                "**Generation 1**\nBulbasaur, Charmander and Squirtle\n"
+                "**Generation 2**\nChikorita, Cyndaquil, Totodile\n"
+                "**Generation 3**\nTreecko, Torchic, Mudkip\n"
+                "**Generation 4**\nTurtwig, Chimchar, Piplup\n"
+                "**Generation 5**\nSnivy, Tepig, Oshawott\n"
+                "**Generation 6**\nChespin, Fennekin, Froakie\n"
+                "**Generation 7**\nRowlet, Litten, Popplio\n"
+                "**Generation 8**\nGrookey, Scorbunny, Sobble\n"
+                f"\nTo pick a pokemon, type {ctx.clean_prefix}starter <pokemon>"
             )
             await ctx.send(msg)
             return
-        if pokemon.lower() not in ["bulbasaur", "charmander", "squirtle"]:
+        starter_pokemon = {
+            "bulbasaur": self.pokemondata[0],
+            "charmander": self.pokemondata[3],
+            "squirtle": self.pokemondata[6],
+            "chikorita": self.pokemondata[151],
+            "cyndaquil": self.pokemondata[154],
+            "totodile": self.pokemondata[157],
+            "treecko": self.pokemondata[251],
+            "torchic": self.pokemondata[254],
+            "mudkip": self.pokemondata[257],
+            "turtwig": self.pokemondata[386],
+            "chimchar": self.pokemondata[389],
+            "piplup": self.pokemondata[392],
+            "snivy": self.pokemondata[494],
+            "tepig": self.pokemondata[497],
+            "oshawott": self.pokemondata[500],
+            "chespin": self.pokemondata[649],
+            "fennekin": self.pokemondata[652],
+            "froakie": self.pokemondata[655],
+            "rowlet": self.pokemondata[721],
+            "litten": self.pokemondata[724],
+            "popplio": self.pokemondata[727],
+            "grookey": self.pokemondata[809],
+            "scorbunny": self.pokemondata[812],
+            "sobble": self.pokemondata[815],
+        }
+        if pokemon.lower() not in starter_pokemon.keys():
             await ctx.send("That's not a valid starter pokémon, trainer!")
             return
         await ctx.send(f"You've chosen {pokemon.title()} as your starter pokémon!")
-        starter_pokemon = {
-            "bulbasaur": {
-                "name": {
-                    "english": "Bulbasaur",
-                    "japanese": "フシギダネ",
-                    "chinese": "妙蛙种子",
-                    "french": "Bulbizarre",
-                },
-                "types": ["Grass", "Poison"],
-                "stats": {
-                    "HP": "45",
-                    "Attack": "49",
-                    "Defence": "49",
-                    "Sp. Atk": "65",
-                    "Sp. Def": "65",
-                    "Speed": "45",
-                },
-                "id": 1,
-                "level": 1,
-                "xp": 0,
-            },
-            "charmander": {
-                "name": {
-                    "english": "Charmander",
-                    "japanese": "ヒトカゲ",
-                    "chinese": "小火龙",
-                    "french": "Salamèche",
-                },
-                "types": ["Fire"],
-                "stats": {
-                    "HP": "39",
-                    "Attack": "52",
-                    "Defence": "43",
-                    "Sp. Atk": "60",
-                    "Sp. Def": "50",
-                    "Speed": "65",
-                },
-                "id": 4,
-                "level": 1,
-                "xp": 0,
-            },
-            "squirtle": {
-                "name": {
-                    "english": "Squirtle",
-                    "japanese": "ゼニガメ",
-                    "chinese": "杰尼龟",
-                    "french": "Carapuce",
-                },
-                "types": ["Water"],
-                "stats": {
-                    "HP": "44",
-                    "Attack": "48",
-                    "Defence": "65",
-                    "Sp. Atk": "50",
-                    "Sp. Def": "64",
-                    "Speed": "43",
-                },
-                "id": 7,
-                "level": 1,
-                "xp": 0,
-            },
-        }
+        pokemon = starter_pokemon[pokemon.lower()]
+        pokemon["level"] = 0
+        pokemon["xp"] = 0
 
         self.cursor.execute(
             INSERT_POKEMON,
             (
                 ctx.author.id,
                 ctx.message.id,
-                json.dumps(starter_pokemon[pokemon.lower()]),
+                json.dumps(pokemon),
             ),
         )
         await conf.has_starter.set(True)
