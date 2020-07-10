@@ -1,4 +1,5 @@
 import asyncio
+import copy
 import json
 import urllib
 
@@ -16,7 +17,7 @@ from redbot.core.utils.menus import (
 from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
-from .functions import select_pokemon, chunks
+from .functions import chunks, select_pokemon
 from .statements import *
 
 controls = {
@@ -72,7 +73,12 @@ class GeneralMixin(MixinMeta):
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
         _id = await conf.pokeid()
-        await menu(ctx, embeds, DEFAULT_CONTROLS if user != ctx.author else controls, page= _id - 1)
+        await menu(
+            ctx,
+            embeds,
+            DEFAULT_CONTROLS if user != ctx.author else controls,
+            page=_id - 1,
+        )
 
     @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
@@ -102,7 +108,7 @@ class GeneralMixin(MixinMeta):
         """Free a pokemon."""
         if id <= 0:
             return await ctx.send("The ID must be greater than 0!")
-        async with ctx.typing:
+        async with ctx.typing():
             result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
         for data in result:
@@ -175,7 +181,7 @@ class GeneralMixin(MixinMeta):
         conf = await self.user_is_global(ctx.author)
         await conf.pokeid.set(_id)
         await self.update_user_cache()
-        
+
     @commands.command()
     @commands.max_concurrency(1, commands.BucketType.user)
     async def pokedex(self, ctx):
@@ -188,7 +194,7 @@ class GeneralMixin(MixinMeta):
             pokemons = [None]
             for data in result:
                 pokemons.append([json.loads(data[0]), data[1]])
-            pokemonlist = self.pokemonlist.copy()
+            pokemonlist = copy.deepcopy(self.pokemonlist)
             for pokemon in pokemons[1:]:
                 if isinstance(pokemon[0]["name"], str):
                     name = pokemon[0]["name"]
@@ -201,18 +207,24 @@ class GeneralMixin(MixinMeta):
             total = 0
             page = 1
             for item in chunks(a, 20):
-                embed = discord.Embed(title="Pokédex", color=await self.bot.get_embed_color(ctx.channel))
-                embed.set_footer(text=f"Showing {page}-{page + len(item) - 1} of {len(pokemonlist)}.")
+                embed = discord.Embed(
+                    title="Pokédex", color=await self.bot.get_embed_color(ctx.channel)
+                )
+                embed.set_footer(
+                    text=f"Showing {page}-{page + len(item) - 1} of {len(pokemonlist)}."
+                )
                 page += len(item)
                 for pokemon in item:
                     if pokemon[1]["amount"] > 0:
                         total += 1
-                        msg = f"{pokemon[1]['amount']} caught! \N{WHITE HEAVY CHECK MARK}"
+                        msg = (
+                            f"{pokemon[1]['amount']} caught! \N{WHITE HEAVY CHECK MARK}"
+                        )
                     else:
                         msg = "Not caught yet! \N{CROSS MARK}"
                     embed.add_field(name=f"{pokemon[0]} {pokemon[1]['id']}", value=msg)
                 embeds.append(embed)
-            embeds[0].description = f"You've caught {total} out of {len(pokemonlist)} pokémon."
-            await menu(ctx, embeds, DEFAULT_CONTROLS)
-                    
-                
+            embeds[
+                0
+            ].description = f"You've caught {total} out of {len(pokemonlist)} pokémon."
+        await menu(ctx, embeds, DEFAULT_CONTROLS)
