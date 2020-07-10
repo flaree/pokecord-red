@@ -11,5 +11,6 @@
       "pokemon",
       "pokecord"
     ],
+    "requirements": ["tabulate"],
     "hidden": false
   }
