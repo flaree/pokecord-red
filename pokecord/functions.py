@@ -20,3 +20,9 @@ async def select_pokemon(
     command = ctx.bot.get_command("select")
     await ctx.invoke(command, _id=page + 1)
     return await menu(ctx, pages, controls, message=message, page=page, timeout=timeout)
+
+
+def chunks(l, n):
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i : i + n]

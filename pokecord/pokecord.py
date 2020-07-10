@@ -96,6 +96,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
     async def initalize(self):
         with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
             self.pokemondata = json.load(f)
+            self.pokemonlist = {f"{pokemon['name']['english']}": {"amount":0, "id": f"#{str(pokemon['id']).zfill(3)}"} for pokemon in self.pokemondata}
         with open(f"{self.datapath}/evolve.json") as f:
             self.evolvedata = json.load(f)
         # if not await self.config.hashed():

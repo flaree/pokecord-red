@@ -16,7 +16,7 @@ from redbot.core.utils.menus import (
 from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
-from .functions import select_pokemon
+from .functions import select_pokemon, chunks
 from .statements import *
 
 controls = {
@@ -36,7 +36,8 @@ class GeneralMixin(MixinMeta):
         """List a trainers or your own pokémon!"""
         user = user or ctx.author
         conf = await self.user_is_global(user)
-        result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
+        async with ctx.typing():
+            result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
         pokemons = []
         for data in result:
             pokemons.append(json.loads(data[0]))
@@ -70,7 +71,8 @@ class GeneralMixin(MixinMeta):
                 )
             embed.set_footer(text=f"Pokémon ID: {i}/{len(pokemons)}")
             embeds.append(embed)
-        await menu(ctx, embeds, DEFAULT_CONTROLS if user != ctx.author else controls)
+        _id = await conf.pokeid()
+        await menu(ctx, embeds, DEFAULT_CONTROLS if user != ctx.author else controls, page= _id - 1)
 
     @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
@@ -78,7 +80,8 @@ class GeneralMixin(MixinMeta):
         """Set a pokemons nickname."""
         if id <= 0:
             return await ctx.send("The ID must be greater than 0!")
-        result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
+        async with ctx.typing:
+            result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -99,7 +102,8 @@ class GeneralMixin(MixinMeta):
         """Free a pokemon."""
         if id <= 0:
             return await ctx.send("The ID must be greater than 0!")
-        result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
+        async with ctx.typing:
+            result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -145,28 +149,70 @@ class GeneralMixin(MixinMeta):
             return await ctx.send(
                 f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information."
             )
-        result = self.cursor.execute(
-            """SELECT pokemon, message_id from users where user_id = ?""",
-            (ctx.author.id,),
-        ).fetchall()
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokemon to select.")
-        if isinstance(_id, str):
-            if _id == "latest":
-                _id = len(pokemons) - 1
-            else:
-                await ctx.send(
-                    "Unidentified keyword, the only supported action is `latest` as of now."
-                )
-                return
-        if _id < 1 or _id > len(pokemons) - 1:
-            return await ctx.send("You've specified an invalid ID.")
-        await ctx.send(
-            f"You have selected {self.get_name(pokemons[_id][0]['name'], ctx.author)} as your default pokémon."
-        )
+        async with ctx.typing():
+            result = self.cursor.execute(
+                """SELECT pokemon, message_id from users where user_id = ?""",
+                (ctx.author.id,),
+            ).fetchall()
+            pokemons = [None]
+            for data in result:
+                pokemons.append([json.loads(data[0]), data[1]])
+            if not pokemons:
+                return await ctx.send("You don't have any pokemon to select.")
+            if isinstance(_id, str):
+                if _id == "latest":
+                    _id = len(pokemons) - 1
+                else:
+                    await ctx.send(
+                        "Unidentified keyword, the only supported action is `latest` as of now."
+                    )
+                    return
+            if _id < 1 or _id > len(pokemons) - 1:
+                return await ctx.send("You've specified an invalid ID.")
+            await ctx.send(
+                f"You have selected {self.get_name(pokemons[_id][0]['name'], ctx.author)} as your default pokémon."
+            )
         conf = await self.user_is_global(ctx.author)
         await conf.pokeid.set(_id)
         await self.update_user_cache()
+        
+    @commands.command()
+    @commands.max_concurrency(1, commands.BucketType.user)
+    async def pokedex(self, ctx):
+        """Check your caught pokémon!"""
+        async with ctx.typing():
+            result = self.cursor.execute(
+                """SELECT pokemon, message_id from users where user_id = ?""",
+                (ctx.author.id,),
+            ).fetchall()
+            pokemons = [None]
+            for data in result:
+                pokemons.append([json.loads(data[0]), data[1]])
+            pokemonlist = self.pokemonlist.copy()
+            for pokemon in pokemons[1:]:
+                if isinstance(pokemon[0]["name"], str):
+                    name = pokemon[0]["name"]
+                else:
+                    name = pokemon[0]["name"]["english"]
+                if name in pokemonlist:
+                    pokemonlist[name]["amount"] += 1
+            a = [value for value in pokemonlist.items()]
+            embeds = []
+            total = 0
+            page = 1
+            for item in chunks(a, 20):
+                embed = discord.Embed(title="Pokédex", color=await self.bot.get_embed_color(ctx.channel))
+                embed.set_footer(text=f"Showing {page}-{page + len(item) - 1} of {len(pokemonlist)}.")
+                page += len(item)
+                for pokemon in item:
+                    if pokemon[1]["amount"] > 0:
+                        total += 1
+                        msg = f"{pokemon[1]['amount']} caught! \N{WHITE HEAVY CHECK MARK}"
+                    else:
+                        msg = "Not caught yet! \N{CROSS MARK}"
+                    embed.add_field(name=f"{pokemon[0]} {pokemon[1]['id']}", value=msg)
+                embeds.append(embed)
+            embeds[0].description = f"You've caught {total} out of {len(pokemonlist)} pokémon."
+            await menu(ctx, embeds, DEFAULT_CONTROLS)
+                    
+                
