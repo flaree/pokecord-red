@@ -71,13 +71,7 @@ async def main():
             )
             continue
         a["normal"].append(
-            {
-                "name": name,
-                "alias": small,
-                "types": types,
-                "stats": stats_dict,
-                "id": _id,
-            }
+            {"name": name, "alias": small, "types": types, "stats": stats_dict, "id": _id,}
         )
     # await get_img(a)
     await write(a, "pokemon")
@@ -123,9 +117,7 @@ async def get_img(lst):
 
     for pokemon in lst["mega"]:
         try:
-            async with session.get(
-                POKEDEX.format(pokemon["img"]).replace("png", "jpg")
-            ) as img:
+            async with session.get(POKEDEX.format(pokemon["img"]).replace("png", "jpg")) as img:
                 if img.status == 200:
                     name = f"data/{pokemon['alias']}.png"
                     with open(name, "wb") as f:

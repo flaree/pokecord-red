@@ -14,5 +14,5 @@ for /F "tokens=* USEBACKQ" %%A in (`git ls-files "*.py"`) do (
 goto %1
 
 :reformat
-black !PYFILES!
+black !PYFILES! -l 99
 exit /B %ERRORLEVEL%

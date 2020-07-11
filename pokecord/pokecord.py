@@ -50,9 +50,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        self.config = Config.get_conf(
-            self, identifier=95932766180343808, force_registration=True
-        )
+        self.config = Config.get_conf(self, identifier=95932766180343808, force_registration=True)
         self.config.register_global(
             isglobal=True,
             hashed=False,
@@ -274,9 +272,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     if lst[ind] != " ":
                         lst[ind] = "_"
                 word = "".join(lst)
-                await ctx.send(
-                    "This wild pokemon is a {}".format(escape(word, formatting=True))
-                )
+                await ctx.send("This wild pokemon is a {}".format(escape(word, formatting=True)))
                 return
         await ctx.send("No pokemon is ready to be caught.")
 
@@ -291,20 +287,16 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
-                names = set(
-                    pokemonspawn["name"][name].lower() for name in pokemonspawn["name"]
-                )
+                names = set(pokemonspawn["name"][name].lower() for name in pokemonspawn["name"])
                 names.add(
                     pokemonspawn["name"]["english"]
                     .translate(str.maketrans("", "", string.punctuation))
                     .lower()
                 )
                 if pokemon.lower() in names:
-                    if self.spawnedpokemon.get(
+                    if self.spawnedpokemon.get(ctx.guild.id) is not None and self.spawnedpokemon[
                         ctx.guild.id
-                    ) is not None and self.spawnedpokemon[ctx.guild.id].get(
-                        ctx.channel.id
-                    ):
+                    ].get(ctx.channel.id):
                         del self.spawnedpokemon[ctx.guild.id][ctx.channel.id]
                     else:
                         await ctx.send("No pokemon is ready to be caught.")
@@ -316,8 +308,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
                     self.cursor.execute(
-                        INSERT_POKEMON,
-                        (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
+                        INSERT_POKEMON, (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
                     )
                     return
                 else:
@@ -325,10 +316,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         await ctx.send("No pokemon is ready to be caught.")
 
     def spawn_chance(self, guildid):
-        return (
-            self.maybe_spawn[guildid]["amount"]
-            > self.maybe_spawn[guildid]["spawnchance"]
-        )
+        return self.maybe_spawn[guildid]["amount"] > self.maybe_spawn[guildid]["spawnchance"]
 
     # async def get_hash(self, pokemon):
     #     return (await self.config.hashes()).get(pokemon, None)
@@ -358,9 +346,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         if not guildcache["activechannels"]:
             channel = message.channel
         else:
-            channel = message.guild.get_channel(
-                int(random.choice(guildcache["activechannels"]))
-            )
+            channel = message.guild.get_channel(int(random.choice(guildcache["activechannels"])))
             if channel is None:
                 return  # TODO: Remove channel from config
         await self.spawn_pokemon(channel)
@@ -377,9 +363,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             color=await self.bot.get_embed_color(channel),
         )
         # name = pokemon["name"] if pokemon["alias"] is None else pokemon["alias"]
-        log.debug(
-            f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}"
-        )
+        log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
         # hashe = await self.get_hash(f"{name}.png")
         # if hashe is None:
         #     return
@@ -398,7 +382,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             return
         if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 10:
             return
-        self.usercache[user.id]["timestamp"] = datetime.datetime.utcnow().timestamp() # Try remove a race condition
+        self.usercache[user.id][
+            "timestamp"
+        ] = datetime.datetime.utcnow().timestamp()  # Try remove a race condition
         await self.config.user(user).timestamp.set(
             datetime.datetime.utcnow().timestamp()
         )  # TODO: guild based
@@ -468,9 +454,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
                 for stat in pokemon["stats"]:
-                    pokemon["stats"][stat] = int(
-                        pokemon["stats"][stat]
-                    ) + random.randint(1, 3)
+                    pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
                 if not userconf["silence"]:
                     embed = discord.Embed(
                         title=f"Congratulations {user}!",

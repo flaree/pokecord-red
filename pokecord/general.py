@@ -43,9 +43,7 @@ class GeneralMixin(MixinMeta):
         for data in result:
             pokemons.append(json.loads(data[0]))
         if not pokemons:
-            return await ctx.send(
-                "You don't have any pokémon, go get catching trainer!"
-            )
+            return await ctx.send("You don't have any pokémon, go get catching trainer!")
         embeds = []
         for i, pokemon in enumerate(pokemons, 1):
             stats = pokemon["stats"]
@@ -63,9 +61,7 @@ class GeneralMixin(MixinMeta):
             nick = pokemon.get("nickname")
             alias = f"**Nickname**: {nick}\n" if nick is not None else ""
             desc = f"{alias}**Level**: {pokemon['level']}\n**XP**: {pokemon['xp']}/{self.calc_xp(pokemon['level'])}\n{box(pokestats, lang='prolog')}"
-            embed = discord.Embed(
-                title=self.get_name(pokemon["name"], user), description=desc
-            )
+            embed = discord.Embed(title=self.get_name(pokemon["name"], user), description=desc)
             if pokemon.get("id"):
                 embed.set_thumbnail(
                     url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
@@ -74,10 +70,7 @@ class GeneralMixin(MixinMeta):
             embeds.append(embed)
         _id = await conf.pokeid()
         await menu(
-            ctx,
-            embeds,
-            DEFAULT_CONTROLS if user != ctx.author else controls,
-            page=_id - 1,
+            ctx, embeds, DEFAULT_CONTROLS if user != ctx.author else controls, page=_id - 1,
         )
 
     @commands.max_concurrency(1, commands.BucketType.user)
@@ -157,8 +150,7 @@ class GeneralMixin(MixinMeta):
             )
         async with ctx.typing():
             result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""",
-                (ctx.author.id,),
+                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
             ).fetchall()
             pokemons = [None]
             for data in result:
@@ -188,8 +180,7 @@ class GeneralMixin(MixinMeta):
         """Check your caught pokémon!"""
         async with ctx.typing():
             result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""",
-                (ctx.author.id,),
+                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
             ).fetchall()
             pokemons = [None]
             for data in result:
@@ -217,14 +208,10 @@ class GeneralMixin(MixinMeta):
                 for pokemon in item:
                     if pokemon[1]["amount"] > 0:
                         total += 1
-                        msg = (
-                            f"{pokemon[1]['amount']} caught! \N{WHITE HEAVY CHECK MARK}"
-                        )
+                        msg = f"{pokemon[1]['amount']} caught! \N{WHITE HEAVY CHECK MARK}"
                     else:
                         msg = "Not caught yet! \N{CROSS MARK}"
                     embed.add_field(name=f"{pokemon[0]} {pokemon[1]['id']}", value=msg)
                 embeds.append(embed)
-            embeds[
-                0
-            ].description = f"You've caught {total} out of {len(pokemonlist)} pokémon."
+            embeds[0].description = f"You've caught {total} out of {len(pokemonlist)} pokémon."
         await menu(ctx, embeds, DEFAULT_CONTROLS)
