@@ -398,6 +398,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             return
         if datetime.datetime.utcnow().timestamp() - userconf["timestamp"] < 10:
             return
+        self.usercache[user.id]["timestamp"] = datetime.datetime.utcnow().timestamp() # Try remove a race condition
         await self.config.user(user).timestamp.set(
             datetime.datetime.utcnow().timestamp()
         )  # TODO: guild based
