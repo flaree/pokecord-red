@@ -1,10 +1,14 @@
-from .abc import MixinMeta
-import discord
 import json
-
-from redbot.core import commands
-from redbot.core.utils.chat_formatting import humanize_list
 from typing import Union
+
+import discord
+from redbot.core import commands
+from redbot.core.i18n import Translator
+from redbot.core.utils.chat_formatting import humanize_list
+
+from .abc import MixinMeta
+
+_ = Translator("Pokecord", __file__)
 
 LOCALES = {
     "english": "en",
@@ -31,9 +35,9 @@ class SettingsMixin(MixinMeta):
             _type = not await conf.silence()
         await conf.silence.set(_type)
         if _type:
-            await ctx.send("Your pokécord levelling messages have been silenced.")
+            await ctx.send(_("Your pokécord levelling messages have been silenced."))
         else:
-            await ctx.send("Your pokécord levelling messages have been re-enabled!")
+            await ctx.send(_("Your pokécord levelling messages have been re-enabled!"))
         await self.update_user_cache()
 
     @commands.command()
@@ -42,7 +46,9 @@ class SettingsMixin(MixinMeta):
         """Set the Pokecord locale to use for yourself."""
         if locale.lower() not in LOCALES:
             await ctx.send(
-                "You've specified an invalid locale. Pokecord only supports English, Japanese, Chinese and French."
+                _(
+                    "You've specified an invalid locale. Pokecord only supports English, Japanese, Chinese and French."
+                )
             )
             return
         conf = await self.user_is_global(ctx.author)
@@ -64,9 +70,9 @@ class SettingsMixin(MixinMeta):
             _type = not await self.config.guild(ctx.guild).toggle()
         await self.config.guild(ctx.guild).toggle.set(_type)
         if _type:
-            await ctx.send("Pokécord has been toggled on!")
+            await ctx.send(_("Pokécord has been toggled on!"))
             return
-        await ctx.send("Pokécord has been toggled off!")
+        await ctx.send(_("Pokécord has been toggled off!"))
         await self.update_guild_cache()
 
     @pokecordset.command()
@@ -75,7 +81,7 @@ class SettingsMixin(MixinMeta):
         async with self.config.guild(ctx.guild).activechannels() as channels:
             if channel.id in channels:
                 channels.remove(channel.id)
-                await ctx.send("Channel has been removed.")
+                await ctx.send(_("Channel has been removed."))
                 return
             channels.append(channel.id)
         await self.update_guild_cache()
@@ -86,7 +92,14 @@ class SettingsMixin(MixinMeta):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
         await self.update_guild_cache()
-        msg = f"**Toggle**: {data['toggle']}\n**Active Channels**: {humanize_list(data['activechannels']) if data['activechannels'] else 'All' if data['toggle'] else 'None'}"
+        msg = _("**Toggle**: {toggle}\n**Active Channels**: {channels}").format(
+            toggle=data["toggle"],
+            channels=humanize_list(data["activechannels"])
+            if data["activechannels"]
+            else "All"
+            if data["toggle"]
+            else "None",
+        )
         await ctx.send(msg)
 
     @pokecordset.command(usage="<min amount of messages> <max amount of messages>")
@@ -94,9 +107,9 @@ class SettingsMixin(MixinMeta):
     async def spawnchance(self, ctx, _min: int, _max: int):
         """Change the range of messages required for a spawn."""
         if _min < 15:
-            return await ctx.send("Min must be more than 15.")
+            return await ctx.send(_("Min must be more than 15."))
         if _max < _min:
-            return await ctx.send("Max must be more than the minimum.")
+            return await ctx.send(_("Max must be more than the minimum."))
         await self.config.spawnchance.set([_min, _max])
         await self.update_spawn_chance()
         await ctx.tick()
@@ -107,11 +120,15 @@ class SettingsMixin(MixinMeta):
         """Turn the bot loop on or off."""
         if state:
             await ctx.send(
-                "Random spawn loop has been enabled, please reload the cog for this change to take effect."
+                _(
+                    "Random spawn loop has been enabled, please reload the cog for this change to take effect."
+                )
             )
         else:
             await ctx.send(
-                "Random spawn loop has been disabled, please reload the cog for this change to take effect."
+                _(
+                    "Random spawn loop has been disabled, please reload the cog for this change to take effect."
+                )
             )
         await self.config.spawnloop.set(state)
         await ctx.tick()

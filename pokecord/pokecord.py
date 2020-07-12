@@ -21,7 +21,7 @@ from redbot.core import Config, bank, checks, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.utils.chat_formatting import box, escape, humanize_list
 from redbot.core.utils.predicates import MessagePredicate
-
+from redbot.core.i18n import Translator, cog_i18n
 import apsw
 
 from .settings import SettingsMixin
@@ -30,12 +30,15 @@ from .statements import *
 
 log = logging.getLogger("red.flare.pokecord")
 
+_ = Translator("Pokecord", __file__)
+
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
     """This allows the metaclass used for proper type detection to coexist with discord.py's
     metaclass."""
 
 
+@cog_i18n(_)
 class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass):
     """Pokecord adapted to use on Red."""
 
@@ -193,12 +196,12 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
 
     @commands.command()
     async def starter(self, ctx, pokemon: str = None):
-        """Choose your starter pokemon"""
+        """Choose your starter pokémon!"""
         conf = await self.user_is_global(ctx.author)
         if await conf.has_starter():
-            return await ctx.send(f"You've already claimed your starter pokemon!")
+            return await ctx.send(_("You've already claimed your starter pokemon!"))
         if pokemon is None:
-            msg = (
+            msg = _(
                 "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\n"
                 "In order to get catchin' you must pick one of the starter Pokemon as listed below.\n"
                 "**Generation 1**\nBulbasaur, Charmander and Squirtle\n"
@@ -209,7 +212,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                 "**Generation 6**\nChespin, Fennekin, Froakie\n"
                 "**Generation 7**\nRowlet, Litten, Popplio\n"
                 "**Generation 8**\nGrookey, Scorbunny, Sobble\n"
-                f"\nTo pick a pokemon, type {ctx.clean_prefix}starter <pokemon>"
+                "\nTo pick a pokemon, type {prefix}starter <pokemon>".format(
+                    prefix=ctx.clean_prefix
+                )
             )
             await ctx.send(msg)
             return
@@ -240,9 +245,11 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
             "sobble": self.pokemondata[815],
         }
         if pokemon.lower() not in starter_pokemon.keys():
-            await ctx.send("That's not a valid starter pokémon, trainer!")
+            await ctx.send(_("That's not a valid starter pokémon, trainer!"))
             return
-        await ctx.send(f"You've chosen {pokemon.title()} as your starter pokémon!")
+        await ctx.send(
+            _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
+        )
         pokemon = starter_pokemon[pokemon.lower()]
         pokemon["level"] = 0
         pokemon["xp"] = 0
@@ -255,7 +262,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.member)
     async def hint(self, ctx):
-        """Get a hint on the pokemon!"""
+        """Get a hint on the pokémon!"""
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
@@ -272,9 +279,13 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     if lst[ind] != " ":
                         lst[ind] = "_"
                 word = "".join(lst)
-                await ctx.send("This wild pokemon is a {}".format(escape(word, formatting=True)))
+                await ctx.send(
+                    _("This wild pokemon is a {pokemonhint}.").format(
+                        pokemonhint=escape(word, formatting=True)
+                    )
+                )
                 return
-        await ctx.send("No pokemon is ready to be caught.")
+        await ctx.send(_("No pokemon is ready to be caught."))
 
     @commands.command()
     async def catch(self, ctx, *, pokemon: str):
@@ -282,7 +293,9 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         conf = await self.user_is_global(ctx.author)
         if not await conf.has_starter():
             return await ctx.send(
-                f"You haven't chosen a starter pokemon yet, check out `{ctx.clean_prefix}starter` for more information."
+                _(
+                    "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
+                ).format(prefix=ctx.clean_prefix)
             )
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
@@ -303,7 +316,13 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                         return
                     lvl = random.randint(1, 13)
                     await ctx.send(
-                        f"Congratulations {ctx.author.mention}! You've caught a level {lvl} {self.get_name(pokemonspawn['name'], ctx.author)}!"
+                        _(
+                            "Congratulations {user}! You've caught a level {lvl} {pokename}!"
+                        ).format(
+                            user=ctx.author.mention,
+                            lvl=lvl,
+                            pokename=self.get_name(pokemonspawn["name"], ctx.author),
+                        )
                     )
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
@@ -312,8 +331,8 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     )
                     return
                 else:
-                    return await ctx.send("That's not the correct pokemon")
-        await ctx.send("No pokemon is ready to be caught.")
+                    return await ctx.send(_("That's not the correct pokemon"))
+        await ctx.send(_("No pokemon is ready to be caught."))
 
     def spawn_chance(self, guildid):
         return self.maybe_spawn[guildid]["amount"] > self.maybe_spawn[guildid]["spawnchance"]
@@ -335,9 +354,14 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         await self.exp_gain(message.channel, message.author)
         if message.guild.id not in self.maybe_spawn:
             self.maybe_spawn[message.guild.id] = {
-                "amount": 0,
+                "amount": 1,
                 "spawnchance": random.randint(self.spawnchance[0], self.spawnchance[1]),
+                "time": datetime.datetime.utcnow().timestamp(),
             }  # TODO: big value
+        if (
+            datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"] < 5
+        ):  # stop spamming to spawn
+            return
         self.maybe_spawn[message.guild.id]["amount"] += 1
         should_spawn = self.spawn_chance(message.guild.id)
         if not should_spawn:
@@ -358,8 +382,10 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
-            title="‌‌A wild pokémon has аppeаred!",
-            description=f"Guess the pokémon аnd type {prefixes[0]}catch <pokémon> to cаtch it!",
+            title=_("‌‌A wild pokémon has аppeаred!"),
+            description=_(
+                "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
+            ).format(prefix=prefixes[0]),
             color=await self.bot.get_embed_color(channel),
         )
         # name = pokemon["name"] if pokemon["alias"] is None else pokemon["alias"]
@@ -444,8 +470,10 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                 pokemon["level"] = lvl
                 if not userconf["silence"]:
                     embed = discord.Embed(
-                        title=f"Congratulations {user}!",
-                        description=f"Your {name} has evolved into {self.get_name(pokemon['name'], user)}!",
+                        title=_("Congratulations {user}!").format(user=user),
+                        description=_("Your {name} has evolved into {evolvename}!").format(
+                            name=name, evolvename=self.get_name(pokemon["name"], user)
+                        ),
                         color=await self.bot.get_embed_color(channel),
                     )
                     if channel.permissions_for(channel.guild.me).send_messages:
@@ -457,8 +485,10 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
                 if not userconf["silence"]:
                     embed = discord.Embed(
-                        title=f"Congratulations {user}!",
-                        description=f"Your {name} has levelled up to level {pokemon['level']}!",
+                        title=_("Congratulations {user}!").format(user=user),
+                        description=_("Your {name} has levelled up to level {level}!").format(
+                            name=name, level=pokemon["level"]
+                        ),
                         color=await self.bot.get_embed_color(channel),
                     )
                     if channel.permissions_for(channel.guild.me).send_messages:
