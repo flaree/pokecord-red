@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import html5lib
 import os
 
- # driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
+# driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
 
 URL = "https://pokemondb.net/pokedex/all"
@@ -128,7 +128,8 @@ async def get_img(lst):
             continue
 
     await session.close()
-    
+
+
 def spawn_rate():
     with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -138,12 +139,10 @@ def spawn_rate():
             for stat in pokemon["stats"]:
                 total += pokemon["stats"][stat]
             stats.append(800 - total)
-            pokemon["spawnchance"] = (800 - total) / 800 
-    
+            pokemon["spawnchance"] = (800 - total) / 800
+
     with open(f"pokecord/data/pokedex.json", "w") as f:
         f.write(json.dumps(data))
-                
-    
 
 
 # loop = asyncio.get_event_loop()
