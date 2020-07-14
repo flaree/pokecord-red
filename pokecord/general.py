@@ -10,21 +10,15 @@ from redbot.core.i18n import Translator, cog_i18n
 from redbot.core.utils.chat_formatting import *
 from redbot.core.utils.menus import DEFAULT_CONTROLS, close_menu, menu, next_page, prev_page
 from redbot.core.utils.predicates import MessagePredicate
+from redbot.vendored.discord.ext import menus
 
 from .abc import MixinMeta
-from .functions import chunks, select_pokemon
+from .functions import chunks
 from .statements import *
+from .menus import PokeMenu, PokeList
+
 
 _ = Translator("Pokecord", __file__)
-
-
-controls = {
-    "⬅": prev_page,
-    "❌": close_menu,
-    "➡": next_page,
-    "\N{WHITE HEAVY CHECK MARK}": select_pokemon,
-}
-
 
 class GeneralMixin(MixinMeta):
     """Pokecord General Commands"""
@@ -38,46 +32,17 @@ class GeneralMixin(MixinMeta):
         async with ctx.typing():
             result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
         pokemons = []
-        for data in result:
-            pokemons.append(json.loads(data[0]))
+        for i, data in enumerate(result, start=1):
+            poke = json.loads(data[0])
+            poke["sid"] = i
+            pokemons.append(poke)
         if not pokemons:
             return await ctx.send(_("You don't have any pokémon, go get catching trainer!"))
-        embeds = []
-        for i, pokemon in enumerate(pokemons, 1):
-            stats = pokemon["stats"]
-            pokestats = tabulate.tabulate(
-                [
-                    [_("HP"), stats["HP"]],
-                    [_("Attack"), stats["Attack"]],
-                    [_("Defence"), stats["Defence"]],
-                    [_("Sp. Atk"), stats["Sp. Atk"]],
-                    [_("Sp. Def"), stats["Sp. Def"]],
-                    [_("Speed"), stats["Speed"]],
-                ],
-                headers=[_("Stats"), _("Value")],
-            )
-            nick = pokemon.get("nickname")
-            alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
-            desc = _("{alias}**Level**: {level}\n**XP**: {xp}/{totalxp}\n{stats}").format(
-                alias=alias,
-                level=pokemon["level"],
-                xp=pokemon["xp"],
-                totalxp=self.calc_xp(pokemon["level"]),
-                stats=box(pokestats, lang="prolog"),
-            )
-            embed = discord.Embed(title=self.get_name(pokemon["name"], user), description=desc)
-            if pokemon.get("id"):
-                embed.set_thumbnail(
-                    url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
-                )
-            embed.set_footer(
-                text=_("Pokémon ID: {number}/{amount}").format(number=i, amount=len(pokemons))
-            )
-            embeds.append(embed)
         _id = await conf.pokeid()
-        await menu(
-            ctx, embeds, DEFAULT_CONTROLS if user != ctx.author else controls, page=_id - 1,
-        )
+        await ctx.send(_("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id), delete_after=5)
+        await PokeMenu(
+            source=PokeList(pokemons), cog=self, ctx=ctx, user=user, delete_message_after=True,
+        ).start(ctx=ctx, wait=False)
 
     @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
