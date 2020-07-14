@@ -54,14 +54,15 @@ class GeneralMixin(MixinMeta):
                     [_("Sp. Def"), stats["Sp. Def"]],
                     [_("Speed"), stats["Speed"]],
                 ],
-                headers=[_("Ability"), _("Value")],
+                headers=[_("Stats"), _("Value")],
             )
             nick = pokemon.get("nickname")
             alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
-            desc = _("{alias}**Level**: {level}\n**XP**: {xp}\n{stats}").format(
+            desc = _("{alias}**Level**: {level}\n**XP**: {xp}/{totalxp}\n{stats}").format(
                 alias=alias,
                 level=pokemon["level"],
-                xp=pokemon["xp"] / self.calc_xp(pokemon["level"]),
+                xp=pokemon["xp"],
+                totalxp=self.calc_xp(pokemon["level"]),
                 stats=box(pokestats, lang="prolog"),
             )
             embed = discord.Embed(title=self.get_name(pokemon["name"], user), description=desc)
