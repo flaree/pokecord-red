@@ -580,6 +580,7 @@
       "chinese": "尼多兰",
       "french": "Nidoran♀"
     },
+    "alias": "Nidoran",
     "type": [
       "Poison"
     ],
@@ -641,6 +642,7 @@
       "chinese": "尼多朗",
       "french": "Nidoran♂"
     },
+    "alias": "Nidoran",
     "type": [
       "Poison"
     ],
