@@ -9,7 +9,7 @@ from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import box
 from redbot.vendored.discord.ext import menus
 
-_ = Translator("Menus", __file__)
+_ = Translator("Pokecord", __file__)
 
 
 class PokeMenu(menus.MenuPages, inherit_buttons=False):
@@ -93,7 +93,7 @@ class PokeMenu(menus.MenuPages, inherit_buttons=False):
                 for msg in messages:
                     await msg.delete()
 
-        prompt = await self.ctx.send("Please select the Pokémon ID number to jump to.")
+        prompt = await self.ctx.send(_("Please select the Pokémon ID number to jump to."))
         try:
             msg = await self.bot.wait_for(
                 "message_without_command",
@@ -102,7 +102,7 @@ class PokeMenu(menus.MenuPages, inherit_buttons=False):
             )
             jump_page = int(msg.content)
             if int(msg.content) > self._source.get_max_pages():
-                await self.ctx.send("Invalid Pokémon ID, jumping to the end.", delete_after=5)
+                await self.ctx.send(_("Invalid Pokémon ID, jumping to the end."), delete_after=5)
                 jump_page = self._source.get_max_pages()
             await self.show_checked_page(jump_page - 1)
             await cleanup([prompt, msg])
