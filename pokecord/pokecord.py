@@ -359,9 +359,13 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                 "amount": 1,
                 "spawnchance": random.randint(self.spawnchance[0], self.spawnchance[1]),
                 "time": datetime.datetime.utcnow().timestamp(),
+                "author": message.author.id,
             }  # TODO: big value
         if (
-            datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"] < 5
+            datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"]
+            < 10
+        ) or (
+            self.maybe_spawn[message.guild.id]["author"] != message.author.id
         ):  # stop spamming to spawn
             return
         self.maybe_spawn[message.guild.id]["amount"] += 1
