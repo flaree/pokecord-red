@@ -1,31 +1,22 @@
 import asyncio
-import base64
 import concurrent.futures
 import datetime
-import functools
-import hashlib
 import json
 import logging
-import os
 import random
-import re
 import string
-import urllib
 from abc import ABC
-from typing import Union
 
 import discord
-import tabulate
-from PIL import Image
-from redbot.core import Config, bank, checks, commands
+from redbot.core import Config, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
-from redbot.core.utils.chat_formatting import box, escape, humanize_list
-from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.i18n import Translator, cog_i18n
+from redbot.core.utils.chat_formatting import escape
+
 import apsw
 
-from .settings import SettingsMixin
 from .general import GeneralMixin
+from .settings import SettingsMixin
 from .statements import *
 
 log = logging.getLogger("red.flare.pokecord")
@@ -97,6 +88,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
     async def initalize(self):
         with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
             self.pokemondata = json.load(f)
+            self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
             self.pokemonlist = {
                 f"{pokemon['name']['english']}": {
                     "amount": 0,
@@ -177,7 +169,7 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
     def pokemon_choose(self):
         # num = random.randint(1, 200)
         # if num > 2:
-        return random.choice(self.pokemondata)
+        return random.choices(self.pokemondata, weights=self.spawnchances, k=1)[0]
         # return random.choice(self.pokemondata["mega"])
 
     def get_name(self, names, user):
