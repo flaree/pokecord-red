@@ -20,6 +20,7 @@ from .menus import PokeMenu, PokeList
 
 _ = Translator("Pokecord", __file__)
 
+
 class GeneralMixin(MixinMeta):
     """Pokecord General Commands"""
 
@@ -39,7 +40,9 @@ class GeneralMixin(MixinMeta):
         if not pokemons:
             return await ctx.send(_("You don't have any pokémon, go get catching trainer!"))
         _id = await conf.pokeid()
-        await ctx.send(_("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id), delete_after=5)
+        await ctx.send(
+            _("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id), delete_after=5
+        )
         await PokeMenu(
             source=PokeList(pokemons), cog=self, ctx=ctx, user=user, delete_message_after=True,
         ).start(ctx=ctx, wait=False)
