@@ -2,13 +2,14 @@ import bs4
 import aiohttp
 import asyncio
 from io import BytesIO
+import random
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import html5lib
 import os
 
-driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
+ # driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
 
 URL = "https://pokemondb.net/pokedex/all"
@@ -127,7 +128,25 @@ async def get_img(lst):
             continue
 
     await session.close()
+    
+def spawn_rate():
+    with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+        stats = []
+        for pokemon in data:
+            total = 0
+            for stat in pokemon["stats"]:
+                total += pokemon["stats"][stat]
+            stats.append(800 - total)
+            pokemon["spawnchance"] = (800 - total) / 800 
+    
+    with open(f"pokecord/data/pokedex.json", "w") as f:
+        f.write(json.dumps(data))
+                
+    
 
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(main())
+
+spawn_rate()
