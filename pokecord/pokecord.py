@@ -306,6 +306,8 @@ class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMet
                     .translate(str.maketrans("", "", string.punctuation))
                     .lower()
                 )
+                if pokemonspawn.get("alias"):
+                    names.add(pokemonspawn["alias"])
                 if pokemon.lower() in names:
                     if self.spawnedpokemon.get(ctx.guild.id) is not None and self.spawnedpokemon[
                         ctx.guild.id
