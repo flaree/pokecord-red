@@ -53,7 +53,7 @@ class GeneralMixin(MixinMeta):
         """Set a pokémons nickname."""
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
-        async with ctx.typing:
+        async with ctx.typing():
             result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
         for data in result:
