@@ -69,7 +69,7 @@ class GeneralMixin(MixinMeta):
         )
         await ctx.send(
             _("Your {pokemon} has been nicknamed `{nickname}`").format(
-                pokemon=pokemon[0]["name"], nickname=nickname
+                pokemon=self.get_name(pokemon[0]["name"], ctx.author), nickname=nickname
             )
         )
 
