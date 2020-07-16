@@ -64,6 +64,7 @@ class SettingsMixin(MixinMeta):
         pass
 
     @pokecordset.command(usage="type")
+    @commands.guildowner()
     async def toggle(self, ctx, _type: bool = None):
         """Toggle pokecord on or off."""
         if _type is None:
@@ -76,6 +77,7 @@ class SettingsMixin(MixinMeta):
         await self.update_guild_cache()
 
     @pokecordset.command()
+    @commands.guildowner()
     async def channel(self, ctx, channel: discord.TextChannel):
         """Set the channel that pokemon are to spawn in."""
         async with self.config.guild(ctx.guild).activechannels() as channels:
@@ -88,6 +90,7 @@ class SettingsMixin(MixinMeta):
         await ctx.tick()
 
     @pokecordset.command()
+    @commands.guildowner()
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
