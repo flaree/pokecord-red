@@ -13,7 +13,7 @@ env:
 
 jobs:
   deploy:
-    if: github.repository == 'retke/Laggrons-Dumb-Cogs'
+    if: github.repository == 'flaree/pokecord-red'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
