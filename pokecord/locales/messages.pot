@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-07-18 01:03+0000\n"
+"POT-Creation-Date: 2020-07-18 01:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -375,16 +375,12 @@ msgstr ""
 
 #: pokecord/trading.py:109
 msgid ""
-"{user}, You have released your selected pokemon. I have reset your selected "
+"{user}, You have traded your selected pokemon. I have reset your selected "
 "pokemon to your first pokemon."
 msgstr ""
 
 #: pokecord/trading.py:119
 msgid "{balance} (balance too high)"
-msgstr ""
-
-#: pokecord/trading.py:122
-msgid "-- {pokemon}"
 msgstr ""
 
 #: pokecord/trading.py:123
