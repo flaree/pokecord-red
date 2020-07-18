@@ -1,385 +1,337 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-07-18 01:03+0000\n"
+"POT-Creation-Date: 2020-07-14 03:53+0100\n"
 "PO-Revision-Date: 2020-07-18 01:04\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: redgettext 3.2\n"
+"Generated-By: redgettext 3.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: pokecord\n"
 "X-Crowdin-Project-ID: 411634\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /pokecord/locales/messages.pot\n"
-"X-Crowdin-File-ID: 14\n"
+"X-Crowdin-File: /master/pokecord/locales/messages.pot\n"
+"X-Crowdin-File-ID: 8\n"
 "Language: es_ES\n"
 
-#: pokecord/general.py:30
+#: pokecord\general.py:30
 #, docstring
 msgid "List a trainers or your own pokémon!"
-msgstr ""
+msgstr "¡Lista de entrenadores o de tus propios Pokémon!"
 
-#: pokecord/general.py:41
+#: pokecord\general.py:41
 msgid "You don't have any pokémon, go get catching trainer!"
-msgstr ""
+msgstr "No tienes Pokémon, ¡ve a por uno!"
 
-#: pokecord/general.py:44
+#: pokecord\general.py:44
 msgid "{user}'s selected Pokémon ID is {id}"
-msgstr ""
+msgstr "La id. del Pokémon de {user} es {id}"
 
-#: pokecord/general.py:53
+#: pokecord\general.py:53
 #, docstring
 msgid "Set a pokémons nickname."
-msgstr ""
+msgstr "Establece un nombre del Pokémon."
 
-#: pokecord/general.py:55 pokecord/general.py:81
+#: pokecord\general.py:55 pokecord\general.py:81
 msgid "The ID must be greater than 0!"
-msgstr ""
+msgstr "¡Su id. debe ser superior a 0!"
 
-#: pokecord/general.py:62 pokecord/general.py:88 pokecord/trading.py:37
+#: pokecord\general.py:62 pokecord\general.py:88
 msgid "You don't have any pokémon, trainer!"
-msgstr ""
+msgstr "¡No tienes Pokémon, entrenador!"
 
-#: pokecord/general.py:64 pokecord/general.py:90 pokecord/trading.py:39
+#: pokecord\general.py:64 pokecord\general.py:90
 msgid "You don't have a pokemon at that slot."
-msgstr ""
+msgstr "No tienes Pokémon en ese hueco."
 
-#: pokecord/general.py:71
+#: pokecord\general.py:71
 msgid "Your {pokemon} has been nicknamed `{nickname}`"
-msgstr ""
+msgstr "Tu {pokemon} ahora se llama «{nickname}»"
 
-#: pokecord/general.py:79
+#: pokecord\general.py:79
 #, docstring
 msgid "Release a pokémon."
-msgstr ""
+msgstr "Liberar un Pokémon."
 
-#: pokecord/general.py:94
+#: pokecord\general.py:94
 msgid "You are about to free {name}, if you wish to continue type `yes`, otherwise type `no`."
-msgstr ""
+msgstr "Vas a liberar a {name}, si quieres hacerlo escribe «yes», si no escribe «no»."
 
-#: pokecord/general.py:110
+#: pokecord\general.py:110
 msgid "\\nYour default pokemon may have changed. I have tried to account for this change."
-msgstr ""
+msgstr "\\nTu Pokémon por defecto puede cambiar. He intentado hacer este cambio en tu cuenta."
 
-#: pokecord/general.py:115
+#: pokecord\general.py:114
 msgid "\\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
-msgstr ""
+msgstr "\\nHas liberado tu Pokémon seleccionado. He reiniciado el Pokémon seleccionado a tu primer Pokémon."
 
-#: pokecord/general.py:122
+#: pokecord\general.py:121
 msgid "Your {name} has been freed.{msg}"
-msgstr ""
+msgstr "Has liberado a {name}.{msg}"
 
-#: pokecord/general.py:124
+#: pokecord\general.py:123
 msgid "Operation cancelled."
-msgstr ""
+msgstr "Operación cancelada."
 
-#: pokecord/general.py:130
+#: pokecord\general.py:129
 #, docstring
 msgid "Select your default pokémon."
-msgstr ""
+msgstr "Selecciona tu Pokémon por defecto."
 
-#: pokecord/general.py:134 pokecord/pokecord.py:291
+#: pokecord\general.py:133 pokecord\pokecord.py:288
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
-msgstr ""
+msgstr "No has elegido un Pokémon inicial todavía. Revisa «{prefix}inicial» para más información."
 
-#: pokecord/general.py:146
+#: pokecord\general.py:145
 msgid "You don't have any pokemon to select."
-msgstr ""
+msgstr "No tienes Pokémon para seleccionar."
 
-#: pokecord/general.py:152
+#: pokecord\general.py:151
 msgid "Unidentified keyword, the only supported action is `latest` as of now."
-msgstr ""
+msgstr "Palabra clave sin identificar. La única acción compatible es «último»."
 
-#: pokecord/general.py:156
+#: pokecord\general.py:155
 msgid "You've specified an invalid ID."
-msgstr ""
+msgstr "Has especificado una id. no válida."
 
-#: pokecord/general.py:158
+#: pokecord\general.py:157
 msgid "You have selected {pokemon} as your default pokémon."
-msgstr ""
+msgstr "Has seleccionado a {pokemon} como tu Pokémon por defecto."
 
-#: pokecord/general.py:169
+#: pokecord\general.py:168
 #, docstring
 msgid "Check your caught pokémon!"
-msgstr ""
+msgstr "¡Comprueba tus Pokémon capturados!"
 
-#: pokecord/general.py:191
+#: pokecord\general.py:190
 msgid "Pokédex"
-msgstr ""
+msgstr "Pokédex"
 
-#: pokecord/general.py:194
+#: pokecord\general.py:193
 msgid "Showing {page}-{lenpages} of {amount}."
-msgstr ""
+msgstr "Mostrando de {page} a {lenpages} de {amount}."
 
-#: pokecord/general.py:202
+#: pokecord\general.py:201
 msgid "{amount} caught! ✅"
-msgstr ""
+msgstr "¡Has capturado {amount}! ✅"
 
-#: pokecord/general.py:206
+#: pokecord\general.py:205
 msgid "Not caught yet! ❌"
-msgstr ""
+msgstr "¡No capturado todavía! ❌"
 
-#: pokecord/general.py:209
+#: pokecord\general.py:208
 msgid "You've caught {total} out of {amount} pokémon."
-msgstr ""
+msgstr "Has capturado {total} de {amount} Pokémon."
 
-#: pokecord/menus.py:96
+#: pokecord\menus.py:96
 msgid "Please select the Pokémon ID number to jump to."
-msgstr ""
+msgstr "Selecciona el número id. del Pokémon para saltar a él."
 
-#: pokecord/menus.py:105
+#: pokecord\menus.py:105
 msgid "Invalid Pokémon ID, jumping to the end."
-msgstr ""
+msgstr "Id. de Pokémon no válido. Saltando al final."
 
-#: pokecord/menus.py:126
+#: pokecord\menus.py:126
 msgid "HP"
-msgstr ""
+msgstr "PS"
 
-#: pokecord/menus.py:127
+#: pokecord\menus.py:127
 msgid "Attack"
-msgstr ""
+msgstr "Ataque"
 
-#: pokecord/menus.py:128
+#: pokecord\menus.py:128
 msgid "Defence"
-msgstr ""
+msgstr "Defensa"
 
-#: pokecord/menus.py:129
+#: pokecord\menus.py:129
 msgid "Sp. Atk"
-msgstr ""
+msgstr "At. esp."
 
-#: pokecord/menus.py:130
+#: pokecord\menus.py:130
 msgid "Sp. Def"
-msgstr ""
+msgstr "Def. esp."
 
-#: pokecord/menus.py:131
+#: pokecord\menus.py:131
 msgid "Speed"
-msgstr ""
+msgstr "Velocidad"
 
-#: pokecord/menus.py:133
+#: pokecord\menus.py:133
 msgid "Stats"
-msgstr ""
+msgstr "Estadísticas"
 
-#: pokecord/menus.py:133
+#: pokecord\menus.py:133
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
-#: pokecord/menus.py:136
+#: pokecord\menus.py:136
 msgid "**Nickname**: {nick}\\n"
-msgstr ""
+msgstr "**Nombre**: {nick}\\n"
 
-#: pokecord/menus.py:137
+#: pokecord\menus.py:137
 msgid "{alias}**Level**: {level}\\n**XP**: {xp}/{totalxp}\\n{stats}"
-msgstr ""
+msgstr "{alias}**Nivel**: {level}\\n**EXP**: {xp}/{totalxp}\\n{stats}"
 
-#: pokecord/menus.py:152
+#: pokecord\menus.py:152
 msgid "Pokémon ID: {number}/{amount}"
-msgstr ""
+msgstr "Id. del Pokémon: {number}/{amount}"
 
-#: pokecord/pokecord.py:37
+#: pokecord\pokecord.py:34
 #, docstring
 msgid "Pokecord adapted to use on Red."
-msgstr ""
+msgstr "Pokécord adaptado para usar en Rojo."
 
-#: pokecord/pokecord.py:194
+#: pokecord\pokecord.py:191
 #, docstring
 msgid "Choose your starter pokémon!"
-msgstr ""
+msgstr "¡Elige tu Pokémon inicial!"
 
-#: pokecord/pokecord.py:197
+#: pokecord\pokecord.py:194
 msgid "You've already claimed your starter pokemon!"
-msgstr ""
+msgstr "¡Ya has elegido tu Pokémon inicial!"
 
-#: pokecord/pokecord.py:243
+#: pokecord\pokecord.py:240
 msgid "That's not a valid starter pokémon, trainer!"
-msgstr ""
+msgstr "¡Ese inicial no es válido, entrenador!"
 
-#: pokecord/pokecord.py:246
+#: pokecord\pokecord.py:243
 msgid "You've chosen {pokemon} as your starter pokémon!"
-msgstr ""
+msgstr "¡Has elegido a {pokemon} como inicial!"
 
-#: pokecord/pokecord.py:260
+#: pokecord\pokecord.py:257
 #, docstring
 msgid "Get a hint on the pokémon!"
-msgstr ""
+msgstr "¡Obtener consejos sobre el Pokémon!"
 
-#: pokecord/pokecord.py:278
+#: pokecord\pokecord.py:275
 msgid "This wild pokemon is a {pokemonhint}."
-msgstr ""
+msgstr "Este Pokémon salvaje es un {pokemonhint}."
 
-#: pokecord/pokecord.py:283 pokecord/pokecord.py:332
+#: pokecord\pokecord.py:280 pokecord\pokecord.py:329
 msgid "No pokemon is ready to be caught."
-msgstr ""
+msgstr "No hay Pokémon listos para capturar."
 
-#: pokecord/pokecord.py:287
+#: pokecord\pokecord.py:284
 #, docstring
 msgid "Catch a pokemon!"
-msgstr ""
+msgstr "¡Captura un Pokémon!"
 
-#: pokecord/pokecord.py:316
+#: pokecord\pokecord.py:313
 msgid "Congratulations {user}! You've caught a level {lvl} {pokename}!"
-msgstr ""
+msgstr "¡Enhorabuena {user}! ¡Has capturado un {pokename} nivel {lvl}!"
 
-#: pokecord/pokecord.py:331
+#: pokecord\pokecord.py:328
 msgid "That's not the correct pokemon"
-msgstr ""
+msgstr "Ese no es el Pokémon correcto"
 
-#: pokecord/pokecord.py:386
+#: pokecord\pokecord.py:383
 msgid "‌‌A wild pokémon has аppeаred!"
-msgstr ""
+msgstr "¡Un Pokémon salvaje ha aparecido!"
 
-#: pokecord/pokecord.py:387
+#: pokecord\pokecord.py:384
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
-msgstr ""
+msgstr "¡Adivina el Pokémon y tipo {prefix}captura <pokémon> para capturarlo!"
 
-#: pokecord/pokecord.py:474 pokecord/pokecord.py:489
+#: pokecord\pokecord.py:471 pokecord\pokecord.py:486
 msgid "Congratulations {user}!"
-msgstr ""
+msgstr "¡Enhorabuena {user}!"
 
-#: pokecord/pokecord.py:475
+#: pokecord\pokecord.py:472
 msgid "Your {name} has evolved into {evolvename}!"
-msgstr ""
+msgstr "¡Tu {name} ha evolucionado a {evolvename}!"
 
-#: pokecord/pokecord.py:490
+#: pokecord\pokecord.py:487
 msgid "Your {name} has levelled up to level {level}!"
-msgstr ""
+msgstr "¡Tu {name} ha subido a nivel {level}!"
 
-#: pokecord/settings.py:32
+#: pokecord\settings.py:32
 #, docstring
 msgid "Toggle pokecord levelling messages on or off."
-msgstr ""
+msgstr "Activar o desactivar el mensaje de niveles de Pokécord."
 
-#: pokecord/settings.py:38
+#: pokecord\settings.py:38
 msgid "Your pokécord levelling messages have been silenced."
-msgstr ""
+msgstr "Se ha desactivado el mensaje de niveles de Pokécord."
 
-#: pokecord/settings.py:40
+#: pokecord\settings.py:40
 msgid "Your pokécord levelling messages have been re-enabled!"
-msgstr ""
+msgstr "¡Se ha reactivado el mensaje de niveles de Pokécord!"
 
-#: pokecord/settings.py:46
+#: pokecord\settings.py:46
 #, docstring
 msgid "Set the Pokecord locale to use for yourself."
-msgstr ""
+msgstr "Establece tu región de Pokécord para usarlo por ti mismo."
 
-#: pokecord/settings.py:49
+#: pokecord\settings.py:49
 msgid "You've specified an invalid locale. Pokecord only supports English, Japanese, Chinese and French."
-msgstr ""
+msgstr "Tu región no es válida. Pokécord solo está disponible en inglés, japonés, chino y francés."
 
-#: pokecord/settings.py:63
+#: pokecord\settings.py:63
 #, docstring
 msgid "Manage pokecord settings"
-msgstr ""
+msgstr "Administrar ajustes de Pokécord"
 
-#: pokecord/settings.py:69
+#: pokecord\settings.py:68
 #, docstring
 msgid "Toggle pokecord on or off."
-msgstr ""
+msgstr "Activar o desactivar Pokécord."
 
-#: pokecord/settings.py:74
+#: pokecord\settings.py:73
 msgid "Pokécord has been toggled on!"
-msgstr ""
+msgstr "¡Pokécord se ha activado!"
 
-#: pokecord/settings.py:76
+#: pokecord\settings.py:75
 msgid "Pokécord has been toggled off!"
-msgstr ""
+msgstr "¡Pokécord se ha desactivado!"
 
-#: pokecord/settings.py:82
+#: pokecord\settings.py:80
 #, docstring
 msgid "Set the channel that pokemon are to spawn in."
-msgstr ""
+msgstr "Establece el canal en el que aparecen los Pokémon."
 
-#: pokecord/settings.py:86
+#: pokecord\settings.py:84
 msgid "Channel has been removed."
-msgstr ""
+msgstr "El canal se ha eliminado."
 
-#: pokecord/settings.py:95
+#: pokecord\settings.py:92
 #, docstring
 msgid "Overview of pokécord settings."
-msgstr ""
+msgstr "Vista general de ajustes de Pokécord."
 
-#: pokecord/settings.py:97
+#: pokecord\settings.py:95
 msgid "**Toggle**: {toggle}\\n**Active Channels**: {channels}"
-msgstr ""
+msgstr "**Alternar**: {toggle}\\n**Canales activados**: {channels}"
 
-#: pokecord/settings.py:110
+#: pokecord\settings.py:108
 #, docstring
 msgid "Change the range of messages required for a spawn."
-msgstr ""
+msgstr "Cambia el rango de mensajes requeridos para aparecer."
 
-#: pokecord/settings.py:112
+#: pokecord\settings.py:110
 msgid "Min must be more than 15."
-msgstr ""
+msgstr "El mín. debe ser inferior a 15."
 
-#: pokecord/settings.py:114
+#: pokecord\settings.py:112
 msgid "Max must be more than the minimum."
-msgstr ""
+msgstr "El máx. debe ser superior al mínimo."
 
-#: pokecord/settings.py:122
+#: pokecord\settings.py:120
 #, docstring
 msgid "Turn the bot loop on or off."
-msgstr ""
+msgstr "Activar o desactivar el bucle del bot."
 
-#: pokecord/settings.py:125
+#: pokecord\settings.py:123
 msgid "Random spawn loop has been enabled, please reload the cog for this change to take effect."
-msgstr ""
+msgstr "Se ha activado el bucle de reaparición aleatoria. Recarga la configuración para que el cambio tenga efecto."
 
-#: pokecord/settings.py:131
+#: pokecord\settings.py:129
 msgid "Random spawn loop has been disabled, please reload the cog for this change to take effect."
-msgstr ""
+msgstr "Se ha desactivado el bucle de reaparición aleatoria. Recarga la configuración para que el cambio tenga efecto."
 
-#: pokecord/trading.py:25
+#: pokecord\trading.py:22
 #, docstring
-msgid "Pokecord Trading\\n        \\n        Currently a work in progress."
-msgstr ""
-
-#: pokecord/trading.py:44
-msgid "You are about to trade {name}, if you wish to continue type `yes`, otherwise type `no`."
-msgstr ""
-
-#: pokecord/trading.py:52 pokecord/trading.py:63 pokecord/trading.py:90
-msgid "Exiting operation."
-msgstr ""
-
-#: pokecord/trading.py:57
-msgid "How many credits would you like to recieve for {name}?"
-msgstr ""
-
-#: pokecord/trading.py:68
-msgid "{user} does not have {amount} {currency} available."
-msgstr ""
-
-#: pokecord/trading.py:76
-msgid "{user}, {author} would like to trade their {pokemon} for {amount} {currency}. Type `yes` to accept, otherwise type `no`."
-msgstr ""
-
-#: pokecord/trading.py:104
-msgid "{user}, your default pokemon may have changed. I have tried to account for this change."
-msgstr ""
-
-#: pokecord/trading.py:109
-msgid "{user}, You have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
-msgstr ""
-
-#: pokecord/trading.py:119
-msgid "{balance} (balance too high)"
-msgstr ""
-
-#: pokecord/trading.py:122
-msgid "-- {pokemon}"
-msgstr ""
-
-#: pokecord/trading.py:123
-msgid "++ {balance} credits"
-msgstr ""
-
-#: pokecord/trading.py:132
-msgid "{user} has denied the trade request."
-msgstr ""
-
-#: pokecord/trading.py:136
-msgid "Trade cancelled."
-msgstr ""
+msgid "Pokecord Trading"
+msgstr "Intercambio Pokécord"
 
