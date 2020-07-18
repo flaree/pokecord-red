@@ -20,7 +20,7 @@ _ = Translator("Pokecord", __file__)
 class TradeMixin(MixinMeta):
     """Pokecord Trading Commands"""
 
-    @commands.command()
+    @commands.command(usage="<user> <pokemon ID>")
     async def trade(self, ctx, user: discord.Member, *, id: int):
         """Pokecord Trading
         
