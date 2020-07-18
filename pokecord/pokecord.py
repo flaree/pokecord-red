@@ -18,6 +18,7 @@ import apsw
 from .general import GeneralMixin
 from .settings import SettingsMixin
 from .statements import *
+from .trading import TradeMixin
 
 log = logging.getLogger("red.flare.pokecord")
 
@@ -30,10 +31,12 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 
 
 @cog_i18n(_)
-class Pokecord(SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass):
+class Pokecord(
+    TradeMixin, SettingsMixin, GeneralMixin, commands.Cog, metaclass=CompositeMetaClass
+):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-11"
+    __version__ = "0.0.1-realllllly-pre-alpha-12"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):

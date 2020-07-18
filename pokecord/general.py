@@ -110,6 +110,7 @@ class GeneralMixin(MixinMeta):
                 msg += _(
                     "\nYour default pokemon may have changed. I have tried to account for this change."
                 )
+                await userconf.pokeid.set(pokeid - 1)
             elif id == pokeid:
                 msg += _(
                     "\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
