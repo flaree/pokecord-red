@@ -454,6 +454,7 @@ class Pokecord(
             )
             if evolve is not None and (pokemon["level"] >= int(evolve["level"])):
                 lvl = pokemon["level"]
+                nick = pokemon.get("nickname")
                 pokemon = next(
                     (
                         item
@@ -462,6 +463,8 @@ class Pokecord(
                     ),
                     None,
                 )  # Make better
+                if nick is not None:
+                    pokemon["nickname"] = nick
                 if pokemon is None:
                     log.info(
                         f"Error occured trying to find {evolve['evolution']} for an evolution."
