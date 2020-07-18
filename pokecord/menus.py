@@ -119,7 +119,7 @@ class PokeList(menus.ListPageSource):
     def __init__(self, entries: Iterable[str]):
         super().__init__(entries, per_page=1)
 
-    async def format_page(self, menu: PokeMenu, pokemon: List) -> str:
+    async def format_page(self, menu: PokeMenu, pokemon: Dict) -> str:
         stats = pokemon["stats"]
         pokestats = tabulate.tabulate(
             [
