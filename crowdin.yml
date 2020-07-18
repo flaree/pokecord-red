@@ -1,5 +1,5 @@
 api_key_env: CROWDIN_API_KEY
 project_identifier_env: CROWDIN_PROJECT_ID
 files:
-  - source: master/pokecord/locales/messages.pot
+  - source: /master/pokecord/locales/messages.pot
     translation: /%original_path%/%locale%.po
