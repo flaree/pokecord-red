@@ -107,7 +107,7 @@ class TradeMixin(MixinMeta):
                     await userconf.pokeid.set(pokeid - 1)
                 elif id == pokeid:
                     msg += _(
-                        "{user}, You have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
+                        "{user}, You have traded your selected pokemon. I have reset your selected pokemon to your first pokemon."
                     ).format(user=user)
                     await userconf.pokeid.set(1)
 
