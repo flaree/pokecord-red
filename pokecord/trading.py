@@ -119,7 +119,7 @@ class TradeMixin(MixinMeta):
                     bal = _("{balance} (balance too high)").format(balanace=bal)
                     await bank.set_balance(ctx.author, e.max_balance)
                 lst = [
-                    [_("-- {pokemon}").format(pokemon=name), bal],
+                    ["-- {pokemon}".format(pokemon=name), bal],
                     [_("++ {balance} credits").format(balance=bal), name],
                 ]
                 await ctx.send(
