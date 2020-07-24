@@ -108,13 +108,15 @@ async def write(lst, name):
 
 async def get_img(lst):
     session = aiohttp.ClientSession()
-    # for pokemon in lst["normal"]:
-    #     async with session.get(CDNURL.format(pokemon["id"])) as img:
-    #         if img.status == 200:
-    #             name = f"data/{pokemon['name']}.png"
-    #             with open(name, "wb") as f:
-    #                 f.write(BytesIO(await img.read()).getbuffer())
-    #             print(pokemon["id"], name, pokemon["name"])
+    '''
+    for pokemon in lst["normal"]:
+        async with session.get(CDNURL.format(pokemon["id"])) as img:
+            if img.status == 200:
+                name = f"data/{pokemon['name']}.png"
+                with open(name, "wb") as f:
+                    f.write(BytesIO(await img.read()).getbuffer())
+                print(pokemon["id"], name, pokemon["name"])
+                '''
 
     for pokemon in lst["mega"]:
         try:
