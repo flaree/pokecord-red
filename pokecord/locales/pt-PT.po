@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-07-18 01:48+0000\n"
-"PO-Revision-Date: 2020-07-18 01:49\n"
+"POT-Creation-Date: 2020-07-24 12:09+0000\n"
+"PO-Revision-Date: 2020-07-24 12:10\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -13,117 +13,138 @@ msgstr ""
 "X-Crowdin-Project: pokecord\n"
 "X-Crowdin-Project-ID: 411634\n"
 "X-Crowdin-Language: pt-PT\n"
-"X-Crowdin-File: messages.pot\n"
-"X-Crowdin-File-ID: 16\n"
+"X-Crowdin-File: /locales/messages.pot\n"
+"X-Crowdin-File-ID: 28\n"
 "Language: pt_PT\n"
 
-#: pokecord/general.py:30
+#: pokecord/general.py:31
 #, docstring
 msgid "List a trainers or your own pokémon!"
 msgstr ""
 
-#: pokecord/general.py:41
+#: pokecord/general.py:42
 msgid "You don't have any pokémon, go get catching trainer!"
 msgstr ""
 
-#: pokecord/general.py:44
+#: pokecord/general.py:45
 msgid "{user}'s selected Pokémon ID is {id}"
 msgstr ""
 
-#: pokecord/general.py:53
+#: pokecord/general.py:54
 #, docstring
 msgid "Set a pokémons nickname."
 msgstr ""
 
-#: pokecord/general.py:55 pokecord/general.py:81
+#: pokecord/general.py:56 pokecord/general.py:82
 msgid "The ID must be greater than 0!"
 msgstr ""
 
-#: pokecord/general.py:62 pokecord/general.py:88 pokecord/trading.py:37
+#: pokecord/general.py:63 pokecord/general.py:89 pokecord/trading.py:37
 msgid "You don't have any pokémon, trainer!"
 msgstr ""
 
-#: pokecord/general.py:64 pokecord/general.py:90 pokecord/trading.py:39
+#: pokecord/general.py:65 pokecord/general.py:91 pokecord/trading.py:39
 msgid "You don't have a pokemon at that slot."
 msgstr ""
 
-#: pokecord/general.py:71
+#: pokecord/general.py:72
 msgid "Your {pokemon} has been nicknamed `{nickname}`"
 msgstr ""
 
-#: pokecord/general.py:79
+#: pokecord/general.py:80
 #, docstring
 msgid "Release a pokémon."
 msgstr ""
 
-#: pokecord/general.py:94
+#: pokecord/general.py:95
 msgid "You are about to free {name}, if you wish to continue type `yes`, otherwise type `no`."
 msgstr ""
 
-#: pokecord/general.py:110
+#: pokecord/general.py:111
 msgid "\\nYour default pokemon may have changed. I have tried to account for this change."
 msgstr ""
 
-#: pokecord/general.py:115
+#: pokecord/general.py:116
 msgid "\\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
 msgstr ""
 
-#: pokecord/general.py:122
+#: pokecord/general.py:123
 msgid "Your {name} has been freed.{msg}"
 msgstr ""
 
-#: pokecord/general.py:124
+#: pokecord/general.py:125
 msgid "Operation cancelled."
 msgstr ""
 
-#: pokecord/general.py:130
+#: pokecord/general.py:131
 #, docstring
 msgid "Select your default pokémon."
 msgstr ""
 
-#: pokecord/general.py:134 pokecord/pokecord.py:291
+#: pokecord/general.py:135 pokecord/pokecord.py:291
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr ""
 
-#: pokecord/general.py:146
+#: pokecord/general.py:147
 msgid "You don't have any pokemon to select."
 msgstr ""
 
-#: pokecord/general.py:152
+#: pokecord/general.py:153
 msgid "Unidentified keyword, the only supported action is `latest` as of now."
 msgstr ""
 
-#: pokecord/general.py:156
+#: pokecord/general.py:157
 msgid "You've specified an invalid ID."
 msgstr ""
 
-#: pokecord/general.py:158
+#: pokecord/general.py:159
 msgid "You have selected {pokemon} as your default pokémon."
 msgstr ""
 
-#: pokecord/general.py:169
+#: pokecord/general.py:170
 #, docstring
 msgid "Check your caught pokémon!"
 msgstr ""
 
-#: pokecord/general.py:191
+#: pokecord/general.py:192
 msgid "Pokédex"
 msgstr ""
 
-#: pokecord/general.py:194
+#: pokecord/general.py:195
 msgid "Showing {page}-{lenpages} of {amount}."
 msgstr ""
 
-#: pokecord/general.py:202
+#: pokecord/general.py:203
 msgid "{amount} caught! ✅"
 msgstr ""
 
-#: pokecord/general.py:206
+#: pokecord/general.py:207
 msgid "Not caught yet! ❌"
 msgstr ""
 
-#: pokecord/general.py:209
+#: pokecord/general.py:210
 msgid "You've caught {total} out of {amount} pokémon."
+msgstr ""
+
+#: pokecord/general.py:217
+#, docstring
+msgid "Search your pokemon.\\n        \\n        Arguements must have `--` before them.\\n            `--name` | `--n` - Search pokemon by name.\\n            `--level`| `--l` - Search pokemon by level.\\n            `--id`   | `--i` - Search pokemon by ID."
+msgstr ""
+
+#: pokecord/general.py:228
+msgid "You don't have any pokémon trainer!"
+msgstr ""
+
+#: pokecord/general.py:237
+msgid "{pokemon} | Level: {level} | ID: {id}\\n"
+msgstr ""
+
+#: pokecord/general.py:242
+msgid "{pokemon} | Level: {level} | ID: {id}\\n"
+msgstr ""
+
+#: pokecord/general.py:247
+msgid "{pokemon} | Level: {level} | ID: {id}\\n"
 msgstr ""
 
 #: pokecord/menus.py:96
@@ -234,15 +255,15 @@ msgstr ""
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr ""
 
-#: pokecord/pokecord.py:474 pokecord/pokecord.py:489
+#: pokecord/pokecord.py:477 pokecord/pokecord.py:492
 msgid "Congratulations {user}!"
 msgstr ""
 
-#: pokecord/pokecord.py:475
+#: pokecord/pokecord.py:478
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:490
+#: pokecord/pokecord.py:493
 msgid "Your {name} has levelled up to level {level}!"
 msgstr ""
 
