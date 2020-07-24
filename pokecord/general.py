@@ -16,6 +16,7 @@ from .abc import MixinMeta
 from .functions import chunks
 from .statements import *
 from .menus import PokeMenu, PokeList
+from .converters import Args
 
 
 _ = Translator("Pokecord", __file__)
@@ -210,3 +211,53 @@ class GeneralMixin(MixinMeta):
                 total=total, amount=len(pokemonlist)
             )
         await menu(ctx, embeds, DEFAULT_CONTROLS)
+
+    @commands.command()
+    async def psearch(self, ctx, *, args: Args):
+        """Search your pokemon.
+        
+        Arguements must have `--` before them.
+            `--name` | `--n` - Search pokemon by name.
+            `--level`| `--l` - Search pokemon by level.
+            `--id`   | `--i` - Search pokemon by ID."""
+        async with ctx.typing():
+            result = self.cursor.execute(
+                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
+            ).fetchall()
+            if not result:
+                await ctx.send(_("You don't have any pokémon trainer!"))
+            pokemons = [None]
+            for data in result:
+                pokemons.append([json.loads(data[0]), data[1]])
+            correct = ""
+            for poke in pokemons[1:]:
+                name = self.get_name(poke[0]["name"], ctx.author)
+                if args["names"]:
+                    if name.lower() == args["names"].lower():
+                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
+                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
+                        )
+                elif args["level"]:
+                    if poke[0]["level"] == args["level"][0]:
+                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
+                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
+                        )
+                elif args["id"]:
+                    if poke[0]["id"] == args["id"][0]:
+                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
+                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
+                        )
+
+            if not correct:
+                await ctx.send("No pokémon returned for that search.")
+                return
+            embeds = []
+            for page in pagify(correct, page_length=1024):
+                embed = discord.Embed(
+                    title="Pokemon Search", color=await ctx.embed_color(), description=page
+                )
+                embeds.append(embed)
+            if len(embeds) == 1:
+                await ctx.send(embed=embeds[0])
+                return
+            await menu(ctx, embeds, DEFAULT_CONTROLS)
