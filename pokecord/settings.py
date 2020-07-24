@@ -57,7 +57,7 @@ class SettingsMixin(MixinMeta):
         await self.update_user_cache()
 
     @commands.group(aliases=["pokeset"])
-    @commands.admin()
+    @commands.guildowner()
     @commands.guild_only()
     async def pokecordset(self, ctx):
         """Manage pokecord settings"""
