@@ -110,7 +110,7 @@ class Pokecord(
                 result = self.cursor.execute(SELECT_POKEMON, (user,),).fetchall()
                 for data in result:
                     poke = json.loads(data[0])
-                    
+
                     if not poke.get("id"):
                         for pokemon in self.pokemondata:
                             if isinstance(poke["name"], str):
@@ -130,7 +130,7 @@ class Pokecord(
                 await self.config.user_from_id(user).pokeids.set(amount)
             await self.config.migration.set(2)
             log.info("Migration complete.")
-                            
+
         await self.update_guild_cache()
         await self.update_spawn_chance()
         await self.update_user_cache()
