@@ -15,7 +15,7 @@ from redbot.vendored.discord.ext import menus
 from .abc import MixinMeta
 from .functions import chunks
 from .statements import *
-from .menus import PokeMenu, PokeList
+from .menus import PokeMenu, PokeList, PokedexMenu
 from .converters import Args
 
 
@@ -169,20 +169,11 @@ class GeneralMixin(MixinMeta):
     async def pokedex(self, ctx):
         """Check your caught pokémon!"""
         async with ctx.typing():
-            result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
-            ).fetchall()
-            pokemons = [None]
-            for data in result:
-                pokemons.append([json.loads(data[0]), data[1]])
+            pokemons = await self.config.user(ctx.author).pokeids()
             pokemonlist = copy.deepcopy(self.pokemonlist)
-            for pokemon in pokemons[1:]:
-                if isinstance(pokemon[0]["name"], str):
-                    name = pokemon[0]["name"]
-                else:
-                    name = pokemon[0]["name"]["english"]
-                if name in pokemonlist:
-                    pokemonlist[name]["amount"] += 1
+            for i, pokemon in enumerate(pokemonlist, start=1):
+                if str(pokemon) in pokemons:
+                    pokemonlist[i]["amount"] = pokemons[str(pokemon)]
             a = [value for value in pokemonlist.items()]
             embeds = []
             total = 0
@@ -205,7 +196,13 @@ class GeneralMixin(MixinMeta):
                         )
                     else:
                         msg = _("Not caught yet! \N{CROSS MARK}")
-                    embed.add_field(name=f"{pokemon[0]} {pokemon[1]['id']}", value=msg)
+                    embed.add_field(
+                        name="{pokemonname} {pokemonid}".format(
+                            pokemonname=self.get_name(pokemon[1]["name"], ctx.author),
+                            pokemonid=pokemon[1]["id"],
+                        ),
+                        value=msg,
+                    )
                 embeds.append(embed)
             embeds[0].description = _("You've caught {total} out of {amount} pokémon.").format(
                 total=total, amount=len(pokemonlist)

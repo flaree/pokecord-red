@@ -59,7 +59,7 @@ class Pokecord(
         defaults_guild = {"activechannels": [], "toggle": False, "whitelist": [], "blacklist": []}
         self.config.register_guild(**defaults_guild)
         defaults_user = {
-            "pokemon": [],
+            "pokeids": {},
             "silence": False,
             "timestamp": 0,
             "pokeid": 1,
@@ -93,7 +93,8 @@ class Pokecord(
             self.pokemondata = json.load(f)
             self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
             self.pokemonlist = {
-                f"{pokemon['name']['english']}": {
+                pokemon["id"]: {
+                    "name": pokemon["name"],
                     "amount": 0,
                     "id": f"#{str(pokemon['id']).zfill(3)}",
                 }
@@ -172,6 +173,7 @@ class Pokecord(
     def pokemon_choose(self):
         # num = random.randint(1, 200)
         # if num > 2:
+        return self.pokemondata[1]
         return random.choices(self.pokemondata, weights=self.spawnchances, k=1)[0]
         # return random.choice(self.pokemondata["mega"])
 
@@ -312,15 +314,24 @@ class Pokecord(
                         await ctx.send("No pokemon is ready to be caught.")
                         return
                     lvl = random.randint(1, 13)
+                    pokename = self.get_name(pokemonspawn["name"], ctx.author)
                     await ctx.send(
                         _(
                             "Congratulations {user}! You've caught a level {lvl} {pokename}!"
                         ).format(
-                            user=ctx.author.mention,
-                            lvl=lvl,
-                            pokename=self.get_name(pokemonspawn["name"], ctx.author),
+                            user=ctx.author.mention, lvl=lvl, pokename=pokename,
                         )
                     )
+                    async with conf.pokeids() as poke:
+                        if str(pokemonspawn["id"]) not in poke:
+                            await ctx.send(
+                                _("{pokename} has been added to the pokédex.").format(
+                                    pokename=pokename
+                                )
+                            )
+                            poke[str(pokemonspawn["id"])] = 1
+                        else:
+                            poke[str(pokemonspawn["id"])] += 1
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
                     self.cursor.execute(
@@ -358,17 +369,17 @@ class Pokecord(
         if message.guild.id not in self.maybe_spawn:
             self.maybe_spawn[message.guild.id] = {
                 "amount": 1,
-                "spawnchance": random.randint(self.spawnchance[0], self.spawnchance[1]),
+                "spawnchance": 3,  # random.randint(self.spawnchance[0], self.spawnchance[1]),
                 "time": datetime.datetime.utcnow().timestamp(),
                 "author": message.author.id,
             }  # TODO: big value
-        if (
-            self.maybe_spawn[message.guild.id]["author"] == message.author.id
-        ):  # stop spamming to spawn
-            if (
-                datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"]
-            ) < 5:
-                return
+        # if (
+        #     self.maybe_spawn[message.guild.id]["author"] == message.author.id
+        # ):  # stop spamming to spawn
+        #     if (
+        #         datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"]
+        #     ) < 5:
+        #         return
         self.maybe_spawn[message.guild.id]["amount"] += 1
         should_spawn = self.spawn_chance(message.guild.id)
         if not should_spawn:
@@ -386,6 +397,7 @@ class Pokecord(
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
+        print(pokemon)
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
