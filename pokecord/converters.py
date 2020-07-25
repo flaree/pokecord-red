@@ -25,6 +25,6 @@ class Args(Converter):
 
         if not (vals["names"] or vals["level"] or vals["id"]):
             raise BadArgument("You must provide one of `--name`, `--level` or `--id`")
-        
+
         vals["names"] = " ".join(vals["names"])
         return vals
