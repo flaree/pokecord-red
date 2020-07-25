@@ -36,7 +36,7 @@ class Pokecord(
 ):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-12"
+    __version__ = "0.0.1-realllllly-pre-alpha-13"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
