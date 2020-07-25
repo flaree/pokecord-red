@@ -15,7 +15,7 @@ from redbot.vendored.discord.ext import menus
 from .abc import MixinMeta
 from .functions import chunks
 from .statements import *
-from .menus import PokeMenu, PokeList, PokedexMenu
+from .menus import PokeMenu, PokeList
 from .converters import Args
 
 
