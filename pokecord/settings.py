@@ -79,7 +79,7 @@ class SettingsMixin(MixinMeta):
     @pokecordset.command()
     @commands.guildowner()
     async def channel(self, ctx, channel: discord.TextChannel):
-        """Set the channel that pokemon are to spawn in."""
+        """Set the channel(s) that pokemon are to spawn in."""
         async with self.config.guild(ctx.guild).activechannels() as channels:
             if channel.id in channels:
                 channels.remove(channel.id)
@@ -91,16 +91,44 @@ class SettingsMixin(MixinMeta):
 
     @pokecordset.command()
     @commands.guildowner()
+    async def whitelist(self, ctx, channel: discord.TextChannel):
+        """Whitelist channels that will contribute to pokémon spawning."""
+        async with self.config.guild(ctx.guild).whitelist() as channels:
+            if channel.id in channels:
+                channels.remove(channel.id)
+                await ctx.send(_("Channel has been removed from the whitelist."))
+                return
+            channels.append(channel.id)
+        await self.update_guild_cache()
+        await ctx.tick()
+
+    @pokecordset.command()
+    @commands.guildowner()
+    async def blacklist(self, ctx, channel: discord.TextChannel):
+        """Blacklist channels from contributing to pokémon spawning."""
+        async with self.config.guild(ctx.guild).blacklist() as channels:
+            if channel.id in channels:
+                channels.remove(channel.id)
+                await ctx.send(_("Channel has been removed from the blacklist."))
+                return
+            channels.append(channel.id)
+        await self.update_guild_cache()
+        await ctx.tick()
+
+    @pokecordset.command()
+    @commands.guildowner()
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
-        msg = _("**Toggle**: {toggle}\n**Active Channels**: {channels}").format(
-            toggle=data["toggle"],
-            channels=humanize_list(data["activechannels"])
-            if data["activechannels"]
-            else "All"
-            if data["toggle"]
-            else "None",
+        msg = _("**Toggle**: {toggle}\n").format(toggle="Yes" if data["toggle"] else "No")
+        msg += _("**Active Channels**: {channels}\n").format(
+            channels=humanize_list([str(x) for x in data["activechannels"]]) if data["activechannels"] else "All"
+        )
+        msg += _("**Blacklist**: {blacklist}\n").format(
+            blacklist=humanize_list([str(x) for x in data["blacklist"]]) if data["blacklist"] else "None"
+        )
+        msg += _("**Whitelist**: {whitelist}\n").format(
+            whitelist=humanize_list([str(x) for x in data["whitelist"]]) if data["whitelist"] else "None"
         )
         await ctx.send(msg)
 

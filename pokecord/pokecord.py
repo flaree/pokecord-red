@@ -56,7 +56,7 @@ class Pokecord(
             hintcost=1000,
             spawnloop=False,
         )
-        defaults_guild = {"activechannels": [], "toggle": False}
+        defaults_guild = {"activechannels": [], "toggle": False, "whitelist": [], "blacklist": []}
         self.config.register_guild(**defaults_guild)
         defaults_user = {
             "pokemon": [],
@@ -349,6 +349,12 @@ class Pokecord(
         if not guildcache["toggle"]:
             return
         await self.exp_gain(message.channel, message.author)
+        if guildcache["whitelist"]:
+            if message.channel.id not in guildcache["whitelist"]:
+                return
+        elif guildcache["blacklist"]:
+            if message.channel.id in guildcache["blacklist"]:
+                return
         if message.guild.id not in self.maybe_spawn:
             self.maybe_spawn[message.guild.id] = {
                 "amount": 1,
