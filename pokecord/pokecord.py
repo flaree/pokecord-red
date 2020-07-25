@@ -173,7 +173,6 @@ class Pokecord(
     def pokemon_choose(self):
         # num = random.randint(1, 200)
         # if num > 2:
-        return self.pokemondata[1]
         return random.choices(self.pokemondata, weights=self.spawnchances, k=1)[0]
         # return random.choice(self.pokemondata["mega"])
 
@@ -369,17 +368,17 @@ class Pokecord(
         if message.guild.id not in self.maybe_spawn:
             self.maybe_spawn[message.guild.id] = {
                 "amount": 1,
-                "spawnchance": 3,  # random.randint(self.spawnchance[0], self.spawnchance[1]),
+                "spawnchance": random.randint(self.spawnchance[0], self.spawnchance[1]),
                 "time": datetime.datetime.utcnow().timestamp(),
                 "author": message.author.id,
             }  # TODO: big value
-        # if (
-        #     self.maybe_spawn[message.guild.id]["author"] == message.author.id
-        # ):  # stop spamming to spawn
-        #     if (
-        #         datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"]
-        #     ) < 5:
-        #         return
+        if (
+            self.maybe_spawn[message.guild.id]["author"] == message.author.id
+        ):  # stop spamming to spawn
+            if (
+                datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"]
+            ) < 5:
+                return
         self.maybe_spawn[message.guild.id]["amount"] += 1
         should_spawn = self.spawn_chance(message.guild.id)
         if not should_spawn:
