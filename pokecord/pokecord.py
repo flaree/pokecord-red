@@ -396,7 +396,6 @@ class Pokecord(
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        print(pokemon)
         self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
