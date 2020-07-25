@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-07-18 01:48+0000\n"
-"PO-Revision-Date: 2020-07-18 01:49\n"
+"POT-Creation-Date: 2020-07-24 12:09+0000\n"
+"PO-Revision-Date: 2020-07-24 12:10\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian\n"
 "MIME-Version: 1.0\n"
@@ -13,118 +13,139 @@ msgstr ""
 "X-Crowdin-Project: pokecord\n"
 "X-Crowdin-Project-ID: 411634\n"
 "X-Crowdin-Language: no\n"
-"X-Crowdin-File: messages.pot\n"
-"X-Crowdin-File-ID: 16\n"
+"X-Crowdin-File: /locales/messages.pot\n"
+"X-Crowdin-File-ID: 28\n"
 "Language: no_NO\n"
 
-#: pokecord/general.py:30
+#: pokecord/general.py:31
 #, docstring
 msgid "List a trainers or your own pokémon!"
 msgstr "Liste opp en trener eller din egen pokémon!"
 
-#: pokecord/general.py:41
+#: pokecord/general.py:42
 msgid "You don't have any pokémon, go get catching trainer!"
 msgstr "Du har ikke noen pokémon, ta deg en fanger!"
 
-#: pokecord/general.py:44
+#: pokecord/general.py:45
 msgid "{user}'s selected Pokémon ID is {id}"
 msgstr "{user}'s valgt Pokémon ID er {id}"
 
-#: pokecord/general.py:53
+#: pokecord/general.py:54
 #, docstring
 msgid "Set a pokémons nickname."
 msgstr "Angi et kallenavn til Pokémons."
 
-#: pokecord/general.py:55 pokecord/general.py:81
+#: pokecord/general.py:56 pokecord/general.py:82
 msgid "The ID must be greater than 0!"
 msgstr "IDen må være større enn 0!"
 
-#: pokecord/general.py:62 pokecord/general.py:88 pokecord/trading.py:37
+#: pokecord/general.py:63 pokecord/general.py:89 pokecord/trading.py:37
 msgid "You don't have any pokémon, trainer!"
 msgstr "Du har ikke noen pokémon, trener!"
 
-#: pokecord/general.py:64 pokecord/general.py:90 pokecord/trading.py:39
+#: pokecord/general.py:65 pokecord/general.py:91 pokecord/trading.py:39
 msgid "You don't have a pokemon at that slot."
 msgstr "Du har ikke en pokemon på det sporet."
 
-#: pokecord/general.py:71
+#: pokecord/general.py:72
 msgid "Your {pokemon} has been nicknamed `{nickname}`"
 msgstr "{pokemon} har fått kallenavnet `{nickname}\""
 
-#: pokecord/general.py:79
+#: pokecord/general.py:80
 #, docstring
 msgid "Release a pokémon."
 msgstr "Slipp en pokémon."
 
-#: pokecord/general.py:94
+#: pokecord/general.py:95
 msgid "You are about to free {name}, if you wish to continue type `yes`, otherwise type `no`."
 msgstr "Du er i ferd med å frigjøre {name}, hvis du vil fortsette å skriv, `ja`, eller skriv `nei`."
 
-#: pokecord/general.py:110
+#: pokecord/general.py:111
 msgid "\\nYour default pokemon may have changed. I have tried to account for this change."
 msgstr "\\nDin standard pokemon kan ha endret seg. Jeg har prøvd å redegjøre for denne endringen."
 
-#: pokecord/general.py:115
+#: pokecord/general.py:116
 msgid "\\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
 msgstr "\\nDu har gitt ut din valgte pokemon. Jeg har tilbakestilt den valgte pokemon til din første pokemon."
 
-#: pokecord/general.py:122
+#: pokecord/general.py:123
 msgid "Your {name} has been freed.{msg}"
 msgstr "{name} har blitt frigjort. {msg}"
 
-#: pokecord/general.py:124
+#: pokecord/general.py:125
 msgid "Operation cancelled."
 msgstr "Operasjonen avbrutt."
 
-#: pokecord/general.py:130
+#: pokecord/general.py:131
 #, docstring
 msgid "Select your default pokémon."
 msgstr "Velg din standard pokémon."
 
-#: pokecord/general.py:134 pokecord/pokecord.py:291
+#: pokecord/general.py:135 pokecord/pokecord.py:291
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr "Du har ikke valgt en startpokemon ennå, sjekk ut `{prefix}starter` for mer informasjon."
 
-#: pokecord/general.py:146
+#: pokecord/general.py:147
 msgid "You don't have any pokemon to select."
 msgstr "Du har ikke noen pokemon å velge."
 
-#: pokecord/general.py:152
+#: pokecord/general.py:153
 msgid "Unidentified keyword, the only supported action is `latest` as of now."
 msgstr "Uidentifisert nøkkelord, den eneste støttede handlingen er `siste` fra nå."
 
-#: pokecord/general.py:156
+#: pokecord/general.py:157
 msgid "You've specified an invalid ID."
 msgstr "Du har spesifisert en ugyldig ID."
 
-#: pokecord/general.py:158
+#: pokecord/general.py:159
 msgid "You have selected {pokemon} as your default pokémon."
 msgstr "Du har valgt {pokemon} som din standard pokémon."
 
-#: pokecord/general.py:169
+#: pokecord/general.py:170
 #, docstring
 msgid "Check your caught pokémon!"
 msgstr "Sjekk de fangede pokémonene dine!"
 
-#: pokecord/general.py:191
+#: pokecord/general.py:192
 msgid "Pokédex"
 msgstr "Pokedex"
 
-#: pokecord/general.py:194
+#: pokecord/general.py:195
 msgid "Showing {page}-{lenpages} of {amount}."
 msgstr "Viser {page}-{lenpages} av {amount}."
 
-#: pokecord/general.py:202
+#: pokecord/general.py:203
 msgid "{amount} caught! ✅"
 msgstr "{amount} fanget! "
 
-#: pokecord/general.py:206
+#: pokecord/general.py:207
 msgid "Not caught yet! ❌"
 msgstr "Ikke fanget ennå!"
 
-#: pokecord/general.py:209
+#: pokecord/general.py:210
 msgid "You've caught {total} out of {amount} pokémon."
 msgstr "Du har fanget {total} av {amount} pokémon."
+
+#: pokecord/general.py:217
+#, docstring
+msgid "Search your pokemon.\\n        \\n        Arguements must have `--` before them.\\n            `--name` | `--n` - Search pokemon by name.\\n            `--level`| `--l` - Search pokemon by level.\\n            `--id`   | `--i` - Search pokemon by ID."
+msgstr ""
+
+#: pokecord/general.py:228
+msgid "You don't have any pokémon trainer!"
+msgstr ""
+
+#: pokecord/general.py:237
+msgid "{pokemon} | Level: {level} | ID: {id}\\n"
+msgstr ""
+
+#: pokecord/general.py:242
+msgid "{pokemon} | Level: {level} | ID: {id}\\n"
+msgstr ""
+
+#: pokecord/general.py:247
+msgid "{pokemon} | Level: {level} | ID: {id}\\n"
+msgstr ""
 
 #: pokecord/menus.py:96
 msgid "Please select the Pokémon ID number to jump to."
@@ -234,15 +255,15 @@ msgstr "En vill pokémon har dukket opp!"
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr "Gjett pokémon og skriv {prefix}catch <pokémon> for å fange den!"
 
-#: pokecord/pokecord.py:474 pokecord/pokecord.py:489
+#: pokecord/pokecord.py:477 pokecord/pokecord.py:492
 msgid "Congratulations {user}!"
 msgstr "Gratulerer {user}!"
 
-#: pokecord/pokecord.py:475
+#: pokecord/pokecord.py:478
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr "{name} har utviklet seg til {evolvename}!"
 
-#: pokecord/pokecord.py:490
+#: pokecord/pokecord.py:493
 msgid "Your {name} has levelled up to level {level}!"
 msgstr "{name} har flatt opp til nivå {level}!"
 
@@ -361,7 +382,7 @@ msgstr "{user}, din standard pokemon kan ha endret seg. Jeg har prøvd å redegj
 
 #: pokecord/trading.py:109
 msgid "{user}, You have traded your selected pokemon. I have reset your selected pokemon to your first pokemon."
-msgstr ""
+msgstr "{user}, Du har handlet din valgte pokemon. Jeg har tilbakestilt den valgte pokemon til din første pokemon."
 
 #: pokecord/trading.py:119
 msgid "{balance} (balance too high)"
