@@ -55,6 +55,7 @@ class Pokecord(
             spawnchance=[20, 120],
             hintcost=1000,
             spawnloop=False,
+            migration=1,
         )
         defaults_guild = {"activechannels": [], "toggle": False, "whitelist": [], "blacklist": []}
         self.config.register_guild(**defaults_guild)
@@ -102,22 +103,34 @@ class Pokecord(
             }
         with open(f"{self.datapath}/evolve.json") as f:
             self.evolvedata = json.load(f)
-        # if not await self.config.hashed():
-        #     hashes = {}
-        #     for file in os.listdir(f"{self.datapath}/pokemon/"):
-        #         if file.endswith(".png"):
-        #             cmd = (
-        #                 base64.b64decode(
-        #                     b"aGFzaGVzW2ZpbGVdID0gaGFzaGxpYi5tZDUoSW1hZ2Uub3BlbihyJ3tzZWxmLmRhdGFwYXRofS97ZmlsZX0nKS50b2J5dGVzKCkpLmhleGRpZ2VzdCgp"
-        #                 )
-        #                 .decode("utf-8")
-        #                 .replace("'", '"')
-        #                 .replace(r"{self.datapath}", f"{self.datapath}/pokemon/")
-        #                 .replace(r"{file}", file)
-        #             )
-        #             exec(cmd)
-        #     await self.config.hashes.set(hashes)
-        #     await self.config.hashed.set(True)
+        if await self.config.migration() < 2:
+            self.usercache = await self.config.all_users()
+            for user in self.usercache:
+                amount = {}
+                result = self.cursor.execute(SELECT_POKEMON, (user,),).fetchall()
+                for data in result:
+                    poke = json.loads(data[0])
+                    
+                    if not poke.get("id"):
+                        for pokemon in self.pokemondata:
+                            if isinstance(poke["name"], str):
+                                name = poke["name"]
+                            else:
+                                name = poke["name"]["english"]
+                            if name == pokemon["name"]["english"]:
+                                poke["id"] = pokemon["id"]
+                                self.cursor.execute(
+                                    UPDATE_POKEMON, (user, data[1], json.dumps(poke)),
+                                )
+                    if poke.get("id"):
+                        if str(poke["id"]) not in amount:
+                            amount[str(int(poke["id"]))] = 1
+                        else:
+                            amount[str(int(poke["id"]))] += 1
+                await self.config.user_from_id(user).pokeids.set(amount)
+            await self.config.migration.set(2)
+            log.info("Migration complete.")
+                            
         await self.update_guild_cache()
         await self.update_spawn_chance()
         await self.update_user_cache()
