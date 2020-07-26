@@ -1,5 +1,5 @@
 gettext:
-	redgettext --command-docstrings --verbose --recursive --exclude-files "docs/*" --exclude-files "instantcmd/*" .
+	redgettext --command-docstrings --verbose --recursive .
 
 upload_translations:
 	crowdin upload sources
