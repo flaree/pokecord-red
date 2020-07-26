@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import html5lib
 import os
 
-# driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
+driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
 
 URL = "https://pokemondb.net/pokedex/all"
@@ -25,26 +25,26 @@ SHINY = "https://pokemondb.net/pokedex/shiny"
 
 async def main():
     # a = {"mega": [], "normal": [], "all": {}}
-    # driver.get(SHINY)
-    # await asyncio.sleep(10)
-    # soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
-    # da = soup.find_all("div", {"class": "infocard-list infocard-list-pkmn-lg"})
-    # a = []
-    # for div in da:
-    #     tags = div.find_all("div", {"class": "infocard"})
-    #     for poke in tags:
-    #         if len(poke.find_all("small")) == 2:
-    #             num = int(poke.find("small").get_text().replace("#", ''))
-    #             print(num)
-    #             img = poke.find_all("img")
-    #             if not img:
-    #                 print(img)
-    #             img = img[1].attrs["src"]
-    #             a.append([num, img])
+    driver.get(SHINY)
+    await asyncio.sleep(10)
+    soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
+    da = soup.find_all("div", {"class": "infocard-list infocard-list-pkmn-lg"})
+    a = []
+    for div in da:
+        tags = div.find_all("div", {"class": "infocard"})
+        for poke in tags:
+            if len(poke.find_all("small")) == 2:
+                num = int(poke.find("small").get_text().replace("#", ''))
+                print(num)
+                img = poke.find_all("img")
+                if not img:
+                    print(img)
+                img = img[1].attrs["src"]
+                a.append([num, img])
     # await write(a, "shiny")
 
-    with open(f"pokecord/data/shiny.json", "r", encoding="utf-8") as f:
-        a = json.load(f)
+    # with open(f"pokecord/data/shiny.json", "r", encoding="utf-8") as f:
+    #     a = json.load(f)
     with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     b = []
@@ -54,12 +54,9 @@ async def main():
                 newpoke = copy.deepcopy(pokemon)
 
                 newpoke["url"] = poke[1]
-                newpoke["name"]["english"] = f"Shiny {newpoke['name']['english']}"
-                newpoke["name"]["french"] = None
-                newpoke["name"]["chinese"] = None
-                newpoke["name"]["japanese"] = None
                 newpoke["spawnchance"] = 0.01
                 newpoke["variant"] = "Shiny"
+                newpoke["alias"] = f"Shiny {newpoke['name']['english']}"
                 b.append(newpoke)
     await write(b, "shiny")
 
@@ -88,7 +85,7 @@ async def evolve():
 
 
 async def write(lst, name):
-    with open(f"pokecord/data/{name}.json", "w", encoding="utf-8") as f:
+    with open(f"pokecord/data/{name}.json", "w") as f:
         f.write(json.dumps(lst, indent=1))
 
 
