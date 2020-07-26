@@ -11,7 +11,7 @@ import discord
 from redbot.core import Config, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.i18n import Translator, cog_i18n
-from redbot.core.utils.chat_formatting import escape
+from redbot.core.utils.chat_formatting import escape, humanize_list
 
 import apsw
 
@@ -36,7 +36,7 @@ class Pokecord(
 ):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-realllllly-pre-alpha-13"
+    __version__ = "0.0.1-alpha-14"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -91,18 +91,21 @@ class Pokecord(
 
     async def initalize(self):
         with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
-            self.pokemondata = json.load(f)
-            self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
-            self.pokemonlist = {
-                pokemon["id"]: {
-                    "name": pokemon["name"],
-                    "amount": 0,
-                    "id": f"#{str(pokemon['id']).zfill(3)}",
-                }
-                for pokemon in self.pokemondata
-            }
+            pdata = json.load(f)
         with open(f"{self.datapath}/evolve.json") as f:
             self.evolvedata = json.load(f)
+        with open(f"{self.datapath}/shiny.json") as f:
+            sdata = json.load(f)
+        self.pokemondata = pdata + sdata
+        self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
+        self.pokemonlist = {
+            pokemon["id"]: {
+                "name": pokemon["name"],
+                "amount": 0,
+                "id": f"#{str(pokemon['id']).zfill(3)}",
+            }
+            for pokemon in pdata
+        }
         if await self.config.migration() < 2:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
@@ -184,10 +187,7 @@ class Pokecord(
         return self.config.member(user)
 
     def pokemon_choose(self):
-        # num = random.randint(1, 200)
-        # if num > 2:
         return random.choices(self.pokemondata, weights=self.spawnchances, k=1)[0]
-        # return random.choice(self.pokemondata["mega"])
 
     def get_name(self, names, user):
         if isinstance(names, str):
@@ -201,7 +201,11 @@ class Pokecord(
             "cn": names["chinese"],
             "jp": names["japanese"],
         }
-        return localnames[self.usercache[user.id]["locale"]]
+        return (
+            localnames[self.usercache[user.id]["locale"]]
+            if localnames[self.usercache[user.id]["locale"]] is not None
+            else localnames["en"]
+        )
 
     @commands.command()
     async def starter(self, ctx, pokemon: str = None):
@@ -309,7 +313,11 @@ class Pokecord(
         if self.spawnedpokemon.get(ctx.guild.id) is not None:
             pokemonspawn = self.spawnedpokemon[ctx.guild.id].get(ctx.channel.id)
             if pokemonspawn is not None:
-                names = set(pokemonspawn["name"][name].lower() for name in pokemonspawn["name"])
+                names = set(
+                    pokemonspawn["name"][name].lower()
+                    for name in pokemonspawn["name"]
+                    if pokemonspawn["name"][name] is not None
+                )
                 names.add(
                     pokemonspawn["name"]["english"]
                     .translate(str.maketrans("", "", string.punctuation))
@@ -418,13 +426,24 @@ class Pokecord(
             ).format(prefix=prefixes[0]),
             color=await self.bot.get_embed_color(channel),
         )
-        # name = pokemon["name"] if pokemon["alias"] is None else pokemon["alias"]
         log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
-        # hashe = await self.get_hash(f"{name}.png")
-        # if hashe is None:
-        #     return
         embed.set_image(
-            url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"  # TODO: Hashed images again
+            url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
+            if pokemon.get("url") is None
+            else pokemon.get("url")
+        )
+        embed.set_footer(
+            text=_("Supports: {languages}").format(
+                languages=humanize_list(
+                    list(
+                        [
+                            x.title()
+                            for x in pokemon["name"].keys()
+                            if pokemon["name"][x] is not None
+                        ]
+                    )
+                )
+            )
         )
         await channel.send(embed=embed)
 

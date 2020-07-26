@@ -134,9 +134,18 @@ class PokeList(menus.ListPageSource):
         )
         nick = pokemon.get("nickname")
         alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
-        desc = _("{alias}**Level**: {level}\n**XP**: {xp}/{totalxp}\n{stats}").format(
+        variant = (
+            _("**Variant**: {variant}\n").format(variant=pokemon.get("variant"))
+            if pokemon.get("variant")
+            else ""
+        )
+        desc = _(
+            "**ID**: {id}\n{alias}**Level**: {level}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
+        ).format(
+            id=f"#{pokemon.get('id')}" if pokemon.get("id") else "0",
             alias=alias,
             level=pokemon["level"],
+            variant=variant,
             xp=pokemon["xp"],
             totalxp=menu.cog.calc_xp(pokemon["level"]),
             stats=box(pokestats, lang="prolog"),
