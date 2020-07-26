@@ -335,7 +335,9 @@ class Pokecord(
                         return
                     lvl = random.randint(1, 13)
                     pokename = self.get_name(pokemonspawn["name"], ctx.author)
-                    variant = f'{pokemonspawn.get("variant")} ' if pokemonspawn.get("variant") else ""
+                    variant = (
+                        f'{pokemonspawn.get("variant")} ' if pokemonspawn.get("variant") else ""
+                    )
                     await ctx.send(
                         _(
                             "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"

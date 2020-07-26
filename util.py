@@ -34,7 +34,7 @@ async def main():
         tags = div.find_all("div", {"class": "infocard"})
         for poke in tags:
             if len(poke.find_all("small")) == 2:
-                num = int(poke.find("small").get_text().replace("#", ''))
+                num = int(poke.find("small").get_text().replace("#", ""))
                 print(num)
                 img = poke.find_all("img")
                 if not img:
