@@ -264,7 +264,7 @@ class Pokecord(
             _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
         )
         pokemon = starter_pokemon[pokemon.lower()]
-        pokemon["level"] = 0
+        pokemon["level"] = 1
         pokemon["xp"] = 0
 
         self.cursor.execute(
