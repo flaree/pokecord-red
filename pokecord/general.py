@@ -262,7 +262,7 @@ class GeneralMixin(MixinMeta):
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
                 elif args["variant"]:
-                    if poke[0].get("variant") == args["variant"].lower():
+                    if poke[0].get("variant", "None").lower() == args["variant"].lower():
                         correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
