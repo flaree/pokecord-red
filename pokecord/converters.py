@@ -17,6 +17,7 @@ class Args(Converter):
         pokemon.add_argument("--name", "--n", nargs="*", dest="names", default=[])
         pokemon.add_argument("--level", "--l", nargs="*", dest="level", type=int, default=0)
         pokemon.add_argument("--id", "--i", nargs="*", dest="id", type=int, default=0)
+        pokemon.add_argument("--variant", "--v", nargs="*", dest="variant", default=[])
 
         try:
             vals = vars(parser.parse_args(argument.split(" ")))
@@ -27,4 +28,5 @@ class Args(Converter):
             raise BadArgument("You must provide one of `--name`, `--level` or `--id`")
 
         vals["names"] = " ".join(vals["names"])
+        vals["variant"] = " ".join(vals["variant"])
         return vals

@@ -51,7 +51,10 @@ class GeneralMixin(MixinMeta):
     @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
     async def nick(self, ctx, id: int, *, nickname: str):
-        """Set a pokémons nickname."""
+        """Set a pokémons nickname.
+        
+        ID refers to the position within your pokémon listing.
+        This is found at the bottom of the pokemon on `[p]list`"""
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
         async with ctx.typing():
@@ -62,7 +65,11 @@ class GeneralMixin(MixinMeta):
         if not pokemons:
             return await ctx.send(_("You don't have any pokémon, trainer!"))
         if id > len(pokemons):
-            return await ctx.send(_("You don't have a pokemon at that slot."))
+            return await ctx.send(
+                _(
+                    "You don't have a pokemon at that slot.\nID refers to the position within your pokémon listing.\nThis is found at the bottom of the pokemon on `[p]list`"
+                )
+            )
         pokemon = pokemons[id]
         pokemon[0]["nickname"] = nickname
         self.cursor.execute(
@@ -88,7 +95,11 @@ class GeneralMixin(MixinMeta):
         if not pokemons:
             return await ctx.send(_("You don't have any pokémon, trainer!"))
         if id >= len(pokemons):
-            return await ctx.send(_("You don't have a pokemon at that slot."))
+            return await ctx.send(
+                _(
+                    "You don't have a pokemon at that slot.\nID refers to the position within your pokémon listing.\nThis is found at the bottom of the pokemon on `[p]list`"
+                )
+            )
         pokemon = pokemons[id]
         name = self.get_name(pokemon[0]["name"], ctx.author)
         await ctx.send(
@@ -154,7 +165,11 @@ class GeneralMixin(MixinMeta):
                     )
                     return
             if _id < 1 or _id > len(pokemons) - 1:
-                return await ctx.send(_("You've specified an invalid ID."))
+                return await ctx.send(
+                    _(
+                        "You've specified an invalid ID.\nID refers to the position within your pokémon listing.\nThis is found at the bottom of the pokemon on `[p]list`"
+                    )
+                )
             await ctx.send(
                 _("You have selected {pokemon} as your default pokémon.").format(
                     pokemon=self.get_name(pokemons[_id][0]["name"], ctx.author)
@@ -216,7 +231,9 @@ class GeneralMixin(MixinMeta):
         Arguements must have `--` before them.
             `--name` | `--n` - Search pokemon by name.
             `--level`| `--l` - Search pokemon by level.
-            `--id`   | `--i` - Search pokemon by ID."""
+            `--id`   | `--i` - Search pokemon by ID.
+            `--variant`   | `--v` - Search pokemon by variant.
+        """
         async with ctx.typing():
             result = self.cursor.execute(
                 """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
@@ -241,6 +258,11 @@ class GeneralMixin(MixinMeta):
                         )
                 elif args["id"]:
                     if poke[0]["id"] == args["id"][0]:
+                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
+                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
+                        )
+                elif args["variant"]:
+                    if poke[0].get("variant") == args["variant"].lower():
                         correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
