@@ -24,8 +24,8 @@ class Args(Converter):
         except Exception as error:
             raise BadArgument() from error
 
-        if not (vals["names"] or vals["level"] or vals["id"]):
-            raise BadArgument("You must provide one of `--name`, `--level` or `--id`")
+        if not any([vals["names"], vals["level"], vals["id"], vals["variant"]]):
+            raise BadArgument("You must provide one of `--name`, `--level`, `--id` or `--variant`")
 
         vals["names"] = " ".join(vals["names"])
         vals["variant"] = " ".join(vals["variant"])
