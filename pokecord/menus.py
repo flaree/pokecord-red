@@ -156,6 +156,8 @@ class PokeList(menus.ListPageSource):
         if pokemon.get("id"):
             embed.set_thumbnail(
                 url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
+                if not pokemon.get("url")
+                else pokemon.get("url")
             )
         embed.set_footer(
             text=_("Pokémon ID: {number}/{amount}").format(
