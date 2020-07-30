@@ -497,7 +497,11 @@ class Pokecord(
                 pokename = pokemon["name"]
             else:
                 pokename = pokemon["name"]["english"]
-            evolve = self.evolvedata.get(pokename)
+            evolve = (
+                self.evolvedata.get(pokename)
+                if pokemon.get("variant") not in ["Shiny"]
+                else self.evolvedata.get(pokemon.get("alias"))
+            )
             name = (
                 self.get_name(pokemon["name"], user)
                 if pokemon.get("nickname") is None
@@ -510,7 +514,7 @@ class Pokecord(
                     (
                         item
                         for item in self.pokemondata
-                        if item["name"]["english"] == evolve["evolution"]
+                        if (item["name"]["english"] == evolve["evolution"])
                     ),
                     None,
                 )  # Make better
