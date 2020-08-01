@@ -324,7 +324,7 @@ class Pokecord(
                     .lower()
                 )
                 if pokemonspawn.get("alias"):
-                    names.add(pokemonspawn["alias"])
+                    names.add(pokemonspawn["alias"].lower())
                 if pokemon.lower() in names:
                     if self.spawnedpokemon.get(ctx.guild.id) is not None and self.spawnedpokemon[
                         ctx.guild.id
