@@ -1,5 +1,5 @@
 gettext:
-	redgettext --command-docstrings --verbose --recursive .
+	redgettext --command-docstrings --verbose --recursive pokecord/ --exclude-files 'pokecord/data/*'
 
 upload_translations:
 	crowdin upload sources
