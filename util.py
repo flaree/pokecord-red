@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import html5lib
 import os
 
-driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
+# driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
 
 URL = "https://pokemondb.net/pokedex/all"
@@ -61,6 +61,28 @@ async def main():
     await write(b, "shiny")
 
 
+async def get_img():
+    session = aiohttp.ClientSession()
+    with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    for pokemon in data:
+        img = await session.get(
+            f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
+        )
+        name = f"pokecord/data/pokemon/{pokemon['name']['english']}.png"
+        with open(name, "wb") as f:
+            f.write(BytesIO(await img.read()).getbuffer())
+    with open(f"pokecord/data/shiny.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    for pokemon in data:
+        img = await session.get(pokemon["url"])
+        name = f"pokecord/data/pokemon/{pokemon['alias']}.png"
+        with open(name, "wb") as f:
+            f.write(BytesIO(await img.read()).getbuffer())
+
+    await session.close()
+
+
 async def evolve():
     a = {}
     driver.get(EVOLVE)
@@ -105,4 +127,4 @@ def spawn_rate():
 
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+loop.run_until_complete(get_img())

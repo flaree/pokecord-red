@@ -430,11 +430,12 @@ class Pokecord(
             color=await self.bot.get_embed_color(channel),
         )
         log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
-        embed.set_image(
-            url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
-            if pokemon.get("url") is None
-            else pokemon.get("url")
+        _file = discord.File(
+            self.datapath
+            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias")}.png',
+            filename="pokemonspawn.png",
         )
+        embed.set_image(url="attachment://pokemonspawn.png")
         embed.set_footer(
             text=_("Supports: {languages}").format(
                 languages=humanize_list(
@@ -448,7 +449,7 @@ class Pokecord(
                 )
             )
         )
-        await channel.send(embed=embed)
+        await channel.send(embed=embed, file=_file)
 
     def calc_xp(self, lvl):
         return 25 * lvl
