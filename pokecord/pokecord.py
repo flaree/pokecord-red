@@ -338,20 +338,16 @@ class Pokecord(
                     variant = (
                         f'{pokemonspawn.get("variant")} ' if pokemonspawn.get("variant") else ""
                     )
-                    await ctx.send(
-                        _(
-                            "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
-                        ).format(
-                            user=ctx.author.mention, lvl=lvl, variant=variant, pokename=pokename,
-                        )
-                    )
+                    msg = _(
+                        "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
+                    ).format(user=ctx.author.mention, lvl=lvl, variant=variant, pokename=pokename,)
+
                     async with conf.pokeids() as poke:
                         if str(pokemonspawn["id"]) not in poke:
-                            await ctx.send(
-                                _("{pokename} has been added to the pokédex.").format(
-                                    pokename=pokename
-                                )
+                            msg += _("\n{pokename} has been added to the pokédex.").format(
+                                pokename=pokename
                             )
+
                             poke[str(pokemonspawn["id"])] = 1
                         else:
                             poke[str(pokemonspawn["id"])] += 1
@@ -530,7 +526,7 @@ class Pokecord(
                 pokemon["level"] = lvl
                 if not userconf["silence"]:
                     embed = discord.Embed(
-                        title=_("Congratulations {user}!").format(user=user),
+                        title=_("Congratulations {user}!").format(user=user.display_name),
                         description=_("Your {name} has evolved into {evolvename}!").format(
                             name=name, evolvename=self.get_name(pokemon["name"], user)
                         ),
@@ -545,7 +541,7 @@ class Pokecord(
                     pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
                 if not userconf["silence"]:
                     embed = discord.Embed(
-                        title=_("Congratulations {user}!").format(user=user),
+                        title=_("Congratulations {user}!").format(user=user.display_name),
                         description=_("Your {name} has levelled up to level {level}!").format(
                             name=name, level=pokemon["level"]
                         ),
