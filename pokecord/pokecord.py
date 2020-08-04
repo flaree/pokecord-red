@@ -356,6 +356,7 @@ class Pokecord(
                     self.cursor.execute(
                         INSERT_POKEMON, (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
                     )
+                    await ctx.send(msg)
                     return
                 else:
                     return await ctx.send(_("That's not the correct pokemon"))
