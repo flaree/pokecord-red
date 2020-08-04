@@ -108,7 +108,7 @@ class Pokecord(
                 "amount": 0,
                 "id": f"#{str(pokemon['id']).zfill(3)}",
             }
-            for pokemon in pdata
+            for pokemon in sorted((pdata + ldata + mdata), key=lambda x: x["id"])
         }
         if await self.config.migration() < 2:
             self.usercache = await self.config.all_users()
