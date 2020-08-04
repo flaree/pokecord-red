@@ -24,41 +24,65 @@ SHINY = "https://pokemondb.net/pokedex/shiny"
 
 
 async def main():
-    # a = {"mega": [], "normal": [], "all": {}}
-    driver.get(SHINY)
-    await asyncio.sleep(10)
-    soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
-    da = soup.find_all("div", {"class": "infocard-list infocard-list-pkmn-lg"})
-    a = []
-    for div in da:
-        tags = div.find_all("div", {"class": "infocard"})
-        for poke in tags:
-            if len(poke.find_all("small")) == 2:
-                num = int(poke.find("small").get_text().replace("#", ""))
-                print(num)
-                img = poke.find_all("img")
-                if not img:
-                    print(img)
-                img = img[1].attrs["src"]
-                a.append([num, img])
+    # # a = {"mega": [], "normal": [], "all": {}}
+    # driver.get(SHINY)
+    # await asyncio.sleep(10)
+    # soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
+    # da = soup.find_all("div", {"class": "infocard-list infocard-list-pkmn-lg"})
+    # a = []
+    # for div in da:
+    #     tags = div.find_all("div", {"class": "infocard"})
+    #     for poke in tags:
+    #         if len(poke.find_all("small")) == 2:
+    #             num = int(poke.find("small").get_text().replace("#", ""))
+    #             print(num)
+    #             img = poke.find_all("img")
+    #             if not img:
+    #                 print(img)
+    #             img = img[1].attrs["src"]
+    #             a.append([num, img])
     # await write(a, "shiny")
 
     # with open(f"pokecord/data/shiny.json", "r", encoding="utf-8") as f:
     #     a = json.load(f)
     with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
         data = json.load(f)
-    b = []
-    for poke in a:
-        for pokemon in data:
-            if pokemon["id"] == poke[0]:
-                newpoke = copy.deepcopy(pokemon)
+    b = [
+        151,
+        251,
+        385,
+        386,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        647,
+        648,
+        649,
+        719,
+        720,
+        720,
+        801,
+        802,
+        807,
+        808,
+        809,
+        893,
+    ]
+    a = []
+    c = []
+    for i, poke in enumerate(data):
+        if poke["id"] in b:
+            poke["variant"] = "Mythical"
+            poke["spawnchance"] = 0.001
+            a.append(poke)
+        else:
+            c.append(poke)
 
-                newpoke["url"] = poke[1]
-                newpoke["spawnchance"] = 0.01
-                newpoke["variant"] = "Shiny"
-                newpoke["alias"] = f"Shiny {newpoke['name']['english']}"
-                b.append(newpoke)
-    await write(b, "shiny")
+    await write(c, "pokedex")
+    await write(a, "mythical")
 
 
 async def get_img():
@@ -127,4 +151,4 @@ def spawn_rate():
 
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(get_img())
+loop.run_until_complete(main())

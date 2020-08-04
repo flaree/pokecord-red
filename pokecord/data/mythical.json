@@ -1,0 +1,452 @@
+[
+ {
+  "id": 151,
+  "name": {
+   "english": "Mew",
+   "japanese": "\u30df\u30e5\u30a6",
+   "chinese": "\u68a6\u5e7b",
+   "french": "Mew"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 100,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 251,
+  "name": {
+   "english": "Celebi",
+   "japanese": "\u30bb\u30ec\u30d3\u30a3",
+   "chinese": "\u65f6\u62c9\u6bd4",
+   "french": "Celebi"
+  },
+  "type": [
+   "Psychic",
+   "Grass"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 100,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 385,
+  "name": {
+   "english": "Jirachi",
+   "japanese": "\u30b8\u30e9\u30fc\u30c1",
+   "chinese": "\u57fa\u62c9\u7948",
+   "french": "Jirachi"
+  },
+  "type": [
+   "Steel",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 100,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 386,
+  "name": {
+   "english": "Deoxys",
+   "japanese": "\u30c7\u30aa\u30ad\u30b7\u30b9",
+   "chinese": "\u4ee3\u6b27\u5947\u5e0c\u65af",
+   "french": "Deoxys"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 50,
+   "Attack": 150,
+   "Defence": 50,
+   "Sp. Atk": 150,
+   "Sp. Def": 50,
+   "Speed": 150
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 489,
+  "name": {
+   "english": "Phione",
+   "japanese": "\u30d5\u30a3\u30aa\u30cd",
+   "chinese": "\u970f\u6b27\u7eb3",
+   "french": "Phione"
+  },
+  "type": [
+   "Water"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 80,
+   "Defence": 80,
+   "Sp. Atk": 80,
+   "Sp. Def": 80,
+   "Speed": 80
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 490,
+  "name": {
+   "english": "Manaphy",
+   "japanese": "\u30de\u30ca\u30d5\u30a3",
+   "chinese": "\u739b\u7eb3\u970f",
+   "french": "Manaphy"
+  },
+  "type": [
+   "Water"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 100,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 491,
+  "name": {
+   "english": "Darkrai",
+   "japanese": "\u30c0\u30fc\u30af\u30e9\u30a4",
+   "chinese": "\u8fbe\u514b\u83b1\u4f0a",
+   "french": "Darkrai"
+  },
+  "type": [
+   "Dark"
+  ],
+  "stats": {
+   "HP": 70,
+   "Attack": 90,
+   "Defence": 90,
+   "Sp. Atk": 135,
+   "Sp. Def": 90,
+   "Speed": 125
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 492,
+  "name": {
+   "english": "Shaymin",
+   "japanese": "\u30b7\u30a7\u30a4\u30df",
+   "chinese": "\u8c22\u7c73",
+   "french": "Shaymin"
+  },
+  "type": [
+   "Grass"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 100,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 493,
+  "name": {
+   "english": "Arceus",
+   "japanese": "\u30a2\u30eb\u30bb\u30a6\u30b9",
+   "chinese": "\u963f\u5c14\u5b99\u65af",
+   "french": "Arceus"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 120,
+   "Defence": 120,
+   "Sp. Atk": 120,
+   "Sp. Def": 120,
+   "Speed": 120
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 494,
+  "name": {
+   "english": "Victini",
+   "japanese": "\u30d3\u30af\u30c6\u30a3\u30cb",
+   "chinese": "\u6bd4\u514b\u63d0\u5c3c",
+   "french": "Victini"
+  },
+  "type": [
+   "Psychic",
+   "Fire"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 100,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 647,
+  "name": {
+   "english": "Keldeo",
+   "japanese": "\u30b1\u30eb\u30c7\u30a3\u30aa",
+   "chinese": "\u51ef\u8def\u8fea\u6b27",
+   "french": "Keldeo"
+  },
+  "type": [
+   "Water",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 91,
+   "Attack": 72,
+   "Defence": 90,
+   "Sp. Atk": 129,
+   "Sp. Def": 90,
+   "Speed": 108
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 648,
+  "name": {
+   "english": "Meloetta",
+   "japanese": "\u30e1\u30ed\u30a8\u30c3\u30bf",
+   "chinese": "\u7f8e\u6d1b\u8036\u5854",
+   "french": "Meloetta"
+  },
+  "type": [
+   "Normal",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 77,
+   "Defence": 77,
+   "Sp. Atk": 128,
+   "Sp. Def": 128,
+   "Speed": 90
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 649,
+  "name": {
+   "english": "Genesect",
+   "japanese": "\u30b2\u30ce\u30bb\u30af\u30c8",
+   "chinese": "\u76d6\u8bfa\u8d5b\u514b\u7279",
+   "french": "Genesect"
+  },
+  "type": [
+   "Bug",
+   "Steel"
+  ],
+  "stats": {
+   "HP": 71,
+   "Attack": 120,
+   "Defence": 95,
+   "Sp. Atk": 120,
+   "Sp. Def": 95,
+   "Speed": 99
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 719,
+  "name": {
+   "english": "Diancie",
+   "japanese": "\u30c7\u30a3\u30a2\u30f3\u30b7\u30fc",
+   "chinese": "\u8482\u5b89\u5e0c",
+   "french": "Diancie"
+  },
+  "type": [
+   "Rock",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 50,
+   "Attack": 100,
+   "Defence": 150,
+   "Sp. Atk": 100,
+   "Sp. Def": 150,
+   "Speed": 50
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 720,
+  "name": {
+   "english": "Hoopa",
+   "japanese": "\u30d5\u30fc\u30d1",
+   "chinese": "\u80e1\u5e15",
+   "french": "Hoopa"
+  },
+  "type": [
+   "Psychic",
+   "Ghost"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 110,
+   "Defence": 60,
+   "Sp. Atk": 150,
+   "Sp. Def": 130,
+   "Speed": 70
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 801,
+  "name": {
+   "english": "Magearna",
+   "japanese": "\u30de\u30ae\u30a2\u30ca",
+   "chinese": "\u739b\u673a\u96c5\u5a1c",
+   "french": "Magearna"
+  },
+  "type": [
+   "Steel",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 95,
+   "Defence": 115,
+   "Sp. Atk": 130,
+   "Sp. Def": 115,
+   "Speed": 65
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 802,
+  "name": {
+   "english": "Marshadow",
+   "japanese": "\u30de\u30fc\u30b7\u30e3\u30c9\u30fc",
+   "chinese": "\u739b\u590f\u591a",
+   "french": "Marshadow"
+  },
+  "type": [
+   "Fighting",
+   "Ghost"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 125,
+   "Defence": 80,
+   "Sp. Atk": 90,
+   "Sp. Def": 90,
+   "Speed": 125
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 807,
+  "name": {
+   "english": "Zeraora",
+   "japanese": "\u30bc\u30e9\u30aa\u30e9",
+   "chinese": "\u6377\u62c9\u5965\u62c9",
+   "french": "Zeraora"
+  },
+  "type": [
+   "Electric"
+  ],
+  "stats": {
+   "HP": 88,
+   "Attack": 112,
+   "Defence": 75,
+   "Sp. Atk": 102,
+   "Sp. Def": 80,
+   "Speed": 143
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 808,
+  "name": {
+   "english": "Meltan",
+   "japanese": "\u30e1\u30eb\u30bf\u30f3",
+   "chinese": "\u7f8e\u5f55\u5766",
+   "french": "Meltan"
+  },
+  "type": [
+   "Steel"
+  ],
+  "stats": {
+   "HP": 46,
+   "Attack": 65,
+   "Defence": 65,
+   "Sp. Atk": 55,
+   "Sp. Def": 35,
+   "Speed": 34
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ },
+ {
+  "id": 809,
+  "name": {
+   "english": "Melmetal",
+   "japanese": "\u30e1\u30eb\u30e1\u30bf\u30eb",
+   "chinese": "\u7f8e\u5f55\u6885\u5854",
+   "french": "Melmetal"
+  },
+  "type": [
+   "Steel"
+  ],
+  "stats": {
+   "HP": 135,
+   "Attack": 143,
+   "Defence": 143,
+   "Sp. Atk": 80,
+   "Sp. Def": 65,
+   "Speed": 34
+  },
+  "spawnchance": 0.001,
+  "variant": "Mythical"
+ }
+]

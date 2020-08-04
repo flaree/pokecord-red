@@ -92,11 +92,15 @@ class Pokecord(
     async def initalize(self):
         with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
             pdata = json.load(f)
-        with open(f"{self.datapath}/evolve.json") as f:
+        with open(f"{self.datapath}/evolve.json", encoding="utf-8") as f:
             self.evolvedata = json.load(f)
-        with open(f"{self.datapath}/shiny.json") as f:
+        with open(f"{self.datapath}/shiny.json", encoding="utf-8") as f:
             sdata = json.load(f)
-        self.pokemondata = pdata + sdata
+        with open(f"{self.datapath}/legendary.json", encoding="utf-8") as f:
+            ldata = json.load(f)
+        with open(f"{self.datapath}/mythical.json", encoding="utf-8") as f:
+            mdata = json.load(f)
+        self.pokemondata = pdata + sdata + ldata + mdata
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
             pokemon["id"]: {

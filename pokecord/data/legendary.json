@@ -1,0 +1,1175 @@
+[
+ {
+  "id": 144,
+  "name": {
+   "english": "Articuno",
+   "japanese": "\u30d5\u30ea\u30fc\u30b6\u30fc",
+   "chinese": "\u6025\u51bb\u9e1f",
+   "french": "Artikodin"
+  },
+  "type": [
+   "Ice",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 85,
+   "Defence": 100,
+   "Sp. Atk": 95,
+   "Sp. Def": 125,
+   "Speed": 85
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 145,
+  "name": {
+   "english": "Zapdos",
+   "japanese": "\u30b5\u30f3\u30c0\u30fc",
+   "chinese": "\u95ea\u7535\u9e1f",
+   "french": "\u00c9lecthor"
+  },
+  "type": [
+   "Electric",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 90,
+   "Defence": 85,
+   "Sp. Atk": 125,
+   "Sp. Def": 90,
+   "Speed": 100
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 146,
+  "name": {
+   "english": "Moltres",
+   "japanese": "\u30d5\u30a1\u30a4\u30e4\u30fc",
+   "chinese": "\u706b\u7130\u9e1f",
+   "french": "Sulfura"
+  },
+  "type": [
+   "Fire",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 100,
+   "Defence": 90,
+   "Sp. Atk": 125,
+   "Sp. Def": 85,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 150,
+  "name": {
+   "english": "Mewtwo",
+   "japanese": "\u30df\u30e5\u30a6\u30c4\u30fc",
+   "chinese": "\u8d85\u68a6",
+   "french": "Mewtwo"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 106,
+   "Attack": 110,
+   "Defence": 90,
+   "Sp. Atk": 154,
+   "Sp. Def": 90,
+   "Speed": 130
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 243,
+  "name": {
+   "english": "Raikou",
+   "japanese": "\u30e9\u30a4\u30b3\u30a6",
+   "chinese": "\u96f7\u516c",
+   "french": "Raikou"
+  },
+  "type": [
+   "Electric"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 85,
+   "Defence": 75,
+   "Sp. Atk": 115,
+   "Sp. Def": 100,
+   "Speed": 115
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 244,
+  "name": {
+   "english": "Entei",
+   "japanese": "\u30a8\u30f3\u30c6\u30a4",
+   "chinese": "\u708e\u5e1d",
+   "french": "Entei"
+  },
+  "type": [
+   "Fire"
+  ],
+  "stats": {
+   "HP": 115,
+   "Attack": 115,
+   "Defence": 85,
+   "Sp. Atk": 90,
+   "Sp. Def": 75,
+   "Speed": 100
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 245,
+  "name": {
+   "english": "Suicune",
+   "japanese": "\u30b9\u30a4\u30af\u30f3",
+   "chinese": "\u6c34\u541b",
+   "french": "Suicune"
+  },
+  "type": [
+   "Water"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 75,
+   "Defence": 115,
+   "Sp. Atk": 90,
+   "Sp. Def": 115,
+   "Speed": 85
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 249,
+  "name": {
+   "english": "Lugia",
+   "japanese": "\u30eb\u30ae\u30a2",
+   "chinese": "\u6d1b\u5947\u4e9a",
+   "french": "Lugia"
+  },
+  "type": [
+   "Psychic",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 106,
+   "Attack": 90,
+   "Defence": 130,
+   "Sp. Atk": 90,
+   "Sp. Def": 154,
+   "Speed": 110
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 250,
+  "name": {
+   "english": "Ho-Oh",
+   "japanese": "\u30db\u30a6\u30aa\u30a6",
+   "chinese": "\u51e4\u738b",
+   "french": "Ho-Oh"
+  },
+  "type": [
+   "Fire",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 106,
+   "Attack": 130,
+   "Defence": 90,
+   "Sp. Atk": 110,
+   "Sp. Def": 154,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 377,
+  "name": {
+   "english": "Regirock",
+   "japanese": "\u30ec\u30b8\u30ed\u30c3\u30af",
+   "chinese": "\u96f7\u5409\u6d1b\u514b",
+   "french": "Regirock"
+  },
+  "type": [
+   "Rock"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 100,
+   "Defence": 200,
+   "Sp. Atk": 50,
+   "Sp. Def": 100,
+   "Speed": 50
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 378,
+  "name": {
+   "english": "Regice",
+   "japanese": "\u30ec\u30b8\u30a2\u30a4\u30b9",
+   "chinese": "\u96f7\u5409\u827e\u65af",
+   "french": "Regice"
+  },
+  "type": [
+   "Ice"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 50,
+   "Defence": 100,
+   "Sp. Atk": 100,
+   "Sp. Def": 200,
+   "Speed": 50
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 379,
+  "name": {
+   "english": "Registeel",
+   "japanese": "\u30ec\u30b8\u30b9\u30c1\u30eb",
+   "chinese": "\u96f7\u5409\u65af\u5947\u9c81",
+   "french": "Registeel"
+  },
+  "type": [
+   "Steel"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 75,
+   "Defence": 150,
+   "Sp. Atk": 75,
+   "Sp. Def": 150,
+   "Speed": 50
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 380,
+  "name": {
+   "english": "Latias",
+   "japanese": "\u30e9\u30c6\u30a3\u30a2\u30b9",
+   "chinese": "\u62c9\u5e1d\u4e9a\u65af",
+   "french": "Latias"
+  },
+  "type": [
+   "Dragon",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 80,
+   "Defence": 90,
+   "Sp. Atk": 110,
+   "Sp. Def": 130,
+   "Speed": 110
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 381,
+  "name": {
+   "english": "Latios",
+   "japanese": "\u30e9\u30c6\u30a3\u30aa\u30b9",
+   "chinese": "\u62c9\u5e1d\u6b27\u65af",
+   "french": "Latios"
+  },
+  "type": [
+   "Dragon",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 90,
+   "Defence": 80,
+   "Sp. Atk": 130,
+   "Sp. Def": 110,
+   "Speed": 110
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 382,
+  "name": {
+   "english": "Kyogre",
+   "japanese": "\u30ab\u30a4\u30aa\u30fc\u30ac",
+   "chinese": "\u76d6\u6b27\u5361",
+   "french": "Kyogre"
+  },
+  "type": [
+   "Water"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 100,
+   "Defence": 90,
+   "Sp. Atk": 150,
+   "Sp. Def": 140,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 383,
+  "name": {
+   "english": "Groudon",
+   "japanese": "\u30b0\u30e9\u30fc\u30c9\u30f3",
+   "chinese": "\u56fa\u62c9\u591a",
+   "french": "Groudon"
+  },
+  "type": [
+   "Ground"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 150,
+   "Defence": 140,
+   "Sp. Atk": 100,
+   "Sp. Def": 90,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 384,
+  "name": {
+   "english": "Rayquaza",
+   "japanese": "\u30ec\u30c3\u30af\u30a6\u30b6",
+   "chinese": "\u70c8\u7a7a\u5750",
+   "french": "Rayquaza"
+  },
+  "type": [
+   "Dragon",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 105,
+   "Attack": 150,
+   "Defence": 90,
+   "Sp. Atk": 150,
+   "Sp. Def": 90,
+   "Speed": 95
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 480,
+  "name": {
+   "english": "Uxie",
+   "japanese": "\u30e6\u30af\u30b7\u30fc",
+   "chinese": "\u7531\u514b\u5e0c",
+   "french": "Cr\u00e9helf"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 75,
+   "Attack": 75,
+   "Defence": 130,
+   "Sp. Atk": 75,
+   "Sp. Def": 130,
+   "Speed": 95
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 481,
+  "name": {
+   "english": "Mesprit",
+   "japanese": "\u30a8\u30e0\u30ea\u30c3\u30c8",
+   "chinese": "\u827e\u59c6\u5229\u591a",
+   "french": "Cr\u00e9follet"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 80,
+   "Attack": 105,
+   "Defence": 105,
+   "Sp. Atk": 105,
+   "Sp. Def": 105,
+   "Speed": 80
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 482,
+  "name": {
+   "english": "Azelf",
+   "japanese": "\u30a2\u30b0\u30ce\u30e0",
+   "chinese": "\u4e9a\u514b\u8bfa\u59c6",
+   "french": "Cr\u00e9fadet"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 75,
+   "Attack": 125,
+   "Defence": 70,
+   "Sp. Atk": 125,
+   "Sp. Def": 70,
+   "Speed": 115
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 483,
+  "name": {
+   "english": "Dialga",
+   "japanese": "\u30c7\u30a3\u30a2\u30eb\u30ac",
+   "chinese": "\u5e1d\u7259\u5362\u5361",
+   "french": "Dialga"
+  },
+  "type": [
+   "Steel",
+   "Dragon"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 120,
+   "Defence": 120,
+   "Sp. Atk": 150,
+   "Sp. Def": 100,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 484,
+  "name": {
+   "english": "Palkia",
+   "japanese": "\u30d1\u30eb\u30ad\u30a2",
+   "chinese": "\u5e15\u8def\u5947\u4e9a",
+   "french": "Palkia"
+  },
+  "type": [
+   "Water",
+   "Dragon"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 120,
+   "Defence": 100,
+   "Sp. Atk": 150,
+   "Sp. Def": 120,
+   "Speed": 100
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 485,
+  "name": {
+   "english": "Heatran",
+   "japanese": "\u30d2\u30fc\u30c9\u30e9\u30f3",
+   "chinese": "\u5e2d\u591a\u84dd\u6069",
+   "french": "Heatran"
+  },
+  "type": [
+   "Fire",
+   "Steel"
+  ],
+  "stats": {
+   "HP": 91,
+   "Attack": 90,
+   "Defence": 106,
+   "Sp. Atk": 130,
+   "Sp. Def": 106,
+   "Speed": 77
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 486,
+  "name": {
+   "english": "Regigigas",
+   "japanese": "\u30ec\u30b8\u30ae\u30ac\u30b9",
+   "chinese": "\u96f7\u5409\u5947\u5361\u65af",
+   "french": "Regigigas"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 110,
+   "Attack": 160,
+   "Defence": 110,
+   "Sp. Atk": 80,
+   "Sp. Def": 110,
+   "Speed": 100
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 487,
+  "name": {
+   "english": "Giratina",
+   "japanese": "\u30ae\u30e9\u30c6\u30a3\u30ca",
+   "chinese": "\u9a91\u62c9\u5e1d\u7eb3",
+   "french": "Giratina"
+  },
+  "type": [
+   "Ghost",
+   "Dragon"
+  ],
+  "stats": {
+   "HP": 150,
+   "Attack": 100,
+   "Defence": 120,
+   "Sp. Atk": 100,
+   "Sp. Def": 120,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 488,
+  "name": {
+   "english": "Cresselia",
+   "japanese": "\u30af\u30ec\u30bb\u30ea\u30a2",
+   "chinese": "\u514b\u96f7\u8272\u5229\u4e9a",
+   "french": "Cresselia"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 70,
+   "Defence": 120,
+   "Sp. Atk": 75,
+   "Sp. Def": 130,
+   "Speed": 85
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 638,
+  "name": {
+   "english": "Cobalion",
+   "japanese": "\u30b3\u30d0\u30eb\u30aa\u30f3",
+   "chinese": "\u52fe\u5e15\u8def\u7fc1",
+   "french": "Cobaltium"
+  },
+  "type": [
+   "Steel",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 91,
+   "Attack": 90,
+   "Defence": 129,
+   "Sp. Atk": 90,
+   "Sp. Def": 72,
+   "Speed": 108
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 639,
+  "name": {
+   "english": "Terrakion",
+   "japanese": "\u30c6\u30e9\u30ad\u30aa\u30f3",
+   "chinese": "\u4ee3\u62c9\u57fa\u7fc1",
+   "french": "Terrakium"
+  },
+  "type": [
+   "Rock",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 91,
+   "Attack": 129,
+   "Defence": 90,
+   "Sp. Atk": 72,
+   "Sp. Def": 90,
+   "Speed": 108
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 640,
+  "name": {
+   "english": "Virizion",
+   "japanese": "\u30d3\u30ea\u30b8\u30aa\u30f3",
+   "chinese": "\u6bd5\u529b\u5409\u7fc1",
+   "french": "Viridium"
+  },
+  "type": [
+   "Grass",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 91,
+   "Attack": 90,
+   "Defence": 72,
+   "Sp. Atk": 90,
+   "Sp. Def": 129,
+   "Speed": 108
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 641,
+  "name": {
+   "english": "Tornadus",
+   "japanese": "\u30c8\u30eb\u30cd\u30ed\u30b9",
+   "chinese": "\u9f99\u5377\u4e91",
+   "french": "Bor\u00e9as"
+  },
+  "type": [
+   "Flying"
+  ],
+  "stats": {
+   "HP": 79,
+   "Attack": 115,
+   "Defence": 70,
+   "Sp. Atk": 125,
+   "Sp. Def": 80,
+   "Speed": 111
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 642,
+  "name": {
+   "english": "Thundurus",
+   "japanese": "\u30dc\u30eb\u30c8\u30ed\u30b9",
+   "chinese": "\u96f7\u7535\u4e91",
+   "french": "Fulguris"
+  },
+  "type": [
+   "Electric",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 79,
+   "Attack": 115,
+   "Defence": 70,
+   "Sp. Atk": 125,
+   "Sp. Def": 80,
+   "Speed": 111
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 643,
+  "name": {
+   "english": "Reshiram",
+   "japanese": "\u30ec\u30b7\u30e9\u30e0",
+   "chinese": "\u83b1\u5e0c\u62c9\u59c6",
+   "french": "Reshiram"
+  },
+  "type": [
+   "Dragon",
+   "Fire"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 120,
+   "Defence": 100,
+   "Sp. Atk": 150,
+   "Sp. Def": 120,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 644,
+  "name": {
+   "english": "Zekrom",
+   "japanese": "\u30bc\u30af\u30ed\u30e0",
+   "chinese": "\u6377\u514b\u7f57\u59c6",
+   "french": "Zekrom"
+  },
+  "type": [
+   "Dragon",
+   "Electric"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 150,
+   "Defence": 120,
+   "Sp. Atk": 120,
+   "Sp. Def": 100,
+   "Speed": 90
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 645,
+  "name": {
+   "english": "Landorus",
+   "japanese": "\u30e9\u30f3\u30c9\u30ed\u30b9",
+   "chinese": "\u571f\u5730\u4e91",
+   "french": "D\u00e9m\u00e9t\u00e9ros"
+  },
+  "type": [
+   "Ground",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 89,
+   "Attack": 125,
+   "Defence": 90,
+   "Sp. Atk": 115,
+   "Sp. Def": 80,
+   "Speed": 101
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 646,
+  "name": {
+   "english": "Kyurem",
+   "japanese": "\u30ad\u30e5\u30ec\u30e0",
+   "chinese": "\u914b\u96f7\u59c6",
+   "french": "Kyurem"
+  },
+  "type": [
+   "Dragon",
+   "Ice"
+  ],
+  "stats": {
+   "HP": 125,
+   "Attack": 130,
+   "Defence": 90,
+   "Sp. Atk": 130,
+   "Sp. Def": 90,
+   "Speed": 95
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 716,
+  "name": {
+   "english": "Xerneas",
+   "japanese": "\u30bc\u30eb\u30cd\u30a2\u30b9",
+   "chinese": "\u54f2\u5c14\u5c3c\u4e9a\u65af",
+   "french": "Xerneas"
+  },
+  "type": [
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 126,
+   "Attack": 131,
+   "Defence": 95,
+   "Sp. Atk": 131,
+   "Sp. Def": 98,
+   "Speed": 99
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 717,
+  "name": {
+   "english": "Yveltal",
+   "japanese": "\u30a4\u30d9\u30eb\u30bf\u30eb",
+   "chinese": "\u4f0a\u88f4\u5c14\u5854\u5c14",
+   "french": "Yveltal"
+  },
+  "type": [
+   "Dark",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 126,
+   "Attack": 131,
+   "Defence": 95,
+   "Sp. Atk": 131,
+   "Sp. Def": 98,
+   "Speed": 99
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 718,
+  "name": {
+   "english": "Zygarde",
+   "japanese": "\u30b8\u30ac\u30eb\u30c7",
+   "chinese": "\u57fa\u683c\u5c14\u5fb7",
+   "french": "Zygarde"
+  },
+  "type": [
+   "Dragon",
+   "Ground"
+  ],
+  "stats": {
+   "HP": 108,
+   "Attack": 100,
+   "Defence": 121,
+   "Sp. Atk": 81,
+   "Sp. Def": 95,
+   "Speed": 95
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 772,
+  "name": {
+   "english": "Type: Null",
+   "japanese": "\u30bf\u30a4\u30d7\uff1a\u30cc\u30eb",
+   "chinese": "\u5c5e\u6027\uff1a\u7a7a",
+   "french": "Silvalli\u00e9"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 95,
+   "Attack": 95,
+   "Defence": 95,
+   "Sp. Atk": 95,
+   "Sp. Def": 95,
+   "Speed": 59
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 773,
+  "name": {
+   "english": "Silvally",
+   "japanese": "\u30b7\u30eb\u30f4\u30a1\u30c7\u30a3",
+   "chinese": "\u94f6\u4f34\u6218\u517d",
+   "french": "M\u00e9t\u00e9no"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 95,
+   "Attack": 95,
+   "Defence": 95,
+   "Sp. Atk": 95,
+   "Sp. Def": 95,
+   "Speed": 95
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 785,
+  "name": {
+   "english": "Tapu Koko",
+   "japanese": "\u30ab\u30d7\u30fb\u30b3\u30b1\u30b3",
+   "chinese": "\u5361\u749e\u30fb\u9e23\u9e23",
+   "french": "Tokorico"
+  },
+  "type": [
+   "Electric",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 70,
+   "Attack": 115,
+   "Defence": 85,
+   "Sp. Atk": 95,
+   "Sp. Def": 75,
+   "Speed": 130
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 786,
+  "name": {
+   "english": "Tapu Lele",
+   "japanese": "\u30ab\u30d7\u30fb\u30c6\u30c6\u30d5",
+   "chinese": "\u5361\u749e\u30fb\u8776\u8776",
+   "french": "Tokopiyon"
+  },
+  "type": [
+   "Psychic",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 70,
+   "Attack": 85,
+   "Defence": 75,
+   "Sp. Atk": 130,
+   "Sp. Def": 115,
+   "Speed": 95
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 787,
+  "name": {
+   "english": "Tapu Bulu",
+   "japanese": "\u30ab\u30d7\u30fb\u30d6\u30eb\u30eb",
+   "chinese": "\u5361\u749e\u30fb\u54de\u54de",
+   "french": "Tokotoro"
+  },
+  "type": [
+   "Grass",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 70,
+   "Attack": 130,
+   "Defence": 115,
+   "Sp. Atk": 85,
+   "Sp. Def": 95,
+   "Speed": 75
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 788,
+  "name": {
+   "english": "Tapu Fini",
+   "japanese": "\u30ab\u30d7\u30fb\u30ec\u30d2\u30ec",
+   "chinese": "\u5361\u749e\u30fb\u9ccd\u9ccd",
+   "french": "Tokopisco"
+  },
+  "type": [
+   "Water",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 70,
+   "Attack": 75,
+   "Defence": 115,
+   "Sp. Atk": 95,
+   "Sp. Def": 130,
+   "Speed": 85
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 789,
+  "name": {
+   "english": "Cosmog",
+   "japanese": "\u30b3\u30b9\u30e2\u30c3\u30b0",
+   "chinese": "\u79d1\u65af\u83ab\u53e4",
+   "french": "Cosmog"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 43,
+   "Attack": 29,
+   "Defence": 31,
+   "Sp. Atk": 29,
+   "Sp. Def": 31,
+   "Speed": 37
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 790,
+  "name": {
+   "english": "Cosmoem",
+   "japanese": "\u30b3\u30b9\u30e2\u30a6\u30e0",
+   "chinese": "\u79d1\u65af\u83ab\u59c6",
+   "french": "Cosmovum"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 43,
+   "Attack": 29,
+   "Defence": 131,
+   "Sp. Atk": 29,
+   "Sp. Def": 131,
+   "Speed": 37
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 791,
+  "name": {
+   "english": "Solgaleo",
+   "japanese": "\u30bd\u30eb\u30ac\u30ec\u30aa",
+   "chinese": "\u7d22\u5c14\u8fe6\u96f7\u6b27",
+   "french": "Solgaleo"
+  },
+  "type": [
+   "Psychic",
+   "Steel"
+  ],
+  "stats": {
+   "HP": 137,
+   "Attack": 137,
+   "Defence": 107,
+   "Sp. Atk": 113,
+   "Sp. Def": 89,
+   "Speed": 97
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 792,
+  "name": {
+   "english": "Lunala",
+   "japanese": "\u30eb\u30ca\u30a2\u30fc\u30e9",
+   "chinese": "\u9732\u5948\u96c5\u62c9",
+   "french": "Lunala"
+  },
+  "type": [
+   "Psychic",
+   "Ghost"
+  ],
+  "stats": {
+   "HP": 137,
+   "Attack": 113,
+   "Defence": 89,
+   "Sp. Atk": 137,
+   "Sp. Def": 107,
+   "Speed": 97
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 800,
+  "name": {
+   "english": "Necrozma",
+   "japanese": "\u30cd\u30af\u30ed\u30ba\u30de",
+   "chinese": "\u5948\u514b\u6d1b\u5179\u739b",
+   "french": "Necrozma"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 97,
+   "Attack": 107,
+   "Defence": 101,
+   "Sp. Atk": 127,
+   "Sp. Def": 89,
+   "Speed": 79
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 888,
+  "name": {
+   "english": "Zacian",
+   "japanese": "\u30b6\u30b7\u30a2\u30f3",
+   "chinese": "\u82cd\u54cd",
+   "french": "Zacian"
+  },
+  "type": [
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 92,
+   "Attack": 130,
+   "Defence": 115,
+   "Sp. Atk": 80,
+   "Sp. Def": 115,
+   "Speed": 138
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 889,
+  "name": {
+   "english": "Zamazenta",
+   "japanese": "\u30b6\u30de\u30bc\u30f3\u30bf",
+   "chinese": "\u85cf\u739b\u7136\u7279",
+   "french": "Zamazenta"
+  },
+  "type": [
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 92,
+   "Attack": 130,
+   "Defence": 115,
+   "Sp. Atk": 80,
+   "Sp. Def": 115,
+   "Speed": 138
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ },
+ {
+  "id": 890,
+  "name": {
+   "english": "Eternatus",
+   "japanese": "\u30e0\u30b2\u30f3\u30c0\u30a4\u30ca",
+   "chinese": "\u65e0\u6781\u6c70\u90a3",
+   "french": "\u00c9thernatos"
+  },
+  "type": [
+   "Poison",
+   "Dragon"
+  ],
+  "stats": {
+   "HP": 140,
+   "Attack": 85,
+   "Defence": 95,
+   "Sp. Atk": 145,
+   "Sp. Def": 95,
+   "Speed": 130
+  },
+  "spawnchance": 0.003,
+  "variant": "Legendary"
+ }
+]
