@@ -84,8 +84,8 @@ class SettingsMixin(MixinMeta):
             if channel.id in channels:
                 channels.remove(channel.id)
                 await ctx.send(_("Channel has been removed."))
-                return
-            channels.append(channel.id)
+            else:
+                channels.append(channel.id)
         await self.update_guild_cache()
         await ctx.tick()
 
@@ -97,8 +97,8 @@ class SettingsMixin(MixinMeta):
             if channel.id in channels:
                 channels.remove(channel.id)
                 await ctx.send(_("Channel has been removed from the whitelist."))
-                return
-            channels.append(channel.id)
+            else:
+                channels.append(channel.id)
         await self.update_guild_cache()
         await ctx.tick()
 
@@ -110,8 +110,8 @@ class SettingsMixin(MixinMeta):
             if channel.id in channels:
                 channels.remove(channel.id)
                 await ctx.send(_("Channel has been removed from the blacklist."))
-                return
-            channels.append(channel.id)
+            else:
+                channels.append(channel.id)
         await self.update_guild_cache()
         await ctx.tick()
 
