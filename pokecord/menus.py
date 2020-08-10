@@ -7,6 +7,7 @@ import tabulate
 from redbot.core import commands
 from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import box
+from redbot.core.utils.predicates import MessagePredicate
 from redbot.vendored.discord.ext import menus
 
 _ = Translator("Pokecord", __file__)
@@ -95,19 +96,19 @@ class PokeMenu(menus.MenuPages, inherit_buttons=False):
 
         prompt = await self.ctx.send(_("Please select the Pokémon ID number to jump to."))
         try:
-            msg = await self.bot.wait_for(
-                "message_without_command",
-                check=lambda m: m.author.id in (*self.bot.owner_ids, self._author_id),
-                timeout=10.0,
-            )
-            jump_page = int(msg.content)
-            if int(msg.content) > self._source.get_max_pages():
-                await self.ctx.send(_("Invalid Pokémon ID, jumping to the end."), delete_after=5)
-                jump_page = self._source.get_max_pages()
-            await self.show_checked_page(jump_page - 1)
-            await cleanup([prompt, msg])
-        except (ValueError, asyncio.TimeoutError):
-            await cleanup([prompt, msg])
+            pred = MessagePredicate.valid_int(self.ctx)
+            msg = await self.bot.wait_for("message_without_command", check=pred, timeout=10.0,)
+            if pred.result:
+                jump_page = int(msg.content)
+                if jump_page > self._source.get_max_pages():
+                    await self.ctx.send(
+                        _("Invalid Pokémon ID, jumping to the end."), delete_after=5
+                    )
+                    jump_page = self._source.get_max_pages()
+                await self.show_checked_page(jump_page - 1)
+                await cleanup([prompt, msg])
+        except (asyncio.TimeoutError):
+            await cleanup([prompt])
 
     @menus.button("\N{WHITE HEAVY CHECK MARK}", position=menus.First(3), skip_if=_cant_select)
     async def select(self, payload: discord.RawReactionActionEvent):
