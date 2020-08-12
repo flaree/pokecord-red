@@ -87,9 +87,9 @@ class SettingsMixin(MixinMeta):
             _type = not await self.config.guild(ctx.guild).levelup_messages()
         await self.config.guild(ctx.guild).levelup_messages.set(_type)
         if _type:
-            await ctx.send(_("Pokemon levelup has been toggled on!"))
+            await ctx.send(_("Pokemon levelup messages have been toggled on!"))
             return
-        await ctx.send(_("Pokemon levelup has been toggled off!"))
+        await ctx.send(_("Pokemon levelup messages have been toggled off!"))
         await self.update_guild_cache()
 
     @pokecordset.command()
