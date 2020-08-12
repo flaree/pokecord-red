@@ -57,7 +57,13 @@ class Pokecord(
             spawnloop=False,
             migration=1,
         )
-        defaults_guild = {"activechannels": [], "toggle": False, "whitelist": [], "blacklist": []}
+        defaults_guild = {
+            "activechannels": [],
+            "toggle": False,
+            "whitelist": [],
+            "blacklist": [],
+            "levelup_messages": False,
+        }
         self.config.register_guild(**defaults_guild)
         defaults_user = {
             "pokeids": {},
@@ -100,7 +106,9 @@ class Pokecord(
             ldata = json.load(f)
         with open(f"{self.datapath}/mythical.json", encoding="utf-8") as f:
             mdata = json.load(f)
-        self.pokemondata = pdata + sdata + ldata + mdata
+        with open(f"{self.datapath}/galarian.json", encoding="utf-8") as f:
+            gdata = json.load(f)
+        self.pokemondata = pdata + sdata + ldata + mdata + gdata
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
             pokemon["id"]: {
@@ -492,6 +500,7 @@ class Pokecord(
             return  # No pokemon available to lvl up
         xp = random.randint(5, 25) + (pokemon["level"] // 2)
         pokemon["xp"] += xp
+        embed = None
         if pokemon["xp"] >= self.calc_xp(pokemon["level"]):
             pokemon["level"] += 1
             pokemon["xp"] = 0
@@ -501,7 +510,7 @@ class Pokecord(
                 pokename = pokemon["name"]["english"]
             evolve = (
                 self.evolvedata.get(pokename)
-                if pokemon.get("variant") not in ["Shiny"]
+                if not pokemon.get("variant")
                 else self.evolvedata.get(pokemon.get("alias"))
             )
             name = (
@@ -537,8 +546,6 @@ class Pokecord(
                         ),
                         color=await self.bot.get_embed_color(channel),
                     )
-                    if channel.permissions_for(channel.guild.me).send_messages:
-                        await channel.send(embed=embed)
                 log.debug(f"{name} has evolved into {pokemon['name']} for {user}.")
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
@@ -552,8 +559,22 @@ class Pokecord(
                         ),
                         color=await self.bot.get_embed_color(channel),
                     )
-                    if channel.permissions_for(channel.guild.me).send_messages:
-                        await channel.send(embed=embed)
+            if embed is not None:
+                if (
+                    self.guildcache[channel.guild.id].get("levelup_messages")
+                    and channel.id in self.guildcache[channel.guild.id]["activechannels"]
+                ):
+                    channel = channel
+                elif (
+                    self.guildcache[channel.guild.id].get("levelup_messages")
+                    and not self.guildcache[channel.guild.id]["activechannels"]
+                ):
+                    channel = channel
+                else:
+                    channel = None
+                if channel is not None:
+                    await channel.send(embed=embed)
+
         self.cursor.execute(
             UPDATE_POKEMON, (user.id, msg_id, json.dumps(pokemon)),
         )
