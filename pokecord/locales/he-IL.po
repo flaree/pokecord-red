@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-08-04 22:37+0000\n"
-"PO-Revision-Date: 2020-08-04 22:38\n"
+"POT-Creation-Date: 2020-08-11 22:38+0000\n"
+"PO-Revision-Date: 2020-08-11 22:38\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr ""
 msgid "{pokemon} | Level: {level} | ID: {id}\\n"
 msgstr ""
 
-#: pokecord/menus.py:96
+#: pokecord/menus.py:97
 msgid "Please select the Pokémon ID number to jump to."
 msgstr ""
 
@@ -163,51 +163,51 @@ msgstr ""
 msgid "Invalid Pokémon ID, jumping to the end."
 msgstr ""
 
-#: pokecord/menus.py:126
+#: pokecord/menus.py:127
 msgid "HP"
 msgstr "חיים"
 
-#: pokecord/menus.py:127
+#: pokecord/menus.py:128
 msgid "Attack"
 msgstr "תקיפה"
 
-#: pokecord/menus.py:128
+#: pokecord/menus.py:129
 msgid "Defence"
 msgstr "הגנה"
 
-#: pokecord/menus.py:129
+#: pokecord/menus.py:130
 msgid "Sp. Atk"
 msgstr "תקיפה מיוחדת"
 
-#: pokecord/menus.py:130
+#: pokecord/menus.py:131
 msgid "Sp. Def"
 msgstr "הגנה מיוחדת"
 
-#: pokecord/menus.py:131
+#: pokecord/menus.py:132
 msgid "Speed"
 msgstr "מהירות"
 
-#: pokecord/menus.py:133
+#: pokecord/menus.py:134
 msgid "Stats"
 msgstr ""
 
-#: pokecord/menus.py:133
+#: pokecord/menus.py:134
 msgid "Value"
 msgstr "ערך"
 
-#: pokecord/menus.py:136
+#: pokecord/menus.py:137
 msgid "**Nickname**: {nick}\\n"
 msgstr ""
 
-#: pokecord/menus.py:138
+#: pokecord/menus.py:139
 msgid "**Variant**: {variant}\\n"
 msgstr ""
 
-#: pokecord/menus.py:142
+#: pokecord/menus.py:143
 msgid "**ID**: {id}\\n{alias}**Level**: {level}\\n**XP**: {xp}/{totalxp}\\n{variant}{stats}"
 msgstr ""
 
-#: pokecord/menus.py:163
+#: pokecord/menus.py:164
 msgid "Pokémon ID: {number}/{amount}"
 msgstr "פוקימון תעודת זהות: {number}/{amount}"
 
