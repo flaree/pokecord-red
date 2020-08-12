@@ -45,44 +45,12 @@ async def main():
 
     # with open(f"pokecord/data/shiny.json", "r", encoding="utf-8") as f:
     #     a = json.load(f)
-    with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
+    with open(f"pokecord/data/alolan.json", "r", encoding="utf-8") as f:
         data = json.load(f)
-    b = [
-        151,
-        251,
-        385,
-        386,
-        489,
-        490,
-        491,
-        492,
-        493,
-        494,
-        647,
-        648,
-        649,
-        719,
-        720,
-        720,
-        801,
-        802,
-        807,
-        808,
-        809,
-        893,
-    ]
-    a = []
-    c = []
-    for i, poke in enumerate(data):
-        if poke["id"] in b:
-            poke["variant"] = "Mythical"
-            poke["spawnchance"] = 0.001
-            a.append(poke)
-        else:
-            c.append(poke)
 
-    await write(c, "pokedex")
-    await write(a, "mythical")
+    for poke in data:
+        poke["alias"] = poke["variant"] + " " + poke["name"]["english"]
+    await write(data, "alolan")
 
 
 async def get_img():

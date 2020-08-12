@@ -108,7 +108,9 @@ class Pokecord(
             mdata = json.load(f)
         with open(f"{self.datapath}/galarian.json", encoding="utf-8") as f:
             gdata = json.load(f)
-        self.pokemondata = pdata + sdata + ldata + mdata + gdata
+        with open(f"{self.datapath}/alolan.json", encoding="utf-8") as f:
+            adata = json.load(f)
+        self.pokemondata = pdata + sdata + ldata + mdata + gdata + adata
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
             pokemon["id"]: {
