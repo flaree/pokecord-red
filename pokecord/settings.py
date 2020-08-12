@@ -76,6 +76,22 @@ class SettingsMixin(MixinMeta):
         await ctx.send(_("Pokécord has been toggled off!"))
         await self.update_guild_cache()
 
+    @pokecordset.command(usage="type")
+    @commands.admin_or_permissions(manage_guild=True)
+    async def levelup(self, ctx, _type: bool = None):
+        """Toggle levelup messages on or off.
+        
+        If active channels are set, level up messages will only be sent in said channels. Otherwise it is ignored.
+        If no active channels are set then level up messages will send as normal."""
+        if _type is None:
+            _type = not await self.config.guild(ctx.guild).levelup_messages()
+        await self.config.guild(ctx.guild).levelup_messages.set(_type)
+        if _type:
+            await ctx.send(_("Pokemon levelup has been toggled on!"))
+            return
+        await ctx.send(_("Pokemon levelup has been toggled off!"))
+        await self.update_guild_cache()
+
     @pokecordset.command()
     @commands.admin_or_permissions(manage_channels=True)
     async def channel(self, ctx, channel: discord.TextChannel):
