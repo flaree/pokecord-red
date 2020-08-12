@@ -57,14 +57,14 @@ class SettingsMixin(MixinMeta):
         await self.update_user_cache()
 
     @commands.group(aliases=["pokeset"])
-    @commands.guildowner()
+    @commands.admin_or_permissions(manage_channels=True)
     @commands.guild_only()
     async def pokecordset(self, ctx):
         """Manage pokecord settings"""
         pass
 
     @pokecordset.command(usage="type")
-    @commands.guildowner()
+    @commands.admin_or_permissions(manage_guild=True)
     async def toggle(self, ctx, _type: bool = None):
         """Toggle pokecord on or off."""
         if _type is None:
@@ -77,7 +77,7 @@ class SettingsMixin(MixinMeta):
         await self.update_guild_cache()
 
     @pokecordset.command()
-    @commands.guildowner()
+    @commands.admin_or_permissions(manage_channels=True)
     async def channel(self, ctx, channel: discord.TextChannel):
         """Set the channel(s) that pokemon are to spawn in."""
         async with self.config.guild(ctx.guild).activechannels() as channels:
@@ -90,7 +90,7 @@ class SettingsMixin(MixinMeta):
         await ctx.tick()
 
     @pokecordset.command()
-    @commands.guildowner()
+    @commands.admin_or_permissions(manage_channels=True)
     async def whitelist(self, ctx, channel: discord.TextChannel):
         """Whitelist channels that will contribute to pokémon spawning."""
         async with self.config.guild(ctx.guild).whitelist() as channels:
@@ -103,7 +103,7 @@ class SettingsMixin(MixinMeta):
         await ctx.tick()
 
     @pokecordset.command()
-    @commands.guildowner()
+    @commands.admin_or_permissions(manage_channels=True)
     async def blacklist(self, ctx, channel: discord.TextChannel):
         """Blacklist channels from contributing to pokémon spawning."""
         async with self.config.guild(ctx.guild).blacklist() as channels:
@@ -116,7 +116,7 @@ class SettingsMixin(MixinMeta):
         await ctx.tick()
 
     @pokecordset.command()
-    @commands.guildowner()
+    @commands.admin_or_permissions(manage_channels=True)
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
