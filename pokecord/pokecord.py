@@ -22,6 +22,7 @@ from .trading import TradeMixin
 
 log = logging.getLogger("red.flare.pokecord")
 
+PUNCT = string.punctuation + "’"
 _ = Translator("Pokecord", __file__)
 
 
@@ -333,9 +334,7 @@ class Pokecord(
                     if pokemonspawn["name"][name] is not None
                 )
                 names.add(
-                    pokemonspawn["name"]["english"]
-                    .translate(str.maketrans("", "", string.punctuation))
-                    .lower()
+                    pokemonspawn["name"]["english"].translate(str.maketrans("", "", PUNCT)).lower()
                 )
                 if pokemonspawn.get("alias"):
                     names.add(pokemonspawn["alias"].lower())
