@@ -57,6 +57,9 @@ class GeneralMixin(MixinMeta):
         This is found at the bottom of the pokemon on `[p]list`"""
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
+        if len(nickname) > 40:
+            await ctx.send("The nickname you have specified is too big. It must be under 40 characters.")
+            return
         async with ctx.typing():
             result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
         pokemons = [None]
