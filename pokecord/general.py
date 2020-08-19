@@ -29,8 +29,10 @@ class GeneralMixin(MixinMeta):
     @commands.command()
     async def list(self, ctx, user: discord.Member = None):
         """List a trainers or your own pokémon!"""
+        conf = await self.user_is_global(ctx.author)
+        if not await conf.has_starter():
+            return await ctx.send(_("You haven't picked a starter pokemon yet! Check out {prefix} before trying to list your pokemon.").format(prefix=ctx.clean_prefix))
         user = user or ctx.author
-        conf = await self.user_is_global(user)
         async with ctx.typing():
             result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
         pokemons = []
@@ -55,6 +57,9 @@ class GeneralMixin(MixinMeta):
         
         ID refers to the position within your pokémon listing.
         This is found at the bottom of the pokemon on `[p]list`"""
+        conf = await self.user_is_global(ctx.author)
+        if not await conf.has_starter():
+            return await ctx.send(_("You haven't picked a starter pokemon yet! Check out {prefix} before trying to nickname a pokemon.").format(prefix=ctx.clean_prefix))
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
         if len(nickname) > 40:
@@ -88,6 +93,9 @@ class GeneralMixin(MixinMeta):
     @commands.command(aliases=["free"])
     async def release(self, ctx, id: int):
         """Release a pokémon."""
+        conf = await self.user_is_global(ctx.author)
+        if not await conf.has_starter():
+            return await ctx.send(_("You haven't picked a starter pokemon yet! Check out {prefix} before trying to release a pokemon.").format(prefix=ctx.clean_prefix))
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
         async with ctx.typing():
@@ -283,3 +291,6 @@ class GeneralMixin(MixinMeta):
                 await ctx.send(embed=embeds[0])
                 return
             await menu(ctx, embeds, DEFAULT_CONTROLS)
+            
+    @commands.command()
+    async def current(self, ctx)
