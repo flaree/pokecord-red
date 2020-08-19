@@ -140,12 +140,14 @@ class PokeList(menus.ListPageSource):
             if pokemon.get("variant")
             else ""
         )
+        types = ", ".join(pokemon['type'])
         desc = _(
-            "**ID**: {id}\n{alias}**Level**: {level}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
+            "**ID**: {id}\n{alias}**Level**: {level}\n**Type**: {type}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
         ).format(
             id=f"#{pokemon.get('id')}" if pokemon.get("id") else "0",
             alias=alias,
             level=pokemon["level"],
+            type=types,
             variant=variant,
             xp=pokemon["xp"],
             totalxp=menu.cog.calc_xp(pokemon["level"]),
