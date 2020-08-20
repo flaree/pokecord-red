@@ -294,7 +294,6 @@ class PokedexFormat(menus.ListPageSource):
         super().__init__(entries, per_page=1)
 
     async def format_page(self, menu: GenericMenu, item: List) -> str:
-        print(item)
         embed = discord.Embed(title=_("Pokédex"), color=await menu.ctx.embed_colour())
         embed.set_footer(
             text=_("Showing {page}-{lenpages} of {amount}.").format(
