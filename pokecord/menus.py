@@ -140,7 +140,7 @@ class PokeList(menus.ListPageSource):
             if pokemon.get("variant")
             else ""
         )
-        types = ", ".join(pokemon['type'])
+        types = ", ".join(pokemon["type"])
         desc = _(
             "**ID**: {id}\n{alias}**Level**: {level}\n**Type**: {type}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
         ).format(
