@@ -1,21 +1,18 @@
 import asyncio
 import copy
 import json
-import urllib
 
 import discord
 import tabulate
 from redbot.core import commands
-from redbot.core.i18n import Translator, cog_i18n
+from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import *
-from redbot.core.utils.menus import DEFAULT_CONTROLS, close_menu, menu, next_page, prev_page
 from redbot.core.utils.predicates import MessagePredicate
-from redbot.vendored.discord.ext import menus
 
 from .abc import MixinMeta
 from .functions import chunks
 from .statements import *
-from .menus import PokeMenu, PokeList
+from .menus import PokeListMenu, PokeList, GenericMenu, PokedexFormat, SearchFormat
 from .converters import Args
 
 
@@ -50,7 +47,7 @@ class GeneralMixin(MixinMeta):
         await ctx.send(
             _("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id), delete_after=5
         )
-        await PokeMenu(
+        await PokeListMenu(
             source=PokeList(pokemons), cog=self, ctx=ctx, user=user, delete_message_after=True,
         ).start(ctx=ctx, wait=False)
 
@@ -215,39 +212,19 @@ class GeneralMixin(MixinMeta):
                 if str(pokemon) in pokemons:
                     pokemonlist[i]["amount"] = pokemons[str(pokemon)]
             a = [value for value in pokemonlist.items()]
-            embeds = []
+            chunked = []
             total = 0
             page = 1
             for item in chunks(a, 20):
-                embed = discord.Embed(
-                    title=_("Pokédex"), color=await self.bot.get_embed_color(ctx.channel)
-                )
-                embed.set_footer(
-                    text=_("Showing {page}-{lenpages} of {amount}.").format(
-                        page=page, lenpages=page + len(item) - 1, amount=len(pokemonlist)
-                    )
-                )
-                page += len(item)
-                for pokemon in item:
-                    if pokemon[1]["amount"] > 0:
-                        total += 1
-                        msg = _("{amount} caught! \N{WHITE HEAVY CHECK MARK}").format(
-                            amount=pokemon[1]["amount"]
-                        )
-                    else:
-                        msg = _("Not caught yet! \N{CROSS MARK}")
-                    embed.add_field(
-                        name="{pokemonname} {pokemonid}".format(
-                            pokemonname=self.get_name(pokemon[1]["name"], ctx.author),
-                            pokemonid=pokemon[1]["id"],
-                        ),
-                        value=msg,
-                    )
-                embeds.append(embed)
-            embeds[0].description = _("You've caught {total} out of {amount} pokémon.").format(
-                total=total, amount=len(pokemonlist)
+                chunked.append(item)
+            await GenericMenu(
+                source=PokedexFormat(chunked),
+                delete_message_after=True,
+                cog=self,
+                len_poke=len(pokemonlist),
+            ).start(
+                ctx=ctx, wait=False,
             )
-        await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
     async def psearch(self, ctx, *, args: Args):
@@ -295,16 +272,10 @@ class GeneralMixin(MixinMeta):
             if not correct:
                 await ctx.send("No pokémon returned for that search.")
                 return
-            embeds = []
-            for page in pagify(correct, page_length=1024):
-                embed = discord.Embed(
-                    title="Pokemon Search", color=await ctx.embed_color(), description=page
-                )
-                embeds.append(embed)
-            if len(embeds) == 1:
-                await ctx.send(embed=embeds[0])
-                return
-            await menu(ctx, embeds, DEFAULT_CONTROLS)
+            content = list(pagify(correct, page_length=1024))
+            await GenericMenu(source=SearchFormat(content), delete_message_after=True,).start(
+                ctx=ctx, wait=False
+            )
 
     @commands.command()
     @commands.max_concurrency(1, commands.BucketType.user)
