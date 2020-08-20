@@ -121,7 +121,7 @@ class Pokecord(
             }
             for pokemon in sorted((pdata + ldata + mdata), key=lambda x: x["id"])
         }
-        if await self.config.migration() < 2:
+        if await self.config.migration() < 3:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
                 amount = {}
@@ -140,13 +140,24 @@ class Pokecord(
                                 self.cursor.execute(
                                     UPDATE_POKEMON, (user, data[1], json.dumps(poke)),
                                 )
+                    if not poke.get("type", False):
+                        for pokemon in self.pokemondata:
+                            if isinstance(poke["name"], str):
+                                name = poke["name"]
+                            else:
+                                name = poke["name"]["english"]
+                            if pokemon["name"]["english"] == name:
+                                poke["type"] = pokemon["type"]
+                                self.cursor.execute(
+                                    UPDATE_POKEMON, (user, data[1], json.dumps(poke)),
+                                )
                     if poke.get("id"):
                         if str(poke["id"]) not in amount:
                             amount[str(int(poke["id"]))] = 1
                         else:
                             amount[str(int(poke["id"]))] += 1
                 await self.config.user_from_id(user).pokeids.set(amount)
-            await self.config.migration.set(2)
+            await self.config.migration.set(3)
             log.info("Migration complete.")
 
         await self.update_guild_cache()
