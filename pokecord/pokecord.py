@@ -441,7 +441,6 @@ class Pokecord(
         if channel.guild.id not in self.spawnedpokemon:
             self.spawnedpokemon[channel.guild.id] = {}
         pokemon = self.pokemon_choose()
-        self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
             title=_("‌‌A wild pokémon has аppeаred!"),
@@ -471,6 +470,7 @@ class Pokecord(
             )
         )
         await channel.send(embed=embed, file=_file)
+        self.spawnedpokemon[channel.guild.id][channel.id] = pokemon
 
     def calc_xp(self, lvl):
         return 25 * lvl
