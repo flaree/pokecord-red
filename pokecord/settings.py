@@ -1,6 +1,3 @@
-import json
-from typing import Union
-
 import discord
 from redbot.core import commands
 from redbot.core.i18n import Translator
@@ -61,7 +58,6 @@ class SettingsMixin(MixinMeta):
     @commands.guild_only()
     async def pokecordset(self, ctx):
         """Manage pokecord settings"""
-        pass
 
     @pokecordset.command(usage="type")
     @commands.admin_or_permissions(manage_guild=True)
@@ -80,7 +76,7 @@ class SettingsMixin(MixinMeta):
     @commands.admin_or_permissions(manage_guild=True)
     async def levelup(self, ctx, _type: bool = None):
         """Toggle levelup messages on or off.
-        
+
         If active channels are set, level up messages will only be sent in said channels. Otherwise it is ignored.
         If no active channels are set then level up messages will send as normal."""
         if _type is None:
@@ -136,7 +132,9 @@ class SettingsMixin(MixinMeta):
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
-        msg = _("**Toggle**: {toggle}\n").format(toggle="Yes" if data["toggle"] else "No")
+        msg = _("**Toggle**: {toggle}\n").format(
+            toggle="Yes" if data["toggle"] else "No"
+        )
         msg += _("**Active Channels**: {channels}\n").format(
             channels=humanize_list([str(x) for x in data["activechannels"]])
             if data["activechannels"]

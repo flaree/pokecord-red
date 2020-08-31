@@ -1,17 +1,14 @@
-import bs4
-import aiohttp
 import asyncio
-from io import BytesIO
-import random
-import copy
-
-from selenium import webdriver
-from bs4 import BeautifulSoup
-import html5lib
-import os
 
 # driver = webdriver.Chrome(executable_path=r"chromedriver.exe")
 import json
+from io import BytesIO
+
+import aiohttp
+import bs4
+import html5lib
+from bs4 import BeautifulSoup
+from selenium import webdriver
 
 URL = "https://pokemondb.net/pokedex/all"
 CDNURL = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{}.png"

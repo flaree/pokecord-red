@@ -1,6 +1,5 @@
 import asyncio
 import json
-import urllib
 
 import discord
 import tabulate
@@ -23,11 +22,12 @@ class TradeMixin(MixinMeta):
     @commands.command(usage="<user> <pokemon ID>")
     async def trade(self, ctx, user: discord.Member, *, id: int):
         """Pokecord Trading
-        
+
         Currently a work in progress."""
         async with ctx.typing():
             result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
+                """SELECT pokemon, message_id from users where user_id = ?""",
+                (ctx.author.id,),
             ).fetchall()
             pokemons = [None]
             for data in result:
@@ -54,7 +54,9 @@ class TradeMixin(MixinMeta):
 
         if pred.result:
             await ctx.send(
-                _("How many credits would you like to recieve for {name}?").format(name=name)
+                _("How many credits would you like to recieve for {name}?").format(
+                    name=name
+                )
             )
             try:
                 amount = MessagePredicate.valid_int(ctx, user=ctx.author)
@@ -68,7 +70,9 @@ class TradeMixin(MixinMeta):
                     _("{user} does not have {amount} {currency} available.").format(
                         user=user,
                         amount=amount.result,
-                        currency=await bank.get_currency_name(ctx.guild if ctx.guild else None),
+                        currency=await bank.get_currency_name(
+                            ctx.guild if ctx.guild else None
+                        ),
                     )
                 )
                 return
@@ -80,7 +84,9 @@ class TradeMixin(MixinMeta):
                     author=ctx.author,
                     pokemon=name,
                     amount=bal,
-                    currency=await bank.get_currency_name(ctx.guild if ctx.guild else None),
+                    currency=await bank.get_currency_name(
+                        ctx.guild if ctx.guild else None
+                    ),
                 )
             )
             try:
@@ -92,10 +98,12 @@ class TradeMixin(MixinMeta):
 
             if authorconfirm.result:
                 self.cursor.execute(
-                    "DELETE FROM users where message_id = ?", (pokemon[1],),
+                    "DELETE FROM users where message_id = ?",
+                    (pokemon[1],),
                 )
                 self.cursor.execute(
-                    INSERT_POKEMON, (user.id, ctx.message.id, json.dumps(pokemon[0])),
+                    INSERT_POKEMON,
+                    (user.id, ctx.message.id, json.dumps(pokemon[0])),
                 )
                 userconf = await self.user_is_global(ctx.author)
                 pokeid = await userconf.pokeid()
@@ -129,7 +137,9 @@ class TradeMixin(MixinMeta):
                     await ctx.send(msg)
 
             else:
-                await ctx.send(_("{user} has denied the trade request.").format(user=user))
+                await ctx.send(
+                    _("{user} has denied the trade request.").format(user=user)
+                )
                 return
 
         else:

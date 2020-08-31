@@ -10,11 +10,10 @@ from redbot.core.utils.chat_formatting import *
 from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
-from .functions import chunks
-from .statements import *
-from .menus import PokeListMenu, PokeList, GenericMenu, PokedexFormat, SearchFormat
 from .converters import Args
-
+from .functions import chunks
+from .menus import GenericMenu, PokedexFormat, PokeList, PokeListMenu, SearchFormat
+from .statements import *
 
 _ = Translator("Pokecord", __file__)
 
@@ -42,20 +41,27 @@ class GeneralMixin(MixinMeta):
             poke["sid"] = i
             pokemons.append(poke)
         if not pokemons:
-            return await ctx.send(_("You don't have any pokémon, go get catching trainer!"))
+            return await ctx.send(
+                _("You don't have any pokémon, go get catching trainer!")
+            )
         _id = await conf.pokeid()
         await ctx.send(
-            _("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id), delete_after=5
+            _("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id),
+            delete_after=5,
         )
         await PokeListMenu(
-            source=PokeList(pokemons), cog=self, ctx=ctx, user=user, delete_message_after=True,
+            source=PokeList(pokemons),
+            cog=self,
+            ctx=ctx,
+            user=user,
+            delete_message_after=True,
         ).start(ctx=ctx, wait=False)
 
     @commands.max_concurrency(1, commands.BucketType.user)
     @commands.command()
     async def nick(self, ctx, id: int, *, nickname: str):
         """Set a pokémons nickname.
-        
+
         ID refers to the position within your pokémon listing.
         This is found at the bottom of the pokemon on `[p]list`"""
         conf = await self.user_is_global(ctx.author)
@@ -73,7 +79,10 @@ class GeneralMixin(MixinMeta):
             )
             return
         async with ctx.typing():
-            result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
+            result = self.cursor.execute(
+                SELECT_POKEMON,
+                (ctx.author.id,),
+            ).fetchall()
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -88,7 +97,8 @@ class GeneralMixin(MixinMeta):
         pokemon = pokemons[id]
         pokemon[0]["nickname"] = nickname
         self.cursor.execute(
-            UPDATE_POKEMON, (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
+            UPDATE_POKEMON,
+            (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
         )
         await ctx.send(
             _("Your {pokemon} has been nicknamed `{nickname}`").format(
@@ -110,7 +120,10 @@ class GeneralMixin(MixinMeta):
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
         async with ctx.typing():
-            result = self.cursor.execute(SELECT_POKEMON, (ctx.author.id,),).fetchall()
+            result = self.cursor.execute(
+                SELECT_POKEMON,
+                (ctx.author.id,),
+            ).fetchall()
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -151,9 +164,12 @@ class GeneralMixin(MixinMeta):
                 )
                 await userconf.pokeid.set(1)
             self.cursor.execute(
-                "DELETE FROM users where message_id = ?", (pokemon[1],),
+                "DELETE FROM users where message_id = ?",
+                (pokemon[1],),
             )
-            await ctx.send(_("Your {name} has been freed.{msg}").format(name=name, msg=msg))
+            await ctx.send(
+                _("Your {name} has been freed.{msg}").format(name=name, msg=msg)
+            )
         else:
             await ctx.send(_("Operation cancelled."))
 
@@ -171,7 +187,8 @@ class GeneralMixin(MixinMeta):
             )
         async with ctx.typing():
             result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
+                """SELECT pokemon, message_id from users where user_id = ?""",
+                (ctx.author.id,),
             ).fetchall()
             pokemons = [None]
             for data in result:
@@ -183,7 +200,9 @@ class GeneralMixin(MixinMeta):
                     _id = len(pokemons) - 1
                 else:
                     await ctx.send(
-                        _("Unidentified keyword, the only supported action is `latest` as of now.")
+                        _(
+                            "Unidentified keyword, the only supported action is `latest` as of now."
+                        )
                     )
                     return
             if _id < 1 or _id > len(pokemons) - 1:
@@ -223,13 +242,14 @@ class GeneralMixin(MixinMeta):
                 cog=self,
                 len_poke=len(pokemonlist),
             ).start(
-                ctx=ctx, wait=False,
+                ctx=ctx,
+                wait=False,
             )
 
     @commands.command()
     async def psearch(self, ctx, *, args: Args):
         """Search your pokemon.
-        
+
         Arguements must have `--` before them.
             `--name` | `--n` - Search pokemon by name.
             `--level`| `--l` - Search pokemon by level.
@@ -238,7 +258,8 @@ class GeneralMixin(MixinMeta):
         """
         async with ctx.typing():
             result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""", (ctx.author.id,),
+                """SELECT pokemon, message_id from users where user_id = ?""",
+                (ctx.author.id,),
             ).fetchall()
             if not result:
                 await ctx.send(_("You don't have any pokémon trainer!"))
@@ -264,7 +285,10 @@ class GeneralMixin(MixinMeta):
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
                 elif args["variant"]:
-                    if poke[0].get("variant", "None").lower() == args["variant"].lower():
+                    if (
+                        poke[0].get("variant", "None").lower()
+                        == args["variant"].lower()
+                    ):
                         correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
@@ -273,9 +297,10 @@ class GeneralMixin(MixinMeta):
                 await ctx.send("No pokémon returned for that search.")
                 return
             content = list(pagify(correct, page_length=1024))
-            await GenericMenu(source=SearchFormat(content), delete_message_after=True,).start(
-                ctx=ctx, wait=False
-            )
+            await GenericMenu(
+                source=SearchFormat(content),
+                delete_message_after=True,
+            ).start(ctx=ctx, wait=False)
 
     @commands.command()
     @commands.max_concurrency(1, commands.BucketType.user)
@@ -297,7 +322,9 @@ class GeneralMixin(MixinMeta):
             poke["sid"] = i
             pokemons.append(poke)
         if not pokemons:
-            return await ctx.send(_("You don't have any pokémon, go get catching trainer!"))
+            return await ctx.send(
+                _("You don't have any pokémon, go get catching trainer!")
+            )
         _id = await conf.pokeid()
         try:
             pokemon = pokemons[_id - 1]
@@ -323,7 +350,11 @@ class GeneralMixin(MixinMeta):
                 headers=[_("Stats"), _("Value")],
             )
             nick = pokemon.get("nickname")
-            alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
+            alias = (
+                _("**Nickname**: {nick}\n").format(nick=nick)
+                if nick is not None
+                else ""
+            )
             variant = (
                 _("**Variant**: {variant}\n").format(variant=pokemon.get("variant"))
                 if pokemon.get("variant")
@@ -351,5 +382,7 @@ class GeneralMixin(MixinMeta):
                     if not pokemon.get("url")
                     else pokemon.get("url")
                 )
-            embed.set_footer(text=_("Pokémon ID: {number}").format(number=pokemon["sid"]))
+            embed.set_footer(
+                text=_("Pokémon ID: {number}").format(number=pokemon["sid"])
+            )
             await ctx.send(embed=embed)
