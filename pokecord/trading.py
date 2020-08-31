@@ -54,9 +54,7 @@ class TradeMixin(MixinMeta):
 
         if pred.result:
             await ctx.send(
-                _("How many credits would you like to recieve for {name}?").format(
-                    name=name
-                )
+                _("How many credits would you like to recieve for {name}?").format(name=name)
             )
             try:
                 amount = MessagePredicate.valid_int(ctx, user=ctx.author)
@@ -70,9 +68,7 @@ class TradeMixin(MixinMeta):
                     _("{user} does not have {amount} {currency} available.").format(
                         user=user,
                         amount=amount.result,
-                        currency=await bank.get_currency_name(
-                            ctx.guild if ctx.guild else None
-                        ),
+                        currency=await bank.get_currency_name(ctx.guild if ctx.guild else None),
                     )
                 )
                 return
@@ -84,9 +80,7 @@ class TradeMixin(MixinMeta):
                     author=ctx.author,
                     pokemon=name,
                     amount=bal,
-                    currency=await bank.get_currency_name(
-                        ctx.guild if ctx.guild else None
-                    ),
+                    currency=await bank.get_currency_name(ctx.guild if ctx.guild else None),
                 )
             )
             try:
@@ -137,9 +131,7 @@ class TradeMixin(MixinMeta):
                     await ctx.send(msg)
 
             else:
-                await ctx.send(
-                    _("{user} has denied the trade request.").format(user=user)
-                )
+                await ctx.send(_("{user} has denied the trade request.").format(user=user))
                 return
 
         else:

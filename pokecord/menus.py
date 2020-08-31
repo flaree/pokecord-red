@@ -94,9 +94,7 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
                 for msg in messages:
                     await msg.delete()
 
-        prompt = await self.ctx.send(
-            _("Please select the Pokémon ID number to jump to.")
-        )
+        prompt = await self.ctx.send(_("Please select the Pokémon ID number to jump to."))
         try:
             pred = MessagePredicate.valid_int(self.ctx)
             msg = await self.bot.wait_for(
@@ -116,9 +114,7 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
         except (asyncio.TimeoutError):
             await cleanup([prompt])
 
-    @menus.button(
-        "\N{WHITE HEAVY CHECK MARK}", position=menus.First(3), skip_if=_cant_select
-    )
+    @menus.button("\N{WHITE HEAVY CHECK MARK}", position=menus.First(3), skip_if=_cant_select)
     async def select(self, payload: discord.RawReactionActionEvent):
         command = self.ctx.bot.get_command("select")
         await self.ctx.invoke(command, _id=self.current_page + 1)
@@ -142,9 +138,7 @@ class PokeList(menus.ListPageSource):
             headers=[_("Stats"), _("Value")],
         )
         nick = pokemon.get("nickname")
-        alias = (
-            _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
-        )
+        alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
         variant = (
             _("**Variant**: {variant}\n").format(variant=pokemon.get("variant"))
             if pokemon.get("variant")
@@ -331,9 +325,7 @@ class PokedexFormat(menus.ListPageSource):
                 value=msg,
             )
         if menu.current_page == 0:
-            embed.description = _(
-                "You've caught {total} out of {amount} pokémon."
-            ).format(
+            embed.description = _("You've caught {total} out of {amount} pokémon.").format(
                 total=len(await menu.cog.config.user(menu.ctx.author).pokeids()),
                 amount=menu.len_poke,
             )

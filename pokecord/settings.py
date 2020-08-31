@@ -132,9 +132,7 @@ class SettingsMixin(MixinMeta):
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
-        msg = _("**Toggle**: {toggle}\n").format(
-            toggle="Yes" if data["toggle"] else "No"
-        )
+        msg = _("**Toggle**: {toggle}\n").format(toggle="Yes" if data["toggle"] else "No")
         msg += _("**Active Channels**: {channels}\n").format(
             channels=humanize_list([str(x) for x in data["activechannels"]])
             if data["activechannels"]

@@ -41,9 +41,7 @@ class GeneralMixin(MixinMeta):
             poke["sid"] = i
             pokemons.append(poke)
         if not pokemons:
-            return await ctx.send(
-                _("You don't have any pokémon, go get catching trainer!")
-            )
+            return await ctx.send(_("You don't have any pokémon, go get catching trainer!"))
         _id = await conf.pokeid()
         await ctx.send(
             _("{user}'s selected Pokémon ID is {id}").format(user=user, id=_id),
@@ -167,9 +165,7 @@ class GeneralMixin(MixinMeta):
                 "DELETE FROM users where message_id = ?",
                 (pokemon[1],),
             )
-            await ctx.send(
-                _("Your {name} has been freed.{msg}").format(name=name, msg=msg)
-            )
+            await ctx.send(_("Your {name} has been freed.{msg}").format(name=name, msg=msg))
         else:
             await ctx.send(_("Operation cancelled."))
 
@@ -200,9 +196,7 @@ class GeneralMixin(MixinMeta):
                     _id = len(pokemons) - 1
                 else:
                     await ctx.send(
-                        _(
-                            "Unidentified keyword, the only supported action is `latest` as of now."
-                        )
+                        _("Unidentified keyword, the only supported action is `latest` as of now.")
                     )
                     return
             if _id < 1 or _id > len(pokemons) - 1:
@@ -285,10 +279,7 @@ class GeneralMixin(MixinMeta):
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
                 elif args["variant"]:
-                    if (
-                        poke[0].get("variant", "None").lower()
-                        == args["variant"].lower()
-                    ):
+                    if poke[0].get("variant", "None").lower() == args["variant"].lower():
                         correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
                             pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
                         )
@@ -322,9 +313,7 @@ class GeneralMixin(MixinMeta):
             poke["sid"] = i
             pokemons.append(poke)
         if not pokemons:
-            return await ctx.send(
-                _("You don't have any pokémon, go get catching trainer!")
-            )
+            return await ctx.send(_("You don't have any pokémon, go get catching trainer!"))
         _id = await conf.pokeid()
         try:
             pokemon = pokemons[_id - 1]
@@ -350,11 +339,7 @@ class GeneralMixin(MixinMeta):
                 headers=[_("Stats"), _("Value")],
             )
             nick = pokemon.get("nickname")
-            alias = (
-                _("**Nickname**: {nick}\n").format(nick=nick)
-                if nick is not None
-                else ""
-            )
+            alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
             variant = (
                 _("**Variant**: {variant}\n").format(variant=pokemon.get("variant"))
                 if pokemon.get("variant")
@@ -382,7 +367,5 @@ class GeneralMixin(MixinMeta):
                     if not pokemon.get("url")
                     else pokemon.get("url")
                 )
-            embed.set_footer(
-                text=_("Pokémon ID: {number}").format(number=pokemon["sid"])
-            )
+            embed.set_footer(text=_("Pokémon ID: {number}").format(number=pokemon["sid"]))
             await ctx.send(embed=embed)

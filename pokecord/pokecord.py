@@ -47,9 +47,7 @@ class Pokecord(
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        self.config = Config.get_conf(
-            self, identifier=95932766180343808, force_registration=True
-        )
+        self.config = Config.get_conf(self, identifier=95932766180343808, force_registration=True)
         self.config.register_global(
             isglobal=True,
             hashed=False,
@@ -293,9 +291,7 @@ class Pokecord(
             await ctx.send(_("That's not a valid starter pokémon, trainer!"))
             return
         await ctx.send(
-            _("You've chosen {pokemon} as your starter pokémon!").format(
-                pokemon=pokemon.title()
-            )
+            _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
         )
         pokemon = starter_pokemon[pokemon.lower()]
         pokemon["level"] = 1
@@ -358,9 +354,7 @@ class Pokecord(
                     if pokemonspawn["name"][name] is not None
                 )
                 names.add(
-                    pokemonspawn["name"]["english"]
-                    .translate(str.maketrans("", "", PUNCT))
-                    .lower()
+                    pokemonspawn["name"]["english"].translate(str.maketrans("", "", PUNCT)).lower()
                 )
                 if pokemonspawn.get("alias"):
                     names.add(pokemonspawn["alias"].lower())
@@ -373,9 +367,7 @@ class Pokecord(
                     lvl = random.randint(1, 13)
                     pokename = self.get_name(pokemonspawn["name"], ctx.author)
                     variant = (
-                        f'{pokemonspawn.get("variant")} '
-                        if pokemonspawn.get("variant")
-                        else ""
+                        f'{pokemonspawn.get("variant")} ' if pokemonspawn.get("variant") else ""
                     )
                     msg = _(
                         "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
@@ -388,9 +380,9 @@ class Pokecord(
 
                     async with conf.pokeids() as poke:
                         if str(pokemonspawn["id"]) not in poke:
-                            msg += _(
-                                "\n{pokename} has been added to the pokédex."
-                            ).format(pokename=pokename)
+                            msg += _("\n{pokename} has been added to the pokédex.").format(
+                                pokename=pokename
+                            )
 
                             poke[str(pokemonspawn["id"])] = 1
                         else:
@@ -408,10 +400,7 @@ class Pokecord(
         await ctx.send(_("No pokemon is ready to be caught."))
 
     def spawn_chance(self, guildid):
-        return (
-            self.maybe_spawn[guildid]["amount"]
-            > self.maybe_spawn[guildid]["spawnchance"]
-        )
+        return self.maybe_spawn[guildid]["amount"] > self.maybe_spawn[guildid]["spawnchance"]
 
     # async def get_hash(self, pokemon):
     #     return (await self.config.hashes()).get(pokemon, None)
@@ -445,8 +434,7 @@ class Pokecord(
             self.maybe_spawn[message.guild.id]["author"] == message.author.id
         ):  # stop spamming to spawn
             if (
-                datetime.datetime.utcnow().timestamp()
-                - self.maybe_spawn[message.guild.id]["time"]
+                datetime.datetime.utcnow().timestamp() - self.maybe_spawn[message.guild.id]["time"]
             ) < 5:
                 return
         self.maybe_spawn[message.guild.id]["amount"] += 1
@@ -457,9 +445,7 @@ class Pokecord(
         if not guildcache["activechannels"]:
             channel = message.channel
         else:
-            channel = message.guild.get_channel(
-                int(random.choice(guildcache["activechannels"]))
-            )
+            channel = message.guild.get_channel(int(random.choice(guildcache["activechannels"])))
             if channel is None:
                 return  # TODO: Remove channel from config
         await self.spawn_pokemon(channel)
@@ -474,9 +460,7 @@ class Pokecord(
             ).format(prefix=prefixes[0]),
             color=await self.bot.get_embed_color(channel),
         )
-        log.debug(
-            f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}"
-        )
+        log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
         _file = discord.File(
             self.datapath
             + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias")}.png',
@@ -579,12 +563,8 @@ class Pokecord(
                 pokemon["level"] = lvl
                 if not userconf["silence"]:
                     embed = discord.Embed(
-                        title=_("Congratulations {user}!").format(
-                            user=user.display_name
-                        ),
-                        description=_(
-                            "Your {name} has evolved into {evolvename}!"
-                        ).format(
+                        title=_("Congratulations {user}!").format(user=user.display_name),
+                        description=_("Your {name} has evolved into {evolvename}!").format(
                             name=name, evolvename=self.get_name(pokemon["name"], user)
                         ),
                         color=await self.bot.get_embed_color(channel),
@@ -598,24 +578,19 @@ class Pokecord(
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
                 for stat in pokemon["stats"]:
-                    pokemon["stats"][stat] = int(
-                        pokemon["stats"][stat]
-                    ) + random.randint(1, 3)
+                    pokemon["stats"][stat] = int(pokemon["stats"][stat]) + random.randint(1, 3)
                 if not userconf["silence"]:
                     embed = discord.Embed(
-                        title=_("Congratulations {user}!").format(
-                            user=user.display_name
+                        title=_("Congratulations {user}!").format(user=user.display_name),
+                        description=_("Your {name} has levelled up to level {level}!").format(
+                            name=name, level=pokemon["level"]
                         ),
-                        description=_(
-                            "Your {name} has levelled up to level {level}!"
-                        ).format(name=name, level=pokemon["level"]),
                         color=await self.bot.get_embed_color(channel),
                     )
             if embed is not None:
                 if (
                     self.guildcache[channel.guild.id].get("levelup_messages")
-                    and channel.id
-                    in self.guildcache[channel.guild.id]["activechannels"]
+                    and channel.id in self.guildcache[channel.guild.id]["activechannels"]
                 ):
                     channel = channel
                 elif (
