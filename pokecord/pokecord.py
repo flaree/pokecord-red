@@ -590,6 +590,11 @@ class Pokecord(
                         color=await self.bot.get_embed_color(channel),
                     )
                 log.debug(f"{name} has evolved into {pokemon['name']} for {user}.")
+                async with self.config.user(user).pokeids() as poke:
+                    if str(pokemon["id"]) not in poke:
+                        poke[str(pokemon["id"])] = 1
+                    else:
+                        poke[str(pokemon["id"])] += 1
             else:
                 log.debug(f"{pokemon['name']} levelled up for {user}")
                 for stat in pokemon["stats"]:
