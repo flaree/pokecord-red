@@ -450,8 +450,9 @@ class Pokecord(
                 return  # TODO: Remove channel from config
         await self.spawn_pokemon(channel)
 
-    async def spawn_pokemon(self, channel):
-        pokemon = self.pokemon_choose()
+    async def spawn_pokemon(self, channel, *, pokemon=None):
+        if pokemon is None:
+            pokemon = self.pokemon_choose()
         prefixes = await self.bot.get_valid_prefixes(guild=channel.guild)
         embed = discord.Embed(
             title=_("‌‌A wild pokémon has аppeаred!"),
@@ -463,7 +464,7 @@ class Pokecord(
         log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
         _file = discord.File(
             self.datapath
-            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias")}.png',
+            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png',
             filename="pokemonspawn.png",
         )
         embed.set_image(url="attachment://pokemonspawn.png")
