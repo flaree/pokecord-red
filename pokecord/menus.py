@@ -21,7 +21,7 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
         ctx=None,
         user=None,
         clear_reactions_after: bool = True,
-        delete_message_after: bool = True,
+        delete_message_after: bool = False,
         add_reactions: bool = True,
         using_custom_emoji: bool = False,
         using_embeds: bool = False,
@@ -249,6 +249,8 @@ class GenericMenu(menus.MenuPages, inherit_buttons=False):
     @menus.button("\N{CROSS MARK}", position=menus.First(2))
     async def stop_pages_default(self, payload: discord.RawReactionActionEvent) -> None:
         self.stop()
+        with contextlib.suppress(discord.NotFound):
+            await self.message.delete()
 
     @menus.button(
         "\N{BLACK RIGHT-POINTING TRIANGLE}",
