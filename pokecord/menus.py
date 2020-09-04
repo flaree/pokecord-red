@@ -38,7 +38,7 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
             clear_reactions_after=clear_reactions_after,
             delete_message_after=delete_message_after,
             check_embeds=using_embeds,
-            timeout=5,
+            timeout=timeout,
             message=message,
             **kwargs,
         )
