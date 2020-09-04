@@ -52,7 +52,7 @@ class GeneralMixin(MixinMeta):
             cog=self,
             ctx=ctx,
             user=user,
-            delete_message_after=True,
+            delete_message_after=False,
         ).start(ctx=ctx, wait=False)
 
     @commands.max_concurrency(1, commands.BucketType.user)
@@ -232,7 +232,7 @@ class GeneralMixin(MixinMeta):
                 chunked.append(item)
             await GenericMenu(
                 source=PokedexFormat(chunked),
-                delete_message_after=True,
+                delete_message_after=False,
                 cog=self,
                 len_poke=len(pokemonlist),
             ).start(
@@ -290,7 +290,7 @@ class GeneralMixin(MixinMeta):
             content = list(pagify(correct, page_length=1024))
             await GenericMenu(
                 source=SearchFormat(content),
-                delete_message_after=True,
+                delete_message_after=False,
             ).start(ctx=ctx, wait=False)
 
     @commands.command()
