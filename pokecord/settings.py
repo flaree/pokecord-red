@@ -25,7 +25,7 @@ class SettingsMixin(MixinMeta):
 
     @commands.command(usage="type")
     @commands.guild_only()
-    async def silence(self, ctx, _type: bool = None):
+    async def pokesilence(self, ctx, _type: bool = None):
         """Toggle pokecord levelling messages on or off."""
         conf = await self.user_is_global(ctx.author)
         if _type is None:
