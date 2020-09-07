@@ -12,6 +12,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from .abc import MixinMeta
 from .functions import select_pokemon
 from .statements import *
+from .pokemixin import poke
 
 _ = Translator("Pokecord", __file__)
 
@@ -19,7 +20,7 @@ _ = Translator("Pokecord", __file__)
 class TradeMixin(MixinMeta):
     """Pokecord Trading Commands"""
 
-    @commands.command(usage="<user> <pokemon ID>")
+    @poke.command(usage="<user> <pokemon ID>")
     async def trade(self, ctx, user: discord.Member, *, id: int):
         """Pokecord Trading
 

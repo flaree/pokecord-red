@@ -14,6 +14,7 @@ from .converters import Args
 from .functions import chunks
 from .menus import GenericMenu, PokedexFormat, PokeList, PokeListMenu, SearchFormat
 from .statements import *
+from .pokemixin import poke
 
 _ = Translator("Pokecord", __file__)
 
@@ -22,8 +23,8 @@ class GeneralMixin(MixinMeta):
     """Pokecord General Commands"""
 
     @commands.max_concurrency(1, commands.BucketType.user)
-    @commands.command()
-    async def list(self, ctx, user: discord.Member = None):
+    @commands.command(name="list", aliases=["pokemon"])
+    async def _list(self, ctx, user: discord.Member = None):
         """List a trainers or your own pokémon!"""
         conf = await self.user_is_global(ctx.author)
         if not await conf.has_starter():
@@ -56,7 +57,7 @@ class GeneralMixin(MixinMeta):
         ).start(ctx=ctx, wait=False)
 
     @commands.max_concurrency(1, commands.BucketType.user)
-    @commands.command()
+    @poke.command()
     async def nick(self, ctx, id: int, *, nickname: str):
         """Set a pokémons nickname.
 
@@ -105,7 +106,7 @@ class GeneralMixin(MixinMeta):
         )
 
     @commands.max_concurrency(1, commands.BucketType.user)
-    @commands.command(aliases=["free"])
+    @poke.command(aliases=["free"])
     async def release(self, ctx, id: int):
         """Release a pokémon."""
         conf = await self.user_is_global(ctx.author)

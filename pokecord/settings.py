@@ -4,6 +4,7 @@ from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import humanize_list
 
 from .abc import MixinMeta
+from .pokemixin import poke
 
 _ = Translator("Pokecord", __file__)
 
@@ -23,9 +24,9 @@ LOCALES = {
 class SettingsMixin(MixinMeta):
     """Pokecord Settings"""
 
-    @commands.command(usage="type")
+    @poke.command(usage="type")
     @commands.guild_only()
-    async def pokesilence(self, ctx, _type: bool = None):
+    async def silence(self, ctx, _type: bool = None):
         """Toggle pokecord levelling messages on or off."""
         conf = await self.user_is_global(ctx.author)
         if _type is None:
@@ -37,7 +38,7 @@ class SettingsMixin(MixinMeta):
             await ctx.send(_("Your pokécord levelling messages have been re-enabled!"))
         await self.update_user_cache()
 
-    @commands.command()
+    @poke.command()
     @commands.guild_only()
     async def locale(self, ctx, locale: str):
         """Set the Pokecord locale to use for yourself."""
@@ -53,7 +54,7 @@ class SettingsMixin(MixinMeta):
         await ctx.tick()
         await self.update_user_cache()
 
-    @commands.group(aliases=["pokeset"])
+    @poke.group(name="set")
     @commands.admin_or_permissions(manage_channels=True)
     @commands.guild_only()
     async def pokecordset(self, ctx):
