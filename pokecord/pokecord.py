@@ -15,10 +15,10 @@ from redbot.core.i18n import Translator, cog_i18n
 from redbot.core.utils.chat_formatting import escape, humanize_list
 
 from .general import GeneralMixin
+from .pokemixin import PokeMixin
 from .settings import SettingsMixin
 from .statements import *
 from .trading import TradeMixin
-from .pokemixin import PokeMixin
 
 log = logging.getLogger("red.flare.pokecord")
 

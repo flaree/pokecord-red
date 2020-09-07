@@ -3,7 +3,7 @@ import json
 
 import discord
 import tabulate
-from redbot.core import bank, commands
+from redbot.core import bank
 from redbot.core.errors import BalanceTooHigh
 from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import *
@@ -11,8 +11,8 @@ from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
 from .functions import select_pokemon
-from .statements import *
 from .pokemixin import poke
+from .statements import *
 
 _ = Translator("Pokecord", __file__)
 

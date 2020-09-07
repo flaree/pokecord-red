@@ -13,8 +13,8 @@ from .abc import MixinMeta
 from .converters import Args
 from .functions import chunks
 from .menus import GenericMenu, PokedexFormat, PokeList, PokeListMenu, SearchFormat
-from .statements import *
 from .pokemixin import poke
+from .statements import *
 
 _ = Translator("Pokecord", __file__)
 
