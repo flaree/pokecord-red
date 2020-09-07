@@ -37,7 +37,7 @@ class Pokecord(
 ):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-alpha-18"
+    __version__ = "0.0.1-alpha-19"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -111,7 +111,9 @@ class Pokecord(
             gdata = json.load(f)
         with open(f"{self.datapath}/alolan.json", encoding="utf-8") as f:
             adata = json.load(f)
-        self.pokemondata = pdata + sdata + ldata + mdata + gdata + adata
+        with open(f"{self.datapath}/megas.json", encoding="utf-8") as f:
+            mdata = json.load(f)
+        self.pokemondata = pdata + sdata + ldata + mdata + gdata + adata + mdata
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
             pokemon["id"]: {

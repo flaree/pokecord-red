@@ -4,11 +4,11 @@ import asyncio
 import json
 from io import BytesIO
 
-import aiohttp
-import bs4
-import html5lib
-from bs4 import BeautifulSoup
-from selenium import webdriver
+# import aiohttp
+# import bs4
+# import html5lib
+# from bs4 import BeautifulSoup
+# from selenium import webdriver
 
 URL = "https://pokemondb.net/pokedex/all"
 CDNURL = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{}.png"
@@ -42,12 +42,72 @@ async def main():
 
     # with open(f"pokecord/data/shiny.json", "r", encoding="utf-8") as f:
     #     a = json.load(f)
-    with open(f"pokecord/data/alolan.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
+    print(2)
+    with open(f"pokecord/data/pokedex.json", "r", encoding="utf-8") as f:
+        p = json.load(f)
+    with open(f"pokecord/data/legendary.json", "r", encoding="utf-8") as f:
+        l = json.load(f)
+    with open(f"pokecord/data/mythical.json", "r", encoding="utf-8") as f:
+        m = json.load(f)
+    data = p + l + m
+    a = []
+    MEGAS = [
+        3,
+        6,
+        9,
+        64,
+        94,
+        115,
+        127,
+        130,
+        142,
+        150,
+        181,
+        212,
+        214,
+        229,
+        248,
+        257,
+        282,
+        303,
+        306,
+        308,
+        310,
+        354,
+        359,
+        380,
+        381,
+        445,
+        448,
+        460,
+        15,
+        18,
+        80,
+        208,
+        254,
+        302,
+        319,
+        323,
+        334,
+        362,
+        373,
+        376,
+        384,
+        428,
+        475,
+        531,
+        719,
+    ]
+    for pokemon in data:
+        if pokemon["id"] in MEGAS:
+            pokemon["variant"] = "Mega"
+            for stat in pokemon["stats"]:
+                pokemon["stats"][stat] += 50
+            pokemon["spawnchance"] = 0.001
+            pokemon["alias"] = f"Mega {pokemon['name']['english']}"
+            a.append(pokemon)
 
-    for poke in data:
-        poke["alias"] = poke["variant"] + " " + poke["name"]["english"]
-    await write(data, "alolan")
+    await write(a, "megas")
 
 
 async def get_img():

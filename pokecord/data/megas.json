@@ -1,0 +1,1116 @@
+[
+ {
+  "id": 3,
+  "name": {
+   "english": "Venusaur",
+   "japanese": "\u30d5\u30b7\u30ae\u30d0\u30ca",
+   "chinese": "\u5999\u86d9\u82b1",
+   "french": "Florizarre"
+  },
+  "type": [
+   "Grass",
+   "Poison"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 132,
+   "Defence": 133,
+   "Sp. Atk": 150,
+   "Sp. Def": 150,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Venusaur"
+ },
+ {
+  "id": 6,
+  "name": {
+   "english": "Charizard",
+   "japanese": "\u30ea\u30b6\u30fc\u30c9\u30f3",
+   "chinese": "\u55b7\u706b\u9f99",
+   "french": "Dracaufeu"
+  },
+  "type": [
+   "Fire",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 128,
+   "Attack": 134,
+   "Defence": 128,
+   "Sp. Atk": 159,
+   "Sp. Def": 135,
+   "Speed": 150
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Charizard X"
+ },
+ {
+    "id": 6,
+    "name": {
+     "english": "Charizard",
+     "japanese": "\u30ea\u30b6\u30fc\u30c9\u30f3",
+     "chinese": "\u55b7\u706b\u9f99",
+     "french": "Dracaufeu"
+    },
+    "type": [
+     "Fire",
+     "Flying"
+    ],
+    "stats": {
+     "HP": 128,
+     "Attack": 134,
+     "Defence": 128,
+     "Sp. Atk": 159,
+     "Sp. Def": 135,
+     "Speed": 150
+    },
+    "spawnchance": 0.001,
+    "variant": "Mega",
+    "alias": "Mega Charizard Y"
+   },
+ {
+  "id": 9,
+  "name": {
+   "english": "Blastoise",
+   "japanese": "\u30ab\u30e1\u30c3\u30af\u30b9",
+   "chinese": "\u6c34\u7bad\u9f9f",
+   "french": "Tortank"
+  },
+  "type": [
+   "Water"
+  ],
+  "stats": {
+   "HP": 129,
+   "Attack": 133,
+   "Defence": 150,
+   "Sp. Atk": 135,
+   "Sp. Def": 155,
+   "Speed": 128
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Blastoise"
+ },
+ {
+  "id": 15,
+  "name": {
+   "english": "Beedrill",
+   "japanese": "\u30b9\u30d4\u30a2\u30fc",
+   "chinese": "\u5927\u9488\u8702",
+   "french": "Dardargnan"
+  },
+  "type": [
+   "Bug",
+   "Poison"
+  ],
+  "stats": {
+   "HP": 115,
+   "Attack": 140,
+   "Defence": 90,
+   "Sp. Atk": 95,
+   "Sp. Def": 130,
+   "Speed": 125
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Beedrill"
+ },
+ {
+  "id": 18,
+  "name": {
+   "english": "Pidgeot",
+   "japanese": "\u30d4\u30b8\u30e7\u30c3\u30c8",
+   "chinese": "\u5927\u6bd4\u9e1f",
+   "french": "Roucarnage"
+  },
+  "type": [
+   "Normal",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 133,
+   "Attack": 130,
+   "Defence": 125,
+   "Sp. Atk": 120,
+   "Sp. Def": 120,
+   "Speed": 151
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Pidgeot"
+ },
+ {
+  "id": 64,
+  "name": {
+   "english": "Kadabra",
+   "japanese": "\u30e6\u30f3\u30b2\u30e9\u30fc",
+   "chinese": "\u52c7\u57fa\u62c9",
+   "french": "Kadabra"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 90,
+   "Attack": 85,
+   "Defence": 80,
+   "Sp. Atk": 170,
+   "Sp. Def": 120,
+   "Speed": 155
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Kadabra"
+ },
+ {
+  "id": 80,
+  "name": {
+   "english": "Slowbro",
+   "japanese": "\u30e4\u30c9\u30e9\u30f3",
+   "chinese": "\u5446\u58f3\u517d",
+   "french": "Flagadoss"
+  },
+  "type": [
+   "Water",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 145,
+   "Attack": 125,
+   "Defence": 160,
+   "Sp. Atk": 150,
+   "Sp. Def": 130,
+   "Speed": 80
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Slowbro"
+ },
+ {
+  "id": 94,
+  "name": {
+   "english": "Gengar",
+   "japanese": "\u30b2\u30f3\u30ac\u30fc",
+   "chinese": "\u803f\u9b3c",
+   "french": "Ectoplasma"
+  },
+  "type": [
+   "Ghost",
+   "Poison"
+  ],
+  "stats": {
+   "HP": 110,
+   "Attack": 115,
+   "Defence": 110,
+   "Sp. Atk": 180,
+   "Sp. Def": 125,
+   "Speed": 160
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Gengar"
+ },
+ {
+  "id": 115,
+  "name": {
+   "english": "Kangaskhan",
+   "japanese": "\u30ac\u30eb\u30fc\u30e9",
+   "chinese": "\u888b\u517d",
+   "french": "Kangourex"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 155,
+   "Attack": 145,
+   "Defence": 130,
+   "Sp. Atk": 90,
+   "Sp. Def": 130,
+   "Speed": 140
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Kangaskhan"
+ },
+ {
+  "id": 127,
+  "name": {
+   "english": "Pinsir",
+   "japanese": "\u30ab\u30a4\u30ed\u30b9",
+   "chinese": "\u51ef\u7f57\u65af",
+   "french": "Scarabrute"
+  },
+  "type": [
+   "Bug"
+  ],
+  "stats": {
+   "HP": 115,
+   "Attack": 175,
+   "Defence": 150,
+   "Sp. Atk": 105,
+   "Sp. Def": 120,
+   "Speed": 135
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Pinsir"
+ },
+ {
+  "id": 130,
+  "name": {
+   "english": "Gyarados",
+   "japanese": "\u30ae\u30e3\u30e9\u30c9\u30b9",
+   "chinese": "\u66b4\u9ca4\u9f99",
+   "french": "L\u00e9viator"
+  },
+  "type": [
+   "Water",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 145,
+   "Attack": 175,
+   "Defence": 129,
+   "Sp. Atk": 110,
+   "Sp. Def": 150,
+   "Speed": 131
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Gyarados"
+ },
+ {
+  "id": 142,
+  "name": {
+   "english": "Aerodactyl",
+   "japanese": "\u30d7\u30c6\u30e9",
+   "chinese": "\u5316\u77f3\u7ffc\u9f99",
+   "french": "Pt\u00e9ra"
+  },
+  "type": [
+   "Rock",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 155,
+   "Defence": 115,
+   "Sp. Atk": 110,
+   "Sp. Def": 125,
+   "Speed": 180
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Aerodactyl"
+ },
+ {
+  "id": 181,
+  "name": {
+   "english": "Ampharos",
+   "japanese": "\u30c7\u30f3\u30ea\u30e5\u30a6",
+   "chinese": "\u7535\u9f99",
+   "french": "Pharamp"
+  },
+  "type": [
+   "Electric"
+  ],
+  "stats": {
+   "HP": 140,
+   "Attack": 125,
+   "Defence": 135,
+   "Sp. Atk": 165,
+   "Sp. Def": 140,
+   "Speed": 105
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Ampharos"
+ },
+ {
+  "id": 208,
+  "name": {
+   "english": "Steelix",
+   "japanese": "\u30cf\u30ac\u30cd\u30fc\u30eb",
+   "chinese": "\u5927\u94a2\u86c7",
+   "french": "Steelix"
+  },
+  "type": [
+   "Steel",
+   "Ground"
+  ],
+  "stats": {
+   "HP": 125,
+   "Attack": 135,
+   "Defence": 250,
+   "Sp. Atk": 105,
+   "Sp. Def": 115,
+   "Speed": 80
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Steelix"
+ },
+ {
+  "id": 212,
+  "name": {
+   "english": "Scizor",
+   "japanese": "\u30cf\u30c3\u30b5\u30e0",
+   "chinese": "\u5de8\u94b3\u87b3\u8782",
+   "french": "Cizayox"
+  },
+  "type": [
+   "Bug",
+   "Steel"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 180,
+   "Defence": 150,
+   "Sp. Atk": 105,
+   "Sp. Def": 130,
+   "Speed": 115
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Scizor"
+ },
+ {
+  "id": 214,
+  "name": {
+   "english": "Heracross",
+   "japanese": "\u30d8\u30e9\u30af\u30ed\u30b9",
+   "chinese": "\u8d6b\u62c9\u514b\u7f57\u65af",
+   "french": "Scarhino"
+  },
+  "type": [
+   "Bug",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 175,
+   "Defence": 125,
+   "Sp. Atk": 90,
+   "Sp. Def": 145,
+   "Speed": 135
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Heracross"
+ },
+ {
+  "id": 229,
+  "name": {
+   "english": "Houndoom",
+   "japanese": "\u30d8\u30eb\u30ac\u30fc",
+   "chinese": "\u9ed1\u9c81\u52a0",
+   "french": "D\u00e9molosse"
+  },
+  "type": [
+   "Dark",
+   "Fire"
+  ],
+  "stats": {
+   "HP": 125,
+   "Attack": 140,
+   "Defence": 100,
+   "Sp. Atk": 160,
+   "Sp. Def": 130,
+   "Speed": 145
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Houndoom"
+ },
+ {
+  "id": 248,
+  "name": {
+   "english": "Tyranitar",
+   "japanese": "\u30d0\u30f3\u30ae\u30e9\u30b9",
+   "chinese": "\u73ed\u57fa\u62c9\u65af",
+   "french": "Tyranocif"
+  },
+  "type": [
+   "Rock",
+   "Dark"
+  ],
+  "stats": {
+   "HP": 150,
+   "Attack": 184,
+   "Defence": 160,
+   "Sp. Atk": 145,
+   "Sp. Def": 150,
+   "Speed": 111
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Tyranitar"
+ },
+ {
+  "id": 254,
+  "name": {
+   "english": "Sceptile",
+   "japanese": "\u30b8\u30e5\u30ab\u30a4\u30f3",
+   "chinese": "\u8725\u8734\u738b",
+   "french": "Jungko"
+  },
+  "type": [
+   "Grass"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 135,
+   "Defence": 115,
+   "Sp. Atk": 155,
+   "Sp. Def": 135,
+   "Speed": 170
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Sceptile"
+ },
+ {
+  "id": 257,
+  "name": {
+   "english": "Blaziken",
+   "japanese": "\u30d0\u30b7\u30e3\u30fc\u30e2",
+   "chinese": "\u706b\u7130\u9e21",
+   "french": "Bras\u00e9gali"
+  },
+  "type": [
+   "Fire",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 170,
+   "Defence": 120,
+   "Sp. Atk": 160,
+   "Sp. Def": 120,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Blaziken"
+ },
+ {
+  "id": 282,
+  "name": {
+   "english": "Gardevoir",
+   "japanese": "\u30b5\u30fc\u30ca\u30a4\u30c8",
+   "chinese": "\u6c99\u5948\u6735",
+   "french": "Gardevoir"
+  },
+  "type": [
+   "Psychic",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 118,
+   "Attack": 115,
+   "Defence": 115,
+   "Sp. Atk": 175,
+   "Sp. Def": 165,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Gardevoir"
+ },
+ {
+  "id": 302,
+  "name": {
+   "english": "Sableye",
+   "japanese": "\u30e4\u30df\u30e9\u30df",
+   "chinese": "\u52fe\u9b42\u773c",
+   "french": "T\u00e9n\u00e9fix"
+  },
+  "type": [
+   "Dark",
+   "Ghost"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 125,
+   "Defence": 125,
+   "Sp. Atk": 115,
+   "Sp. Def": 115,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Sableye"
+ },
+ {
+  "id": 303,
+  "name": {
+   "english": "Mawile",
+   "japanese": "\u30af\u30c1\u30fc\u30c8",
+   "chinese": "\u5927\u5634\u5a03",
+   "french": "Mysdibule"
+  },
+  "type": [
+   "Steel",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 135,
+   "Defence": 135,
+   "Sp. Atk": 105,
+   "Sp. Def": 105,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Mawile"
+ },
+ {
+  "id": 306,
+  "name": {
+   "english": "Aggron",
+   "japanese": "\u30dc\u30b9\u30b4\u30c9\u30e9",
+   "chinese": "\u6ce2\u58eb\u53ef\u591a\u62c9",
+   "french": "Galeking"
+  },
+  "type": [
+   "Steel",
+   "Rock"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 160,
+   "Defence": 230,
+   "Sp. Atk": 110,
+   "Sp. Def": 110,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Aggron"
+ },
+ {
+  "id": 308,
+  "name": {
+   "english": "Medicham",
+   "japanese": "\u30c1\u30e3\u30fc\u30ec\u30e0",
+   "chinese": "\u6070\u96f7\u59c6",
+   "french": "Charmina"
+  },
+  "type": [
+   "Fighting",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 110,
+   "Attack": 110,
+   "Defence": 125,
+   "Sp. Atk": 110,
+   "Sp. Def": 125,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Medicham"
+ },
+ {
+  "id": 310,
+  "name": {
+   "english": "Manectric",
+   "japanese": "\u30e9\u30a4\u30dc\u30eb\u30c8",
+   "chinese": "\u96f7\u7535\u517d",
+   "french": "\u00c9lecsprint"
+  },
+  "type": [
+   "Electric"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 125,
+   "Defence": 110,
+   "Sp. Atk": 155,
+   "Sp. Def": 110,
+   "Speed": 155
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Manectric"
+ },
+ {
+  "id": 319,
+  "name": {
+   "english": "Sharpedo",
+   "japanese": "\u30b5\u30e1\u30cf\u30c0\u30fc",
+   "chinese": "\u5de8\u7259\u9ca8",
+   "french": "Sharpedo"
+  },
+  "type": [
+   "Water",
+   "Dark"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 170,
+   "Defence": 90,
+   "Sp. Atk": 145,
+   "Sp. Def": 90,
+   "Speed": 145
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Sharpedo"
+ },
+ {
+  "id": 323,
+  "name": {
+   "english": "Camerupt",
+   "japanese": "\u30d0\u30af\u30fc\u30c0",
+   "chinese": "\u55b7\u706b\u9a7c",
+   "french": "Cam\u00e9rupt"
+  },
+  "type": [
+   "Fire",
+   "Ground"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 150,
+   "Defence": 120,
+   "Sp. Atk": 155,
+   "Sp. Def": 125,
+   "Speed": 90
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Camerupt"
+ },
+ {
+  "id": 334,
+  "name": {
+   "english": "Altaria",
+   "japanese": "\u30c1\u30eb\u30bf\u30ea\u30b9",
+   "chinese": "\u4e03\u5915\u9752\u9e1f",
+   "french": "Altaria"
+  },
+  "type": [
+   "Dragon",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 125,
+   "Attack": 120,
+   "Defence": 140,
+   "Sp. Atk": 120,
+   "Sp. Def": 155,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Altaria"
+ },
+ {
+  "id": 354,
+  "name": {
+   "english": "Banette",
+   "japanese": "\u30b8\u30e5\u30da\u30c3\u30bf",
+   "chinese": "\u8bc5\u5492\u5a03\u5a03",
+   "french": "Branette"
+  },
+  "type": [
+   "Ghost"
+  ],
+  "stats": {
+   "HP": 114,
+   "Attack": 165,
+   "Defence": 115,
+   "Sp. Atk": 133,
+   "Sp. Def": 113,
+   "Speed": 115
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Banette"
+ },
+ {
+  "id": 359,
+  "name": {
+   "english": "Absol",
+   "japanese": "\u30a2\u30d6\u30bd\u30eb",
+   "chinese": "\u963f\u52c3\u68ad\u9c81",
+   "french": "Absol"
+  },
+  "type": [
+   "Dark"
+  ],
+  "stats": {
+   "HP": 115,
+   "Attack": 180,
+   "Defence": 110,
+   "Sp. Atk": 125,
+   "Sp. Def": 110,
+   "Speed": 125
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Absol"
+ },
+ {
+  "id": 362,
+  "name": {
+   "english": "Glalie",
+   "japanese": "\u30aa\u30cb\u30b4\u30fc\u30ea",
+   "chinese": "\u51b0\u9b3c\u62a4",
+   "french": "Oniglali"
+  },
+  "type": [
+   "Ice"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 130,
+   "Defence": 130,
+   "Sp. Atk": 130,
+   "Sp. Def": 130,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Glalie"
+ },
+ {
+  "id": 373,
+  "name": {
+   "english": "Salamence",
+   "japanese": "\u30dc\u30fc\u30de\u30f3\u30c0",
+   "chinese": "\u66b4\u98de\u9f99",
+   "french": "Drattak"
+  },
+  "type": [
+   "Dragon",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 145,
+   "Attack": 185,
+   "Defence": 130,
+   "Sp. Atk": 160,
+   "Sp. Def": 130,
+   "Speed": 150
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Salamence"
+ },
+ {
+  "id": 376,
+  "name": {
+   "english": "Metagross",
+   "japanese": "\u30e1\u30bf\u30b0\u30ed\u30b9",
+   "chinese": "\u5de8\u91d1\u602a",
+   "french": "M\u00e9talosse"
+  },
+  "type": [
+   "Steel",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 185,
+   "Defence": 180,
+   "Sp. Atk": 145,
+   "Sp. Def": 140,
+   "Speed": 120
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Metagross"
+ },
+ {
+  "id": 428,
+  "name": {
+   "english": "Lopunny",
+   "japanese": "\u30df\u30df\u30ed\u30c3\u30d7",
+   "chinese": "\u957f\u8033\u5154",
+   "french": "Lockpin"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 115,
+   "Attack": 126,
+   "Defence": 134,
+   "Sp. Atk": 104,
+   "Sp. Def": 146,
+   "Speed": 155
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Lopunny"
+ },
+ {
+  "id": 445,
+  "name": {
+   "english": "Garchomp",
+   "japanese": "\u30ac\u30d6\u30ea\u30a2\u30b9",
+   "chinese": "\u70c8\u54ac\u9646\u9ca8",
+   "french": "Carchacrok"
+  },
+  "type": [
+   "Dragon",
+   "Ground"
+  ],
+  "stats": {
+   "HP": 158,
+   "Attack": 180,
+   "Defence": 145,
+   "Sp. Atk": 130,
+   "Sp. Def": 135,
+   "Speed": 152
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Garchomp"
+ },
+ {
+  "id": 448,
+  "name": {
+   "english": "Lucario",
+   "japanese": "\u30eb\u30ab\u30ea\u30aa",
+   "chinese": "\u8def\u5361\u5229\u6b27",
+   "french": "Lucario"
+  },
+  "type": [
+   "Fighting",
+   "Steel"
+  ],
+  "stats": {
+   "HP": 120,
+   "Attack": 160,
+   "Defence": 120,
+   "Sp. Atk": 165,
+   "Sp. Def": 120,
+   "Speed": 140
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Lucario"
+ },
+ {
+  "id": 460,
+  "name": {
+   "english": "Abomasnow",
+   "japanese": "\u30e6\u30ad\u30ce\u30aa\u30fc",
+   "chinese": "\u66b4\u96ea\u738b",
+   "french": "Blizzaroi"
+  },
+  "type": [
+   "Grass",
+   "Ice"
+  ],
+  "stats": {
+   "HP": 140,
+   "Attack": 142,
+   "Defence": 125,
+   "Sp. Atk": 142,
+   "Sp. Def": 135,
+   "Speed": 110
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Abomasnow"
+ },
+ {
+  "id": 475,
+  "name": {
+   "english": "Gallade",
+   "japanese": "\u30a8\u30eb\u30ec\u30a4\u30c9",
+   "chinese": "\u827e\u8def\u96f7\u6735",
+   "french": "Gallame"
+  },
+  "type": [
+   "Psychic",
+   "Fighting"
+  ],
+  "stats": {
+   "HP": 118,
+   "Attack": 175,
+   "Defence": 115,
+   "Sp. Atk": 115,
+   "Sp. Def": 165,
+   "Speed": 130
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Gallade"
+ },
+ {
+  "id": 531,
+  "name": {
+   "english": "Audino",
+   "japanese": "\u30bf\u30d6\u30f3\u30cd",
+   "chinese": "\u5dee\u4e0d\u591a\u5a03\u5a03",
+   "french": "Nanm\u00e9ou\u00efe"
+  },
+  "type": [
+   "Normal"
+  ],
+  "stats": {
+   "HP": 153,
+   "Attack": 110,
+   "Defence": 136,
+   "Sp. Atk": 110,
+   "Sp. Def": 136,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Audino"
+ },
+ {
+  "id": 150,
+  "name": {
+   "english": "Mewtwo",
+   "japanese": "\u30df\u30e5\u30a6\u30c4\u30fc",
+   "chinese": "\u8d85\u68a6",
+   "french": "Mewtwo"
+  },
+  "type": [
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 156,
+   "Attack": 160,
+   "Defence": 140,
+   "Sp. Atk": 204,
+   "Sp. Def": 140,
+   "Speed": 180
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Mewtwo X"
+ },
+ {
+    "id": 150,
+    "name": {
+     "english": "Mewtwo",
+     "japanese": "\u30df\u30e5\u30a6\u30c4\u30fc",
+     "chinese": "\u8d85\u68a6",
+     "french": "Mewtwo"
+    },
+    "type": [
+     "Psychic"
+    ],
+    "stats": {
+     "HP": 156,
+     "Attack": 160,
+     "Defence": 140,
+     "Sp. Atk": 204,
+     "Sp. Def": 140,
+     "Speed": 180
+    },
+    "spawnchance": 0.001,
+    "variant": "Mega",
+    "alias": "Mega Mewtwo Y"
+   },
+ {
+  "id": 380,
+  "name": {
+   "english": "Latias",
+   "japanese": "\u30e9\u30c6\u30a3\u30a2\u30b9",
+   "chinese": "\u62c9\u5e1d\u4e9a\u65af",
+   "french": "Latias"
+  },
+  "type": [
+   "Dragon",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 130,
+   "Defence": 140,
+   "Sp. Atk": 160,
+   "Sp. Def": 180,
+   "Speed": 160
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Latias"
+ },
+ {
+  "id": 381,
+  "name": {
+   "english": "Latios",
+   "japanese": "\u30e9\u30c6\u30a3\u30aa\u30b9",
+   "chinese": "\u62c9\u5e1d\u6b27\u65af",
+   "french": "Latios"
+  },
+  "type": [
+   "Dragon",
+   "Psychic"
+  ],
+  "stats": {
+   "HP": 130,
+   "Attack": 140,
+   "Defence": 130,
+   "Sp. Atk": 180,
+   "Sp. Def": 160,
+   "Speed": 160
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Latios"
+ },
+ {
+  "id": 384,
+  "name": {
+   "english": "Rayquaza",
+   "japanese": "\u30ec\u30c3\u30af\u30a6\u30b6",
+   "chinese": "\u70c8\u7a7a\u5750",
+   "french": "Rayquaza"
+  },
+  "type": [
+   "Dragon",
+   "Flying"
+  ],
+  "stats": {
+   "HP": 155,
+   "Attack": 200,
+   "Defence": 140,
+   "Sp. Atk": 200,
+   "Sp. Def": 140,
+   "Speed": 145
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Rayquaza"
+ },
+ {
+  "id": 719,
+  "name": {
+   "english": "Diancie",
+   "japanese": "\u30c7\u30a3\u30a2\u30f3\u30b7\u30fc",
+   "chinese": "\u8482\u5b89\u5e0c",
+   "french": "Diancie"
+  },
+  "type": [
+   "Rock",
+   "Fairy"
+  ],
+  "stats": {
+   "HP": 100,
+   "Attack": 150,
+   "Defence": 200,
+   "Sp. Atk": 150,
+   "Sp. Def": 200,
+   "Speed": 100
+  },
+  "spawnchance": 0.001,
+  "variant": "Mega",
+  "alias": "Mega Diancie"
+ }
+]

@@ -160,7 +160,10 @@ class PokeList(menus.ListPageSource):
             stats=box(pokestats, lang="prolog"),
         )
         embed = discord.Embed(
-            title=menu.cog.get_name(pokemon["name"], menu.ctx.author), description=desc
+            title=menu.cog.get_name(pokemon["name"], menu.ctx.author)
+            if not pokemon.get("alias", False)
+            else pokemon.get("alias"),
+            description=desc,
         )
         if pokemon.get("id"):
             embed.set_thumbnail(
