@@ -24,6 +24,11 @@ log = logging.getLogger("red.flare.pokecord")
 
 PUNCT = string.punctuation + "’"
 _ = Translator("Pokecord", __file__)
+GENDERS = [
+    "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
+    "Female \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
+]
+_MIGRATION_VERSION = 4
 
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
@@ -101,6 +106,8 @@ class Pokecord(
             pdata = json.load(f)
         with open(f"{self.datapath}/evolve.json", encoding="utf-8") as f:
             self.evolvedata = json.load(f)
+        with open(f"{self.datapath}/genders.json", encoding="utf-8") as f:
+            self.genderdata = json.load(f)
         with open(f"{self.datapath}/shiny.json", encoding="utf-8") as f:
             sdata = json.load(f)
         with open(f"{self.datapath}/legendary.json", encoding="utf-8") as f:
@@ -123,7 +130,7 @@ class Pokecord(
             }
             for pokemon in sorted((self.pokemondata), key=lambda x: x["id"])
         }
-        if await self.config.migration() < 3:
+        if await self.config.migration() < 4:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
                 amount = {}
@@ -133,7 +140,15 @@ class Pokecord(
                 ).fetchall()
                 for data in result:
                     poke = json.loads(data[0])
-                    
+                    if not poke.get("gender", False):
+                        if isinstance(poke["name"], str):
+                            poke["gender"] = self.gender_choose(poke["name"])
+                        else:
+                            poke["gender"] = self.gender_choose(poke["name"]["english"])
+                        self.cursor.execute(
+                            UPDATE_POKEMON,
+                            (user, data[1], json.dumps(poke)),
+                        )
 
                     if not poke.get("id"):
                         for pokemon in self.pokemondata:
@@ -165,7 +180,7 @@ class Pokecord(
                         else:
                             amount[str(int(poke["id"]))] += 1
                 await self.config.user_from_id(user).pokeids.set(amount)
-            await self.config.migration.set(3)
+            await self.config.migration.set(_MIGRATION_VERSION)
             log.info("Migration complete.")
 
         await self.update_guild_cache()
@@ -222,6 +237,15 @@ class Pokecord(
 
     def pokemon_choose(self):
         return random.choices(self.pokemondata, weights=self.spawnchances, k=1)[0]
+
+    def gender_choose(self, name):
+        poke = self.genderdata.get(name, None)
+        if poke is None:
+            return "N/A"
+        if poke == -1:
+            return "Genderless"
+        weights = [poke / 8, 1 - (poke / 8)]
+        return random.choices(GENDERS, weights=weights)[0]
 
     def get_name(self, names, user):
         if isinstance(names, str):
@@ -393,6 +417,7 @@ class Pokecord(
                             poke[str(pokemonspawn["id"])] += 1
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
+                    pokemonspawn["gender"] = self.gender_choose(pokemonspawn["name"]["english"])
                     self.cursor.execute(
                         INSERT_POKEMON,
                         (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
@@ -614,7 +639,7 @@ class Pokecord(
         )
 
     @commands.command(hidden=True)
-    async def pokesim(self, ctx, amount: int= 1000000):
+    async def pokesim(self, ctx, amount: int = 1000000):
         """Sim pokemon spawning - This is blocking."""
         a = {}
         for i in range(amount):
@@ -625,4 +650,3 @@ class Pokecord(
             else:
                 a[variant] += 1
         await ctx.send(a)
-
