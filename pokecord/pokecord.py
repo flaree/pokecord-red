@@ -112,8 +112,8 @@ class Pokecord(
         with open(f"{self.datapath}/alolan.json", encoding="utf-8") as f:
             adata = json.load(f)
         with open(f"{self.datapath}/megas.json", encoding="utf-8") as f:
-            mdata = json.load(f)
-        self.pokemondata = pdata + sdata + ldata + mdata + gdata + adata + mdata
+            megadata = json.load(f)
+        self.pokemondata = pdata + sdata + ldata + mdata + gdata + adata + megadata
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
             pokemon["id"]: {
@@ -121,7 +121,7 @@ class Pokecord(
                 "amount": 0,
                 "id": f"#{str(pokemon['id']).zfill(3)}",
             }
-            for pokemon in sorted((pdata + ldata + mdata), key=lambda x: x["id"])
+            for pokemon in sorted((self.pokemondata), key=lambda x: x["id"])
         }
         if await self.config.migration() < 3:
             self.usercache = await self.config.all_users()
@@ -133,6 +133,7 @@ class Pokecord(
                 ).fetchall()
                 for data in result:
                     poke = json.loads(data[0])
+                    
 
                     if not poke.get("id"):
                         for pokemon in self.pokemondata:
@@ -611,3 +612,17 @@ class Pokecord(
             UPDATE_POKEMON,
             (user.id, msg_id, json.dumps(pokemon)),
         )
+
+    @commands.command(hidden=True)
+    async def pokesim(self, ctx, amount: int= 1000000):
+        """Sim pokemon spawning - This is blocking."""
+        a = {}
+        for i in range(amount):
+            pokemon = self.pokemon_choose()
+            variant = pokemon.get("variant", "Normal")
+            if variant not in a:
+                a[variant] = 1
+            else:
+                a[variant] += 1
+        await ctx.send(a)
+
