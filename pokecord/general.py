@@ -362,7 +362,7 @@ class GeneralMixin(MixinMeta):
                 stats=box(pokestats, lang="prolog"),
             )
             embed = discord.Embed(
-                title=menu.cog.get_name(pokemon["name"], menu.ctx.author)
+                title=self.get_name(pokemon["name"], ctx.author)
                 if not pokemon.get("alias", False)
                 else pokemon.get("alias"),
                 description=desc,
