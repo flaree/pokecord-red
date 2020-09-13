@@ -26,9 +26,9 @@ PUNCT = string.punctuation + "’"
 _ = Translator("Pokecord", __file__)
 GENDERS = [
     "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
-    "Female \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
+    "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}",
 ]
-_MIGRATION_VERSION = 4
+_MIGRATION_VERSION = 5
 
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
@@ -130,7 +130,7 @@ class Pokecord(
             }
             for pokemon in sorted((self.pokemondata), key=lambda x: x["id"])
         }
-        if await self.config.migration() < 4:
+        if await self.config.migration() < 5:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
                 amount = {}
@@ -140,6 +140,13 @@ class Pokecord(
                 ).fetchall()
                 for data in result:
                     poke = json.loads(data[0])
+                    if poke.get("gender") == "Female \N{MALE SIGN}\N{VARIATION SELECTOR-16}":
+                        poke["gender"] = "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}"
+                        self.cursor.execute(
+                            UPDATE_POKEMON,
+                            (user, data[1], json.dumps(poke)),
+                        )
+
                     if not poke.get("gender", False):
                         if isinstance(poke["name"], str):
                             poke["gender"] = self.gender_choose(poke["name"])
