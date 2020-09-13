@@ -28,7 +28,7 @@ GENDERS = [
     "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
     "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}",
 ]
-_MIGRATION_VERSION = 5
+_MIGRATION_VERSION = 6
 
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
@@ -130,7 +130,7 @@ class Pokecord(
             }
             for pokemon in sorted((self.pokemondata), key=lambda x: x["id"])
         }
-        if await self.config.migration() < 5:
+        if await self.config.migration() < 6:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
                 amount = {}
@@ -140,22 +140,21 @@ class Pokecord(
                 ).fetchall()
                 for data in result:
                     poke = json.loads(data[0])
+                    if poke.get("gender"):
+                        gender = poke.get("gender")
+                        if gender == "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}":
+                            poke["gender"] = "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}"
+                        if gender == "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}":
+                            poke["gender"] = "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}"
+
                     if poke.get("gender") == "Female \N{MALE SIGN}\N{VARIATION SELECTOR-16}":
                         poke["gender"] = "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}"
-                        self.cursor.execute(
-                            UPDATE_POKEMON,
-                            (user, data[1], json.dumps(poke)),
-                        )
 
                     if not poke.get("gender", False):
                         if isinstance(poke["name"], str):
                             poke["gender"] = self.gender_choose(poke["name"])
                         else:
                             poke["gender"] = self.gender_choose(poke["name"]["english"])
-                        self.cursor.execute(
-                            UPDATE_POKEMON,
-                            (user, data[1], json.dumps(poke)),
-                        )
 
                     if not poke.get("ivs", False):
                         poke["ivs"] = {
@@ -166,10 +165,6 @@ class Pokecord(
                             "Sp. Def": random.randint(0, 31),
                             "Speed": random.randint(0, 31),
                         }
-                        self.cursor.execute(
-                            UPDATE_POKEMON,
-                            (user, data[1], json.dumps(poke)),
-                        )
 
                     if not poke.get("id"):
                         for pokemon in self.pokemondata:
@@ -179,10 +174,7 @@ class Pokecord(
                                 name = poke["name"]["english"]
                             if name == pokemon["name"]["english"]:
                                 poke["id"] = pokemon["id"]
-                                self.cursor.execute(
-                                    UPDATE_POKEMON,
-                                    (user, data[1], json.dumps(poke)),
-                                )
+
                     if not poke.get("type", False):
                         for pokemon in self.pokemondata:
                             if isinstance(poke["name"], str):
@@ -191,15 +183,17 @@ class Pokecord(
                                 name = poke["name"]["english"]
                             if pokemon["name"]["english"] == name:
                                 poke["type"] = pokemon["type"]
-                                self.cursor.execute(
-                                    UPDATE_POKEMON,
-                                    (user, data[1], json.dumps(poke)),
-                                )
+
                     if poke.get("id"):
                         if str(poke["id"]) not in amount:
                             amount[str(int(poke["id"]))] = 1
                         else:
                             amount[str(int(poke["id"]))] += 1
+
+                    self.cursor.execute(
+                        UPDATE_POKEMON,
+                        (user, data[1], json.dumps(poke)),
+                    )
                 await self.config.user_from_id(user).pokeids.set(amount)
             await self.config.migration.set(_MIGRATION_VERSION)
             log.info("Migration complete.")
@@ -265,7 +259,7 @@ class Pokecord(
             return "N/A"
         if poke == -1:
             return "Genderless"
-        weights = [poke / 8, 1 - (poke / 8)]
+        weights = [1 - (poke / 8), poke / 8]
         return random.choices(GENDERS, weights=weights)[0]
 
     def get_name(self, names, user):
