@@ -328,16 +328,17 @@ class GeneralMixin(MixinMeta):
             return
         else:
             stats = pokemon["stats"]
+            ivs = pokemon["ivs"]
             pokestats = tabulate.tabulate(
                 [
-                    [_("HP"), stats["HP"]],
-                    [_("Attack"), stats["Attack"]],
-                    [_("Defence"), stats["Defence"]],
-                    [_("Sp. Atk"), stats["Sp. Atk"]],
-                    [_("Sp. Def"), stats["Sp. Def"]],
-                    [_("Speed"), stats["Speed"]],
+                    [_("HP"), stats["HP"], ivs["HP"]],
+                    [_("Attack"), stats["Attack"], ivs["Attack"]],
+                    [_("Defence"), stats["Defence"], ivs["Defence"]],
+                    [_("Sp. Atk"), stats["Sp. Atk"], ivs["Sp. Atk"]],
+                    [_("Sp. Def"), stats["Sp. Def"], ivs["Sp. Def"]],
+                    [_("Speed"), stats["Speed"], ivs["Speed"]],
                 ],
-                headers=[_("Stats"), _("Value")],
+                headers=[_("Stats"), _("Value"), _("IV")],
             )
             nick = pokemon.get("nickname")
             alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
@@ -348,25 +349,29 @@ class GeneralMixin(MixinMeta):
             )
             types = ", ".join(pokemon["type"])
             desc = _(
-                "**ID**: {id}\n{alias}**Level**: {level}\n**Type**: {type}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
+                "**ID**: {id}\n{alias}**Level**: {level}\n**Type**: {type}\n**Gender**: {gender}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
             ).format(
                 id=f"#{pokemon.get('id')}" if pokemon.get("id") else "0",
                 alias=alias,
                 level=pokemon["level"],
                 type=types,
+                gender=pokemon.get("gender", "N/A"),
                 variant=variant,
                 xp=pokemon["xp"],
                 totalxp=self.calc_xp(pokemon["level"]),
                 stats=box(pokestats, lang="prolog"),
             )
             embed = discord.Embed(
-                title=self.get_name(pokemon["name"], ctx.author), description=desc
+                title=menu.cog.get_name(pokemon["name"], menu.ctx.author)
+                if not pokemon.get("alias", False)
+                else pokemon.get("alias"),
+                description=desc,
             )
-            if pokemon.get("id"):
-                embed.set_thumbnail(
-                    url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
-                    if not pokemon.get("url")
-                    else pokemon.get("url")
-                )
+            _file = discord.File(
+                self.datapath
+                + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png',
+                filename="pokemonspawn.png",
+            )
+            embed.set_thumbnail(url="attachment://pokemonspawn.png")
             embed.set_footer(text=_("Pokémon ID: {number}").format(number=pokemon["sid"]))
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, file=_file)

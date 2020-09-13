@@ -128,16 +128,17 @@ class PokeList(menus.ListPageSource):
 
     async def format_page(self, menu: PokeListMenu, pokemon: Dict) -> str:
         stats = pokemon["stats"]
+        ivs = pokemon["ivs"]
         pokestats = tabulate.tabulate(
             [
-                [_("HP"), stats["HP"]],
-                [_("Attack"), stats["Attack"]],
-                [_("Defence"), stats["Defence"]],
-                [_("Sp. Atk"), stats["Sp. Atk"]],
-                [_("Sp. Def"), stats["Sp. Def"]],
-                [_("Speed"), stats["Speed"]],
+                [_("HP"), stats["HP"], ivs["HP"]],
+                [_("Attack"), stats["Attack"], ivs["Attack"]],
+                [_("Defence"), stats["Defence"], ivs["Defence"]],
+                [_("Sp. Atk"), stats["Sp. Atk"], ivs["Sp. Atk"]],
+                [_("Sp. Def"), stats["Sp. Def"], ivs["Sp. Def"]],
+                [_("Speed"), stats["Speed"], ivs["Speed"]],
             ],
-            headers=[_("Stats"), _("Value")],
+            headers=[_("Stats"), _("Value"), _("IV")],
         )
         nick = pokemon.get("nickname")
         alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""

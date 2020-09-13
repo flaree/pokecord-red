@@ -150,6 +150,20 @@ class Pokecord(
                             (user, data[1], json.dumps(poke)),
                         )
 
+                    if not poke.get("ivs", False):
+                        poke["ivs"] = {
+                            "HP": random.randint(0, 31),
+                            "Attack": random.randint(0, 31),
+                            "Defence": random.randint(0, 31),
+                            "Sp. Atk": random.randint(0, 31),
+                            "Sp. Def": random.randint(0, 31),
+                            "Speed": random.randint(0, 31),
+                        }
+                        self.cursor.execute(
+                            UPDATE_POKEMON,
+                            (user, data[1], json.dumps(poke)),
+                        )
+
                     if not poke.get("id"):
                         for pokemon in self.pokemondata:
                             if isinstance(poke["name"], str):
@@ -418,6 +432,14 @@ class Pokecord(
                     pokemonspawn["level"] = lvl
                     pokemonspawn["xp"] = 0
                     pokemonspawn["gender"] = self.gender_choose(pokemonspawn["name"]["english"])
+                    pokemonspawn["ivs"] = {
+                        "HP": random.randint(0, 31),
+                        "Attack": random.randint(0, 31),
+                        "Defence": random.randint(0, 31),
+                        "Sp. Atk": random.randint(0, 31),
+                        "Sp. Def": random.randint(0, 31),
+                        "Speed": random.randint(0, 31),
+                    }
                     self.cursor.execute(
                         INSERT_POKEMON,
                         (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
