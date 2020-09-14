@@ -6,9 +6,10 @@ import discord
 import tabulate
 from redbot.core import commands
 from redbot.core.i18n import Translator
-from redbot.core.utils.chat_formatting import box
 from redbot.core.utils.predicates import MessagePredicate
 from redbot.vendored.discord.ext import menus
+
+from .functions import poke_embed
 
 _ = Translator("Pokecord", __file__)
 
@@ -127,57 +128,7 @@ class PokeList(menus.ListPageSource):
         super().__init__(entries, per_page=1)
 
     async def format_page(self, menu: PokeListMenu, pokemon: Dict) -> str:
-        stats = pokemon["stats"]
-        ivs = pokemon["ivs"]
-        pokestats = tabulate.tabulate(
-            [
-                [_("HP"), stats["HP"], ivs["HP"]],
-                [_("Attack"), stats["Attack"], ivs["Attack"]],
-                [_("Defence"), stats["Defence"], ivs["Defence"]],
-                [_("Sp. Atk"), stats["Sp. Atk"], ivs["Sp. Atk"]],
-                [_("Sp. Def"), stats["Sp. Def"], ivs["Sp. Def"]],
-                [_("Speed"), stats["Speed"], ivs["Speed"]],
-            ],
-            headers=[_("Stats"), _("Value"), _("IV")],
-        )
-        nick = pokemon.get("nickname")
-        alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
-        variant = (
-            _("**Variant**: {variant}\n").format(variant=pokemon.get("variant"))
-            if pokemon.get("variant")
-            else ""
-        )
-        types = ", ".join(pokemon.get("type", ["N/A"]))
-        desc = _(
-            "**ID**: {id}\n{alias}**Level**: {level}\n**Type**: {type}\n**Gender**: {gender}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
-        ).format(
-            id=f"#{pokemon.get('id')}" if pokemon.get("id") else "0",
-            alias=alias,
-            level=pokemon["level"],
-            type=types,
-            gender=pokemon.get("gender", "N/A"),
-            variant=variant,
-            xp=pokemon["xp"],
-            totalxp=menu.cog.calc_xp(pokemon["level"]),
-            stats=box(pokestats, lang="prolog"),
-        )
-        embed = discord.Embed(
-            title=menu.cog.get_name(pokemon["name"], menu.ctx.author)
-            if not pokemon.get("alias", False)
-            else pokemon.get("alias"),
-            description=desc,
-        )
-        if pokemon.get("id"):
-            embed.set_thumbnail(
-                url=f"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{str(pokemon['id']).zfill(3)}.png"
-                if not pokemon.get("url")
-                else pokemon.get("url")
-            )
-        embed.set_footer(
-            text=_("Pokémon ID: {number}/{amount}").format(
-                number=pokemon["sid"], amount=self.get_max_pages()
-            )
-        )
+        embed = await poke_embed(menu.cog, menu.ctx, pokemon, menu=self)
         return embed
 
 

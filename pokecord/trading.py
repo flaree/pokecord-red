@@ -10,7 +10,6 @@ from redbot.core.utils.chat_formatting import *
 from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
-from .functions import select_pokemon
 from .pokemixin import poke
 from .statements import *
 

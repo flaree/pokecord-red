@@ -11,7 +11,7 @@ from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
 from .converters import Args
-from .functions import chunks
+from .functions import chunks, poke_embed
 from .menus import GenericMenu, PokedexFormat, PokeList, PokeListMenu, SearchFormat
 from .pokemixin import poke
 from .statements import *
@@ -250,6 +250,9 @@ class GeneralMixin(MixinMeta):
             `--level`| `--l` - Search pokemon by level.
             `--id`   | `--i` - Search pokemon by ID.
             `--variant`   | `--v` - Search pokemon by variant.
+            `--type`   | `--t` - Search pokemon by type.
+            `--gender` | `--g` - Search by gender.
+            `--iv` | - Search by total IV.
         """
         async with ctx.typing():
             result = self.cursor.execute(
@@ -262,28 +265,35 @@ class GeneralMixin(MixinMeta):
             for data in result:
                 pokemons.append([json.loads(data[0]), data[1]])
             correct = ""
-            for poke in pokemons[1:]:
+            for i, poke in enumerate(pokemons[1:], 1):
                 name = self.get_name(poke[0]["name"], ctx.author)
+                poke_str = _(
+                    "{pokemon} **|** Level: {level} **|** ID: {id} **|** Index: {index}\n"
+                ).format(pokemon=name, level=poke[0]["level"], id=poke[0]["id"], index=i)
                 if args["names"]:
                     if name.lower() == args["names"].lower():
-                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
-                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
-                        )
+                        correct += poke_str
                 elif args["level"]:
                     if poke[0]["level"] == args["level"][0]:
-                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
-                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
-                        )
+                        correct += poke_str
                 elif args["id"]:
                     if poke[0]["id"] == args["id"][0]:
-                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
-                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
-                        )
+                        correct += poke_str
                 elif args["variant"]:
                     if poke[0].get("variant", "None").lower() == args["variant"].lower():
-                        correct += _("{pokemon} | Level: {level} | ID: {id}\n").format(
-                            pokemon=name, level=poke[0]["level"], id=poke[0]["id"]
-                        )
+                        correct += poke_str
+                elif args["iv"]:
+                    if sum(poke[0]["ivs"].values()) == args["iv"][0]:
+                        correct += poke_str
+                elif args["gender"]:
+                    if (
+                        args["gender"].lower()
+                        == poke[0].get("gender", "No Gender").lower().split()[0]
+                    ):
+                        correct += poke_str
+                elif args["type"]:
+                    if args["type"].lower() in [x.lower() for x in poke[0]["type"]]:
+                        correct += poke_str
 
             if not correct:
                 await ctx.send("No pokémon returned for that search.")
@@ -327,51 +337,5 @@ class GeneralMixin(MixinMeta):
             await conf.pokeid.set(1)
             return
         else:
-            stats = pokemon["stats"]
-            ivs = pokemon["ivs"]
-            pokestats = tabulate.tabulate(
-                [
-                    [_("HP"), stats["HP"], ivs["HP"]],
-                    [_("Attack"), stats["Attack"], ivs["Attack"]],
-                    [_("Defence"), stats["Defence"], ivs["Defence"]],
-                    [_("Sp. Atk"), stats["Sp. Atk"], ivs["Sp. Atk"]],
-                    [_("Sp. Def"), stats["Sp. Def"], ivs["Sp. Def"]],
-                    [_("Speed"), stats["Speed"], ivs["Speed"]],
-                ],
-                headers=[_("Stats"), _("Value"), _("IV")],
-            )
-            nick = pokemon.get("nickname")
-            alias = _("**Nickname**: {nick}\n").format(nick=nick) if nick is not None else ""
-            variant = (
-                _("**Variant**: {variant}\n").format(variant=pokemon.get("variant"))
-                if pokemon.get("variant")
-                else ""
-            )
-            types = ", ".join(pokemon["type"])
-            desc = _(
-                "**ID**: {id}\n{alias}**Level**: {level}\n**Type**: {type}\n**Gender**: {gender}\n**XP**: {xp}/{totalxp}\n{variant}{stats}"
-            ).format(
-                id=f"#{pokemon.get('id')}" if pokemon.get("id") else "0",
-                alias=alias,
-                level=pokemon["level"],
-                type=types,
-                gender=pokemon.get("gender", "N/A"),
-                variant=variant,
-                xp=pokemon["xp"],
-                totalxp=self.calc_xp(pokemon["level"]),
-                stats=box(pokestats, lang="prolog"),
-            )
-            embed = discord.Embed(
-                title=self.get_name(pokemon["name"], ctx.author)
-                if not pokemon.get("alias", False)
-                else pokemon.get("alias"),
-                description=desc,
-            )
-            _file = discord.File(
-                self.datapath
-                + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png',
-                filename="pokemonspawn.png",
-            )
-            embed.set_thumbnail(url="attachment://pokemonspawn.png")
-            embed.set_footer(text=_("Pokémon ID: {number}").format(number=pokemon["sid"]))
+            embed, _file = await poke_embed(self, ctx, pokemon, file=True)
             await ctx.send(embed=embed, file=_file)
