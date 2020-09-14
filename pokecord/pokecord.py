@@ -28,7 +28,7 @@ GENDERS = [
     "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
     "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}",
 ]
-_MIGRATION_VERSION = 6
+_MIGRATION_VERSION = 7
 
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
@@ -130,7 +130,7 @@ class Pokecord(
             }
             for pokemon in sorted((self.pokemondata), key=lambda x: x["id"])
         }
-        if await self.config.migration() < 6:
+        if await self.config.migration() < _MIGRATION_VERSION:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
                 amount = {}
@@ -140,12 +140,6 @@ class Pokecord(
                 ).fetchall()
                 for data in result:
                     poke = json.loads(data[0])
-                    if poke.get("gender"):
-                        gender = poke.get("gender")
-                        if gender == "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}":
-                            poke["gender"] = "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}"
-                        if gender == "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}":
-                            poke["gender"] = "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}"
 
                     if poke.get("gender") == "Female \N{MALE SIGN}\N{VARIATION SELECTOR-16}":
                         poke["gender"] = "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}"
