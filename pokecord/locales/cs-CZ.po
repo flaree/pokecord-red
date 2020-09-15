@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-09-08 22:38+0000\n"
-"PO-Revision-Date: 2020-09-08 22:38\n"
+"POT-Creation-Date: 2020-09-15 22:38+0000\n"
+"PO-Revision-Date: 2020-09-15 22:38\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,92 @@ msgstr ""
 "X-Crowdin-File-ID: 28\n"
 "Language: cs_CZ\n"
 
+#: pokecord/dev.py:22
+#, docstring
+msgid "Pokecord Development Commands"
+msgstr ""
+
+#: pokecord/dev.py:26
+#, docstring
+msgid "Spawn a pokemon by name or random"
+msgstr ""
+
+#: pokecord/dev.py:55
+#, docstring
+msgid "Manually set a pokemons IVs"
+msgstr ""
+
+#: pokecord/dev.py:98
+#, docstring
+msgid "Manually set a pokemons statss"
+msgstr ""
+
+#: pokecord/functions.py:20
+msgid "HP"
+msgstr ""
+
+#: pokecord/functions.py:21
+msgid "Attack"
+msgstr ""
+
+#: pokecord/functions.py:22
+msgid "Defence"
+msgstr ""
+
+#: pokecord/functions.py:23
+msgid "Sp. Atk"
+msgstr ""
+
+#: pokecord/functions.py:24
+msgid "Sp. Def"
+msgstr ""
+
+#: pokecord/functions.py:25
+msgid "Speed"
+msgstr ""
+
+#: pokecord/functions.py:27
+msgid "Stats"
+msgstr ""
+
+#: pokecord/functions.py:27
+msgid "Value"
+msgstr ""
+
+#: pokecord/functions.py:27
+msgid "IV"
+msgstr ""
+
+#: pokecord/functions.py:30
+msgid "**Nickname**: {nick}\\n"
+msgstr ""
+
+#: pokecord/functions.py:32
+msgid "**Variant**: {variant}\\n"
+msgstr ""
+
+#: pokecord/functions.py:37
+msgid "**ID**: {id}\\n{alias}**Level**: {level}\\n**Type**: {type}\\n**Gender**: {gender}\\n**XP**: {xp}/{totalxp}\\n{variant}{stats}"
+msgstr ""
+
+#: pokecord/functions.py:56
+msgid "Pokémon ID: {number}"
+msgstr ""
+
+#: pokecord/functions.py:73
+msgid "Pokémon ID: {number}/{amount}"
+msgstr ""
+
 #: pokecord/general.py:28
 #, docstring
 msgid "List a trainers or your own pokémon!"
 msgstr ""
 
-#: pokecord/general.py:32 pokecord/general.py:304
+#: pokecord/general.py:32 pokecord/general.py:314
 msgid "You haven't picked a starter pokemon yet! Check out {prefix} before trying to list your pokemon."
 msgstr ""
 
-#: pokecord/general.py:45 pokecord/general.py:317
+#: pokecord/general.py:45 pokecord/general.py:327
 msgid "You don't have any pokémon, go get catching trainer!"
 msgstr ""
 
@@ -47,7 +123,7 @@ msgstr ""
 msgid "The ID must be greater than 0!"
 msgstr ""
 
-#: pokecord/general.py:89 pokecord/general.py:130 pokecord/trading.py:38
+#: pokecord/general.py:89 pokecord/general.py:130 pokecord/trading.py:37
 msgid "You don't have any pokémon, trainer!"
 msgstr ""
 
@@ -97,7 +173,7 @@ msgstr ""
 msgid "Select your default pokémon."
 msgstr ""
 
-#: pokecord/general.py:181 pokecord/pokecord.py:347
+#: pokecord/general.py:181 pokecord/pokecord.py:361
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr ""
 
@@ -124,216 +200,145 @@ msgstr ""
 
 #: pokecord/general.py:246
 #, docstring
-msgid "Search your pokemon.\\n\\n        Arguements must have `--` before them.\\n            `--name` | `--n` - Search pokemon by name.\\n            `--level`| `--l` - Search pokemon by level.\\n            `--id`   | `--i` - Search pokemon by ID.\\n            `--variant`   | `--v` - Search pokemon by variant.\\n        "
+msgid "Search your pokemon.\\n\\n        Arguements must have `--` before them.\\n            `--name` | `--n` - Search pokemon by name.\\n            `--level`| `--l` - Search pokemon by level.\\n            `--id`   | `--i` - Search pokemon by ID.\\n            `--variant`   | `--v` - Search pokemon by variant.\\n            `--type`   | `--t` - Search pokemon by type.\\n            `--gender` | `--g` - Search by gender.\\n            `--iv` | - Search by total IV.\\n        "
 msgstr ""
 
-#: pokecord/general.py:260
+#: pokecord/general.py:263
 msgid "You don't have any pokémon trainer!"
 msgstr ""
 
-#: pokecord/general.py:269
-msgid "{pokemon} | Level: {level} | ID: {id}\\n"
+#: pokecord/general.py:270
+msgid "{pokemon} **|** Level: {level} **|** ID: {id} **|** Index: {index}\\n"
 msgstr ""
 
-#: pokecord/general.py:274
-msgid "{pokemon} | Level: {level} | ID: {id}\\n"
-msgstr ""
-
-#: pokecord/general.py:279
-msgid "{pokemon} | Level: {level} | ID: {id}\\n"
-msgstr ""
-
-#: pokecord/general.py:284
-msgid "{pokemon} | Level: {level} | ID: {id}\\n"
-msgstr ""
-
-#: pokecord/general.py:300
+#: pokecord/general.py:310
 #, docstring
 msgid "Show your current selected pokemon"
 msgstr ""
 
-#: pokecord/general.py:323
+#: pokecord/general.py:333
 msgid "An error occured trying to find your pokemon at slot {slotnum}\\nAs a result I have set your default pokemon to 1."
 msgstr ""
 
-#: pokecord/general.py:333 pokecord/menus.py:133
-msgid "HP"
-msgstr ""
-
-#: pokecord/general.py:334 pokecord/menus.py:134
-msgid "Attack"
-msgstr ""
-
-#: pokecord/general.py:335 pokecord/menus.py:135
-msgid "Defence"
-msgstr ""
-
-#: pokecord/general.py:336 pokecord/menus.py:136
-msgid "Sp. Atk"
-msgstr ""
-
-#: pokecord/general.py:337 pokecord/menus.py:137
-msgid "Sp. Def"
-msgstr ""
-
-#: pokecord/general.py:338 pokecord/menus.py:138
-msgid "Speed"
-msgstr ""
-
-#: pokecord/general.py:340 pokecord/menus.py:140
-msgid "Stats"
-msgstr ""
-
-#: pokecord/general.py:340 pokecord/menus.py:140
-msgid "Value"
-msgstr ""
-
-#: pokecord/general.py:343
-msgid "**Nickname**: {nick}\\n"
-msgstr ""
-
-#: pokecord/general.py:345
-msgid "**Variant**: {variant}\\n"
-msgstr ""
-
-#: pokecord/general.py:350
-msgid "**ID**: {id}\\n{alias}**Level**: {level}\\n**Type**: {type}\\n**XP**: {xp}/{totalxp}\\n{variant}{stats}"
-msgstr ""
-
-#: pokecord/general.py:371
-msgid "Pokémon ID: {number}"
-msgstr ""
-
-#: pokecord/menus.py:99
+#: pokecord/menus.py:100
 msgid "Please select the Pokémon ID number to jump to."
 msgstr ""
 
-#: pokecord/menus.py:111
+#: pokecord/menus.py:112
 msgid "Invalid Pokémon ID, jumping to the end."
 msgstr ""
 
-#: pokecord/menus.py:143
-msgid "**Nickname**: {nick}\\n"
-msgstr ""
-
-#: pokecord/menus.py:145
-msgid "**Variant**: {variant}\\n"
-msgstr ""
-
-#: pokecord/menus.py:150
-msgid "**ID**: {id}\\n{alias}**Level**: {level}\\n**Type**: {type}\\n**XP**: {xp}/{totalxp}\\n{variant}{stats}"
-msgstr ""
-
-#: pokecord/menus.py:175
-msgid "Pokémon ID: {number}/{amount}"
-msgstr ""
-
-#: pokecord/menus.py:302
+#: pokecord/menus.py:255
 msgid "Page {page}/{amount}"
 msgstr ""
 
-#: pokecord/menus.py:314
+#: pokecord/menus.py:267
 msgid "Pokédex"
 msgstr ""
 
-#: pokecord/menus.py:316
+#: pokecord/menus.py:269
 msgid "Showing {page}-{lenpages} of {amount}."
 msgstr ""
 
-#: pokecord/menus.py:322
+#: pokecord/menus.py:275
 msgid "{amount} caught! ✅"
 msgstr ""
 
-#: pokecord/menus.py:326
+#: pokecord/menus.py:279
 msgid "Not caught yet! ❌"
 msgstr ""
 
-#: pokecord/menus.py:335
+#: pokecord/menus.py:288
 msgid "You've caught {total} out of {amount} pokémon."
 msgstr ""
 
-#: pokecord/pokecord.py:38
+#: pokecord/pokecord.py:50
 #, docstring
 msgid "Pokecord adapted to use on Red."
 msgstr ""
 
-#: pokecord/pokecord.py:245
+#: pokecord/pokecord.py:259
 #, docstring
 msgid "Choose your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:248
+#: pokecord/pokecord.py:262
 msgid "You've already claimed your starter pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:250
+#: pokecord/pokecord.py:264
 msgid "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\\nIn order to get catchin' you must pick one of the starter Pokemon as listed below.\\n**Generation 1**\\nBulbasaur, Charmander and Squirtle\\n**Generation 2**\\nChikorita, Cyndaquil, Totodile\\n**Generation 3**\\nTreecko, Torchic, Mudkip\\n**Generation 4**\\nTurtwig, Chimchar, Piplup\\n**Generation 5**\\nSnivy, Tepig, Oshawott\\n**Generation 6**\\nChespin, Fennekin, Froakie\\n**Generation 7**\\nRowlet, Litten, Popplio\\n**Generation 8**\\nGrookey, Scorbunny, Sobble\\n"
 msgstr ""
 
-#: pokecord/pokecord.py:262
+#: pokecord/pokecord.py:276
 msgid "\\nTo pick a pokemon, type {prefix}starter <pokemon>"
 msgstr ""
 
-#: pokecord/pokecord.py:294
+#: pokecord/pokecord.py:308
 msgid "That's not a valid starter pokémon, trainer!"
 msgstr ""
 
-#: pokecord/pokecord.py:297
+#: pokecord/pokecord.py:311
 msgid "You've chosen {pokemon} as your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:316
+#: pokecord/pokecord.py:330
 #, docstring
 msgid "Get a hint on the pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:334
+#: pokecord/pokecord.py:348
 msgid "This wild pokemon is a {pokemonhint}."
 msgstr ""
 
-#: pokecord/pokecord.py:339 pokecord/pokecord.py:403
+#: pokecord/pokecord.py:353 pokecord/pokecord.py:426
 msgid "No pokemon is ready to be caught."
 msgstr ""
 
-#: pokecord/pokecord.py:343
+#: pokecord/pokecord.py:357
 #, docstring
 msgid "Catch a pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:375
+#: pokecord/pokecord.py:389
 msgid "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:386
+#: pokecord/pokecord.py:400
 msgid "\\n{pokename} has been added to the pokédex."
 msgstr ""
 
-#: pokecord/pokecord.py:402
+#: pokecord/pokecord.py:425
 msgid "That's not the correct pokemon"
 msgstr ""
 
-#: pokecord/pokecord.py:461
+#: pokecord/pokecord.py:484
 msgid "‌‌A wild pokémon has аppeаred!"
 msgstr ""
 
-#: pokecord/pokecord.py:462
+#: pokecord/pokecord.py:485
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr ""
 
-#: pokecord/pokecord.py:475
+#: pokecord/pokecord.py:498
 msgid "Supports: {languages}"
 msgstr ""
 
-#: pokecord/pokecord.py:570 pokecord/pokecord.py:588
+#: pokecord/pokecord.py:593 pokecord/pokecord.py:611
 msgid "Congratulations {user}!"
 msgstr ""
 
-#: pokecord/pokecord.py:571
+#: pokecord/pokecord.py:594
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:589
+#: pokecord/pokecord.py:612
 msgid "Your {name} has levelled up to level {level}!"
+msgstr ""
+
+#: pokecord/pokecord.py:640
+#, docstring
+msgid "Sim pokemon spawning - This is blocking."
 msgstr ""
 
 #: pokecord/pokemixin.py:6
@@ -468,56 +473,56 @@ msgstr ""
 msgid "Random spawn loop has been disabled, please reload the cog for this change to take effect."
 msgstr ""
 
-#: pokecord/trading.py:25
+#: pokecord/trading.py:24
 #, docstring
 msgid "Pokecord Trading\\n\\n        Currently a work in progress."
 msgstr ""
 
-#: pokecord/trading.py:40
+#: pokecord/trading.py:39
 msgid "You don't have a pokemon at that slot."
 msgstr ""
 
-#: pokecord/trading.py:45
+#: pokecord/trading.py:44
 msgid "You are about to trade {name}, if you wish to continue type `yes`, otherwise type `no`."
 msgstr ""
 
-#: pokecord/trading.py:53 pokecord/trading.py:64 pokecord/trading.py:91
+#: pokecord/trading.py:52 pokecord/trading.py:63 pokecord/trading.py:90
 msgid "Exiting operation."
 msgstr ""
 
-#: pokecord/trading.py:58
+#: pokecord/trading.py:57
 msgid "How many credits would you like to recieve for {name}?"
 msgstr ""
 
-#: pokecord/trading.py:69
+#: pokecord/trading.py:68
 msgid "{user} does not have {amount} {currency} available."
 msgstr ""
 
-#: pokecord/trading.py:77
+#: pokecord/trading.py:76
 msgid "{user}, {author} would like to trade their {pokemon} for {amount} {currency}. Type `yes` to accept, otherwise type `no`."
 msgstr ""
 
-#: pokecord/trading.py:107
+#: pokecord/trading.py:106
 msgid "{user}, your default pokemon may have changed. I have tried to account for this change."
 msgstr ""
 
-#: pokecord/trading.py:112
+#: pokecord/trading.py:111
 msgid "{user}, You have traded your selected pokemon. I have reset your selected pokemon to your first pokemon."
 msgstr ""
 
-#: pokecord/trading.py:122
+#: pokecord/trading.py:121
 msgid "{balance} (balance too high)"
 msgstr ""
 
-#: pokecord/trading.py:126
+#: pokecord/trading.py:125
 msgid "++ {balance} credits"
 msgstr ""
 
-#: pokecord/trading.py:135
+#: pokecord/trading.py:134
 msgid "{user} has denied the trade request."
 msgstr ""
 
-#: pokecord/trading.py:139
+#: pokecord/trading.py:138
 msgid "Trade cancelled."
 msgstr ""
 
