@@ -39,7 +39,13 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 
 @cog_i18n(_)
 class Pokecord(
-    Dev, TradeMixin, SettingsMixin, GeneralMixin, PokeMixin, commands.Cog, metaclass=CompositeMetaClass
+    Dev,
+    TradeMixin,
+    SettingsMixin,
+    GeneralMixin,
+    PokeMixin,
+    commands.Cog,
+    metaclass=CompositeMetaClass,
 ):
     """Pokecord adapted to use on Red."""
 
@@ -142,9 +148,6 @@ class Pokecord(
                 for data in result:
                     poke = json.loads(data[0])
 
-                    if poke.get("gender") == "Female \N{MALE SIGN}\N{VARIATION SELECTOR-16}":
-                        poke["gender"] = "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}"
-
                     if not poke.get("gender", False):
                         if isinstance(poke["name"], str):
                             poke["gender"] = self.gender_choose(poke["name"])
@@ -160,30 +163,6 @@ class Pokecord(
                             "Sp. Def": random.randint(0, 31),
                             "Speed": random.randint(0, 31),
                         }
-
-                    if not poke.get("id"):
-                        for pokemon in self.pokemondata:
-                            if isinstance(poke["name"], str):
-                                name = poke["name"]
-                            else:
-                                name = poke["name"]["english"]
-                            if name == pokemon["name"]["english"]:
-                                poke["id"] = pokemon["id"]
-
-                    if not poke.get("type", False):
-                        for pokemon in self.pokemondata:
-                            if isinstance(poke["name"], str):
-                                name = poke["name"]
-                            else:
-                                name = poke["name"]["english"]
-                            if pokemon["name"]["english"] == name:
-                                poke["type"] = pokemon["type"]
-
-                    if poke.get("id"):
-                        if str(poke["id"]) not in amount:
-                            amount[str(int(poke["id"]))] = 1
-                        else:
-                            amount[str(int(poke["id"]))] += 1
 
                     self.cursor.execute(
                         UPDATE_POKEMON,
