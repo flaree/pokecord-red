@@ -14,6 +14,7 @@ from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.i18n import Translator, cog_i18n
 from redbot.core.utils.chat_formatting import escape, humanize_list
 
+from .dev import Dev
 from .general import GeneralMixin
 from .pokemixin import PokeMixin
 from .settings import SettingsMixin
@@ -38,7 +39,7 @@ class CompositeMetaClass(type(commands.Cog), type(ABC)):
 
 @cog_i18n(_)
 class Pokecord(
-    TradeMixin, SettingsMixin, GeneralMixin, PokeMixin, commands.Cog, metaclass=CompositeMetaClass
+    Dev, TradeMixin, SettingsMixin, GeneralMixin, PokeMixin, commands.Cog, metaclass=CompositeMetaClass
 ):
     """Pokecord adapted to use on Red."""
 
