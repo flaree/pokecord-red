@@ -571,6 +571,9 @@ class Pokecord(
             if evolve is not None and (pokemon["level"] >= int(evolve["level"])):
                 lvl = pokemon["level"]
                 nick = pokemon.get("nickname")
+                ivs = pokemon["ivs"]
+                gender = pokemon["gender"]
+                stats = pokemon["stats"]
                 pokemon = next(
                     (
                         item
@@ -588,6 +591,9 @@ class Pokecord(
                     pokemon["nickname"] = nick
                 pokemon["xp"] = 0
                 pokemon["level"] = lvl
+                pokemon["ivs"] = ivs
+                pokemon["gender"] = gender
+                pokemon["stats"] = stats
                 if not userconf["silence"]:
                     embed = discord.Embed(
                         title=_("Congratulations {user}!").format(user=user.display_name),
