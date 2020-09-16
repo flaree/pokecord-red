@@ -29,7 +29,7 @@ GENDERS = [
     "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
     "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}",
 ]
-_MIGRATION_VERSION = 7
+_MIGRATION_VERSION = 8
 
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
