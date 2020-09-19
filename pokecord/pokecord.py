@@ -29,7 +29,7 @@ GENDERS = [
     "Male \N{MALE SIGN}\N{VARIATION SELECTOR-16}",
     "Female \N{FEMALE SIGN}\N{VARIATION SELECTOR-16}",
 ]
-_MIGRATION_VERSION = 8
+_MIGRATION_VERSION = 9
 
 
 class CompositeMetaClass(type(commands.Cog), type(ABC)):
@@ -140,36 +140,42 @@ class Pokecord(
         if await self.config.migration() < _MIGRATION_VERSION:
             self.usercache = await self.config.all_users()
             for user in self.usercache:
+                await self.config.user_from_id(user).pokeids.clear()
                 amount = {}
                 result = self.cursor.execute(
                     SELECT_POKEMON,
                     (user,),
                 ).fetchall()
-                for data in result:
-                    poke = json.loads(data[0])
+                async with self.config.user_from_id(user).pokeids() as pokeids:
+                    for data in result:
+                        poke = json.loads(data[0])
+                        if str(poke["id"]) not in pokeids:
 
-                    if not poke.get("gender", False):
-                        if isinstance(poke["name"], str):
-                            poke["gender"] = self.gender_choose(poke["name"])
+                            pokeids[str(poke["id"])] = 1
                         else:
-                            poke["gender"] = self.gender_choose(poke["name"]["english"])
+                            pokeids[str(poke["id"])] += 1
 
-                    if not poke.get("ivs", False):
-                        poke["ivs"] = {
-                            "HP": random.randint(0, 31),
-                            "Attack": random.randint(0, 31),
-                            "Defence": random.randint(0, 31),
-                            "Sp. Atk": random.randint(0, 31),
-                            "Sp. Def": random.randint(0, 31),
-                            "Speed": random.randint(0, 31),
-                        }
+                        if not poke.get("gender", False):
+                            if isinstance(poke["name"], str):
+                                poke["gender"] = self.gender_choose(poke["name"])
+                            else:
+                                poke["gender"] = self.gender_choose(poke["name"]["english"])
 
-                    self.cursor.execute(
-                        UPDATE_POKEMON,
-                        (user, data[1], json.dumps(poke)),
-                    )
-                await self.config.user_from_id(user).pokeids.set(amount)
-            await self.config.migration.set(_MIGRATION_VERSION)
+                        if not poke.get("ivs", False):
+                            poke["ivs"] = {
+                                "HP": random.randint(0, 31),
+                                "Attack": random.randint(0, 31),
+                                "Defence": random.randint(0, 31),
+                                "Sp. Atk": random.randint(0, 31),
+                                "Sp. Def": random.randint(0, 31),
+                                "Speed": random.randint(0, 31),
+                            }
+
+                        self.cursor.execute(
+                            UPDATE_POKEMON,
+                            (user, data[1], json.dumps(poke)),
+                        )
+                await self.config.migration.set(_MIGRATION_VERSION)
             log.info("Migration complete.")
 
         await self.update_guild_cache()
