@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-09-15 22:38+0000\n"
-"PO-Revision-Date: 2020-09-15 22:38\n"
+"POT-Creation-Date: 2020-09-22 22:37+0000\n"
+"PO-Revision-Date: 2020-09-22 22:38\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -173,7 +173,7 @@ msgstr ""
 msgid "Select your default pokémon."
 msgstr ""
 
-#: pokecord/general.py:181 pokecord/pokecord.py:361
+#: pokecord/general.py:181 pokecord/pokecord.py:367
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr ""
 
@@ -257,86 +257,86 @@ msgstr ""
 msgid "Pokecord adapted to use on Red."
 msgstr ""
 
-#: pokecord/pokecord.py:259
+#: pokecord/pokecord.py:265
 #, docstring
 msgid "Choose your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:262
+#: pokecord/pokecord.py:268
 msgid "You've already claimed your starter pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:264
+#: pokecord/pokecord.py:270
 msgid "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\\nIn order to get catchin' you must pick one of the starter Pokemon as listed below.\\n**Generation 1**\\nBulbasaur, Charmander and Squirtle\\n**Generation 2**\\nChikorita, Cyndaquil, Totodile\\n**Generation 3**\\nTreecko, Torchic, Mudkip\\n**Generation 4**\\nTurtwig, Chimchar, Piplup\\n**Generation 5**\\nSnivy, Tepig, Oshawott\\n**Generation 6**\\nChespin, Fennekin, Froakie\\n**Generation 7**\\nRowlet, Litten, Popplio\\n**Generation 8**\\nGrookey, Scorbunny, Sobble\\n"
 msgstr ""
 
-#: pokecord/pokecord.py:276
+#: pokecord/pokecord.py:282
 msgid "\\nTo pick a pokemon, type {prefix}starter <pokemon>"
 msgstr ""
 
-#: pokecord/pokecord.py:308
+#: pokecord/pokecord.py:314
 msgid "That's not a valid starter pokémon, trainer!"
 msgstr ""
 
-#: pokecord/pokecord.py:311
+#: pokecord/pokecord.py:317
 msgid "You've chosen {pokemon} as your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:330
+#: pokecord/pokecord.py:336
 #, docstring
 msgid "Get a hint on the pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:348
+#: pokecord/pokecord.py:354
 msgid "This wild pokemon is a {pokemonhint}."
 msgstr ""
 
-#: pokecord/pokecord.py:353 pokecord/pokecord.py:426
+#: pokecord/pokecord.py:359 pokecord/pokecord.py:432
 msgid "No pokemon is ready to be caught."
 msgstr ""
 
-#: pokecord/pokecord.py:357
+#: pokecord/pokecord.py:363
 #, docstring
 msgid "Catch a pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:389
+#: pokecord/pokecord.py:395
 msgid "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:400
+#: pokecord/pokecord.py:406
 msgid "\\n{pokename} has been added to the pokédex."
 msgstr ""
 
-#: pokecord/pokecord.py:425
+#: pokecord/pokecord.py:431
 msgid "That's not the correct pokemon"
 msgstr ""
 
-#: pokecord/pokecord.py:484
+#: pokecord/pokecord.py:490
 msgid "‌‌A wild pokémon has аppeаred!"
 msgstr ""
 
-#: pokecord/pokecord.py:485
+#: pokecord/pokecord.py:491
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr ""
 
-#: pokecord/pokecord.py:498
+#: pokecord/pokecord.py:504
 msgid "Supports: {languages}"
 msgstr ""
 
-#: pokecord/pokecord.py:593 pokecord/pokecord.py:611
+#: pokecord/pokecord.py:605 pokecord/pokecord.py:623
 msgid "Congratulations {user}!"
 msgstr ""
 
-#: pokecord/pokecord.py:594
+#: pokecord/pokecord.py:606
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:612
+#: pokecord/pokecord.py:624
 msgid "Your {name} has levelled up to level {level}!"
 msgstr ""
 
-#: pokecord/pokecord.py:640
+#: pokecord/pokecord.py:652
 #, docstring
 msgid "Sim pokemon spawning - This is blocking."
 msgstr ""
