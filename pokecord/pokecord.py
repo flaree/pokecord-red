@@ -319,6 +319,14 @@ class Pokecord(
         pokemon = starter_pokemon[pokemon.lower()]
         pokemon["level"] = 1
         pokemon["xp"] = 0
+        pokemon["ivs"] = {
+            "HP": random.randint(0, 31),
+            "Attack": random.randint(0, 31),
+            "Defence": random.randint(0, 31),
+            "Sp. Atk": random.randint(0, 31),
+            "Sp. Def": random.randint(0, 31),
+            "Speed": random.randint(0, 31),
+        }
 
         self.cursor.execute(
             INSERT_POKEMON,
