@@ -6,6 +6,7 @@ import logging
 import random
 import string
 from abc import ABC
+import functools
 
 import apsw
 import discord
@@ -107,6 +108,11 @@ class Pokecord(
         self._executor.shutdown()
         if self.bg_loop_task:
             self.bg_loop_task.cancel()
+
+    def safe_write(self, query, data):
+        """Func for safely writing in another thread."""
+        cursor = self._connection.cursor()
+        cursor.execute(query, data)
 
     async def initalize(self):
         with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
@@ -649,11 +655,10 @@ class Pokecord(
                     channel = None
                 if channel is not None:
                     await channel.send(embed=embed)
+        data = (user.id, msg_id, json.dumps(pokemon))
+        task = functools.partial(self.safe_write, UPDATE_POKEMON, data)
+        await self.bot.loop.run_in_executor(self._executor, task)
 
-        self.cursor.execute(
-            UPDATE_POKEMON,
-            (user.id, msg_id, json.dumps(pokemon)),
-        )
 
     @commands.command(hidden=True)
     async def pokesim(self, ctx, amount: int = 1000000):
