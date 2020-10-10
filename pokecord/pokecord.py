@@ -592,7 +592,9 @@ class Pokecord(
                 lvl = pokemon["level"]
                 nick = pokemon.get("nickname")
                 ivs = pokemon["ivs"]
-                gender = pokemon["gender"]
+                gender = pokemon.get("gender")
+                if gender is None:
+                    gender = self.gender_choose(pokemon["name"]["english"])
                 stats = pokemon["stats"]
                 pokemon = next(
                     (
