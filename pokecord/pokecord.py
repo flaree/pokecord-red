@@ -1,12 +1,12 @@
 import asyncio
 import concurrent.futures
 import datetime
+import functools
 import json
 import logging
 import random
 import string
 from abc import ABC
-import functools
 
 import apsw
 import discord
@@ -660,7 +660,6 @@ class Pokecord(
         data = (user.id, msg_id, json.dumps(pokemon))
         task = functools.partial(self.safe_write, UPDATE_POKEMON, data)
         await self.bot.loop.run_in_executor(self._executor, task)
-
 
     @commands.command(hidden=True)
     async def pokesim(self, ctx, amount: int = 1000000):
