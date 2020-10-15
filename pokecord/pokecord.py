@@ -333,6 +333,7 @@ class Pokecord(
             "Sp. Def": random.randint(0, 31),
             "Speed": random.randint(0, 31),
         }
+        pokemon["gender"] = self.gender_choose(pokemon["name"]["english"])
 
         self.cursor.execute(
             INSERT_POKEMON,
@@ -595,6 +596,15 @@ class Pokecord(
                 gender = pokemon.get("gender")
                 if gender is None:
                     gender = self.gender_choose(pokemon["name"]["english"])
+                if ivs is None:
+                    ivs = {
+                        "HP": random.randint(0, 31),
+                        "Attack": random.randint(0, 31),
+                        "Defence": random.randint(0, 31),
+                        "Sp. Atk": random.randint(0, 31),
+                        "Sp. Def": random.randint(0, 31),
+                        "Speed": random.randint(0, 31),
+                    }
                 stats = pokemon["stats"]
                 pokemon = next(
                     (
