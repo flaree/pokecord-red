@@ -579,11 +579,7 @@ class Pokecord(
                 pokename = pokemon["name"]
             else:
                 pokename = pokemon["name"]["english"]
-            evolve = (
-                self.evolvedata.get(pokename)
-                if not pokemon.get("variant")
-                else self.evolvedata.get(pokemon.get("alias"))
-            )
+            evolve = self.evolvedata.get(pokename)
             name = (
                 self.get_name(pokemon["name"], user)
                 if pokemon.get("nickname") is None
@@ -606,14 +602,25 @@ class Pokecord(
                         "Speed": random.randint(0, 31),
                     }
                 stats = pokemon["stats"]
-                pokemon = next(
-                    (
-                        item
-                        for item in self.pokemondata
-                        if (item["name"]["english"] == evolve["evolution"])
-                    ),
-                    None,
-                )  # Make better
+                if pokemon.get("variant", None) is not None:
+                    pokemon = next(
+                        (
+                            item
+                            for item in self.pokemondata
+                            if (item["name"]["english"] == evolve["evolution"])
+                            and item.get("variant", "") == pokemon.get("variant", "")
+                        ),
+                        None,
+                    )
+                else:
+                    pokemon = next(
+                        (
+                            item
+                            for item in self.pokemondata
+                            if (item["name"]["english"] == evolve["evolution"])
+                        ),
+                        None,
+                    )  # Make better
                 if pokemon is None:
                     log.info(
                         f"Error occured trying to find {evolve['evolution']} for an evolution."

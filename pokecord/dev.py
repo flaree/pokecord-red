@@ -126,13 +126,7 @@ class Dev(MixinMeta):
         await ctx.tick()
 
     @dev.command(name="level")
-    async def dev_lvl(
-        self,
-        ctx,
-        user: discord.Member,
-        pokeid: int,
-        lvl: int
-    ):
+    async def dev_lvl(self, ctx, user: discord.Member, pokeid: int, lvl: int):
         """Manually set a pokemons level"""
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
