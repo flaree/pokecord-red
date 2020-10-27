@@ -95,7 +95,7 @@ class Dev(MixinMeta):
         spdef: int,
         speed: int,
     ):
-        """Manually set a pokemons statss"""
+        """Manually set a pokemons stats"""
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
         async with ctx.typing():
@@ -119,6 +119,37 @@ class Dev(MixinMeta):
             "Sp. Def": spdef,
             "Speed": speed,
         }
+        self.cursor.execute(
+            UPDATE_POKEMON,
+            (user.id, pokemon[1], json.dumps(pokemon[0])),
+        )
+        await ctx.tick()
+
+    @dev.command(name="level")
+    async def dev_lvl(
+        self,
+        ctx,
+        user: discord.Member,
+        pokeid: int,
+        lvl: int
+    ):
+        """Manually set a pokemons level"""
+        if pokeid <= 0:
+            return await ctx.send("The ID must be greater than 0!")
+        async with ctx.typing():
+            result = self.cursor.execute(
+                SELECT_POKEMON,
+                (user.id,),
+            ).fetchall()
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send("You don't have any pokémon, trainer!")
+        if pokeid >= len(pokemons):
+            return await ctx.send("There's no pokemon at that slot.")
+        pokemon = pokemons[pokeid]
+        pokemon[0]["level"] = lvl
         self.cursor.execute(
             UPDATE_POKEMON,
             (user.id, pokemon[1], json.dumps(pokemon[0])),
