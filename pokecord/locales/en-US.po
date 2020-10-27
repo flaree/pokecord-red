@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2020-10-13 22:38+0000\n"
-"PO-Revision-Date: 2020-10-13 22:39\n"
+"POT-Creation-Date: 2020-10-27 22:42+0000\n"
+"PO-Revision-Date: 2020-10-27 22:43\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,12 @@ msgstr ""
 
 #: pokecord/dev.py:98
 #, docstring
-msgid "Manually set a pokemons statss"
+msgid "Manually set a pokemons stats"
+msgstr ""
+
+#: pokecord/dev.py:130
+#, docstring
+msgid "Manually set a pokemons level"
 msgstr ""
 
 #: pokecord/functions.py:20
@@ -173,7 +178,7 @@ msgstr ""
 msgid "Select your default pokémon."
 msgstr ""
 
-#: pokecord/general.py:181 pokecord/pokecord.py:381
+#: pokecord/general.py:181 pokecord/pokecord.py:382
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr ""
 
@@ -282,61 +287,61 @@ msgstr ""
 msgid "You've chosen {pokemon} as your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:350
+#: pokecord/pokecord.py:351
 #, docstring
 msgid "Get a hint on the pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:368
+#: pokecord/pokecord.py:369
 msgid "This wild pokemon is a {pokemonhint}."
 msgstr ""
 
-#: pokecord/pokecord.py:373 pokecord/pokecord.py:446
+#: pokecord/pokecord.py:374 pokecord/pokecord.py:447
 msgid "No pokemon is ready to be caught."
 msgstr ""
 
-#: pokecord/pokecord.py:377
+#: pokecord/pokecord.py:378
 #, docstring
 msgid "Catch a pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:409
+#: pokecord/pokecord.py:410
 msgid "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:420
+#: pokecord/pokecord.py:421
 msgid "\\n{pokename} has been added to the pokédex."
 msgstr ""
 
-#: pokecord/pokecord.py:445
+#: pokecord/pokecord.py:446
 msgid "That's not the correct pokemon"
 msgstr ""
 
-#: pokecord/pokecord.py:504
+#: pokecord/pokecord.py:505
 msgid "‌‌A wild pokémon has аppeаred!"
 msgstr ""
 
-#: pokecord/pokecord.py:505
+#: pokecord/pokecord.py:506
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr ""
 
-#: pokecord/pokecord.py:518
+#: pokecord/pokecord.py:519
 msgid "Supports: {languages}"
 msgstr ""
 
-#: pokecord/pokecord.py:621 pokecord/pokecord.py:639
+#: pokecord/pokecord.py:638 pokecord/pokecord.py:656
 msgid "Congratulations {user}!"
 msgstr ""
 
-#: pokecord/pokecord.py:622
+#: pokecord/pokecord.py:639
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:640
+#: pokecord/pokecord.py:657
 msgid "Your {name} has levelled up to level {level}!"
 msgstr ""
 
-#: pokecord/pokecord.py:666
+#: pokecord/pokecord.py:683
 #, docstring
 msgid "Sim pokemon spawning - This is blocking."
 msgstr ""
