@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
 "POT-Creation-Date: 2020-10-27 22:42+0000\n"
-"PO-Revision-Date: 2020-10-27 22:43\n"
+"PO-Revision-Date: 2020-11-10 22:38\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +35,12 @@ msgstr "Sett manuelt en pokemons IV"
 #: pokecord/dev.py:98
 #, docstring
 msgid "Manually set a pokemons stats"
-msgstr ""
+msgstr "Sett manuelt en pokemon statistikk"
 
 #: pokecord/dev.py:130
 #, docstring
 msgid "Manually set a pokemons level"
-msgstr ""
+msgstr "Sett manuelt en pokemons level"
 
 #: pokecord/functions.py:20
 msgid "HP"
