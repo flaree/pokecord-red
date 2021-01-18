@@ -2,11 +2,11 @@
     "author": [
       "flare(flare#0001)"
     ],
-    "install_msg": "Thanks for installing and testing out the Pokecord rewrite for Red. If any issues pop up, feel free to create an issue or join my support server @ https://discord.gg/C3geJPp. Alternatively, you can post in the Red Cog Support server.",
+    "install_msg": "Thanks for installing and testing out the Pokecord rewrite for Red. If any errors occur, post in the #suuport-flare-cogs in the Red 3rd party server.",
     "name": "Pokecord",
     "disabled": false,
-    "short": "Pokecord",
-    "description": "Pokecord..",
+    "short": "Pokecord for Red.",
+    "description": "Pokecord for Red.",
     "tags": [
       "pokemon",
       "pokecord"
