@@ -81,7 +81,7 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
     async def stop_pages_default(self, payload: discord.RawReactionActionEvent) -> None:
         self.stop()
         with contextlib.suppress(discord.NotFound):
-            await self.messaage.delete()
+            await self.message.delete()
 
     @menus.button("\N{BLACK RIGHT-POINTING TRIANGLE}", position=menus.First(2))
     async def next(self, payload: discord.RawReactionActionEvent):
