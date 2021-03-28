@@ -178,11 +178,11 @@ msgstr "Sélectionnez votre pokémon par défaut."
 
 #: pokecord/general.py:181 pokecord/pokecord.py:382
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
-msgstr ""
+msgstr "Tu n'as pas encore de starter, tape `{prefix}starter` pour plus d'informations."
 
 #: pokecord/general.py:194
 msgid "You don't have any pokemon to select."
-msgstr ""
+msgstr "Dresseur, vous n'avez aucun pokémon à sélectionner."
 
 #: pokecord/general.py:200
 msgid "Unidentified keyword, the only supported action is `latest` as of now."
@@ -190,16 +190,16 @@ msgstr ""
 
 #: pokecord/general.py:205
 msgid "You've specified an invalid ID.\\nID refers to the position within your pokémon listing.\\nThis is found at the bottom of the pokemon on `[p]list`"
-msgstr ""
+msgstr "Tu as donné un ID invalide.\\n L'Id correspond à la place du pokémon dans ta liste.\\n Tu le trouvera en bas de ton `[p]list`"
 
 #: pokecord/general.py:210
 msgid "You have selected {pokemon} as your default pokémon."
-msgstr ""
+msgstr "Tu as sélectionné {pokemon} comme pokémon par défaut."
 
 #: pokecord/general.py:221
 #, docstring
 msgid "Check your caught pokémon!"
-msgstr ""
+msgstr "Vois les pokémons que tu as attrapé !"
 
 #: pokecord/general.py:246
 #, docstring
@@ -208,7 +208,7 @@ msgstr ""
 
 #: pokecord/general.py:263
 msgid "You don't have any pokémon trainer!"
-msgstr ""
+msgstr "Dresseur, vous n'avez aucun pokémon !"
 
 #: pokecord/general.py:270
 msgid "{pokemon} **|** Level: {level} **|** ID: {id} **|** Index: {index}\\n"
