@@ -622,9 +622,9 @@ class Pokecord(
                         None,
                     )  # Make better
                 if pokemon is None:
-                    log.info(
-                        f"Error occured trying to find {evolve['evolution']} for an evolution."
-                    )
+                    # log.debug(
+                    #     f"Error occured trying to find {evolve['evolution']} for an evolution."
+                    # )
                     return
                 if nick is not None:
                     pokemon["nickname"] = nick
