@@ -18,16 +18,16 @@ PRAGMA read_uncommitted = 1;
 
 INSERT_POKEMON = """
 INSERT INTO users (user_id, message_id, pokemon)
-VALUES (?, ?, ?);
+VALUES (:user_id, :message_id, :pokemon);
 """
 
 SELECT_POKEMON = """
-SELECT pokemon, message_id from users where user_id = ?
+SELECT pokemon, message_id from users where user_id = :user_id
 """
 
 UPDATE_POKEMON = """
 INSERT INTO users (user_id, message_id, pokemon)
-VALUES (?, ?, ?)
+VALUES (:user_id, :message_id, :pokemon)
 ON CONFLICT (message_id) DO UPDATE SET 
     pokemon = excluded.pokemon;
 """

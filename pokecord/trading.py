@@ -25,10 +25,10 @@ class TradeMixin(MixinMeta):
 
         Currently a work in progress."""
         async with ctx.typing():
-            result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""",
-                (ctx.author.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(
+                query="""SELECT pokemon, message_id from users where user_id = :user_id""",
+                values={"user_id": ctx.author.id},
+            )
             pokemons = [None]
             for data in result:
                 pokemons.append([json.loads(data[0]), data[1]])
@@ -68,9 +68,10 @@ class TradeMixin(MixinMeta):
                     _("{user} does not have {amount} {currency} available.").format(
                         user=user,
                         amount=amount.result,
-                        currency=await bank.get_currency_name(ctx.guild if ctx.guild else None),
+                        currency=await bank.get_currency_name(ctx.guild or None),
                     )
                 )
+
                 return
             await ctx.send(
                 _(
@@ -80,9 +81,10 @@ class TradeMixin(MixinMeta):
                     author=ctx.author,
                     pokemon=name,
                     amount=bal,
-                    currency=await bank.get_currency_name(ctx.guild if ctx.guild else None),
+                    currency=await bank.get_currency_name(ctx.guild or None),
                 )
             )
+
             try:
                 authorconfirm = MessagePredicate.yes_or_no(ctx, user=user)
                 await ctx.bot.wait_for("message", check=authorconfirm, timeout=30)
@@ -91,13 +93,17 @@ class TradeMixin(MixinMeta):
                 return
 
             if authorconfirm.result:
-                self.cursor.execute(
-                    "DELETE FROM users where message_id = ?",
-                    (pokemon[1],),
+                await self.cursor.execute(
+                    query="DELETE FROM users where message_id = :message_id",
+                    values={"message_id": pokemon[1]},
                 )
-                self.cursor.execute(
-                    INSERT_POKEMON,
-                    (user.id, ctx.message.id, json.dumps(pokemon[0])),
+                await self.cursor.execute(
+                    query=INSERT_POKEMON,
+                    values={
+                        "user_id": user.id,
+                        "message_id": ctx.message.id,
+                        "pokemon": json.dumps(pokemon[0]),
+                    },
                 )
                 userconf = await self.user_is_global(ctx.author)
                 pokeid = await userconf.pokeid()

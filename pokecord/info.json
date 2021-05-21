@@ -11,6 +11,6 @@
       "pokemon",
       "pokecord"
     ],
-    "requirements": ["tabulate"],
+    "requirements": ["tabulate", "databases", "databases[sqlite]"],
     "hidden": false
   }

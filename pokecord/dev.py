@@ -56,10 +56,7 @@ class Dev(MixinMeta):
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
         async with ctx.typing():
-            result = self.cursor.execute(
-                SELECT_POKEMON,
-                (user.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -76,9 +73,13 @@ class Dev(MixinMeta):
             "Sp. Def": spdef,
             "Speed": speed,
         }
-        self.cursor.execute(
-            UPDATE_POKEMON,
-            (user.id, pokemon[1], json.dumps(pokemon[0])),
+        await self.cursor.execute(
+            query=UPDATE_POKEMON,
+            values={
+                "user_id": user.id,
+                "message_id": pokemon[1],
+                "pokemon": json.dumps(pokemon[0]),
+            },
         )
         await ctx.tick()
 
@@ -99,10 +100,7 @@ class Dev(MixinMeta):
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
         async with ctx.typing():
-            result = self.cursor.execute(
-                SELECT_POKEMON,
-                (user.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -119,9 +117,13 @@ class Dev(MixinMeta):
             "Sp. Def": spdef,
             "Speed": speed,
         }
-        self.cursor.execute(
-            UPDATE_POKEMON,
-            (user.id, pokemon[1], json.dumps(pokemon[0])),
+        await self.cursor.execute(
+            query=UPDATE_POKEMON,
+            values={
+                "user_id": user.id,
+                "message_id": pokemon[1],
+                "pokemon": json.dumps(pokemon[0]),
+            },
         )
         await ctx.tick()
 
@@ -131,10 +133,7 @@ class Dev(MixinMeta):
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
         async with ctx.typing():
-            result = self.cursor.execute(
-                SELECT_POKEMON,
-                (user.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -144,8 +143,12 @@ class Dev(MixinMeta):
             return await ctx.send("There's no pokemon at that slot.")
         pokemon = pokemons[pokeid]
         pokemon[0]["level"] = lvl
-        self.cursor.execute(
-            UPDATE_POKEMON,
-            (user.id, pokemon[1], json.dumps(pokemon[0])),
+        await self.cursor.execute(
+            query=UPDATE_POKEMON,
+            values={
+                "user_id": user.id,
+                "message_id": pokemon[1],
+                "pokemon": json.dumps(pokemon[0]),
+            },
         )
         await ctx.tick()

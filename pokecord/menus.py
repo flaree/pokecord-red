@@ -68,7 +68,7 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
         return payload.emoji in self.buttons
 
     def _cant_select(self):
-        return not self.ctx.author == self.user
+        return self.ctx.author != self.user
 
     @menus.button("\N{BLACK LEFT-POINTING TRIANGLE}", position=menus.First(0))
     async def prev(self, payload: discord.RawReactionActionEvent):

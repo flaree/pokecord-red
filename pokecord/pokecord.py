@@ -1,7 +1,6 @@
 import asyncio
 import concurrent.futures
 import datetime
-import functools
 import json
 import logging
 import random
@@ -10,6 +9,7 @@ from abc import ABC
 
 import apsw
 import discord
+from databases import Database
 from redbot.core import Config, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
 from redbot.core.i18n import Translator, cog_i18n
@@ -50,7 +50,7 @@ class Pokecord(
 ):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-alpha-20"
+    __version__ = "0.0.1-alpha-21"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -95,12 +95,7 @@ class Pokecord(
         self.guildcache = {}
         self.usercache = {}
         self.spawnchance = []
-        self._connection = apsw.Connection(str(cog_data_path(self) / "pokemon.db"))
-        self.cursor = self._connection.cursor()
-        self.cursor.execute(PRAGMA_journal_mode)
-        self.cursor.execute(PRAGMA_wal_autocheckpoint)
-        self.cursor.execute(PRAGMA_read_uncommitted)
-        self.cursor.execute(POKECORD_CREATE_POKECORD_TABLE)
+        self.cursor = Database(f"sqlite:///{cog_data_path(self)}/pokemon.db")
         self._executor = concurrent.futures.ThreadPoolExecutor(1)
         self.bg_loop_task = None
 
@@ -109,12 +104,12 @@ class Pokecord(
         if self.bg_loop_task:
             self.bg_loop_task.cancel()
 
-    def safe_write(self, query, data):
-        """Func for safely writing in another thread."""
-        cursor = self._connection.cursor()
-        cursor.execute(query, data)
-
     async def initalize(self):
+        await self.cursor.connect()
+        await self.cursor.execute(PRAGMA_journal_mode)
+        await self.cursor.execute(PRAGMA_wal_autocheckpoint)
+        await self.cursor.execute(PRAGMA_read_uncommitted)
+        await self.cursor.execute(POKECORD_CREATE_POKECORD_TABLE)
         with open(f"{self.datapath}/pokedex.json", encoding="utf-8") as f:
             pdata = json.load(f)
         with open(f"{self.datapath}/evolve.json", encoding="utf-8") as f:
@@ -148,9 +143,9 @@ class Pokecord(
             for user in self.usercache:
                 await self.config.user_from_id(user).pokeids.clear()
                 amount = {}
-                result = self.cursor.execute(
-                    SELECT_POKEMON,
-                    (user,),
+                result = await self.cursor.fetch_all(
+                    query=SELECT_POKEMON,
+                    values={"userid": user},
                 ).fetchall()
                 async with self.config.user_from_id(user).pokeids() as pokeids:
                     for data in result:
@@ -177,12 +172,16 @@ class Pokecord(
                                 "Speed": random.randint(0, 31),
                             }
 
-                        self.cursor.execute(
-                            UPDATE_POKEMON,
-                            (user, data[1], json.dumps(poke)),
+                        await self.cursor.execute(
+                            query=UPDATE_POKEMON,
+                            values={
+                                "user_id": user,
+                                "message_id": data[1],
+                                "pokemon": json.dumps(poke),
+                            },
                         )
                 await self.config.migration.set(_MIGRATION_VERSION)
-            log.info("Migration complete.")
+            log.info("Pokecord Migration complete.")
 
         await self.update_guild_cache()
         await self.update_spawn_chance()
@@ -335,13 +334,13 @@ class Pokecord(
         }
         pokemon["gender"] = self.gender_choose(pokemon["name"]["english"])
 
-        self.cursor.execute(
-            INSERT_POKEMON,
-            (
-                ctx.author.id,
-                ctx.message.id,
-                json.dumps(pokemon),
-            ),
+        await self.cursor.execute(
+            query=INSERT_POKEMON,
+            values={
+                "user_id": ctx.author.id,
+                "message_id": ctx.message.id,
+                "pokemon": json.dumps(pokemon),
+            },
         )
         await conf.has_starter.set(True)
 
@@ -351,26 +350,25 @@ class Pokecord(
         """Get a hint on the pokémon!"""
         pokemonspawn = await self.config.channel(ctx.channel).pokemon()
         if pokemonspawn is not None:
-            if pokemonspawn is not None:
-                name = self.get_name(pokemonspawn["name"], ctx.author)
-                inds = [i for i, _ in enumerate(name)]
-                if len(name) > 6:
-                    amount = len(name) - random.randint(2, 4)
-                else:
-                    amount = random.randint(3, 4)
-                sam = random.sample(inds, amount)
+            name = self.get_name(pokemonspawn["name"], ctx.author)
+            inds = [i for i, _ in enumerate(name)]
+            if len(name) > 6:
+                amount = len(name) - random.randint(2, 4)
+            else:
+                amount = random.randint(3, 4)
+            sam = random.sample(inds, amount)
 
-                lst = list(name)
-                for ind in sam:
-                    if lst[ind] != " ":
-                        lst[ind] = "_"
-                word = "".join(lst)
-                await ctx.send(
-                    _("This wild pokemon is a {pokemonhint}.").format(
-                        pokemonhint=escape(word, formatting=True)
-                    )
+            lst = list(name)
+            for ind in sam:
+                if lst[ind] != " ":
+                    lst[ind] = "_"
+            word = "".join(lst)
+            await ctx.send(
+                _("This wild pokemon is a {pokemonhint}.").format(
+                    pokemonhint=escape(word, formatting=True)
                 )
-                return
+            )
+            return
         await ctx.send(_("No pokemon is ready to be caught."))
 
     @commands.command()
@@ -385,65 +383,65 @@ class Pokecord(
             )
         pokemonspawn = await self.config.channel(ctx.channel).pokemon()
         if pokemonspawn is not None:
-            if pokemonspawn is not None:
-                names = set(
-                    pokemonspawn["name"][name].lower()
-                    for name in pokemonspawn["name"]
-                    if pokemonspawn["name"][name] is not None
-                )
-                names.add(
-                    pokemonspawn["name"]["english"].translate(str.maketrans("", "", PUNCT)).lower()
-                )
-                if pokemonspawn.get("alias"):
-                    names.add(pokemonspawn["alias"].lower())
-                if pokemon.lower() in names:
-                    if await self.config.channel(ctx.channel).pokemon() is not None:
-                        await self.config.channel(ctx.channel).pokemon.clear()
-                    else:
-                        await ctx.send("No pokemon is ready to be caught.")
-                        return
-                    lvl = random.randint(1, 13)
-                    pokename = self.get_name(pokemonspawn["name"], ctx.author)
-                    variant = (
-                        f'{pokemonspawn.get("variant")} ' if pokemonspawn.get("variant") else ""
-                    )
-                    msg = _(
-                        "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
-                    ).format(
-                        user=ctx.author.mention,
-                        lvl=lvl,
-                        variant=variant,
-                        pokename=pokename,
+            names = {
+                pokemonspawn["name"][name].lower()
+                for name in pokemonspawn["name"]
+                if pokemonspawn["name"][name] is not None
+            }
+            names.add(
+                pokemonspawn["name"]["english"].translate(str.maketrans("", "", PUNCT)).lower()
+            )
+            if pokemonspawn.get("alias"):
+                names.add(pokemonspawn["alias"].lower())
+            if pokemon.lower() not in names:
+                return await ctx.send(_("That's not the correct pokemon"))
+            if await self.config.channel(ctx.channel).pokemon() is not None:
+                await self.config.channel(ctx.channel).pokemon.clear()
+            else:
+                await ctx.send("No pokemon is ready to be caught.")
+                return
+            lvl = random.randint(1, 13)
+            pokename = self.get_name(pokemonspawn["name"], ctx.author)
+            variant = f'{pokemonspawn.get("variant")} ' if pokemonspawn.get("variant") else ""
+            msg = _(
+                "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
+            ).format(
+                user=ctx.author.mention,
+                lvl=lvl,
+                variant=variant,
+                pokename=pokename,
+            )
+
+            async with conf.pokeids() as poke:
+                if str(pokemonspawn["id"]) not in poke:
+                    msg += _("\n{pokename} has been added to the pokédex.").format(
+                        pokename=pokename
                     )
 
-                    async with conf.pokeids() as poke:
-                        if str(pokemonspawn["id"]) not in poke:
-                            msg += _("\n{pokename} has been added to the pokédex.").format(
-                                pokename=pokename
-                            )
-
-                            poke[str(pokemonspawn["id"])] = 1
-                        else:
-                            poke[str(pokemonspawn["id"])] += 1
-                    pokemonspawn["level"] = lvl
-                    pokemonspawn["xp"] = 0
-                    pokemonspawn["gender"] = self.gender_choose(pokemonspawn["name"]["english"])
-                    pokemonspawn["ivs"] = {
-                        "HP": random.randint(0, 31),
-                        "Attack": random.randint(0, 31),
-                        "Defence": random.randint(0, 31),
-                        "Sp. Atk": random.randint(0, 31),
-                        "Sp. Def": random.randint(0, 31),
-                        "Speed": random.randint(0, 31),
-                    }
-                    self.cursor.execute(
-                        INSERT_POKEMON,
-                        (ctx.author.id, ctx.message.id, json.dumps(pokemonspawn)),
-                    )
-                    await ctx.send(msg)
-                    return
+                    poke[str(pokemonspawn["id"])] = 1
                 else:
-                    return await ctx.send(_("That's not the correct pokemon"))
+                    poke[str(pokemonspawn["id"])] += 1
+            pokemonspawn["level"] = lvl
+            pokemonspawn["xp"] = 0
+            pokemonspawn["gender"] = self.gender_choose(pokemonspawn["name"]["english"])
+            pokemonspawn["ivs"] = {
+                "HP": random.randint(0, 31),
+                "Attack": random.randint(0, 31),
+                "Defence": random.randint(0, 31),
+                "Sp. Atk": random.randint(0, 31),
+                "Sp. Def": random.randint(0, 31),
+                "Speed": random.randint(0, 31),
+            }
+            await self.cursor.execute(
+                query=INSERT_POKEMON,
+                values={
+                    "user_id": ctx.author.id,
+                    "message_id": ctx.message.id,
+                    "pokemon": json.dumps(pokemonspawn),
+                },
+            )
+            await ctx.send(msg)
+            return
         await ctx.send(_("No pokemon is ready to be caught."))
 
     def spawn_chance(self, guildid):
@@ -548,7 +546,7 @@ class Pokecord(
             datetime.datetime.utcnow().timestamp()
         )  # TODO: guild based
         await self.update_user_cache()
-        result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
+        result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
         pokemons = []
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -674,15 +672,19 @@ class Pokecord(
                     channel = None
                 if channel is not None:
                     await channel.send(embed=embed)
-        data = (user.id, msg_id, json.dumps(pokemon))
-        task = functools.partial(self.safe_write, UPDATE_POKEMON, data)
-        await self.bot.loop.run_in_executor(self._executor, task)
+        # data = (user.id, msg_id, json.dumps(pokemon))
+        await self.cursor.execute(
+            query=UPDATE_POKEMON,
+            values={"user_id": user.id, "message_id": msg_id, "pokemon": json.dumps(pokemon)},
+        )
+        # task = functools.partial(self.safe_write, UPDATE_POKEMON, data)
+        # await self.bot.loop.run_in_executor(self._executor, task)
 
     @commands.command(hidden=True)
     async def pokesim(self, ctx, amount: int = 1000000):
         """Sim pokemon spawning - This is blocking."""
         a = {}
-        for i in range(amount):
+        for _ in range(amount):
             pokemon = self.pokemon_choose()
             variant = pokemon.get("variant", "Normal")
             if variant not in a:

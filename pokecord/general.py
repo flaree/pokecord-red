@@ -35,7 +35,7 @@ class GeneralMixin(MixinMeta):
             )
         user = user or ctx.author
         async with ctx.typing():
-            result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
         pokemons = []
         for i, data in enumerate(result, start=1):
             poke = json.loads(data[0])
@@ -78,10 +78,9 @@ class GeneralMixin(MixinMeta):
             )
             return
         async with ctx.typing():
-            result = self.cursor.execute(
-                SELECT_POKEMON,
-                (ctx.author.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(
+                query=SELECT_POKEMON, values={"user_id": ctx.author.id}
+            )
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -95,9 +94,13 @@ class GeneralMixin(MixinMeta):
             )
         pokemon = pokemons[id]
         pokemon[0]["nickname"] = nickname
-        self.cursor.execute(
-            UPDATE_POKEMON,
-            (ctx.author.id, pokemon[1], json.dumps(pokemon[0])),
+        await self.cursor.execute(
+            query=UPDATE_POKEMON,
+            values={
+                "user_id": ctx.author.id,
+                "message_id": pokemon[1],
+                "pokemon": json.dumps(pokemon[0]),
+            },
         )
         await ctx.send(
             _("Your {pokemon} has been nicknamed `{nickname}`").format(
@@ -119,10 +122,10 @@ class GeneralMixin(MixinMeta):
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
         async with ctx.typing():
-            result = self.cursor.execute(
-                SELECT_POKEMON,
-                (ctx.author.id,),
-            ).fetchall()
+            result = self.cursor.fetch_all(
+                query=SELECT_POKEMON,
+                values={"user_id": ctx.author.id},
+            )
         pokemons = [None]
         for data in result:
             pokemons.append([json.loads(data[0]), data[1]])
@@ -162,9 +165,9 @@ class GeneralMixin(MixinMeta):
                     "\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
                 )
                 await userconf.pokeid.set(1)
-            self.cursor.execute(
-                "DELETE FROM users where message_id = ?",
-                (pokemon[1],),
+            await self.cursor.execute(
+                query="DELETE FROM users where message_id = :message_id",
+                values={"message_id": pokemon[1]},
             )
             await ctx.send(_("Your {name} has been freed.{msg}").format(name=name, msg=msg))
         else:
@@ -183,10 +186,10 @@ class GeneralMixin(MixinMeta):
                 ).format(prefix=ctx.clean_prefix)
             )
         async with ctx.typing():
-            result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""",
-                (ctx.author.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(
+                query="""SELECT pokemon, message_id from users where user_id = :user_id""",
+                values={"user_id": ctx.author.id},
+            )
             pokemons = [None]
             for data in result:
                 pokemons.append([json.loads(data[0]), data[1]])
@@ -226,11 +229,9 @@ class GeneralMixin(MixinMeta):
                 if str(pokemon) in pokemons:
                     pokemonlist[i]["amount"] = pokemons[str(pokemon)]
             a = [value for value in pokemonlist.items()]
-            chunked = []
             total = 0
             page = 1
-            for item in chunks(a, 20):
-                chunked.append(item)
+            chunked = [item for item in chunks(a, 20)]
             await GenericMenu(
                 source=PokedexFormat(chunked),
                 delete_message_after=False,
@@ -255,10 +256,10 @@ class GeneralMixin(MixinMeta):
             `--iv` | - Search by total IV.
         """
         async with ctx.typing():
-            result = self.cursor.execute(
-                """SELECT pokemon, message_id from users where user_id = ?""",
-                (ctx.author.id,),
-            ).fetchall()
+            result = await self.cursor.fetch_all(
+                query="""SELECT pokemon, message_id from users where user_id = :user_id""",
+                values={"user_id": ctx.author.id},
+            )
             if not result:
                 await ctx.send(_("You don't have any pokémon trainer!"))
             pokemons = [None]
@@ -317,7 +318,7 @@ class GeneralMixin(MixinMeta):
             )
         user = ctx.author
         async with ctx.typing():
-            result = self.cursor.execute(SELECT_POKEMON, (user.id,)).fetchall()
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
         pokemons = []
         for i, data in enumerate(result, start=1):
             poke = json.loads(data[0])
