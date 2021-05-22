@@ -26,8 +26,7 @@ SELECT pokemon, message_id from users where user_id = :user_id
 """
 
 UPDATE_POKEMON = """
-INSERT INTO users (user_id, message_id, pokemon)
-VALUES (:user_id, :message_id, :pokemon)
-ON CONFLICT (message_id) DO UPDATE SET 
-    pokemon = excluded.pokemon;
+UPDATE users
+SET pokemon = :pokemon
+where message_id = :message_id and user_id = :user_id;
 """
