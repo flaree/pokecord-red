@@ -34,6 +34,8 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
         self.cog = cog
         self.ctx = ctx
         self.user = user
+        self._search_lock = asyncio.Lock()
+        self._search_task: asyncio.Task = None
         super().__init__(
             source,
             clear_reactions_after=clear_reactions_after,
@@ -43,6 +45,42 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
             message=message,
             **kwargs,
         )
+
+    async def finalize(self, timed_out):
+        if not self._running:
+            return
+
+        await self.stop(do_super=False)
+
+    async def stop(self, do_super: bool = True):
+        if self._search_task is not None:
+            self._search_task.cancel()
+        if do_super:
+            super().stop()
+
+    async def _number_page_task(self):
+        async def cleanup(messages: List[discord.Message]):
+            with contextlib.suppress(discord.HTTPException):
+                for msg in messages:
+                    await msg.delete()
+
+        async with self._search_lock:
+            prompt = await self.ctx.send(_("Please select the Pokémon ID number to jump to."))
+            try:
+                pred = MessagePredicate.valid_int(self.ctx)
+                msg = await self.bot.wait_for("message_without_command", check=pred, timeout=10.0)
+                jump_page = int(msg.content)
+                if jump_page > self._source.get_max_pages():
+                    await self.ctx.send(
+                        _("Invalid Pokémon ID, jumping to the end."), delete_after=5
+                    )
+                    jump_page = self._source.get_max_pages()
+                await self.show_checked_page(jump_page - 1)
+                await cleanup([prompt, msg])
+            except (ValueError, asyncio.TimeoutError, asyncio.CancelledError):
+                await cleanup([prompt])
+
+            self._search_task = None
 
     def reaction_check(self, payload):
         """The function that is used to check whether the payload should be processed.
@@ -79,9 +117,10 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
 
     @menus.button("\N{CROSS MARK}", position=menus.First(1))
     async def stop_pages_default(self, payload: discord.RawReactionActionEvent) -> None:
-        self.stop()
         with contextlib.suppress(discord.NotFound):
             await self.message.delete()
+
+        await self.stop()
 
     @menus.button("\N{BLACK RIGHT-POINTING TRIANGLE}", position=menus.First(2))
     async def next(self, payload: discord.RawReactionActionEvent):
@@ -92,30 +131,10 @@ class PokeListMenu(menus.MenuPages, inherit_buttons=False):
 
     @menus.button("\N{LEFT-POINTING MAGNIFYING GLASS}", position=menus.First(4))
     async def number_page(self, payload: discord.RawReactionActionEvent):
-        async def cleanup(messages: List[discord.Message]):
-            with contextlib.suppress(discord.HTTPException):
-                for msg in messages:
-                    await msg.delete()
+        if self._search_lock.locked() and self._search_task is not None:
+            return
 
-        prompt = await self.ctx.send(_("Please select the Pokémon ID number to jump to."))
-        try:
-            pred = MessagePredicate.valid_int(self.ctx)
-            msg = await self.bot.wait_for(
-                "message_without_command",
-                check=pred,
-                timeout=10.0,
-            )
-            if pred.result:
-                jump_page = int(msg.content)
-                if jump_page > self._source.get_max_pages():
-                    await self.ctx.send(
-                        _("Invalid Pokémon ID, jumping to the end."), delete_after=5
-                    )
-                    jump_page = self._source.get_max_pages()
-                await self.show_checked_page(jump_page - 1)
-                await cleanup([prompt, msg])
-        except (asyncio.TimeoutError):
-            await cleanup([prompt])
+        self._search_task = asyncio.get_running_loop().create_task(self._number_page_task())
 
     @menus.button("\N{WHITE HEAVY CHECK MARK}", position=menus.First(3), skip_if=_cant_select)
     async def select(self, payload: discord.RawReactionActionEvent):
