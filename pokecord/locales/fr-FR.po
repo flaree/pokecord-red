@@ -309,7 +309,7 @@ msgstr "Ce n'est pas le bon pokémon"
 
 #: pokecord/pokecord.py:406
 msgid "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
-msgstr "Félicitation {user} ! Vous avez attrapé un {pokename} {variant} niveau {lvl} !"
+msgstr "Félicitation {user} ! Vous avez attrapé un {variant}{pokename} niveau {lvl} !"
 
 #: pokecord/pokecord.py:417
 msgid "\\n{pokename} has been added to the pokédex."
