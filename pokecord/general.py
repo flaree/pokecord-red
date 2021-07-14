@@ -122,7 +122,7 @@ class GeneralMixin(MixinMeta):
         if id <= 0:
             return await ctx.send(_("The ID must be greater than 0!"))
         async with ctx.typing():
-            result = self.cursor.fetch_all(
+            result = await self.cursor.fetch_all(
                 query=SELECT_POKEMON,
                 values={"user_id": ctx.author.id},
             )
