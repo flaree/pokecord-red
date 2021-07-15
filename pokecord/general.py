@@ -30,7 +30,7 @@ class GeneralMixin(MixinMeta):
         if not await conf.has_starter():
             return await ctx.send(
                 _(
-                    "You haven't picked a starter pokemon yet! Check out {prefix} before trying to list your pokemon."
+                    "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to list your pokemon."
                 ).format(prefix=ctx.clean_prefix)
             )
         user = user or ctx.author
@@ -67,7 +67,7 @@ class GeneralMixin(MixinMeta):
         if not await conf.has_starter():
             return await ctx.send(
                 _(
-                    "You haven't picked a starter pokemon yet! Check out {prefix} before trying to nickname a pokemon."
+                    "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to nickname a pokemon."
                 ).format(prefix=ctx.clean_prefix)
             )
         if id <= 0:
@@ -116,7 +116,7 @@ class GeneralMixin(MixinMeta):
         if not await conf.has_starter():
             return await ctx.send(
                 _(
-                    "You haven't picked a starter pokemon yet! Check out {prefix} before trying to release a pokemon."
+                    "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to release a pokemon."
                 ).format(prefix=ctx.clean_prefix)
             )
         if id <= 0:
@@ -182,7 +182,7 @@ class GeneralMixin(MixinMeta):
         if not await conf.has_starter():
             return await ctx.send(
                 _(
-                    "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
+                    "You haven't chosen a starter pokemon yet, check out {prefix}starter for more information."
                 ).format(prefix=ctx.clean_prefix)
             )
         async with ctx.typing():
@@ -313,7 +313,7 @@ class GeneralMixin(MixinMeta):
         if not await conf.has_starter():
             return await ctx.send(
                 _(
-                    "You haven't picked a starter pokemon yet! Check out {prefix} before trying to list your pokemon."
+                    "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to list your pokemon."
                 ).format(prefix=ctx.clean_prefix)
             )
         user = ctx.author
