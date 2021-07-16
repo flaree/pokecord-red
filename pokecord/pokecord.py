@@ -256,7 +256,7 @@ class Pokecord(
         localnames = {
             "en": names["english"],
             "fr": names["french"],
-            "cn": names["chinese"],
+            "tw": names["chinese"],
             "jp": names["japanese"],
         }
         return (
