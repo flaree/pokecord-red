@@ -145,7 +145,7 @@ class Pokecord(
                 amount = {}
                 result = await self.cursor.fetch_all(
                     query=SELECT_POKEMON,
-                    values={"userid": user},
+                    values={"user_id": user},
                 )
                 async with self.config.user_from_id(user).pokeids() as pokeids:
                     for data in result:
