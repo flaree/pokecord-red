@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2021-05-25 22:56+0000\n"
+"POT-Creation-Date: 2021-07-20 22:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian\n"
 "MIME-Version: 1.0\n"
@@ -102,8 +102,8 @@ msgid "List a trainers or your own pokémon!"
 msgstr "Liste opp en trener eller din egen pokémon!"
 
 #: pokecord/general.py:32 pokecord/general.py:315
-msgid "You haven't picked a starter pokemon yet! Check out {prefix} before trying to list your pokemon."
-msgstr "Du har ikke valgt en startpokemon ennå! Ta en titt på {prefix} før du prøver å liste opp pokemon."
+msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to list your pokemon."
+msgstr ""
 
 #: pokecord/general.py:45 pokecord/general.py:328
 msgid "You don't have any pokémon, go get catching trainer!"
@@ -119,8 +119,8 @@ msgid "Set a pokémons nickname.\\n\\n        ID refers to the position within y
 msgstr "Sett et kallenavn til pokémons.\\n\\n ID refererer til posisjonen i pokémon-oppføringen. \\n Dette finner du nederst på pokemon på '[p] -listen'"
 
 #: pokecord/general.py:69
-msgid "You haven't picked a starter pokemon yet! Check out {prefix} before trying to nickname a pokemon."
-msgstr "Du har ikke valgt en startpokemon ennå! Ta en titt på {prefix} før du prøver å gi kallenavnet til en pokemon."
+msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to nickname a pokemon."
+msgstr ""
 
 #: pokecord/general.py:74 pokecord/general.py:123
 msgid "The ID must be greater than 0!"
@@ -144,8 +144,8 @@ msgid "Release a pokémon."
 msgstr "Slipp en pokémon."
 
 #: pokecord/general.py:118
-msgid "You haven't picked a starter pokemon yet! Check out {prefix} before trying to release a pokemon."
-msgstr "Du har ikke valgt en startpokemon ennå! Ta en titt på {prefix} før du prøver å gi ut en pokemon."
+msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to release a pokemon."
+msgstr ""
 
 #: pokecord/general.py:136
 msgid "You don't have a pokemon at that slot.\\nID refers to the position within your pokémon listing.\\nThis is found at the bottom of the pokemon on `[p]list`"
@@ -176,9 +176,9 @@ msgstr "Operasjonen avbrutt."
 msgid "Select your default pokémon."
 msgstr "Velg din standard pokémon."
 
-#: pokecord/general.py:184 pokecord/pokecord.py:380
-msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
-msgstr "Du har ikke valgt en startpokemon ennå, sjekk ut `{prefix}starter` for mer informasjon."
+#: pokecord/general.py:184
+msgid "You haven't chosen a starter pokemon yet, check out {prefix}starter for more information."
+msgstr ""
 
 #: pokecord/general.py:197
 msgid "You don't have any pokemon to select."
@@ -302,6 +302,10 @@ msgstr "Ingen pokemon er klare til å bli fanget."
 #, docstring
 msgid "Catch a pokemon!"
 msgstr "Fang en pokemon!"
+
+#: pokecord/pokecord.py:380
+msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
+msgstr "Du har ikke valgt en startpokemon ennå, sjekk ut `{prefix}starter` for mer informasjon."
 
 #: pokecord/pokecord.py:397
 msgid "That's not the correct pokemon"
