@@ -18,12 +18,12 @@ msgstr ""
 #: pokecord/dev.py:22
 #, docstring
 msgid "Pokecord Development Commands"
-msgstr ""
+msgstr "Pokecord Entwicklungsbefehle"
 
 #: pokecord/dev.py:26
 #, docstring
 msgid "Spawn a pokemon by name or random"
-msgstr ""
+msgstr "Erschaffe einen Pokemon mit Namen oder zufällig"
 
 #: pokecord/dev.py:55
 #, docstring
@@ -42,15 +42,15 @@ msgstr ""
 
 #: pokecord/functions.py:20
 msgid "HP"
-msgstr ""
+msgstr "LP"
 
 #: pokecord/functions.py:21
 msgid "Attack"
-msgstr ""
+msgstr "Angriff"
 
 #: pokecord/functions.py:22
 msgid "Defence"
-msgstr ""
+msgstr "Verteidigung"
 
 #: pokecord/functions.py:23
 msgid "Sp. Atk"
@@ -62,15 +62,15 @@ msgstr ""
 
 #: pokecord/functions.py:25
 msgid "Speed"
-msgstr ""
+msgstr "Tempo"
 
 #: pokecord/functions.py:27
 msgid "Stats"
-msgstr ""
+msgstr "Werte"
 
 #: pokecord/functions.py:27
 msgid "Value"
-msgstr ""
+msgstr "Wert"
 
 #: pokecord/functions.py:27
 msgid "IV"
