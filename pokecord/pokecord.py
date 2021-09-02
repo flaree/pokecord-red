@@ -330,6 +330,9 @@ class Pokecord(
         # if pokemon.lower() not in starter_translated:
         #     await ctx.send(_("That's not a valid starter pokémon, trainer!"))
         #     return
+
+        await ctx.send(f"pokemon {pokemon} type {type(pokemon)}")
+
         for starter in starter_pokemon.values():
             if pokemon.lower() in self.get_pokemon_name(starter):
                 pokemon = starter
