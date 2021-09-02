@@ -174,7 +174,7 @@ class GeneralMixin(MixinMeta):
             await ctx.send(_("Operation cancelled."))
 
     @commands.max_concurrency(1, commands.BucketType.user)
-    @commands.command(usage="id_or_recent")
+    @commands.command(usage="id_or_latest")
     @commands.guild_only()
     async def select(self, ctx, _id: Union[int, str]):
         """Select your default pokémon."""
@@ -196,11 +196,11 @@ class GeneralMixin(MixinMeta):
             if not pokemons:
                 return await ctx.send(_("You don't have any pokemon to select."))
             if isinstance(_id, str):
-                if _id == "recent":
+                if _id == "latest":
                     _id = len(pokemons) - 1
                 else:
                     await ctx.send(
-                        _("Unidentified keyword, the only supported action is `recent` as of now.")
+                        _("Unidentified keyword, the only supported action is `latest` as of now.")
                     )
                     return
             if _id < 1 or _id > len(pokemons) - 1:
