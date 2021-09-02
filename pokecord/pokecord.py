@@ -322,14 +322,6 @@ class Pokecord(
             "scorbunny": self.pokemondata[743],
             "sobble": self.pokemondata[746],
         }
-        # starter_translated = [
-        #     name.lower()
-        #     for pokemon in starter_pokemon.values()
-        #     for name in pokemon["name"].values()
-        # ]
-        # if pokemon.lower() not in starter_translated:
-        #     await ctx.send(_("That's not a valid starter pokémon, trainer!"))
-        #     return
 
         for starter in starter_pokemon.values():
             if pokemon.lower() in self.get_pokemon_name(starter):
@@ -341,23 +333,10 @@ class Pokecord(
             _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
         )
 
-        pokemon = starter
-        # pokemon = starter_pokemon[pokemon.lower()
-        # supported_languages = len(
-        #     list(starter_pokemon.values())[0]["name"].values()
-        # )  # number of languages
-        # starter_index = int(
-        #     starter_translated.index(pokemon.lower()) / supported_languages
-        # )  # get location of name
-        # pokemon = starter_pokemon[
-        #     list(starter_pokemon.keys())[starter_index]
-        # ]  # get starter by index
-
-        await ctx.send(f"**Pokemon** :{pokemon}\n**Type** :{type(pokemon)}")
-        return
-        pokemon["level"] = 1
-        pokemon["xp"] = 0
-        pokemon["ivs"] = {
+        # starter dict
+        starter["level"] = 1
+        starter["xp"] = 0
+        starter["ivs"] = {
             "HP": random.randint(0, 31),
             "Attack": random.randint(0, 31),
             "Defence": random.randint(0, 31),
@@ -365,14 +344,14 @@ class Pokecord(
             "Sp. Def": random.randint(0, 31),
             "Speed": random.randint(0, 31),
         }
-        pokemon["gender"] = self.gender_choose(pokemon["name"]["english"])
+        starter["gender"] = self.gender_choose(starter["name"]["english"])
 
         await self.cursor.execute(
             query=INSERT_POKEMON,
             values={
                 "user_id": ctx.author.id,
                 "message_id": ctx.message.id,
-                "pokemon": json.dumps(pokemon),
+                "pokemon": json.dumps(starter),
             },
         )
         await conf.has_starter.set(True)
