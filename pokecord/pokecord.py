@@ -264,6 +264,14 @@ class Pokecord(
             else localnames["en"]
         )
 
+    def get_pokemon_name(self, pokemon: dict) -> set:
+        """function returns all name for specified pokemon"""
+        return {
+                pokemon["name"][name].lower()
+                for name in pokemon["name"]
+                if pokemon["name"][name] is not None
+            }
+
     @commands.command()
     async def starter(self, ctx, pokemon: str = None):
         """Choose your starter pokémon!"""
@@ -400,11 +408,7 @@ class Pokecord(
             )
         pokemonspawn = await self.config.channel(ctx.channel).pokemon()
         if pokemonspawn is not None:
-            names = {
-                pokemonspawn["name"][name].lower()
-                for name in pokemonspawn["name"]
-                if pokemonspawn["name"][name] is not None
-            }
+            names = self.get_pokemon_name(pokemonspawn)
             names.add(
                 pokemonspawn["name"]["english"].translate(str.maketrans("", "", PUNCT)).lower()
             )
