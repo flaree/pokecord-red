@@ -136,17 +136,17 @@ class SettingsMixin(MixinMeta):
         data = await self.config.guild(ctx.guild).all()
         msg = _("**Toggle**: {toggle}\n").format(toggle="Yes" if data["toggle"] else "No")
         msg += _("**Active Channels**: {channels}\n").format(
-            channels=humanize_list([str(x) for x in data["activechannels"]])
+            channels=humanize_list([str(ctx.guild.get_channel(x)) for x in data["activechannels"]])
             if data["activechannels"]
             else "All"
         )
         msg += _("**Blacklist**: {blacklist}\n").format(
-            blacklist=humanize_list([str(x) for x in data["blacklist"]])
+            blacklist=humanize_list([str(ctx.guild.get_channel(x)) for x in data["blacklist"]])
             if data["blacklist"]
             else "None"
         )
         msg += _("**Whitelist**: {whitelist}\n").format(
-            whitelist=humanize_list([str(x) for x in data["whitelist"]])
+            whitelist=humanize_list([str(ctx.guild.get_channel(x)) for x in data["whitelist"]])
             if data["whitelist"]
             else "None"
         )
