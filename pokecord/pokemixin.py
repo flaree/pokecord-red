@@ -9,6 +9,6 @@ async def poke(self, ctx: commands.Context):
 
 
 class PokeMixin:
-    """ This is mostly here to easily mess with things... """
+    """This is mostly here to easily mess with things..."""
 
     c = poke
