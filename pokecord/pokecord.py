@@ -331,21 +331,17 @@ class Pokecord(
         #     await ctx.send(_("That's not a valid starter pokémon, trainer!"))
         #     return
 
-        await ctx.send(f"pokemon {pokemon} type {type(pokemon)}")
-
         for starter in starter_pokemon.values():
             if pokemon.lower() in self.get_pokemon_name(starter):
-                pokemon = starter
                 break
         else:
             return await ctx.send(_("That's not a valid starter pokémon, trainer!"))
-
-        await ctx.send("hey")
 
         await ctx.send(
             _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
         )
 
+        pokemon = starter
         # pokemon = starter_pokemon[pokemon.lower()
         # supported_languages = len(
         #     list(starter_pokemon.values())[0]["name"].values()
@@ -357,7 +353,7 @@ class Pokecord(
         #     list(starter_pokemon.keys())[starter_index]
         # ]  # get starter by index
 
-
+        await ctx.send(f"**Pokemon** :{pokemon}\n**Type** :{type(pokemon)}")
         return
         pokemon["level"] = 1
         pokemon["xp"] = 0
