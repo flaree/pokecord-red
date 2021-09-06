@@ -322,7 +322,12 @@ class Pokecord(
         await ctx.send(
             _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
         )
-        pokemon = starter_pokemon[pokemon.lower()]
+        
+        # pokemon = starter_pokemon[pokemon.lower()
+        supported_languages = len(starter_pokemon.values()[0]["name"].values()) # number of languages
+        starter_index = starter_translated.index(pokemon.lower())%supported_languages # get location of name
+        pokemon = starter_pokemon[list(starter_pokemon.keys))[starter_index]] # get starter by index
+        
         pokemon["level"] = 1
         pokemon["xp"] = 0
         pokemon["ivs"] = {
