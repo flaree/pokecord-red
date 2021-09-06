@@ -326,7 +326,7 @@ class Pokecord(
         # pokemon = starter_pokemon[pokemon.lower()
         supported_languages = len(list(starter_pokemon.values())[0]["name"].values()) # number of languages
         starter_index = starter_translated.index(pokemon.lower())%supported_languages # get location of name
-        pokemon = starter_pokemon[list(starter_pokemon.keys)[starter_index]] # get starter by index
+        pokemon = starter_pokemon[list(starter_pokemon.keys())[starter_index]] # get starter by index
         
         pokemon["level"] = 1
         pokemon["xp"] = 0
