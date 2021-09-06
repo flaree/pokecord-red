@@ -354,6 +354,8 @@ class Pokecord(
             inds = [i for i, _ in enumerate(name)]
             if len(name) > 6:
                 amount = len(name) - random.randint(2, 4)
+            elif len(name) < 4:
+                amount = random.randint(1, 2)
             else:
                 amount = random.randint(3, 4)
             sam = random.sample(inds, amount)
