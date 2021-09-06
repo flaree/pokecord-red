@@ -325,18 +325,8 @@ class Pokecord(
         
         # pokemon = starter_pokemon[pokemon.lower()
         supported_languages = len(list(starter_pokemon.values())[0]["name"].values()) # number of languages
-        await ctx.send(f"supported_languages {supported_languages}")
-        
-        
-        
         starter_index = int(starter_translated.index(pokemon.lower())/supported_languages) # get location of name
-        await ctx.send(f"starter_index {starter_index}")
-
-
         pokemon = starter_pokemon[list(starter_pokemon.keys())[starter_index]] # get starter by index
-        await ctx.send(f"pokemon {pokemon}")
-
-        return
         
         pokemon["level"] = 1
         pokemon["xp"] = 0
@@ -710,3 +700,8 @@ class Pokecord(
             else:
                 a[variant] += 1
         await ctx.send(a)
+
+    @commands.command()
+    async def erasepoke(self, ctx, user: discord.User):
+        await self.config.user_from_id(user).clear()
+        await ctx.tick()
