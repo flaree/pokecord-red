@@ -711,5 +711,10 @@ class Pokecord(
             "has_starter": False,
             "locale": "en",
         }
-        await self.config.user_from_id(user).set(defaults_user)
+        await self.config.user_from_id(user).pokeids.set({})
+        await self.config.user_from_id(user).silence.set(False)
+        await self.config.user_from_id(user).timestamp.set(0)
+        await self.config.user_from_id(user).pokeid.set(1)
+        await self.config.user_from_id(user).has_starter.set(False)
+        await self.config.user_from_id(user).locale.set("en")
         await ctx.tick()
