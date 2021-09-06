@@ -135,7 +135,7 @@ async def get_img():
 async def evolve():
     a = {}
     driver.get(EVOLVE)
-    parse = BeautifulSoup(driver.page_source, "html5lib")
+    BeautifulSoup(driver.page_source, "html5lib")
     await asyncio.sleep(3)
     soup = bs4.BeautifulSoup(driver.page_source, "html.parser")
     table = soup.find("table", {"id": "evolution"})

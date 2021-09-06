@@ -532,4 +532,3 @@ msgstr ""
 #: pokecord/trading.py:144
 msgid "Trade cancelled."
 msgstr ""
-

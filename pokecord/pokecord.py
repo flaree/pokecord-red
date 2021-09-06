@@ -142,7 +142,6 @@ class Pokecord(
             self.usercache = await self.config.all_users()
             for user in self.usercache:
                 await self.config.user_from_id(user).pokeids.clear()
-                amount = {}
                 result = await self.cursor.fetch_all(
                     query=SELECT_POKEMON,
                     values={"user_id": user},
