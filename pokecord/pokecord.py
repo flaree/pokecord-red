@@ -256,7 +256,7 @@ class Pokecord(
         localnames = {
             "en": names["english"],
             "fr": names["french"],
-            "cn": names["chinese"],
+            "tw": names["chinese"],
             "jp": names["japanese"],
         }
         return (
@@ -315,13 +315,19 @@ class Pokecord(
             "scorbunny": self.pokemondata[743],
             "sobble": self.pokemondata[746],
         }
-        if pokemon.lower() not in starter_pokemon.keys():
+        starter_translated = [name.lower() for pokemon in starter_pokemon.values() for name in pokemon["name"].values()]
+        if pokemon.lower() not in starter_translated:
             await ctx.send(_("That's not a valid starter pokémon, trainer!"))
             return
         await ctx.send(
             _("You've chosen {pokemon} as your starter pokémon!").format(pokemon=pokemon.title())
         )
-        pokemon = starter_pokemon[pokemon.lower()]
+        
+        # pokemon = starter_pokemon[pokemon.lower()
+        supported_languages = len(list(starter_pokemon.values())[0]["name"].values()) # number of languages
+        starter_index = int(starter_translated.index(pokemon.lower())/supported_languages) # get location of name
+        pokemon = starter_pokemon[list(starter_pokemon.keys())[starter_index]] # get starter by index
+        
         pokemon["level"] = 1
         pokemon["xp"] = 0
         pokemon["ivs"] = {
@@ -354,6 +360,8 @@ class Pokecord(
             inds = [i for i, _ in enumerate(name)]
             if len(name) > 6:
                 amount = len(name) - random.randint(2, 4)
+            elif len(name) < 4:
+                amount = random.randint(1, 2)
             else:
                 amount = random.randint(3, 4)
             sam = random.sample(inds, amount)

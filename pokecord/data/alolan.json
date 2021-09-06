@@ -1,420 +1,420 @@
 [
- {
-  "id": 19,
-  "name": {
-   "english": "Rattata",
-   "japanese": "\u30b3\u30e9\u30c3\u30bf",
-   "chinese": "\u5c0f\u62c9\u8fbe",
-   "french": "Rattata"
-  },
-  "type": [
-   "Normal"
-  ],
-  "stats": {
-   "HP": 30,
-   "Attack": 56,
-   "Defence": 35,
-   "Sp. Atk": 25,
-   "Sp. Def": 35,
-   "Speed": 72
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Rattata"
- },
- {
-  "id": 20,
-  "name": {
-   "english": "Raticate",
-   "japanese": "\u30e9\u30c3\u30bf",
-   "chinese": "\u62c9\u8fbe",
-   "french": "Rattatac"
-  },
-  "type": [
-   "Normal"
-  ],
-  "stats": {
-   "HP": 55,
-   "Attack": 81,
-   "Defence": 60,
-   "Sp. Atk": 50,
-   "Sp. Def": 70,
-   "Speed": 97
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Raticate"
- },
- {
-  "id": 26,
-  "name": {
-   "english": "Raichu",
-   "japanese": "\u30e9\u30a4\u30c1\u30e5\u30a6",
-   "chinese": "\u96f7\u4e18",
-   "french": "Raichu"
-  },
-  "type": [
-   "Electric"
-  ],
-  "stats": {
-   "HP": 60,
-   "Attack": 90,
-   "Defence": 55,
-   "Sp. Atk": 90,
-   "Sp. Def": 80,
-   "Speed": 110
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Raichu"
- },
- {
-  "id": 27,
-  "name": {
-   "english": "Sandshrew",
-   "japanese": "\u30b5\u30f3\u30c9",
-   "chinese": "\u7a7f\u5c71\u9f20",
-   "french": "Sabelette"
-  },
-  "type": [
-   "Ground"
-  ],
-  "stats": {
-   "HP": 50,
-   "Attack": 75,
-   "Defence": 85,
-   "Sp. Atk": 20,
-   "Sp. Def": 30,
-   "Speed": 40
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Sandshrew"
- },
- {
-  "id": 28,
-  "name": {
-   "english": "Sandslash",
-   "japanese": "\u30b5\u30f3\u30c9\u30d1\u30f3",
-   "chinese": "\u7a7f\u5c71\u738b",
-   "french": "Sablaireau"
-  },
-  "type": [
-   "Ground"
-  ],
-  "stats": {
-   "HP": 75,
-   "Attack": 100,
-   "Defence": 110,
-   "Sp. Atk": 45,
-   "Sp. Def": 55,
-   "Speed": 65
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Sandslash"
- },
- {
-  "id": 37,
-  "name": {
-   "english": "Vulpix",
-   "japanese": "\u30ed\u30b3\u30f3",
-   "chinese": "\u516d\u5c3e",
-   "french": "Goupix"
-  },
-  "type": [
-   "Fire"
-  ],
-  "stats": {
-   "HP": 38,
-   "Attack": 41,
-   "Defence": 40,
-   "Sp. Atk": 50,
-   "Sp. Def": 65,
-   "Speed": 65
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Vulpix"
- },
- {
-  "id": 38,
-  "name": {
-   "english": "Ninetales",
-   "japanese": "\u30ad\u30e5\u30a6\u30b3\u30f3",
-   "chinese": "\u4e5d\u5c3e",
-   "french": "Feunard"
-  },
-  "type": [
-   "Fire"
-  ],
-  "stats": {
-   "HP": 73,
-   "Attack": 76,
-   "Defence": 75,
-   "Sp. Atk": 81,
-   "Sp. Def": 100,
-   "Speed": 100
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Ninetales"
- },
- {
-  "id": 50,
-  "name": {
-   "english": "Diglett",
-   "japanese": "\u30c7\u30a3\u30b0\u30c0",
-   "chinese": "\u5730\u9f20",
-   "french": "Taupiqueur"
-  },
-  "type": [
-   "Ground"
-  ],
-  "stats": {
-   "HP": 10,
-   "Attack": 55,
-   "Defence": 25,
-   "Sp. Atk": 35,
-   "Sp. Def": 45,
-   "Speed": 95
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Diglett"
- },
- {
-  "id": 51,
-  "name": {
-   "english": "Dugtrio",
-   "japanese": "\u30c0\u30b0\u30c8\u30ea\u30aa",
-   "chinese": "\u4e09\u5730\u9f20",
-   "french": "Triopikeur"
-  },
-  "type": [
-   "Ground"
-  ],
-  "stats": {
-   "HP": 35,
-   "Attack": 100,
-   "Defence": 50,
-   "Sp. Atk": 50,
-   "Sp. Def": 70,
-   "Speed": 120
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Dugtrio"
- },
- {
-  "id": 52,
-  "name": {
-   "english": "Meowth",
-   "japanese": "\u30cb\u30e3\u30fc\u30b9",
-   "chinese": "\u55b5\u55b5",
-   "french": "Miaouss"
-  },
-  "type": [
-   "Normal"
-  ],
-  "stats": {
-   "HP": 40,
-   "Attack": 45,
-   "Defence": 35,
-   "Sp. Atk": 40,
-   "Sp. Def": 40,
-   "Speed": 90
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Meowth"
- },
- {
-  "id": 53,
-  "name": {
-   "english": "Persian",
-   "japanese": "\u30da\u30eb\u30b7\u30a2\u30f3",
-   "chinese": "\u732b\u8001\u5927",
-   "french": "Persian"
-  },
-  "type": [
-   "Normal"
-  ],
-  "stats": {
-   "HP": 65,
-   "Attack": 70,
-   "Defence": 60,
-   "Sp. Atk": 65,
-   "Sp. Def": 65,
-   "Speed": 115
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Persian"
- },
- {
-  "id": 74,
-  "name": {
-   "english": "Geodude",
-   "japanese": "\u30a4\u30b7\u30c4\u30d6\u30c6",
-   "chinese": "\u5c0f\u62f3\u77f3",
-   "french": "Racaillou"
-  },
-  "type": [
-   "Rock",
-   "Ground"
-  ],
-  "stats": {
-   "HP": 40,
-   "Attack": 80,
-   "Defence": 100,
-   "Sp. Atk": 30,
-   "Sp. Def": 30,
-   "Speed": 20
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Geodude"
- },
- {
-  "id": 75,
-  "name": {
-   "english": "Graveler",
-   "japanese": "\u30b4\u30ed\u30fc\u30f3",
-   "chinese": "\u9686\u9686\u77f3",
-   "french": "Gravalanch"
-  },
-  "type": [
-   "Rock",
-   "Ground"
-  ],
-  "stats": {
-   "HP": 55,
-   "Attack": 95,
-   "Defence": 115,
-   "Sp. Atk": 45,
-   "Sp. Def": 45,
-   "Speed": 35
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Graveler"
- },
- {
-  "id": 76,
-  "name": {
-   "english": "Golem",
-   "japanese": "\u30b4\u30ed\u30fc\u30cb\u30e3",
-   "chinese": "\u9686\u9686\u5ca9",
-   "french": "Grolem"
-  },
-  "type": [
-   "Rock",
-   "Ground"
-  ],
-  "stats": {
-   "HP": 80,
-   "Attack": 120,
-   "Defence": 130,
-   "Sp. Atk": 55,
-   "Sp. Def": 65,
-   "Speed": 45
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Golem"
- },
- {
-  "id": 88,
-  "name": {
-   "english": "Grimer",
-   "japanese": "\u30d9\u30c8\u30d9\u30bf\u30fc",
-   "chinese": "\u81ed\u6ce5",
-   "french": "Tadmorv"
-  },
-  "type": [
-   "Poison"
-  ],
-  "stats": {
-   "HP": 80,
-   "Attack": 80,
-   "Defence": 50,
-   "Sp. Atk": 40,
-   "Sp. Def": 50,
-   "Speed": 25
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Grimer"
- },
- {
-  "id": 89,
-  "name": {
-   "english": "Muk",
-   "japanese": "\u30d9\u30c8\u30d9\u30c8\u30f3",
-   "chinese": "\u81ed\u81ed\u6ce5",
-   "french": "Grotadmorv"
-  },
-  "type": [
-   "Poison"
-  ],
-  "stats": {
-   "HP": 105,
-   "Attack": 105,
-   "Defence": 75,
-   "Sp. Atk": 65,
-   "Sp. Def": 100,
-   "Speed": 50
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Muk"
- },
- {
-  "id": 103,
-  "name": {
-   "english": "Exeggutor",
-   "japanese": "\u30ca\u30c3\u30b7\u30fc",
-   "chinese": "\u6930\u86cb\u6811",
-   "french": "Noadkoko"
-  },
-  "type": [
-   "Grass",
-   "Psychic"
-  ],
-  "stats": {
-   "HP": 95,
-   "Attack": 95,
-   "Defence": 85,
-   "Sp. Atk": 125,
-   "Sp. Def": 75,
-   "Speed": 55
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Exeggutor"
- },
- {
-  "id": 105,
-  "name": {
-   "english": "Marowak",
-   "japanese": "\u30ac\u30e9\u30ac\u30e9",
-   "chinese": "\u560e\u5566\u560e\u5566",
-   "french": "Ossatueur"
-  },
-  "type": [
-   "Ground"
-  ],
-  "stats": {
-   "HP": 60,
-   "Attack": 80,
-   "Defence": 110,
-   "Sp. Atk": 50,
-   "Sp. Def": 80,
-   "Speed": 45
-  },
-  "spawnchance": 0.15,
-  "variant": "Alolan",
-  "alias": "Alolan Marowak"
- }
+    {
+        "id": 19,
+        "name": {
+            "english": "Rattata",
+            "japanese": "\u30b3\u30e9\u30c3\u30bf",
+            "chinese": "\u5c0f\u62c9\u9054",
+            "french": "Rattata"
+        },
+        "type": [
+            "Normal"
+        ],
+        "stats": {
+            "HP": 30,
+            "Attack": 56,
+            "Defence": 35,
+            "Sp. Atk": 25,
+            "Sp. Def": 35,
+            "Speed": 72
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Rattata"
+    },
+    {
+        "id": 20,
+        "name": {
+            "english": "Raticate",
+            "japanese": "\u30e9\u30c3\u30bf",
+            "chinese": "\u62c9\u9054",
+            "french": "Rattatac"
+        },
+        "type": [
+            "Normal"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 81,
+            "Defence": 60,
+            "Sp. Atk": 50,
+            "Sp. Def": 70,
+            "Speed": 97
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Raticate"
+    },
+    {
+        "id": 26,
+        "name": {
+            "english": "Raichu",
+            "japanese": "\u30e9\u30a4\u30c1\u30e5\u30a6",
+            "chinese": "\u96f7\u4e18",
+            "french": "Raichu"
+        },
+        "type": [
+            "Electric"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 90,
+            "Defence": 55,
+            "Sp. Atk": 90,
+            "Sp. Def": 80,
+            "Speed": 110
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Raichu"
+    },
+    {
+        "id": 27,
+        "name": {
+            "english": "Sandshrew",
+            "japanese": "\u30b5\u30f3\u30c9",
+            "chinese": "\u7a7f\u5c71\u9f20",
+            "french": "Sabelette"
+        },
+        "type": [
+            "Ground"
+        ],
+        "stats": {
+            "HP": 50,
+            "Attack": 75,
+            "Defence": 85,
+            "Sp. Atk": 20,
+            "Sp. Def": 30,
+            "Speed": 40
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Sandshrew"
+    },
+    {
+        "id": 28,
+        "name": {
+            "english": "Sandslash",
+            "japanese": "\u30b5\u30f3\u30c9\u30d1\u30f3",
+            "chinese": "\u7a7f\u5c71\u738b",
+            "french": "Sablaireau"
+        },
+        "type": [
+            "Ground"
+        ],
+        "stats": {
+            "HP": 75,
+            "Attack": 100,
+            "Defence": 110,
+            "Sp. Atk": 45,
+            "Sp. Def": 55,
+            "Speed": 65
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Sandslash"
+    },
+    {
+        "id": 37,
+        "name": {
+            "english": "Vulpix",
+            "japanese": "\u30ed\u30b3\u30f3",
+            "chinese": "\u516d\u5c3e",
+            "french": "Goupix"
+        },
+        "type": [
+            "Fire"
+        ],
+        "stats": {
+            "HP": 38,
+            "Attack": 41,
+            "Defence": 40,
+            "Sp. Atk": 50,
+            "Sp. Def": 65,
+            "Speed": 65
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Vulpix"
+    },
+    {
+        "id": 38,
+        "name": {
+            "english": "Ninetales",
+            "japanese": "\u30ad\u30e5\u30a6\u30b3\u30f3",
+            "chinese": "\u4e5d\u5c3e",
+            "french": "Feunard"
+        },
+        "type": [
+            "Fire"
+        ],
+        "stats": {
+            "HP": 73,
+            "Attack": 76,
+            "Defence": 75,
+            "Sp. Atk": 81,
+            "Sp. Def": 100,
+            "Speed": 100
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Ninetales"
+    },
+    {
+        "id": 50,
+        "name": {
+            "english": "Diglett",
+            "japanese": "\u30c7\u30a3\u30b0\u30c0",
+            "chinese": "\u5730\u9f20",
+            "french": "Taupiqueur"
+        },
+        "type": [
+            "Ground"
+        ],
+        "stats": {
+            "HP": 10,
+            "Attack": 55,
+            "Defence": 25,
+            "Sp. Atk": 35,
+            "Sp. Def": 45,
+            "Speed": 95
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Diglett"
+    },
+    {
+        "id": 51,
+        "name": {
+            "english": "Dugtrio",
+            "japanese": "\u30c0\u30b0\u30c8\u30ea\u30aa",
+            "chinese": "\u4e09\u5730\u9f20",
+            "french": "Triopikeur"
+        },
+        "type": [
+            "Ground"
+        ],
+        "stats": {
+            "HP": 35,
+            "Attack": 100,
+            "Defence": 50,
+            "Sp. Atk": 50,
+            "Sp. Def": 70,
+            "Speed": 120
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Dugtrio"
+    },
+    {
+        "id": 52,
+        "name": {
+            "english": "Meowth",
+            "japanese": "\u30cb\u30e3\u30fc\u30b9",
+            "chinese": "\u55b5\u55b5",
+            "french": "Miaouss"
+        },
+        "type": [
+            "Normal"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 45,
+            "Defence": 35,
+            "Sp. Atk": 40,
+            "Sp. Def": 40,
+            "Speed": 90
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Meowth"
+    },
+    {
+        "id": 53,
+        "name": {
+            "english": "Persian",
+            "japanese": "\u30da\u30eb\u30b7\u30a2\u30f3",
+            "chinese": "\u8c93\u8001\u5927",
+            "french": "Persian"
+        },
+        "type": [
+            "Normal"
+        ],
+        "stats": {
+            "HP": 65,
+            "Attack": 70,
+            "Defence": 60,
+            "Sp. Atk": 65,
+            "Sp. Def": 65,
+            "Speed": 115
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Persian"
+    },
+    {
+        "id": 74,
+        "name": {
+            "english": "Geodude",
+            "japanese": "\u30a4\u30b7\u30c4\u30d6\u30c6",
+            "chinese": "\u5c0f\u62f3\u77f3",
+            "french": "Racaillou"
+        },
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 80,
+            "Defence": 100,
+            "Sp. Atk": 30,
+            "Sp. Def": 30,
+            "Speed": 20
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Geodude"
+    },
+    {
+        "id": 75,
+        "name": {
+            "english": "Graveler",
+            "japanese": "\u30b4\u30ed\u30fc\u30f3",
+            "chinese": "\u9686\u9686\u77f3",
+            "french": "Gravalanch"
+        },
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 95,
+            "Defence": 115,
+            "Sp. Atk": 45,
+            "Sp. Def": 45,
+            "Speed": 35
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Graveler"
+    },
+    {
+        "id": 76,
+        "name": {
+            "english": "Golem",
+            "japanese": "\u30b4\u30ed\u30fc\u30cb\u30e3",
+            "chinese": "\u9686\u9686\u5ca9",
+            "french": "Grolem"
+        },
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 120,
+            "Defence": 130,
+            "Sp. Atk": 55,
+            "Sp. Def": 65,
+            "Speed": 45
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Golem"
+    },
+    {
+        "id": 88,
+        "name": {
+            "english": "Grimer",
+            "japanese": "\u30d9\u30c8\u30d9\u30bf\u30fc",
+            "chinese": "\u81ed\u6ce5",
+            "french": "Tadmorv"
+        },
+        "type": [
+            "Poison"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 80,
+            "Defence": 50,
+            "Sp. Atk": 40,
+            "Sp. Def": 50,
+            "Speed": 25
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Grimer"
+    },
+    {
+        "id": 89,
+        "name": {
+            "english": "Muk",
+            "japanese": "\u30d9\u30c8\u30d9\u30c8\u30f3",
+            "chinese": "\u81ed\u81ed\u6ce5",
+            "french": "Grotadmorv"
+        },
+        "type": [
+            "Poison"
+        ],
+        "stats": {
+            "HP": 105,
+            "Attack": 105,
+            "Defence": 75,
+            "Sp. Atk": 65,
+            "Sp. Def": 100,
+            "Speed": 50
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Muk"
+    },
+    {
+        "id": 103,
+        "name": {
+            "english": "Exeggutor",
+            "japanese": "\u30ca\u30c3\u30b7\u30fc",
+            "chinese": "\u6930\u86cb\u6a39",
+            "french": "Noadkoko"
+        },
+        "type": [
+            "Grass",
+            "Psychic"
+        ],
+        "stats": {
+            "HP": 95,
+            "Attack": 95,
+            "Defence": 85,
+            "Sp. Atk": 125,
+            "Sp. Def": 75,
+            "Speed": 55
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Exeggutor"
+    },
+    {
+        "id": 105,
+        "name": {
+            "english": "Marowak",
+            "japanese": "\u30ac\u30e9\u30ac\u30e9",
+            "chinese": "\u560e\u5566\u560e\u5566",
+            "french": "Ossatueur"
+        },
+        "type": [
+            "Ground"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 80,
+            "Defence": 110,
+            "Sp. Atk": 50,
+            "Sp. Def": 80,
+            "Speed": 45
+        },
+        "spawnchance": 0.15,
+        "variant": "Alolan",
+        "alias": "Alolan Marowak"
+    }
 ]
