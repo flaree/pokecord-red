@@ -315,6 +315,8 @@ class Pokecord(
             "scorbunny": self.pokemondata[743],
             "sobble": self.pokemondata[746],
         }
+        starter_translated = [pokemon["name"][name] for pokemon in starter_pokemon for name in pokemon["name"]]
+        await ctx.send(starter_translated)
         if pokemon.lower() not in starter_pokemon.keys():
             await ctx.send(_("That's not a valid starter pokémon, trainer!"))
             return
