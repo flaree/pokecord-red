@@ -703,5 +703,13 @@ class Pokecord(
 
     @commands.command()
     async def erasepoke(self, ctx, user: discord.User):
-        await self.config.user_from_id(user).clear()
+        defaults_user = {
+            "pokeids": {},
+            "silence": False,
+            "timestamp": 0,
+            "pokeid": 1,
+            "has_starter": False,
+            "locale": "en",
+        }
+        await self.config.user_from_id(user).set(defaults_user)
         await ctx.tick()
