@@ -316,6 +316,7 @@ class Pokecord(
             "sobble": self.pokemondata[746],
         }
         starter_translated = [name for pokemon in starter_pokemon.values() for name in pokemon["name"].values()]
+        await ctx.send(starter_translated[:40])
         if pokemon.lower() not in starter_translated:
             await ctx.send(_("That's not a valid starter pokémon, trainer!"))
             return
