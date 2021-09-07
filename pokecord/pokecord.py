@@ -326,6 +326,7 @@ class Pokecord(
         for starter in starter_pokemon.values():
             if pokemon.lower() in self.get_pokemon_name(starter):
                 break
+
         else:
             return await ctx.send(_("That's not a valid starter pokémon, trainer!"))
 
