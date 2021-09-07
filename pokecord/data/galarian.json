@@ -188,6 +188,102 @@
         "alias": "Galarian Mr. Mime"
     },
     {
+        "id": 144,
+        "name": {
+            "english": "Articuno",
+            "japanese": "\u30d5\u30ea\u30fc\u30b6\u30fc",
+            "chinese": "\u6025\u51cd\u9ce5",
+            "french": "Artikodin"
+        },
+        "type": [
+            "Psychic",
+            "Flying"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 85,
+            "Defence": 85,
+            "Sp. Atk": 125,
+            "Sp. Def": 100,
+            "Speed": 95
+        },
+        "spawnchance": 0.00015,
+        "variant": "Galarian",
+        "alias": "Galarian Articuno"
+    },
+    {
+        "id": 145,
+        "name": {
+            "english": "Zapdos",
+            "japanese": "\u30b5\u30f3\u30c0\u30fc",
+            "chinese": "\u9583\u96fb\u9ce5",
+            "french": "\u00c9lecthor"
+        },
+        "type": [
+            "Fighting",
+            "Flying"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 125,
+            "Defence": 90,
+            "Sp. Atk": 85,
+            "Sp. Def": 90,
+            "Speed": 100
+        },
+        "spawnchance": 0.003,
+        "variant": "Galarian",
+        "alias": "Galarian Zapdos"
+    },
+    {
+        "id": 146,
+        "name": {
+            "english": "Moltres",
+            "japanese": "\u30d5\u30a1\u30a4\u30e4\u30fc",
+            "chinese": "\u706b\u7130\u9ce5",
+            "french": "Sulfura"
+        },
+        "type": [
+            "Dark",
+            "Flying"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 85,
+            "Defence": 90,
+            "Sp. Atk": 100,
+            "Sp. Def": 125,
+            "Speed": 90
+        },
+        "spawnchance": 0.003,
+        "variant": "Galarian",
+        "alias": "Galarian Moltres"
+    },
+    {
+        "id": 199,
+        "name": {
+            "english": "Slowking",
+            "japanese": "\u30e4\u30c9\u30ad\u30f3\u30b0",
+            "chinese": "\u5446\u5446\u738b",
+            "french": "Roigada"
+        },
+        "type": [
+            "Water",
+            "Psychic"
+        ],
+        "stats": {
+            "HP": 95,
+            "Attack": 75,
+            "Defence": 80,
+            "Sp. Atk": 100,
+            "Sp. Def": 110,
+            "Speed": 30
+        },
+        "spawnchance": 0.15,
+        "variant": "Galarian",
+        "alias": "Galarian Slowking"
+    },
+    {
         "id": 222,
         "name": {
             "english": "Corsola",
