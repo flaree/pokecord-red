@@ -136,7 +136,9 @@ class SettingsMixin(MixinMeta):
         data = await self.config.guild(ctx.guild).all()
         msg = _("**Toggle**: {toggle}\n").format(toggle="Yes" if data["toggle"] else "No")
         msg += _("**Active Channels**: {channels}\n").format(
-            channels=humanize_list([ctx.guild.get_channel(x).mention for x in data["activechannels"]])
+            channels=humanize_list(
+                [ctx.guild.get_channel(x).mention for x in data["activechannels"]]
+            )
             if data["activechannels"]
             else "All"
         )

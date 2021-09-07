@@ -267,10 +267,10 @@ class Pokecord(
     def get_pokemon_name(self, pokemon: dict) -> set:
         """function returns all name for specified pokemon"""
         return {
-                pokemon["name"][name].lower()
-                for name in pokemon["name"]
-                if pokemon["name"][name] is not None
-            }
+            pokemon["name"][name].lower()
+            for name in pokemon["name"]
+            if pokemon["name"][name] is not None
+        }
 
     @commands.command()
     async def starter(self, ctx, pokemon: str = None):
