@@ -39,6 +39,21 @@ class Dev(MixinMeta):
                     return
         await ctx.send("No pokemon found.")
 
+    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int) -> dict:
+        """Returns pokemons from user list if exists"""
+        if pokeid <= 0:
+            return await ctx.send("The ID must be greater than 0!")
+        async with ctx.typing():
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send("You don't have any pokémon, trainer!")
+        if pokeid >= len(pokemons):
+            return await ctx.send("There's no pokemon at that slot.")
+        return pokemons[pokeid]
+
     @dev.command(name="ivs")
     async def dev_ivs(
         self,
@@ -152,3 +167,12 @@ class Dev(MixinMeta):
             },
         )
         await ctx.tick()
+
+    @dev.command(name="reveal")
+    async def dev_reveal(self, ctx, user: discord.Member, pokeid: int):
+        """Shows raw info for an owned pokemon"""
+        if type(pokemon := self.get_pokemon(ctx, user=user, pokeid=pokeid)) is not dict:
+            await ctx.send("type not dict")
+        await ctx.send(f"type is dict\nDoes it work? {pokemon}")
+
+
