@@ -139,6 +139,7 @@ class GeneralMixin(MixinMeta):
             )
         pokemon = pokemons[id]
         name = self.get_name(pokemon[0]["name"], ctx.author)
+        await ctx.send(pokemons)
         if len(pokemons) == 1:
             return await ctx.send(
                 _(
