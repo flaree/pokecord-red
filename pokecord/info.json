@@ -1,6 +1,6 @@
 {
     "author": [
-      "flare(flare#0001)"
+        "flare(flare#0001)"
     ],
     "install_msg": "Thanks for installing and testing out the Pokecord rewrite for Red. If any errors occur, post in the #suuport-flare-cogs in the Red 3rd party server.",
     "name": "Pokecord",
@@ -8,9 +8,13 @@
     "short": "Pokecord for Red.",
     "description": "Pokecord for Red.",
     "tags": [
-      "pokemon",
-      "pokecord"
+        "pokemon",
+        "pokecord"
     ],
-    "requirements": ["tabulate", "databases", "databases[sqlite]"],
+    "requirements": [
+        "tabulate",
+        "databases",
+        "databases[sqlite]"
+    ],
     "hidden": false
-  }
+}

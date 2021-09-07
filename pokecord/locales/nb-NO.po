@@ -399,4 +399,3 @@ msgstr "{user} har avslått handelsforespørselen."
 #: pokecord/trading.py:136
 msgid "Trade cancelled."
 msgstr "Trading kansellert."
-

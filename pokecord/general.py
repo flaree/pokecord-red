@@ -229,8 +229,6 @@ class GeneralMixin(MixinMeta):
                 if str(pokemon) in pokemons:
                     pokemonlist[i]["amount"] = pokemons[str(pokemon)]
             a = [value for value in pokemonlist.items()]
-            total = 0
-            page = 1
             chunked = [item for item in chunks(a, 20)]
             await GenericMenu(
                 source=PokedexFormat(chunked),
