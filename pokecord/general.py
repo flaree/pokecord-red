@@ -137,14 +137,14 @@ class GeneralMixin(MixinMeta):
                     "You don't have a pokemon at that slot.\nID refers to the position within your pokémon listing.\nThis is found at the bottom of the pokemon on `[p]list`"
                 )
             )
+        pokemon = pokemons[id]
+        name = self.get_name(pokemon[0]["name"], ctx.author)
         if len(pokemons) == 1:
             return await ctx.send(
                 _(
-                    "This is your last pokemon! You cannot have no pokemon on you!"
+                    f"{name} is the last pokemon you've got. You cannot release it to the wilds."
                 )
             )
-        pokemon = pokemons[id]
-        name = self.get_name(pokemon[0]["name"], ctx.author)
         await ctx.send(
             _(
                 "You are about to free {name}, if you wish to continue type `yes`, otherwise type `no`."
