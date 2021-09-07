@@ -140,7 +140,7 @@
     {
         "id": 38,
         "name": {
-            "english": "Ninetales",
+            "english": "Ninetails",
             "japanese": "\u30ad\u30e5\u30a6\u30b3\u30f3",
             "chinese": "\u4e5d\u5c3e",
             "french": "Feunard"
@@ -158,7 +158,7 @@
         },
         "spawnchance": 0.15,
         "variant": "Alolan",
-        "alias": "Alolan Ninetales"
+        "alias": "Alolan Ninetails"
     },
     {
         "id": 50,
