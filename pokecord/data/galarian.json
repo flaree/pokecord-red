@@ -231,7 +231,7 @@
             "Sp. Def": 90,
             "Speed": 100
         },
-        "spawnchance": 0.003,
+        "spawnchance": 0.00015,
         "variant": "Galarian",
         "alias": "Galarian Zapdos"
     },
@@ -255,7 +255,7 @@
             "Sp. Def": 125,
             "Speed": 90
         },
-        "spawnchance": 0.003,
+        "spawnchance": 0.00015,
         "variant": "Galarian",
         "alias": "Galarian Moltres"
     },
