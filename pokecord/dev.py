@@ -3,6 +3,8 @@ import json
 import discord
 import tabulate
 from typing import Optional
+import ast
+import pprint
 from redbot.core import commands
 from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import *
@@ -183,7 +185,7 @@ class Dev(MixinMeta):
             list
         ):
             return
-        await ctx.send(content=pokemon[0])
+        await ctx.send(content=pprint.pformat(pokemon[0]))
 
     @dev.command(name="set")
     async def dev_set(self, ctx, pokeid: int, *args):
@@ -204,6 +206,9 @@ class Dev(MixinMeta):
         except Exception as err:
             return await ctx.send("Unexpected Error: {err}")
 
-        data = eval(data)
-        await ctx.send(type(data))
+        if not isinstance(data := ast.literal_eval(data), dict):
+            return await ctx.send("Argument Error, expecting data type `dict`")
+
         await ctx.send(data)
+
+
