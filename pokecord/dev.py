@@ -212,3 +212,32 @@ class Dev(MixinMeta):
         await ctx.send(data)
 
 
+    @dev.command(name="variant")
+    async def dev_variant(self, ctx, user: discord.Memeber, pokeid: int, variant: Optional[None]):
+        """test set variant"""
+        if user is None:
+            user = ctx.author
+        if not isinstance(
+            pokemon := await self.get_pokemon(
+                ctx,
+                user=user,
+                pokeid=pokeid
+            ),
+            list
+        ):
+            return
+
+        if variant:
+            pokemon["variant"] = variant
+        else:
+            pokemon.pop("variant", None)
+
+        await self.cursor.execute(
+            query=UPDATE_POKEMON,
+            values={
+                "user_id": user.id,
+                "message_id": pokemon[1],
+                "pokemon": json.dumps(pokemon[0]),
+            },
+        )
+        await ctx.tick()
