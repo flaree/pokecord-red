@@ -213,7 +213,7 @@ class Dev(MixinMeta):
 
 
     @dev.command(name="variant")
-    async def dev_variant(self, ctx, user: discord.Memeber, pokeid: int, variant: Optional[None]):
+    async def dev_variant(self, ctx, user: discord.Member, pokeid: int, variant: Optional[None]):
         """test set variant"""
         if user is None:
             user = ctx.author
