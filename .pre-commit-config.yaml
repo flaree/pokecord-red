@@ -8,7 +8,6 @@ repos:
     rev: v4.0.1
     hooks:
     -   id: check-yaml
-    -   id: end-of-file-fixer
     -   id: trailing-whitespace
     -   id: check-builtin-literals
     -   id: check-ast
