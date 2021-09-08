@@ -189,20 +189,20 @@ class Dev(MixinMeta):
         msg = ""
         userconf = await self.user_is_global(user)
         pokeid = await userconf.pokeid()
-        if id < pokeid:
-            msg += _(
-                "\nYour default pokemon may have changed. I have tried to account for this change."
-            )
-            await userconf.pokeid.set(pokeid - 1)
-        elif id == pokeid:
-            msg += _(
-                "\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
-            )
-            await userconf.pokeid.set(1)
-        await self.cursor.execute(
-            query="DELETE FROM users where message_id = :message_id",
-            values={"message_id": pokemon[1]},
-        )
+        # if id < pokeid:
+        #     msg += _(
+        #         "\nYour default pokemon may have changed. I have tried to account for this change."
+        #     )
+        #     await userconf.pokeid.set(pokeid - 1)
+        # elif id == pokeid:
+        #     msg += _(
+        #         "\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
+        #     )
+        #     await userconf.pokeid.set(1)
+        # await self.cursor.execute(
+        #     query="DELETE FROM users where message_id = :message_id",
+        #     values={"message_id": pokemon[1]},
+        # )
         name = self.get_name(pokemon[0]["name"], user)
-        await ctx.send(await userconf.pokeids.value())
+        await ctx.send(await userconf.pokeids())
         await ctx.send(_("Your {name} has been freed.{msg}").format(name=name, msg=msg))
