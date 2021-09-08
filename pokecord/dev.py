@@ -2,6 +2,7 @@ import json
 
 import discord
 import tabulate
+from typing import Optional
 from redbot.core import commands
 from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import *
@@ -169,7 +170,7 @@ class Dev(MixinMeta):
         await ctx.tick()
 
     @dev.command(name="reveal")
-    async def dev_reveal(self, ctx, user: discord.Member, pokeid: int):
+    async def dev_reveal(self, ctx, user: Optional[discord.Member], pokeid: int):
         """Shows raw info for an owned pokemon"""
         if type(pokemon := self.get_pokemon(ctx, user=user, pokeid=pokeid)) is not dict:
             await ctx.send("type not dict")
