@@ -186,7 +186,7 @@ class Dev(MixinMeta):
         await ctx.send(content=pokemon[0])
 
     @dev.command(name="set")
-    async def dev_set(self, ctx, pokeid: int, maybe_str: str):
+    async def dev_set(self, ctx, pokeid: int, *args):
         """delete this later"""
         if not isinstance(
             pokemon := await self.get_pokemon(
@@ -197,4 +197,11 @@ class Dev(MixinMeta):
             list
         ):
             return
-        await ctx.send(maybe_str)
+        try:
+            data = ' '.join(args)
+        except TypeError as terr:
+            return await ctx.send("Argument Error: {terr}")
+        except Exception as err:
+            return await ctx.send("Unexpected Error: {err}")
+
+        await ctx.send(data)
