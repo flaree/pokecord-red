@@ -33,6 +33,7 @@ class Dev(MixinMeta):
         elif len(args):
             pokemon = pokemon + ' ' + ' '.join(args)
         else:
+            await ctx.send(f"target is {pokemon}")
             for i, pokemondata in enumerate(self.pokemondata):
                 name = (
                     pokemondata.get("alias").lower()
