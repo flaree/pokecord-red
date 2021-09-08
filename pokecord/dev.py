@@ -61,7 +61,7 @@ class Dev(MixinMeta):
     async def dev_ivs(
         self,
         ctx,
-        user: discord.Member,
+        user: Optional[discord.Member],
         pokeid: int,
         hp: int,
         attack: int,
@@ -71,18 +71,11 @@ class Dev(MixinMeta):
         speed: int,
     ):
         """Manually set a pokemons IVs"""
-        if pokeid <= 0:
-            return await ctx.send("The ID must be greater than 0!")
-        async with ctx.typing():
-            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokémon, trainer!")
-        if pokeid >= len(pokemons):
-            return await ctx.send("There's no pokemon at that slot.")
-        pokemon = pokemons[pokeid]
+        if user is None:
+            user = ctx.author
+        pokemon = await self.get_pokemon(ctx, user, pokeid)
+        if not isinstance(pokemon, list):
+            return
         pokemon[0]["ivs"] = {
             "HP": hp,
             "Attack": attack,
@@ -105,7 +98,7 @@ class Dev(MixinMeta):
     async def dev_stats(
         self,
         ctx,
-        user: discord.Member,
+        user: Optional[discord.Member],
         pokeid: int,
         hp: int,
         attack: int,
@@ -115,18 +108,11 @@ class Dev(MixinMeta):
         speed: int,
     ):
         """Manually set a pokemons stats"""
-        if pokeid <= 0:
-            return await ctx.send("The ID must be greater than 0!")
-        async with ctx.typing():
-            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokémon, trainer!")
-        if pokeid >= len(pokemons):
-            return await ctx.send("There's no pokemon at that slot.")
-        pokemon = pokemons[pokeid]
+        if user is None:
+            user = ctx.author
+        pokemon = await self.get_pokemon(ctx, user, pokeid)
+        if not isinstance(pokemon, list):
+            return
         pokemon[0]["stats"] = {
             "HP": hp,
             "Attack": attack,
@@ -146,20 +132,13 @@ class Dev(MixinMeta):
         await ctx.tick()
 
     @dev.command(name="level")
-    async def dev_lvl(self, ctx, user: discord.Member, pokeid: int, lvl: int):
+    async def dev_lvl(self, ctx, user: Optional[discord.Member], pokeid: int, lvl: int):
         """Manually set a pokemons level"""
-        if pokeid <= 0:
-            return await ctx.send("The ID must be greater than 0!")
-        async with ctx.typing():
-            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
-        pokemons = [None]
-        for data in result:
-            pokemons.append([json.loads(data[0]), data[1]])
-        if not pokemons:
-            return await ctx.send("You don't have any pokémon, trainer!")
-        if pokeid >= len(pokemons):
-            return await ctx.send("There's no pokemon at that slot.")
-        pokemon = pokemons[pokeid]
+        if user is None:
+            user = ctx.author
+        pokemon = await self.get_pokemon(ctx, user, pokeid)
+        if not isinstance(pokemon, list):
+            return
         pokemon[0]["level"] = lvl
         await self.cursor.execute(
             query=UPDATE_POKEMON,
@@ -176,14 +155,14 @@ class Dev(MixinMeta):
         """Shows raw info for an owned pokemon"""
         if user is None:
             user = ctx.author
-        if not isinstance(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid), list):
+        pokemon = await self.get_pokemon(ctx, user, pokeid)
+        if not isinstance(pokemon, list):
             return
         await ctx.send(content=pprint.pformat(pokemon[0]))
 
     @dev.command(name="strip")
     async def dev_strip(self, ctx, user: discord.Member, id: int):
         """Forcably removes a pokemone from user"""
-
         if id <= 0:
             return await ctx.send("The ID must be greater than 0!")
         async with ctx.typing():
