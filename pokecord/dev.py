@@ -25,15 +25,13 @@ class Dev(MixinMeta):
         """Pokecord Development Commands"""
 
     @dev.command(name="spawn")
-    async def dev_spawn(self, ctx, pokemon: str = None, *args):
+    async def dev_spawn(self, ctx, *pokemon):
         """Spawn a pokemon by name or random"""
+        pokemon = ' '.join(pokemon).strip()
         if pokemon is None:
             await self.spawn_pokemon(ctx.channel)
             return
         else:
-            if len(args):
-                pokemon = pokemon + ' ' + ' '.join(args)
-            await ctx.send(f"target is {pokemon}")
             for i, pokemondata in enumerate(self.pokemondata):
                 name = (
                     pokemondata.get("alias").lower()
