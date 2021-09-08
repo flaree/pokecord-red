@@ -197,4 +197,4 @@ class Dev(MixinMeta):
             list
         ):
             return
-        await ctx.send(str)
+        await ctx.send(maybe_str)
