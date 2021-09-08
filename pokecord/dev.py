@@ -215,10 +215,9 @@ class Dev(MixinMeta):
             msg = _(
                 f"\n{user.display_name} has no pokemon left. I have granted them another chance to pick a starter."
             )
-        # await self.cursor.execute(
-        #     query="DELETE FROM users where message_id = :message_id",
-        #     values={"message_id": pokemon[1]},
-        # )
+        await self.cursor.execute(
+            query="DELETE FROM users where message_id = :message_id",
+            values={"message_id": pokemon[1]},
+        )
         name = self.get_name(pokemon[0]["name"], user)
-        await ctx.send(await self.get_pokemon(ctx, user=user, pokeid=1, show_all=True))
         await ctx.send(_(f"{user.display_name}'s {name} has been freed.{msg}").format(name=name, msg=msg))
