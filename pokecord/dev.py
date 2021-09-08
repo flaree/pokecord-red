@@ -204,6 +204,6 @@ class Dev(MixinMeta):
         except Exception as err:
             return await ctx.send("Unexpected Error: {err}")
 
-        data = json.load(data)
+        data = json.loads(data)
         await ctx.send(type(data))
         await ctx.send(data)
