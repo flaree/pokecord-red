@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2021-07-20 22:42+0000\n"
+"POT-Creation-Date: 2021-09-07 22:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -101,11 +101,11 @@ msgstr ""
 msgid "List a trainers or your own pokémon!"
 msgstr ""
 
-#: pokecord/general.py:32 pokecord/general.py:315
+#: pokecord/general.py:32 pokecord/general.py:313
 msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to list your pokemon."
 msgstr ""
 
-#: pokecord/general.py:45 pokecord/general.py:328
+#: pokecord/general.py:45 pokecord/general.py:326
 msgid "You don't have any pokémon, go get catching trainer!"
 msgstr ""
 
@@ -201,25 +201,25 @@ msgstr ""
 msgid "Check your caught pokémon!"
 msgstr ""
 
-#: pokecord/general.py:247
+#: pokecord/general.py:245
 #, docstring
 msgid "Search your pokemon.\\n\\n        Arguements must have `--` before them.\\n            `--name` | `--n` - Search pokemon by name.\\n            `--level`| `--l` - Search pokemon by level.\\n            `--id`   | `--i` - Search pokemon by ID.\\n            `--variant`   | `--v` - Search pokemon by variant.\\n            `--type`   | `--t` - Search pokemon by type.\\n            `--gender` | `--g` - Search by gender.\\n            `--iv` | - Search by total IV.\\n        "
 msgstr ""
 
-#: pokecord/general.py:264
+#: pokecord/general.py:262
 msgid "You don't have any pokémon trainer!"
 msgstr ""
 
-#: pokecord/general.py:271
+#: pokecord/general.py:269
 msgid "{pokemon} **|** Level: {level} **|** ID: {id} **|** Index: {index}\\n"
 msgstr ""
 
-#: pokecord/general.py:311
+#: pokecord/general.py:309
 #, docstring
 msgid "Show your current selected pokemon"
 msgstr ""
 
-#: pokecord/general.py:334
+#: pokecord/general.py:332
 msgid "An error occured trying to find your pokemon at slot {slotnum}\\nAs a result I have set your default pokemon to 1."
 msgstr ""
 
@@ -260,90 +260,90 @@ msgstr ""
 msgid "Pokecord adapted to use on Red."
 msgstr ""
 
-#: pokecord/pokecord.py:270
+#: pokecord/pokecord.py:269
 #, docstring
 msgid "Choose your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:273
+#: pokecord/pokecord.py:272
 msgid "You've already claimed your starter pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:275
+#: pokecord/pokecord.py:274
 msgid "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\\nIn order to get catchin' you must pick one of the starter Pokemon as listed below.\\n**Generation 1**\\nBulbasaur, Charmander and Squirtle\\n**Generation 2**\\nChikorita, Cyndaquil, Totodile\\n**Generation 3**\\nTreecko, Torchic, Mudkip\\n**Generation 4**\\nTurtwig, Chimchar, Piplup\\n**Generation 5**\\nSnivy, Tepig, Oshawott\\n**Generation 6**\\nChespin, Fennekin, Froakie\\n**Generation 7**\\nRowlet, Litten, Popplio\\n**Generation 8**\\nGrookey, Scorbunny, Sobble\\n"
 msgstr ""
 
-#: pokecord/pokecord.py:287
+#: pokecord/pokecord.py:286
 msgid "\\nTo pick a pokemon, type {prefix}starter <pokemon>"
 msgstr ""
 
-#: pokecord/pokecord.py:319
+#: pokecord/pokecord.py:323
 msgid "That's not a valid starter pokémon, trainer!"
 msgstr ""
 
-#: pokecord/pokecord.py:322
+#: pokecord/pokecord.py:326
 msgid "You've chosen {pokemon} as your starter pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:350
+#: pokecord/pokecord.py:365
 #, docstring
 msgid "Get a hint on the pokémon!"
 msgstr ""
 
-#: pokecord/pokecord.py:367
+#: pokecord/pokecord.py:384
 msgid "This wild pokemon is a {pokemonhint}."
 msgstr ""
 
-#: pokecord/pokecord.py:372 pokecord/pokecord.py:445
+#: pokecord/pokecord.py:389 pokecord/pokecord.py:462
 msgid "No pokemon is ready to be caught."
 msgstr ""
 
-#: pokecord/pokecord.py:376
+#: pokecord/pokecord.py:393
 #, docstring
 msgid "Catch a pokemon!"
 msgstr ""
 
-#: pokecord/pokecord.py:380
+#: pokecord/pokecord.py:397
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr ""
 
-#: pokecord/pokecord.py:397
+#: pokecord/pokecord.py:414
 msgid "That's not the correct pokemon"
 msgstr ""
 
-#: pokecord/pokecord.py:406
+#: pokecord/pokecord.py:423
 msgid "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:417
+#: pokecord/pokecord.py:434
 msgid "\\n{pokename} has been added to the pokédex."
 msgstr ""
 
-#: pokecord/pokecord.py:503
+#: pokecord/pokecord.py:520
 msgid "‌‌A wild pokémon has аppeаred!"
 msgstr ""
 
-#: pokecord/pokecord.py:504
+#: pokecord/pokecord.py:521
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr ""
 
-#: pokecord/pokecord.py:517
+#: pokecord/pokecord.py:534
 msgid "Supports: {languages}"
 msgstr ""
 
-#: pokecord/pokecord.py:636 pokecord/pokecord.py:654
+#: pokecord/pokecord.py:653 pokecord/pokecord.py:671
 msgid "Congratulations {user}!"
 msgstr ""
 
-#: pokecord/pokecord.py:637
+#: pokecord/pokecord.py:654
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr ""
 
-#: pokecord/pokecord.py:655
+#: pokecord/pokecord.py:672
 msgid "Your {name} has levelled up to level {level}!"
 msgstr ""
 
-#: pokecord/pokecord.py:685
+#: pokecord/pokecord.py:702
 #, docstring
 msgid "Sim pokemon spawning - This is blocking."
 msgstr ""
@@ -353,130 +353,130 @@ msgstr ""
 msgid "\\n    Pokecord commands\\n    "
 msgstr ""
 
-#: pokecord/settings.py:30
+#: pokecord/settings.py:31
 #, docstring
 msgid "Toggle pokecord levelling messages on or off."
 msgstr ""
 
-#: pokecord/settings.py:36
+#: pokecord/settings.py:37
 msgid "Your pokécord levelling messages have been silenced."
 msgstr ""
 
-#: pokecord/settings.py:38
+#: pokecord/settings.py:39
 msgid "Your pokécord levelling messages have been re-enabled!"
 msgstr ""
 
-#: pokecord/settings.py:44
+#: pokecord/settings.py:45
 #, docstring
 msgid "Set the Pokecord locale to use for yourself."
 msgstr ""
 
-#: pokecord/settings.py:47
+#: pokecord/settings.py:48
 msgid "You've specified an invalid locale. Pokecord only supports English, Japanese, Chinese and French."
 msgstr ""
 
-#: pokecord/settings.py:61
+#: pokecord/settings.py:62
 #, docstring
 msgid "Manage pokecord settings"
 msgstr ""
 
-#: pokecord/settings.py:66
+#: pokecord/settings.py:67
 #, docstring
 msgid "Toggle pokecord on or off."
 msgstr ""
 
-#: pokecord/settings.py:71
+#: pokecord/settings.py:72
 msgid "Pokécord has been toggled on!"
 msgstr ""
 
-#: pokecord/settings.py:73
+#: pokecord/settings.py:74
 msgid "Pokécord has been toggled off!"
 msgstr ""
 
-#: pokecord/settings.py:79
+#: pokecord/settings.py:80
 #, docstring
 msgid "Toggle levelup messages on or off.\\n\\n        If active channels are set, level up messages will only be sent in said channels. Otherwise it is ignored.\\n        If no active channels are set then level up messages will send as normal."
 msgstr ""
 
-#: pokecord/settings.py:87
+#: pokecord/settings.py:88
 msgid "Pokemon levelup messages have been toggled on!"
 msgstr ""
 
-#: pokecord/settings.py:89
+#: pokecord/settings.py:90
 msgid "Pokemon levelup messages have been toggled off!"
 msgstr ""
 
-#: pokecord/settings.py:95
+#: pokecord/settings.py:96
 #, docstring
 msgid "Set the channel(s) that pokemon are to spawn in."
 msgstr ""
 
-#: pokecord/settings.py:99
+#: pokecord/settings.py:100
 msgid "Channel has been removed."
 msgstr ""
 
-#: pokecord/settings.py:108
+#: pokecord/settings.py:109
 #, docstring
 msgid "Whitelist channels that will contribute to pokémon spawning."
 msgstr ""
 
-#: pokecord/settings.py:112
+#: pokecord/settings.py:113
 msgid "Channel has been removed from the whitelist."
 msgstr ""
 
-#: pokecord/settings.py:121
+#: pokecord/settings.py:122
 #, docstring
 msgid "Blacklist channels from contributing to pokémon spawning."
 msgstr ""
 
-#: pokecord/settings.py:125
+#: pokecord/settings.py:126
 msgid "Channel has been removed from the blacklist."
 msgstr ""
 
-#: pokecord/settings.py:134
+#: pokecord/settings.py:135
 #, docstring
 msgid "Overview of pokécord settings."
 msgstr ""
 
-#: pokecord/settings.py:136
+#: pokecord/settings.py:137
 msgid "**Toggle**: {toggle}\\n"
 msgstr ""
 
-#: pokecord/settings.py:137
+#: pokecord/settings.py:138
 msgid "**Active Channels**: {channels}\\n"
 msgstr ""
 
-#: pokecord/settings.py:142
+#: pokecord/settings.py:143
 msgid "**Blacklist**: {blacklist}\\n"
 msgstr ""
 
-#: pokecord/settings.py:147
+#: pokecord/settings.py:148
 msgid "**Whitelist**: {whitelist}\\n"
 msgstr ""
 
-#: pokecord/settings.py:157
+#: pokecord/settings.py:158
 #, docstring
 msgid "Change the range of messages required for a spawn."
 msgstr ""
 
-#: pokecord/settings.py:159
+#: pokecord/settings.py:160
 msgid "Min must be more than 15."
 msgstr ""
 
-#: pokecord/settings.py:161
+#: pokecord/settings.py:162
 msgid "Max must be more than the minimum."
 msgstr ""
 
-#: pokecord/settings.py:169
+#: pokecord/settings.py:170
 #, docstring
 msgid "Turn the bot loop on or off."
 msgstr ""
 
-#: pokecord/settings.py:172
+#: pokecord/settings.py:173
 msgid "Random spawn loop has been enabled, please reload the cog for this change to take effect."
 msgstr ""
 
-#: pokecord/settings.py:178
+#: pokecord/settings.py:179
 msgid "Random spawn loop has been disabled, please reload the cog for this change to take effect."
 msgstr ""
 

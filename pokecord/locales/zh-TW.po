@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pokecord\n"
-"POT-Creation-Date: 2021-07-20 22:42+0000\n"
+"POT-Creation-Date: 2021-09-07 22:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -101,11 +101,11 @@ msgstr "寶可夢編號: {number}/{amount}"
 msgid "List a trainers or your own pokémon!"
 msgstr "顯示訓練師或是自己的寶可夢!"
 
-#: pokecord/general.py:32 pokecord/general.py:315
+#: pokecord/general.py:32 pokecord/general.py:313
 msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to list your pokemon."
 msgstr ""
 
-#: pokecord/general.py:45 pokecord/general.py:328
+#: pokecord/general.py:45 pokecord/general.py:326
 msgid "You don't have any pokémon, go get catching trainer!"
 msgstr "你目前沒有任何寶可夢，快去抓一隻吧!"
 
@@ -201,25 +201,25 @@ msgstr "{pokemon} 設為預設寶可夢"
 msgid "Check your caught pokémon!"
 msgstr "快去查看你的抓到的寶可夢!"
 
-#: pokecord/general.py:247
+#: pokecord/general.py:245
 #, docstring
 msgid "Search your pokemon.\\n\\n        Arguements must have `--` before them.\\n            `--name` | `--n` - Search pokemon by name.\\n            `--level`| `--l` - Search pokemon by level.\\n            `--id`   | `--i` - Search pokemon by ID.\\n            `--variant`   | `--v` - Search pokemon by variant.\\n            `--type`   | `--t` - Search pokemon by type.\\n            `--gender` | `--g` - Search by gender.\\n            `--iv` | - Search by total IV.\\n        "
 msgstr "搜尋寶可夢\\n\\n        指令可以使用長標記 `--` \\n            `--name` | `--n` - 寶可夢名稱\\n            `--level`| `--l` - 寶可夢等級\\n            `--id`   | `--i` - 寶可夢編號.\\n            `--variant`   | `--v` - 寶可夢個體\\n            `--type`   | `--t` - 寶可夢屬性\\n            `--gender` | `--g` - 寶可夢性別\\n            `--iv` | - 寶可夢總IV值\\n        "
 
-#: pokecord/general.py:264
+#: pokecord/general.py:262
 msgid "You don't have any pokémon trainer!"
 msgstr "你身上沒有寶可夢!"
 
-#: pokecord/general.py:271
+#: pokecord/general.py:269
 msgid "{pokemon} **|** Level: {level} **|** ID: {id} **|** Index: {index}\\n"
 msgstr "{pokemon} **|** Level: {level} **|** 圖鑑: {id} **|** 編號: {index}\\n"
 
-#: pokecord/general.py:311
+#: pokecord/general.py:309
 #, docstring
 msgid "Show your current selected pokemon"
 msgstr "顯示目前預設寶可夢"
 
-#: pokecord/general.py:334
+#: pokecord/general.py:332
 msgid "An error occured trying to find your pokemon at slot {slotnum}\\nAs a result I have set your default pokemon to 1."
 msgstr "在取得預設寶可夢{slotnum}時發生錯誤\\n預設寶可夢重置為第一順位"
 
@@ -260,90 +260,90 @@ msgstr "你擁有 {amount} / {total} 隻寶可夢"
 msgid "Pokecord adapted to use on Red."
 msgstr "Red 平台寶可夢模組"
 
-#: pokecord/pokecord.py:270
+#: pokecord/pokecord.py:269
 #, docstring
 msgid "Choose your starter pokémon!"
 msgstr "選擇你的御三家!"
 
-#: pokecord/pokecord.py:273
+#: pokecord/pokecord.py:272
 msgid "You've already claimed your starter pokemon!"
 msgstr "你已經選擇了御三家"
 
-#: pokecord/pokecord.py:275
+#: pokecord/pokecord.py:274
 msgid "Hey there trainer! Welcome to Pokecord. This is a ported plugin version of Pokecord adopted for use on Red.\\nIn order to get catchin' you must pick one of the starter Pokemon as listed below.\\n**Generation 1**\\nBulbasaur, Charmander and Squirtle\\n**Generation 2**\\nChikorita, Cyndaquil, Totodile\\n**Generation 3**\\nTreecko, Torchic, Mudkip\\n**Generation 4**\\nTurtwig, Chimchar, Piplup\\n**Generation 5**\\nSnivy, Tepig, Oshawott\\n**Generation 6**\\nChespin, Fennekin, Froakie\\n**Generation 7**\\nRowlet, Litten, Popplio\\n**Generation 8**\\nGrookey, Scorbunny, Sobble\\n"
 msgstr "歡迎來到寶可夢遊戲！這是由Pokecord移植到Red的分支。\\n在捕捉寶可夢之前，你必須先選擇自己的初始寶可夢！\\n**第一世代**\\n妙蛙種子，小火龍，傑尼龜\\n**第二世代**\\n菊草葉，火球鼠，小鋸鱷\\n**第三世代**\\n木守宮，火稚雞，水躍魚\\n**第四世代**\\n草苗龜，小火焰猴，波加曼\\n**第五世代**\\n藤藤蛇，暖暖豬，水水獺\\n**第六世代**\\n哈力栗，火狐狸，呱呱泡蛙\\n**第七世代**\\n木木梟，火斑喵，球球海獅\\n**第八世代**\\n敲音猴，炎兔兒，淚眼蜥\\n"
 
-#: pokecord/pokecord.py:287
+#: pokecord/pokecord.py:286
 msgid "\\nTo pick a pokemon, type {prefix}starter <pokemon>"
 msgstr "\\n用 {prefix}starter <寶可夢名稱> 來選擇寶可夢"
 
-#: pokecord/pokecord.py:319
+#: pokecord/pokecord.py:323
 msgid "That's not a valid starter pokémon, trainer!"
 msgstr "選擇不再御三家裡面!"
 
-#: pokecord/pokecord.py:322
+#: pokecord/pokecord.py:326
 msgid "You've chosen {pokemon} as your starter pokémon!"
 msgstr "{pokemon}成為了你的第一隻寶可夢!"
 
-#: pokecord/pokecord.py:350
+#: pokecord/pokecord.py:365
 #, docstring
 msgid "Get a hint on the pokémon!"
 msgstr "寶可夢的名稱提示"
 
-#: pokecord/pokecord.py:367
+#: pokecord/pokecord.py:384
 msgid "This wild pokemon is a {pokemonhint}."
 msgstr "這隻寶可夢是{pokemonhint}"
 
-#: pokecord/pokecord.py:372 pokecord/pokecord.py:445
+#: pokecord/pokecord.py:389 pokecord/pokecord.py:462
 msgid "No pokemon is ready to be caught."
 msgstr "在這裡沒有野生的寶可夢"
 
-#: pokecord/pokecord.py:376
+#: pokecord/pokecord.py:393
 #, docstring
 msgid "Catch a pokemon!"
 msgstr "捕捉寶可夢"
 
-#: pokecord/pokecord.py:380
+#: pokecord/pokecord.py:397
 msgid "You haven't chosen a starter pokemon yet, check out `{prefix}starter` for more information."
 msgstr "你還沒選擇御三家，用 `{prefix}starter` 查看更多"
 
-#: pokecord/pokecord.py:397
+#: pokecord/pokecord.py:414
 msgid "That's not the correct pokemon"
 msgstr "這好像不是那隻寶可夢"
 
-#: pokecord/pokecord.py:406
+#: pokecord/pokecord.py:423
 msgid "Congratulations {user}! You've caught a level {lvl} {variant}{pokename}!"
 msgstr "恭喜{user}!! 你抓到了{lvl}等的{variant}{pokename}!"
 
-#: pokecord/pokecord.py:417
+#: pokecord/pokecord.py:434
 msgid "\\n{pokename} has been added to the pokédex."
 msgstr "\\n{pokename}加入了寶可夢圖鑑"
 
-#: pokecord/pokecord.py:503
+#: pokecord/pokecord.py:520
 msgid "‌‌A wild pokémon has аppeаred!"
 msgstr "出現了一隻野生寶可夢!"
 
-#: pokecord/pokecord.py:504
+#: pokecord/pokecord.py:521
 msgid "Guess the pokémon аnd type {prefix}catch <pokémon> to cаtch it!"
 msgstr "找到寶可夢的名字後 用{prefix}catch <寶可夢名稱> 來捕捉寶可夢!"
 
-#: pokecord/pokecord.py:517
+#: pokecord/pokecord.py:534
 msgid "Supports: {languages}"
 msgstr "支援 : {languages}"
 
-#: pokecord/pokecord.py:636 pokecord/pokecord.py:654
+#: pokecord/pokecord.py:653 pokecord/pokecord.py:671
 msgid "Congratulations {user}!"
 msgstr "恭喜 {user}!"
 
-#: pokecord/pokecord.py:637
+#: pokecord/pokecord.py:654
 msgid "Your {name} has evolved into {evolvename}!"
 msgstr "你的{name}已經進化成了{evolvename}!"
 
-#: pokecord/pokecord.py:655
+#: pokecord/pokecord.py:672
 msgid "Your {name} has levelled up to level {level}!"
 msgstr "你的{name}進化到了{level}等!"
 
-#: pokecord/pokecord.py:685
+#: pokecord/pokecord.py:702
 #, docstring
 msgid "Sim pokemon spawning - This is blocking."
 msgstr "無"
@@ -353,130 +353,130 @@ msgstr "無"
 msgid "\\n    Pokecord commands\\n    "
 msgstr "\\n    寶可夢指令\\n    "
 
-#: pokecord/settings.py:30
+#: pokecord/settings.py:31
 #, docstring
 msgid "Toggle pokecord levelling messages on or off."
 msgstr "開啟/關閉升級提示"
 
-#: pokecord/settings.py:36
+#: pokecord/settings.py:37
 msgid "Your pokécord levelling messages have been silenced."
 msgstr "升級提示已關閉"
 
-#: pokecord/settings.py:38
+#: pokecord/settings.py:39
 msgid "Your pokécord levelling messages have been re-enabled!"
 msgstr "升級提示已開啟"
 
-#: pokecord/settings.py:44
+#: pokecord/settings.py:45
 #, docstring
 msgid "Set the Pokecord locale to use for yourself."
 msgstr "設定寶可夢遊戲語言"
 
-#: pokecord/settings.py:47
+#: pokecord/settings.py:48
 msgid "You've specified an invalid locale. Pokecord only supports English, Japanese, Chinese and French."
 msgstr "你選擇了不支援的語言。目前僅支援 英文 日文 中文 法文"
 
-#: pokecord/settings.py:61
+#: pokecord/settings.py:62
 #, docstring
 msgid "Manage pokecord settings"
 msgstr "寶可夢遊戲設定"
 
-#: pokecord/settings.py:66
+#: pokecord/settings.py:67
 #, docstring
 msgid "Toggle pokecord on or off."
 msgstr "啟動/關閉寶可夢遊戲"
 
-#: pokecord/settings.py:71
+#: pokecord/settings.py:72
 msgid "Pokécord has been toggled on!"
 msgstr "寶可夢遊戲始動!"
 
-#: pokecord/settings.py:73
+#: pokecord/settings.py:74
 msgid "Pokécord has been toggled off!"
 msgstr "寶可夢遊戲關閉!"
 
-#: pokecord/settings.py:79
+#: pokecord/settings.py:80
 #, docstring
 msgid "Toggle levelup messages on or off.\\n\\n        If active channels are set, level up messages will only be sent in said channels. Otherwise it is ignored.\\n        If no active channels are set then level up messages will send as normal."
 msgstr "開啟/關閉升級提示\\n\\n        如果有設定訊息頻道，則升級訊息將會集中在頻道中\\n        如果沒有指定頻道，則會正常傳送訊息"
 
-#: pokecord/settings.py:87
+#: pokecord/settings.py:88
 msgid "Pokemon levelup messages have been toggled on!"
 msgstr "升級提示開啟"
 
-#: pokecord/settings.py:89
+#: pokecord/settings.py:90
 msgid "Pokemon levelup messages have been toggled off!"
 msgstr "升級提示關閉"
 
-#: pokecord/settings.py:95
+#: pokecord/settings.py:96
 #, docstring
 msgid "Set the channel(s) that pokemon are to spawn in."
 msgstr "設定野生寶可夢出現的頻道"
 
-#: pokecord/settings.py:99
+#: pokecord/settings.py:100
 msgid "Channel has been removed."
 msgstr "頻道被移除"
 
-#: pokecord/settings.py:108
+#: pokecord/settings.py:109
 #, docstring
 msgid "Whitelist channels that will contribute to pokémon spawning."
 msgstr "設定出現頻道白名單"
 
-#: pokecord/settings.py:112
+#: pokecord/settings.py:113
 msgid "Channel has been removed from the whitelist."
 msgstr "頻道已從白名單移除"
 
-#: pokecord/settings.py:121
+#: pokecord/settings.py:122
 #, docstring
 msgid "Blacklist channels from contributing to pokémon spawning."
 msgstr "設定出現頻道黑名單"
 
-#: pokecord/settings.py:125
+#: pokecord/settings.py:126
 msgid "Channel has been removed from the blacklist."
 msgstr "頻道已從黑名單移除"
 
-#: pokecord/settings.py:134
+#: pokecord/settings.py:135
 #, docstring
 msgid "Overview of pokécord settings."
 msgstr "檢視寶可夢遊戲設定"
 
-#: pokecord/settings.py:136
+#: pokecord/settings.py:137
 msgid "**Toggle**: {toggle}\\n"
 msgstr "**開啟/關閉**: {toggle}\\n"
 
-#: pokecord/settings.py:137
+#: pokecord/settings.py:138
 msgid "**Active Channels**: {channels}\\n"
 msgstr "**出現頻道**: {channels}\\n"
 
-#: pokecord/settings.py:142
+#: pokecord/settings.py:143
 msgid "**Blacklist**: {blacklist}\\n"
 msgstr "**黑名單**: {blacklist}\\n"
 
-#: pokecord/settings.py:147
+#: pokecord/settings.py:148
 msgid "**Whitelist**: {whitelist}\\n"
 msgstr "**白名單**: {whitelist}\\n"
 
-#: pokecord/settings.py:157
+#: pokecord/settings.py:158
 #, docstring
 msgid "Change the range of messages required for a spawn."
 msgstr "設定寶可夢出現的頻率"
 
-#: pokecord/settings.py:159
+#: pokecord/settings.py:160
 msgid "Min must be more than 15."
 msgstr "最少訊息必須高於15"
 
-#: pokecord/settings.py:161
+#: pokecord/settings.py:162
 msgid "Max must be more than the minimum."
 msgstr "最高訊息必須高於最少"
 
-#: pokecord/settings.py:169
+#: pokecord/settings.py:170
 #, docstring
 msgid "Turn the bot loop on or off."
 msgstr "開啟/關閉生成寶可夢"
 
-#: pokecord/settings.py:172
+#: pokecord/settings.py:173
 msgid "Random spawn loop has been enabled, please reload the cog for this change to take effect."
 msgstr "已啟動隨機生成，將於模組reload後生效"
 
-#: pokecord/settings.py:178
+#: pokecord/settings.py:179
 msgid "Random spawn loop has been disabled, please reload the cog for this change to take effect."
 msgstr "已關閉隨機生成，將於模組reload後生效"
 
