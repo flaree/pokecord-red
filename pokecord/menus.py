@@ -147,7 +147,7 @@ class PokeList(menus.ListPageSource):
         super().__init__(entries, per_page=1)
 
     async def format_page(self, menu: PokeListMenu, pokemon: Dict) -> str:
-        embed = await poke_embed(menu.cog, menu.ctx, pokemon, menu=self, file=True)
+        embed = await poke_embed(menu.cog, menu.ctx, pokemon, menu=self)
         return embed
 
 
