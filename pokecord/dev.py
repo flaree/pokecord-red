@@ -26,7 +26,7 @@ class Dev(MixinMeta):
     @dev.command(name="spawn")
     async def dev_spawn(self, ctx, *pokemon):
         """Spawn a pokemon by name or random"""
-        pokemon = " ".join(pokemon).strip()
+        pokemon = " ".join(pokemon).strip().lower()
         if pokemon is None:
             await self.spawn_pokemon(ctx.channel)
             return
