@@ -25,7 +25,7 @@ class Dev(MixinMeta):
         """Pokecord Development Commands"""
 
     @dev.command(name="spawn")
-    async def dev_spawn(self, ctx, *, pokemon: str = None, *args):
+    async def dev_spawn(self, ctx, pokemon: str = None, *args):
         """Spawn a pokemon by name or random"""
         if pokemon is None:
             await self.spawn_pokemon(ctx.channel)
