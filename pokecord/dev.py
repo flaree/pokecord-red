@@ -1,4 +1,3 @@
-import ast
 import json
 import pprint
 from typing import Optional
@@ -210,7 +209,7 @@ class Dev(MixinMeta):
                 "\nYou have released their selected pokemon. I have reset their selected pokemon to their first pokemon."
             )
             await userconf.pokeid.set(1)
-        if len(pokemons) == 2: # it was their last pokemon, resets starter
+        if len(pokemons) == 2:  # it was their last pokemon, resets starter
             await userconf.has_starter.set(False)
             msg = _(
                 f"\n{user.display_name} has no pokemon left. I have granted them another chance to pick a starter."
@@ -220,4 +219,6 @@ class Dev(MixinMeta):
             values={"message_id": pokemon[1]},
         )
         name = self.get_name(pokemon[0]["name"], user)
-        await ctx.send(_(f"{user.display_name}'s {name} has been freed.{msg}").format(name=name, msg=msg))
+        await ctx.send(
+            _(f"{user.display_name}'s {name} has been freed.{msg}").format(name=name, msg=msg)
+        )
