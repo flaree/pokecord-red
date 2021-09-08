@@ -228,9 +228,9 @@ class Dev(MixinMeta):
             return
 
         if variant:
-            pokemon["variant"] = variant
+            pokemon[0]["variant"] = variant
         else:
-            pokemon.pop("variant", None)
+            pokemon[0].pop("variant", None)
 
         await self.cursor.execute(
             query=UPDATE_POKEMON,
