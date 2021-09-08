@@ -532,4 +532,3 @@ msgstr "{user} a refusé la demande d'échange."
 #: pokecord/trading.py:144
 msgid "Trade cancelled."
 msgstr "Échange annulé."
-

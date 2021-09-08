@@ -532,4 +532,3 @@ msgstr "{user}拒絕了交易"
 #: pokecord/trading.py:144
 msgid "Trade cancelled."
 msgstr "交易取消"
-
