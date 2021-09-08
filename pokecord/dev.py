@@ -25,11 +25,13 @@ class Dev(MixinMeta):
         """Pokecord Development Commands"""
 
     @dev.command(name="spawn")
-    async def dev_spawn(self, ctx, *, pokemon: str = None):
+    async def dev_spawn(self, ctx, *, pokemon: str = None, *args):
         """Spawn a pokemon by name or random"""
         if pokemon is None:
             await self.spawn_pokemon(ctx.channel)
             return
+        elif len(args):
+            pokemon = pokemon + ' ' + ' '.join(args)
         else:
             for i, pokemondata in enumerate(self.pokemondata):
                 name = (
@@ -209,33 +211,11 @@ class Dev(MixinMeta):
         if not isinstance(data := ast.literal_eval(data), dict):
             return await ctx.send("Argument Error, expecting data type `dict`")
 
-        await ctx.send(data)
-
-
-    @dev.command(name="variant")
-    async def dev_variant(self, ctx, user: Optional[discord.Member], pokeid: int, variant: Optional[str]):
-        """test set variant"""
-        if user is None:
-            user = ctx.author
-        if not isinstance(
-            pokemon := await self.get_pokemon(
-                ctx,
-                user=user,
-                pokeid=pokeid
-            ),
-            list
-        ):
-            return
-
-        if variant:
-            pokemon[0]["variant"] = variant
-        else:
-            pokemon[0].pop("variant", None)
-
+        pokemon[0] = data
         await self.cursor.execute(
             query=UPDATE_POKEMON,
             values={
-                "user_id": user.id,
+                "user_id": ctx.author.id,
                 "message_id": pokemon[1],
                 "pokemon": json.dumps(pokemon[0]),
             },
