@@ -174,9 +174,27 @@ class Dev(MixinMeta):
         """Shows raw info for an owned pokemon"""
         if user is None:
             user = ctx.author
-        if not isinstance(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid), list):
+        if not isinstance(
+            pokemon := await self.get_pokemon(
+                ctx,
+                user=user,
+                pokeid=pokeid
+            ),
+            list
+        ):
             return
-        import pprint
-        await ctx.send(content=pprint.pformat(pokemon))
+        await ctx.send(content=pokemon[0])
 
-
+    @dev.command(name="set")
+    async def dev_set(self, ctx, pokeid: int, maybe_str: str):
+        """delete this later"""
+        if not isinstance(
+            pokemon := await self.get_pokemon(
+                ctx,
+                user=ctx.author,
+                pokeid=pokeid
+            ),
+            list
+        ):
+            return
+        await ctx.send(str)
