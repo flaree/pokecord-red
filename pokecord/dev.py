@@ -43,7 +43,7 @@ class Dev(MixinMeta):
                     return
         await ctx.send("No pokemon found.")
 
-    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int) -> list:
+    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int, show_all: bool = False) -> list:
         """Returns pokemons from user list if exists"""
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
@@ -56,7 +56,7 @@ class Dev(MixinMeta):
             return await ctx.send("You don't have any pokémon, trainer!")
         if pokeid >= len(pokemons):
             return await ctx.send("There's no pokemon at that slot.")
-        return pokemons[pokeid]
+        return pokemons if show_all else pokemons[pokeid]
 
     @dev.command(name="ivs")
     async def dev_ivs(
@@ -204,5 +204,5 @@ class Dev(MixinMeta):
         #     values={"message_id": pokemon[1]},
         # )
         name = self.get_name(pokemon[0]["name"], user)
-        await ctx.send(await userconf.pokeids())
+        await ctx.send(await self.get_pokemon(ctx, user=user, pokeid=1, show_all=True))
         await ctx.send(_("Your {name} has been freed.{msg}").format(name=name, msg=msg))
