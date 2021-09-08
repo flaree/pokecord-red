@@ -174,7 +174,7 @@ class Dev(MixinMeta):
         """Shows raw info for an owned pokemon"""
         if user is None:
             user = ctx.author
-        if not type(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid)) == list:
+        if isinstance(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid), list):
             await ctx.send("type not list")
             return
         await ctx.send(f"type is list\nDoes it work? {pokemon}")
