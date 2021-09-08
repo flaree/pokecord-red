@@ -172,7 +172,7 @@ class Dev(MixinMeta):
     @dev.command(name="reveal")
     async def dev_reveal(self, ctx, user: Optional[discord.Member], pokeid: int):
         """Shows raw info for an owned pokemon"""
-        if type(pokemon := self.get_pokemon(ctx, user=user, pokeid=pokeid)) is not dict:
+        if not type(pokemon := self.get_pokemon(ctx, user=user, pokeid=pokeid)) == dict:
             await ctx.send("type not dict")
         await ctx.send(f"type is dict\nDoes it work? {pokemon}")
 
