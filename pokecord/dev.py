@@ -176,6 +176,7 @@ class Dev(MixinMeta):
             user = ctx.author
         if not isinstance(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid), list):
             return
-        await ctx.send(f"type is list\nDoes it work? {pokemon}")
+        import pprint
+        await ctx.send(content=pprint.pformat(pokemon))
 
 
