@@ -43,7 +43,7 @@ class Dev(MixinMeta):
                     return
         await ctx.send("No pokemon found.")
 
-    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int, show_all: bool = False) -> list:
+    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int) -> list:
         """Returns pokemons from user list if exists"""
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
@@ -56,7 +56,7 @@ class Dev(MixinMeta):
             return await ctx.send("You don't have any pokémon, trainer!")
         if pokeid >= len(pokemons):
             return await ctx.send("There's no pokemon at that slot.")
-        return pokemons if show_all else pokemons[pokeid]
+        return pokemons[pokeid]
 
     @dev.command(name="ivs")
     async def dev_ivs(
@@ -184,25 +184,41 @@ class Dev(MixinMeta):
     @dev.command(name="strip")
     async def dev_strip(self, ctx, user: discord.Member, id: int):
         """Forcably removes a pokemone from user"""
-        if not isinstance(pokemon := await self.get_pokemon(ctx, user=user, pokeid=id), list):
-            return
+
+        if id <= 0:
+            return await ctx.send("The ID must be greater than 0!")
+        async with ctx.typing():
+            result = await self.cursor.fetch_all(query=SELECT_POKEMON, values={"user_id": user.id})
+        pokemons = [None]
+        for data in result:
+            pokemons.append([json.loads(data[0]), data[1]])
+        if not pokemons:
+            return await ctx.send(f"{user.display_name} don't have any pokémon!")
+        if id >= len(pokemons):
+            return await ctx.send("There's no pokemon at that slot.")
+        pokemon = pokemons[id]
         msg = ""
         userconf = await self.user_is_global(user)
         pokeid = await userconf.pokeid()
-        # if id < pokeid:
-        #     msg += _(
-        #         "\nYour default pokemon may have changed. I have tried to account for this change."
-        #     )
-        #     await userconf.pokeid.set(pokeid - 1)
-        # elif id == pokeid:
-        #     msg += _(
-        #         "\nYou have released your selected pokemon. I have reset your selected pokemon to your first pokemon."
-        #     )
-        #     await userconf.pokeid.set(1)
+        if id < pokeid:
+            msg += _(
+                "\nTheir default pokemon may have changed. I have tried to account for this change."
+            )
+            await userconf.pokeid.set(pokeid - 1)
+        elif id == pokeid:
+            msg += _(
+                "\nYou have released their selected pokemon. I have reset their selected pokemon to their first pokemon."
+            )
+            await userconf.pokeid.set(1)
+        if len(pokemons) == 2: # it was their last pokemon, resets starter
+            await userconf.has_starter.set(False)
+            msg = _(
+                f"\n{user.display_name} has no pokemon left. I have granted them another chance to pick a starter."
+            )
         # await self.cursor.execute(
         #     query="DELETE FROM users where message_id = :message_id",
         #     values={"message_id": pokemon[1]},
         # )
         name = self.get_name(pokemon[0]["name"], user)
         await ctx.send(await self.get_pokemon(ctx, user=user, pokeid=1, show_all=True))
-        await ctx.send(_("Your {name} has been freed.{msg}").format(name=name, msg=msg))
+        await ctx.send(_(f"{user.display_name}'s {name} has been freed.{msg}").format(name=name, msg=msg))
