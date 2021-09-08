@@ -141,7 +141,9 @@ class GeneralMixin(MixinMeta):
         name = self.get_name(pokemon[0]["name"], ctx.author)
         if len(pokemons) == 2:
             return await ctx.send(
-                _(f"**{name}** is the last pokemon you've got. You cannot release it to the wilds.")
+                _(
+                    f"**{name}** is the last pokemon you've got. You cannot release it to the wilds."
+                )
             )
         await ctx.send(
             _(

@@ -1,10 +1,10 @@
+import ast
 import json
+import pprint
+from typing import Optional
 
 import discord
 import tabulate
-from typing import Optional
-import ast
-import pprint
 from redbot.core import commands
 from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import *
@@ -27,7 +27,7 @@ class Dev(MixinMeta):
     @dev.command(name="spawn")
     async def dev_spawn(self, ctx, *pokemon):
         """Spawn a pokemon by name or random"""
-        pokemon = ' '.join(pokemon).strip()
+        pokemon = " ".join(pokemon).strip()
         if pokemon is None:
             await self.spawn_pokemon(ctx.channel)
             return
@@ -177,14 +177,7 @@ class Dev(MixinMeta):
         """Shows raw info for an owned pokemon"""
         if user is None:
             user = ctx.author
-        if not isinstance(
-            pokemon := await self.get_pokemon(
-                ctx,
-                user=user,
-                pokeid=pokeid
-            ),
-            list
-        ):
+        if not isinstance(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid), list):
             return
         await ctx.send(content=pprint.pformat(pokemon[0]))
 
@@ -192,19 +185,14 @@ class Dev(MixinMeta):
     async def dev_set(self, ctx, pokeid: int, *args):
         """delete this later"""
         if not isinstance(
-            pokemon := await self.get_pokemon(
-                ctx,
-                user=ctx.author,
-                pokeid=pokeid
-            ),
-            list
+            pokemon := await self.get_pokemon(ctx, user=ctx.author, pokeid=pokeid), list
         ):
             return
         try:
-            data = ' '.join(args)
-        except TypeError as terr:
+            data = " ".join(args)
+        except TypeError:
             return await ctx.send("Argument Error: {terr}")
-        except Exception as err:
+        except Exception:
             return await ctx.send("Unexpected Error: {err}")
 
         if not isinstance(data := ast.literal_eval(data), dict):
