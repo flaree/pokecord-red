@@ -40,7 +40,7 @@ class Dev(MixinMeta):
                     return
         await ctx.send("No pokemon found.")
 
-    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int) -> dict:
+    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int) -> list:
         """Returns pokemons from user list if exists"""
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
@@ -174,8 +174,9 @@ class Dev(MixinMeta):
         """Shows raw info for an owned pokemon"""
         if user is None:
             user = ctx.author
-        if not type(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid)) == dict:
-            await ctx.send("type not dict")
-        await ctx.send(f"type is dict\nDoes it work? {pokemon}")
+        if not type(pokemon := await self.get_pokemon(ctx, user=user, pokeid=pokeid)) == list:
+            await ctx.send("type not list")
+            return
+        await ctx.send(f"type is list\nDoes it work? {pokemon}")
 
 
