@@ -30,9 +30,9 @@ class Dev(MixinMeta):
         if pokemon is None:
             await self.spawn_pokemon(ctx.channel)
             return
-        elif len(args):
-            pokemon = pokemon + ' ' + ' '.join(args)
         else:
+            if len(args):
+                pokemon = pokemon + ' ' + ' '.join(args)
             await ctx.send(f"target is {pokemon}")
             for i, pokemondata in enumerate(self.pokemondata):
                 name = (
