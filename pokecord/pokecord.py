@@ -133,10 +133,10 @@ class Pokecord(
             url = json.load(f)
         for pokemon in self.pokemondata:
             name = pokemon["name"]["english"]
-            url = url[name]
+            link = url[name]
             if isinstance(url, list):
-                url = url[0]
-            pokemon["url"] = url
+                link = link[0]
+            pokemon["url"] = link
 
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
