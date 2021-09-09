@@ -12,7 +12,7 @@ def chunks(l, n):
         yield l[i : i + n]
 
 
-async def poke_embed(cog, ctx, pokemon, *, file=False, menu=None, image=False):
+async def poke_embed(cog, ctx, pokemon, *, file=False, menu=None):
     stats = pokemon["stats"]
     ivs = pokemon["ivs"]
     pokestats = tabulate.tabulate(
