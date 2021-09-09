@@ -133,6 +133,8 @@ class Pokecord(
             url = json.load(f)
         for pokemon in self.pokemondata:
             name = pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]
+            if "shiny" in name.lower():
+                continue
             link = url[name.replace(':', '')]
             if isinstance(link, list):
                 link = link[0]
