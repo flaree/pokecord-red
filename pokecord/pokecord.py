@@ -135,7 +135,7 @@ class Pokecord(
             name = pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]
             if "shiny" in name.lower():
                 continue
-            link = url[name.replace(':', '')]
+            link = url[name]
             if isinstance(link, list):
                 link = link[0]
             pokemon["url"] = link
