@@ -132,12 +132,8 @@ class Pokecord(
         with open(f"{self.datapath}/url.json", encoding="utf-8") as f:
             url = json.load(f)
         for pokemon in self.pokemondata:
-            name = pokemon["name"]["english"]
-            try:
-                link = url[name]
-            except KeyError:
-                log.debug(f"NAME NOT FUCKING FOUND WHAT THE FUCK IS WRONG WITH IT \n{pokemon}")
-            if isinstance(url, list):
+            link = url[pokemon["name"]["english"]]
+            if isinstance(link, list):
                 link = link[0]
             pokemon["url"] = link
 
@@ -715,9 +711,3 @@ class Pokecord(
             else:
                 a[variant] += 1
         await ctx.send(a)
-
-
-    async def test_send(self, text: str):
-        g = self.bot.get_guild(247820107760402434)
-        c = g.get_channel(879630016856596521)
-        await c.send(content=text)
