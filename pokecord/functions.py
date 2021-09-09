@@ -12,7 +12,7 @@ def chunks(l, n):
         yield l[i : i + n]
 
 
-async def poke_embed(cog, ctx, pokemon, *, file=False, menu=None):
+async def poke_embed(cog, ctx, pokemon, *, file=False, menu=None, image=False):
     stats = pokemon["stats"]
     ivs = pokemon["ivs"]
     pokestats = tabulate.tabulate(
@@ -62,6 +62,9 @@ async def poke_embed(cog, ctx, pokemon, *, file=False, menu=None):
         )
         embed.set_thumbnail(url="attachment://pokemonspawn.png")
         return embed, _file
+    elif image:
+        name = pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]
+
     else:
         if pokemon.get("id"):
             embed.set_thumbnail(
