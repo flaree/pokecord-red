@@ -131,11 +131,11 @@ class Pokecord(
         self.pokemondata = pdata + sdata + ldata + mdata + gdata + adata + megadata
         with open(f"{self.datapath}/url.json", encoding="utf-8") as f:
             url = json.load(f)
-            for pokemon in self.pokemondata:
-                url = url[pokemon["name"]["english"]]
-                if isinstance(url, list):
-                    url = url[0]
-                pokemon["url"] = url
+        for pokemon in self.pokemondata:
+            url = url[pokemon["name"]["english"]]
+            if isinstance(url, list):
+                url = url[0]
+            pokemon["url"] = url
 
         self.spawnchances = [x["spawnchance"] for x in self.pokemondata]
         self.pokemonlist = {
