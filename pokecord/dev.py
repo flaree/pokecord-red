@@ -42,7 +42,7 @@ class Dev(MixinMeta):
                     return
         await ctx.send("No pokemon found.")
 
-    async def get_pokemon(self, ctx, *, user: discord.Member, pokeid: int) -> list:
+    async def get_pokemon(self, ctx, user: discord.Member, pokeid: int) -> list:
         """Returns pokemons from user list if exists"""
         if pokeid <= 0:
             return await ctx.send("The ID must be greater than 0!")
