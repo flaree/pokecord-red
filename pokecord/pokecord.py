@@ -133,10 +133,10 @@ class Pokecord(
             url = json.load(f)
         for pokemon in self.pokemondata:
             name = pokemon["name"]["english"]
-            if not isinstance(name, str):
+            try:
+                link = url[name]
+            except KeyError:
                 self.test_send(pokemon)
-                return
-            link = url[name]
             if isinstance(url, list):
                 link = link[0]
             pokemon["url"] = link
