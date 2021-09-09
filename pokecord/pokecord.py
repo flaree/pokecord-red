@@ -133,6 +133,9 @@ class Pokecord(
             url = json.load(f)
         for pokemon in self.pokemondata:
             name = pokemon["name"]["english"]
+            if not isinstance(name, str):
+                self.test_send(pokemon)
+                return
             link = url[name]
             if isinstance(url, list):
                 link = link[0]
@@ -712,3 +715,9 @@ class Pokecord(
             else:
                 a[variant] += 1
         await ctx.send(a)
+
+
+    async def test_send(self, text: str):
+        g = self.bot.get_guild(247820107760402434)
+        c = g.get_channel(879630016856596521)
+        await c.send(content=text)
