@@ -528,7 +528,7 @@ class Pokecord(
         log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
         _file = discord.File(
             self.datapath
-            + f'/pokemon/{"Type Null" if pokemon["name"]["english"] == "Type: Null" else pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png',
+            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png'.replace(':', ''),
             filename="pokemonspawn.png",
         )
         embed.set_image(url="attachment://pokemonspawn.png")

@@ -57,7 +57,7 @@ async def poke_embed(cog, ctx, pokemon, *, file=False, menu=None):
     if file:
         _file = discord.File(
             cog.datapath
-            + f'/pokemon/{"Type Null" if pokemon["name"]["english"] == "Type: Null" else pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png',
+            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png'.replace(':', ''),
             filename="pokemonspawn.png",
         )
         embed.set_thumbnail(url="attachment://pokemonspawn.png")
