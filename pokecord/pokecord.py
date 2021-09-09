@@ -136,7 +136,7 @@ class Pokecord(
             try:
                 link = url[name]
             except KeyError:
-                self.test_send(pokemon)
+                log.debug(f"NAME NOT FUCKING FOUND WHAT THE FUCK IS WRONG WITH IT \n{pokemon}")
             if isinstance(url, list):
                 link = link[0]
             pokemon["url"] = link
