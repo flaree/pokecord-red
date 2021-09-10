@@ -132,7 +132,13 @@ class Pokecord(
         with open(f"{self.datapath}/url.json", encoding="utf-8") as f:
             url = json.load(f)
         for pokemon in self.pokemondata:
-            name = pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]
+            name = (
+                pokemon["name"]["english"]
+                if not pokemon.get("variant")
+                else pokemon.get("alias")
+                if pokemon.get("alias")
+                else pokemon["name"]["english"]
+            )
             if "shiny" in name.lower():
                 continue
             link = url[name]
@@ -531,7 +537,9 @@ class Pokecord(
         log.debug(f"{pokemon['name']['english']} has spawned in {channel} on {channel.guild}")
         _file = discord.File(
             self.datapath
-            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png'.replace(':', ''),
+            + f'/pokemon/{pokemon["name"]["english"] if not pokemon.get("variant") else pokemon.get("alias") if pokemon.get("alias") else pokemon["name"]["english"]}.png'.replace(
+                ":", ""
+            ),
             filename="pokemonspawn.png",
         )
         embed.set_image(url="attachment://pokemonspawn.png")
