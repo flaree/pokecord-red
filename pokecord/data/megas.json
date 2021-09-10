@@ -143,27 +143,27 @@
         "alias": "Mega Pidgeot"
     },
     {
-        "id": 64,
+        "id": 65,
         "name": {
-            "english": "Kadabra",
-            "japanese": "\u30e6\u30f3\u30b2\u30e9\u30fc",
-            "chinese": "\u52c7\u57fa\u62c9",
-            "french": "Kadabra"
+            "english": "Alakazam",
+            "japanese": "\u30d5\u30fc\u30c7\u30a3\u30f3",
+            "chinese": "\u80e1\u5730",
+            "french": "Alakazam"
         },
         "type": [
             "Psychic"
         ],
         "stats": {
-            "HP": 90,
-            "Attack": 85,
-            "Defence": 80,
-            "Sp. Atk": 170,
-            "Sp. Def": 120,
-            "Speed": 155
+            "HP": 55,
+            "Attack": 50,
+            "Defence": 45,
+            "Sp. Atk": 135,
+            "Sp. Def": 95,
+            "Speed": 120
         },
         "spawnchance": 0.001,
         "variant": "Mega",
-        "alias": "Mega Kadabra"
+        "alias": "Mega Alakazam"
     },
     {
         "id": 80,
