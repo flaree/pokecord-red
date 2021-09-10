@@ -519,7 +519,7 @@
     {
         "id": 865,
         "name": {
-            "english": "Sirfetch\u2019d",
+            "english": "Sirfetch'd",
             "japanese": "\u30cd\u30ae\u30ac\u30ca\u30a4\u30c8",
             "chinese": "\u8525\u904a\u5175",
             "french": "Palarticho"
@@ -537,7 +537,7 @@
         },
         "spawnchance": 0.15,
         "variant": "Galarian",
-        "alias": "Galarian Sirfetch\u2019d"
+        "alias": "Galarian Sirfetch'd"
     },
     {
         "id": 866,
