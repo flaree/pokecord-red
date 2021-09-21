@@ -43,20 +43,20 @@ msgstr "Sett manuelt en pokemons level"
 #: pokecord/dev.py:155
 #, docstring
 msgid "Shows raw info for an owned pokemon"
-msgstr ""
+msgstr "Viser rå info for et eid pokemon"
 
 #: pokecord/dev.py:165
 #, docstring
 msgid "Forcably removes a pokemone from user"
-msgstr ""
+msgstr "Fjerner eventyrlig en pokemon fra brukeren"
 
 #: pokecord/dev.py:182
 msgid "\\nTheir default pokemon may have changed. I have tried to account for this change."
-msgstr ""
+msgstr "\\nDeres standarddiktering kan ha endret seg. Jeg har forsøkt å forholde meg til denne endringen."
 
 #: pokecord/dev.py:187
 msgid "\\nYou have released their selected pokemon. I have reset their selected pokemon to their first pokemon."
-msgstr ""
+msgstr "\\nDu har gitt ut den valgte pokemon. Jeg har nullstilt den valgte pokemon deres til den første dikteren."
 
 #: pokecord/functions.py:20
 msgid "HP"
@@ -121,7 +121,7 @@ msgstr "Liste opp en trener eller din egen pokémon!"
 
 #: pokecord/general.py:32 pokecord/general.py:319
 msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to list your pokemon."
-msgstr ""
+msgstr "Du har ikke plukket en start pokemon ennå! Sjekk ut {prefix}starter før du prøver å liste din pokemon."
 
 #: pokecord/general.py:45 pokecord/general.py:332
 msgid "You don't have any pokémon, go get catching trainer!"
@@ -138,7 +138,7 @@ msgstr "Sett et kallenavn til pokémons.\\n\\n ID refererer til posisjonen i pok
 
 #: pokecord/general.py:69
 msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to nickname a pokemon."
-msgstr ""
+msgstr "Du har ikke plukket en start pokemon ennå! Sjekk ut {prefix}starter før du prøver å gi et kallenavn."
 
 #: pokecord/general.py:74 pokecord/general.py:123
 msgid "The ID must be greater than 0!"
@@ -163,7 +163,7 @@ msgstr "Slipp en pokémon."
 
 #: pokecord/general.py:118
 msgid "You haven't picked a starter pokemon yet! Check out {prefix}starter before trying to release a pokemon."
-msgstr ""
+msgstr "Du har ikke plukket en start pokemon ennå! Sjekk ut {prefix}starter før du prøver å slippe ut en pokemon."
 
 #: pokecord/general.py:136
 msgid "You don't have a pokemon at that slot.\\nID refers to the position within your pokémon listing.\\nThis is found at the bottom of the pokemon on `[p]list`"
@@ -196,7 +196,7 @@ msgstr "Velg din standard pokémon."
 
 #: pokecord/general.py:190
 msgid "You haven't chosen a starter pokemon yet, check out {prefix}starter for more information."
-msgstr ""
+msgstr "Du har ikke valgt en start pokemon ennå, sjekk ut `{prefix}starter` for mer informasjon."
 
 #: pokecord/general.py:203
 msgid "You don't have any pokemon to select."
