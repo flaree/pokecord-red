@@ -28,17 +28,17 @@ msgstr ""
 #: pokecord/dev.py:73
 #, docstring
 msgid "Manually set a pokemons IVs"
-msgstr ""
+msgstr "Установить IV покемона вручную"
 
 #: pokecord/dev.py:110
 #, docstring
 msgid "Manually set a pokemons stats"
-msgstr ""
+msgstr "Установить показатели покемона вручную"
 
 #: pokecord/dev.py:136
 #, docstring
 msgid "Manually set a pokemons level"
-msgstr ""
+msgstr "Установить уровень покемона вручную"
 
 #: pokecord/dev.py:155
 #, docstring
