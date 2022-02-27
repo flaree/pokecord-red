@@ -1,5 +1,7 @@
 # Pokecord-Red
 
+# This repo is NOT maintained.
+
 ## This is a cog for Red! This is NOT a standalone bot. You can find the docs for Red @ https://docs.discord.red/
 
 # Contact
