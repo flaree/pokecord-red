@@ -1171,5 +1171,207 @@
         },
         "spawnchance": 0.003,
         "variant": "Legendary"
+    },
+    {
+        "id": 894,
+        "name": {
+            "english": "Regieleki",
+            "japanese": " レジエレキ",
+            "chinese": "雷吉艾勒奇",
+            "french": "Regieleki"
+        },
+        "type": [
+            "Electric"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 100,
+            "Defence": 50,
+            "Sp. Atk": 100,
+            "Sp. Def": 50,
+            "Speed": 200
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 895,
+        "name": {
+            "english": "Regidrago",
+            "japanese": "レジドラゴ",
+            "chinese": "雷吉鐸拉戈",
+            "french": "Regidrago"
+        },
+        "type": [
+            "Dragon"
+        ],
+        "stats": {
+            "HP": 200,
+            "Attack": 100,
+            "Defence": 50,
+            "Sp. Atk": 100,
+            "Sp. Def": 50,
+            "Speed": 80
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 891,
+        "name": {
+            "english": "Kubfu",
+            "japanese": "ダクマ",
+            "chinese": "熊徒弟",
+            "french": "Wushours"
+        },
+        "type": [
+            "Fighting"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 90,
+            "Defence": 60,
+            "Sp. Atk": 53,
+            "Sp. Def": 50,
+            "Speed": 72
+        },
+        "spawnchance": 0.3,
+        "variant": "Legendary"
+    },
+    {
+        "id": 892,
+        "name": {
+            "english": "Urshifu",
+            "japanese": "ウーラオス",
+            "chinese": "武道熊師",
+            "french": "Shifours"
+        },
+        "type": [
+            "Fighting",
+            "Dragon"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 130,
+            "Defence": 100,
+            "Sp. Atk": 63,
+            "Sp. Def": 60,
+            "Speed": 97
+        },
+        "spawnchance": 0.3,
+        "variant": "Legendary"
+    },
+    {
+        "id": 893,
+        "name": {
+            "english": "Zarude",
+            "japanese": "ザルード",
+            "chinese": "薩戮德",
+            "french": "Zarude"
+        },
+        "type": [
+            "Dark",
+            "Grass"
+        ],
+        "stats": {
+            "HP": 105,
+            "Attack": 120,
+            "Defence": 105,
+            "Sp. Atk": 70,
+            "Sp. Def": 95,
+            "Speed": 105
+       },
+       "spawnchance": 0.3,
+       "variant": "Legendary"
+    },
+    {
+        "id": 896,
+        "name": {
+            "english": "Glastrier",
+            "japanese": "ブリザポス",
+            "chinese": "雪暴馬",
+            "french": "Blizzeval"
+        },
+        "type": [
+            "Ice"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 145,
+            "Defence": 130,
+            "Sp. Atk": 65,
+            "Sp. Def": 110,
+            "Speed": 30
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 897,
+        "name": {
+            "english": "Spectrier",
+            "japanese": "レイスポス",
+            "chinese": "靈幽馬",
+            "french": "Spectreval"
+        },
+        "type": [
+            "Ghost"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 65,
+            "Defence": 60,
+            "Sp. Atk": 145,
+            "Sp. Def": 80,
+            "Speed": 130
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 898,
+        "name": {
+            "english": "Calyrex",
+            "japanese": "バドレックス",
+            "chinese": "蕾冠王",
+            "french": "Sylveroy"
+        },
+        "type": [
+            "Psychic",
+            "Grass"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 80,
+            "Defence": 80,
+            "Sp. Atk": 80,
+            "Sp. Def": 80,
+            "Speed": 80
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 905,
+        "name": {
+            "english": "Enamorus",
+            "japanese": "ラブトロス",
+            "chinese": "眷戀雲",
+            "french": "Amovénus"
+        },
+        "type": [
+            "Fairy",
+            "Flying"
+        ],
+        "stats": {
+            "HP": 74,
+            "Attack": 115,
+            "Defence": 70,
+            "Sp. Atk": 135,
+            "Sp. Def": 80,
+            "Speed": 106
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
     }
 ]
