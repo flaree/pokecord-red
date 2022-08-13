@@ -17578,5 +17578,137 @@
             "Speed": 142
         },
         "spawnchance": 0.25
+    },
+    {
+        "id": 899,
+        "name": {
+            "english": "Wyrdeer",
+            "japanese": "アヤシシ",
+            "chinese": "诡角鹿",
+            "french": "Cerbyllin"
+        },
+        "type": [
+            "Normal",
+            "Psychic"
+        ],
+        "stats": {
+            "HP": 103,
+            "Attack": 105,
+            "Defence": 72,
+            "Sp. Atk": 105,
+            "Sp. Def": 75,
+            "Speed": 65
+        },
+        "spawnchance": 0.0875
+    },
+    {
+        "id": 900,
+        "name":{
+            "english": "Kleavor",
+            "japanese": "バサギリ",
+            "chinese": "劈斧螳螂",
+            "french": "Hachécateur"
+        },
+        "type": [
+            "Bug",
+            "Rock"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 135,
+            "Defence": 95,
+            "Sp. Atk": 45,
+            "Sp. Def": 70,
+            "Speed": 85
+        },
+        "spawnchance": 0.0875
+    },
+    {
+        "id": 901,
+        "name": {
+            "english": "Ursaluna",
+            "japanese": "ガチグマ",
+            "chinese": "月月熊",
+            "french": "Ursaking"
+        },
+        "type": [
+            "Normal",
+            "Ground"
+        ],
+        "stats": {
+            "HP": 130,
+            "Attack": 140,
+            "Defence": 105,
+            "Sp. Atk": 45,
+            "Sp. Def": 80,
+            "Speed": 50
+        },
+        "spawnchance": 0.0875
+    },
+    {
+        "id": 902,
+        "name": {
+            "english": "Basculegion",
+            "japanese": "イダイトウ",
+            "chinese": "幽尾玄鱼",
+            "french": "Paragruel"
+        },
+        "type": [
+            "Water",
+            "Ghost"
+        ],
+        "stats": {
+            "HP": 120,
+            "Attack": 112,
+            "Defence": 65,
+            "Sp. Atk": 80,
+            "Sp. Def": 75,
+            "Speed": 78
+        },
+        "spawnchance": 0.0675
+    },
+    {
+        "id": 803,
+        "name": {
+            "english": "Sneasler",
+            "japanese": "オオニューラ",
+            "chinese": "大狃拉",
+            "french": "Farfurex"
+        },
+        "type": [
+            "Poison",
+            "Fighting"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 130,
+            "Defence": 60,
+            "Sp. Atk": 40,
+            "Sp. Def": 80,
+            "Speed": 120
+        },
+        "spawnchance": 0.0975
+    },
+    {
+        "id": 904,
+        "name": {
+            "english": "Overqwil",
+            "japanese": "ハリーマン",
+            "chinese": "万针鱼",
+            "french": "Qwilpik"
+        },
+        "type": [
+            "Dark",
+            "Poison"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 115,
+            "Defence": 95,
+            "Sp. Atk": 65,
+            "Sp. Def": 65,
+            "Speed": 85
+        },
+        "spawnchance": 0.0135
     }
 ]

@@ -21133,5 +21133,130 @@
         "url": "https://img.pokemondb.net/sprites/home/shiny/eternatus.png",
         "variant": "Shiny",
         "alias": "Shiny Eternatus"
+    },
+    {
+        "id": 900,
+        "name": {
+            "english": "Kleavor",
+            "japanese": "バサギリ",
+            "chinese": "劈斧螳螂",
+            "french": "Hachécateur"
+        },
+        "type": [
+            "Bug",
+            "Rock"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 135,
+            "Defence": 95,
+            "Sp. Atk": 45,
+            "Sp. Def": 70,
+            "Speed": 85
+        },
+        "spawnchance": 0.003,
+        "url": "https://img.pokemondb.net/sprites/home/shiny/kleavor.png",
+        "variant": "Shiny",
+        "alias": "Shiny Kleavor"
+    },
+    {
+        "id": 902,
+        "name": {
+            "english": "Basculegion",
+            "japanese": "イダイトウ",
+            "chinese": "幽尾玄鱼",
+            "french": "Paragruel"
+        },
+        "type": [
+            "Water",
+            "Ghost"
+        ],
+        "stats": {
+            "HP": 120,
+            "Attack": 112,
+            "Defence": 65,
+            "Sp. Atk": 80,
+            "Sp. Def": 75,
+            "Speed": 78
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/9/9e/HOME902_f_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Basculegion"
+    },
+    {
+        "id": 903,
+        "name": {
+            "english": "Sneasler",
+            "japanese": "オオニューラ",
+            "chinese": "大狃拉",
+            "french": "Farfurex"
+        },
+        "type": [
+            "Poison",
+            "Fighting"
+        ],
+        "stats": {
+            "HP": 120,
+            "Attack": 112,
+            "Defence": 65,
+            "Sp. Atk": 80,
+            "Sp. Def": 75,
+            "Speed": 78
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SWSH/903.png",
+        "variant": "Shiny",
+        "alias": "Shiny Sneasler"
+    },
+    {
+        "id": 904,
+        "name": {
+            "english": "Overqwil",
+            "japanese": "ハリーマン",
+            "chinese": "万针鱼",
+            "french": "Qwilpik"
+        },
+        "type": [
+            "Dark",
+            "Poison"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 115,
+            "Defence": 95,
+            "Sp. Atk": 65,
+            "Sp. Def": 65,
+            "Speed": 85
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/8/89/HOME904_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Overqwil"
+    },
+    {
+        "id": 905,
+        "name": {
+            "english": "Enamorus",
+            "japanese": "ラブトロス",
+            "chinese": "眷戀雲",
+            "french": "Amovénus"
+        },
+        "type": [
+            "Fairy",
+            "Flying"
+        ],
+        "stats": {
+            "HP": 74,
+            "Attack": 115,
+            "Defence": 70,
+            "Sp. Atk": 135,
+            "Sp. Def": 80,
+            "Speed": 106
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/5/5c/HOME905_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Enamorus"
     }
 ]
