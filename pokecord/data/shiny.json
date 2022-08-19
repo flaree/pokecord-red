@@ -21155,7 +21155,7 @@
             "Speed": 85
         },
         "spawnchance": 0.003,
-        "url": "https://img.pokemondb.net/sprites/home/shiny/kleavor.png",
+        "url": "https://archives.bulbagarden.net/media/upload/2/20/HOME900_s.png",
         "variant": "Shiny",
         "alias": "Shiny Kleavor"
     },
@@ -21180,7 +21180,7 @@
             "Speed": 78
         },
         "spawnchance": 0.003,
-        "url": "https://archives.bulbagarden.net/media/upload/9/9e/HOME902_f_s.png",
+        "url": "https://archives.bulbagarden.net/media/upload/9/9e/HOME902_s.png",
         "variant": "Shiny",
         "alias": "Shiny Basculegion"
     },
@@ -21205,7 +21205,7 @@
             "Speed": 78
         },
         "spawnchance": 0.003,
-        "url": "https://www.serebii.net/Shiny/SWSH/903.png",
+        "url": "https://archives.bulbagarden.net/media/upload/1/1e/HOME903_s.png",
         "variant": "Shiny",
         "alias": "Shiny Sneasler"
     },
@@ -21258,5 +21258,55 @@
         "url": "https://archives.bulbagarden.net/media/upload/5/5c/HOME905_s.png",
         "variant": "Shiny",
         "alias": "Shiny Enamorus"
+    },
+    {
+        "id": 901,
+        "name": {
+            "english": "Ursaluna",
+            "japanese": "ガチグマ",
+            "chinese": " 月月熊",
+            "french": "Ursaking"
+        },
+        "type": [
+            "Normal",
+            "Ground"
+        ],
+        "stats": {
+            "HP": 130,
+            "Attack": 140,
+            "Defence": 105,
+            "Sp. Atk": 45,
+            "Sp. Def": 80,
+            "Speed": 50
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/e/e3/HOME901_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Ursaluna"
+    },
+    {
+        "id": 899,
+        "name": {
+            "english": "Wyrdeer",
+            "japanese": "アヤシシ",
+            "chinese": "诡角鹿",
+            "french": "Cerbyllin"
+        },
+        "type":[
+            "Normal",
+            "Psychic"
+        ],
+        "stats": {
+            "HP": 103,
+            "Attack": 105,
+            "Defence": 72,
+            "Sp. Atk": 105,
+            "Sp. Def": 75,
+            "Speed": 65
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/1/1e/HOME899_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Wyrdeer"
     }
 ]
