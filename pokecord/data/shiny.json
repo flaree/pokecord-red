@@ -2443,7 +2443,7 @@
             "Speed": 100
         },
         "spawnchance": 0.003,
-        "url": "https://img.pokemondb.net/sprites/home/shiny/voltorb.png",
+        "url": "https://archives.bulbagarden.net/media/upload/e/e7/HOME100_s.png",
         "variant": "Shiny",
         "alias": "Shiny Voltorb"
     },
@@ -2467,7 +2467,7 @@
             "Speed": 150
         },
         "spawnchance": 0.003,
-        "url": "https://img.pokemondb.net/sprites/home/shiny/electrode.png",
+        "url": "https://archives.bulbagarden.net/media/upload/9/97/HOME101_s.png",
         "variant": "Shiny",
         "alias": "Shiny Electrode"
     },
@@ -21308,5 +21308,378 @@
         "url": "https://archives.bulbagarden.net/media/upload/1/1e/HOME899_s.png",
         "variant": "Shiny",
         "alias": "Shiny Wyrdeer"
+    },
+    {
+        "id": 503,
+        "name": {
+            "english": "Samurott",
+            "japanese": "ダイケンキ",
+            "chinese": "大剑鬼",
+            "french": "Clamiral"
+        },
+        "type": [
+            "water",
+            "Dark"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 108,
+            "Defence": 80,
+            "Sp. Atk": 100,
+            "Sp. Def": 65,
+            "Speed": 85
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/5/5e/HOME503H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Samurott"
+    },
+    {
+        "id": 724,
+        "name": {
+            "english": "Decidueye",
+            "japanese": "\u30b8\u30e5\u30ca\u30a4\u30d1\u30fc",
+            "chinese": "\u72d9\u5c04\u6a39\u689f",
+            "french": "Arch\u00e9duc"
+        },
+        "type": [
+            "Grass",
+            "Fighting"
+        ],
+        "stats": {
+            "HP": 88,
+            "Attack": 112,
+            "Defence": 80,
+            "Sp. Atk": 95,
+            "Sp. Def": 95,
+            "Speed": 60
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/5/5f/HOME724H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Decidueye"
+    },
+    {
+        "id": 157,
+        "name": {
+            "english": "Typhlosion",
+            "japanese": "\u30d0\u30af\u30d5\u30fc\u30f3",
+            "chinese": "\u706b\u7206\u7378",
+            "french": "Typhlosion"
+        },
+        "type": [
+            "Fire",
+            "Ghost"
+        ],
+        "stats": {
+            "HP": 73,
+            "Attack": 84,
+            "Defence": 78,
+            "Sp. Atk": 119,
+            "Sp. Def": 85,
+            "Speed": 95
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/3/31/HOME157H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Typhlosion"
+    },
+    {
+        "id": 570,
+        "name": {
+            "english": "Zorua",
+            "japanese": "\u30be\u30ed\u30a2",
+            "chinese": "\u7d22\u7f85\u4e9e",
+            "french": "Zorua"
+        },
+        "type": [
+            "Ghost",
+            "Normal"
+        ],
+        "stats": {
+            "HP": 35,
+            "Attack": 60,
+            "Defence": 40,
+            "Sp. Atk": 85,
+            "Sp. Def": 40,
+            "Speed": 70
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/1/1e/HOME570H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Zorua"
+    },
+    {
+        "id": 571,
+        "name": {
+            "english": "Zoroark",
+            "japanese": "\u30be\u30ed\u30a2\u30fc\u30af",
+            "chinese": "\u7d22\u7f85\u4e9e\u514b",
+            "french": "Zoroark"
+        },
+        "type": [
+            "Ghost",
+            "Normal"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 100,
+            "Defence": 60,
+            "Sp. Atk": 125,
+            "Sp. Def": 60,
+            "Speed": 110
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/6/6c/HOME571H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Zoroark"
+    },
+    {
+        "id": 549,
+        "name": {
+            "english": "Lilligant",
+            "japanese": "\u30c9\u30ec\u30c7\u30a3\u30a2",
+            "chinese": "\u88d9\u5152\u5c0f\u59d0",
+            "french": "Fragilady"
+        },
+        "type": [
+            "Grass",
+            "Fighting"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 105,
+            "Defence": 75,
+            "Sp. Atk": 50,
+            "Sp. Def": 75,
+            "Speed": 105
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/a/af/HOME549H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Lilligant"
+    },
+    {
+        "id": 100,
+        "name": {
+            "english": "Voltorb",
+            "japanese": "\u30d3\u30ea\u30ea\u30c0\u30de",
+            "chinese": "\u9739\u9742\u96fb\u7403",
+            "french": "Voltorbe"
+        },
+        "type": [
+            "Electric"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 30,
+            "Defence": 50,
+            "Sp. Atk": 55,
+            "Sp. Def": 55,
+            "Speed": 100
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/f/f5/HOME100H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Voltorb"
+    },
+    { 
+        "id": 101,
+        "name": {
+            "english": "Electrode",
+            "japanese": "\u30de\u30eb\u30de\u30a4\u30f3",
+            "chinese": "\u9811\u76ae\u96f7\u5f48",
+            "french": "\u00c9lectrode"
+        },
+        "type": [
+            "Electric"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 50,
+            "Defence": 70,
+            "Sp. Atk": 80,
+            "Sp. Def": 80,
+            "Speed": 150
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/3/30/HOME101H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Electrode"
+    },
+    {
+        "id": 628,
+        "name": {
+            "english": "Braviary",
+            "japanese": "\u30a6\u30a9\u30fc\u30b0\u30eb",
+            "chinese": "\u52c7\u58eb\u96c4\u9df9",
+            "french": "Gueriaigle"
+        },
+        "type": [
+            "Normal",
+            "Flying"
+        ],
+        "stats": {
+            "HP": 110,
+            "Attack": 83,
+            "Defence": 70,
+            "Sp. Atk": 112,
+            "Sp. Def": 70,
+            "Speed": 65
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/0/0c/HOME628H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Braviary"
+    },
+    {
+        "id": 705,
+        "name": {
+            "english": "Sliggoo",
+            "japanese": "\u30cc\u30e1\u30a4\u30eb",
+            "chinese": "\u9ecf\u7f8e\u5152",
+            "french": "Colimucus"
+        },
+        "type": [
+            "Dragon",
+            "Steel"
+        ],
+        "stats": {
+            "HP": 58,
+            "Attack": 75,
+            "Defence": 83,
+            "Sp. Atk": 83,
+            "Sp. Def": 113,
+            "Speed": 40
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/7/7f/HOME705H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Sliggoo"
+    },
+    {
+        "id": 713,
+        "name": {
+            "english": "Avalugg",
+            "japanese": "\u30af\u30ec\u30d9\u30fc\u30b9",
+            "chinese": "\u51b0\u5ca9\u602a",
+            "french": "S\u00e9racrawl"
+        },
+        "type": [
+            "Ice",
+            "Rock"
+        ],
+        "stats": {
+            "HP": 95,
+            "Attack": 127,
+            "Defence": 184,
+            "Sp. Atk": 34,
+            "Sp. Def": 36,
+            "Speed": 38
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/8/80/HOME713H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Avalugg"
+    },
+    {
+        "id": 706,
+        "name": {
+            "english": "Goodra",
+            "japanese": "\u30cc\u30e1\u30eb\u30b4\u30f3",
+            "chinese": "\u9ecf\u7f8e\u9f8d",
+            "french": "Muplodocus"
+        },
+        "type": [
+            "Dragon",
+            "Steel"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 100,
+            "Defence": 100,
+            "Sp. Atk": 110,
+            "Sp. Def": 150,
+            "Speed": 60
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/9/9d/HOME706H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Goodra"
+    },
+    {
+        "id": 215,
+        "name": {
+            "english": "Sneasel",
+            "japanese": "\u30cb\u30e5\u30fc\u30e9",
+            "chinese": "\u72c3\u62c9",
+            "french": "Farfuret"
+        },
+        "type": [
+            "Fighting",
+            "Poison"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 95,
+            "Defence": 55,
+            "Sp. Atk": 35,
+            "Sp. Def": 75,
+            "Speed": 115
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/3/3c/HOME215H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Sneasel"
+    },
+    {
+        "id": 211,
+        "name": {
+            "english": "Qwilfish",
+            "japanese": "\u30cf\u30ea\u30fc\u30bb\u30f3",
+            "chinese": "\u5343\u91dd\u9b5a",
+            "french": "Qwilfish"
+        },
+        "type": [
+            "Dark",
+            "Poison"
+        ],
+        "stats": {
+            "HP": 65,
+            "Attack": 95,
+            "Defence": 85,
+            "Sp. Atk": 55,
+            "Sp. Def": 55,
+            "Speed": 85
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/e/e4/HOME211H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Qwilfish"
+    },
+    {
+        "id": 58,
+        "name": {
+            "english": "Growlithe",
+            "japanese": "\u30ac\u30fc\u30c7\u30a3",
+            "chinese": "\u5361\u8482\u72d7",
+            "french": "Caninos"
+        },
+        "type": [
+            "Fire",
+            "Rock"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 75,
+            "Defence": 45,
+            "Sp. Atk": 65,
+            "Sp. Def": 50,
+            "Speed": 55
+        },
+        "spawnchance": 0.003,
+        "url": "https://archives.bulbagarden.net/media/upload/3/31/HOME058H_s.png",
+        "variant": "Shiny",
+        "alias": "Shiny Hisuian Growlithe"
     }
 ]

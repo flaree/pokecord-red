@@ -50,7 +50,7 @@ class Pokecord(
 ):
     """Pokecord adapted to use on Red."""
 
-    __version__ = "0.0.1-alpha-22"
+    __version__ = "0.0.1-alpha-23"
     __author__ = "flare"
 
     def format_help_for_context(self, ctx):
@@ -123,6 +123,8 @@ class Pokecord(
         with open(f"{self.datapath}/mythical.json", encoding="utf-8") as f:
             mdata = json.load(f)
         with open(f"{self.datapath}/galarian.json", encoding="utf-8") as f:
+            gdata = json.load(f)
+        with open(f"{self.datapath}/hisuian.json", encoding="utf-8") as f:
             gdata = json.load(f)
         with open(f"{self.datapath}/alolan.json", encoding="utf-8") as f:
             adata = json.load(f)
