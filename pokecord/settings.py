@@ -154,7 +154,7 @@ class SettingsMixin(MixinMeta):
             if data["whitelist"]
             else "None"
         )
-        msg += _("**Spawnchance**: {spawnchance}\n").format(
+        msg += _("**Spawnchance**: between {spawnchance} messages\n").format(
             spawnchance=humanize_list([x for x in spawnchance])
             if spawnchance
             else "None"
