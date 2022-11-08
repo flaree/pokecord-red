@@ -134,6 +134,8 @@ class SettingsMixin(MixinMeta):
     async def settings(self, ctx):
         """Overview of pokécord settings."""
         data = await self.config.guild(ctx.guild).all()
+        spawnchance = await self.config.spawnchance()
+
         msg = _("**Toggle**: {toggle}\n").format(toggle="Yes" if data["toggle"] else "No")
         msg += _("**Active Channels**: {channels}\n").format(
             channels=humanize_list(
@@ -150,6 +152,11 @@ class SettingsMixin(MixinMeta):
         msg += _("**Whitelist**: {whitelist}\n").format(
             whitelist=humanize_list([ctx.guild.get_channel(x).mention for x in data["whitelist"]])
             if data["whitelist"]
+            else "None"
+        )
+        msg += _("**Spawnchance**: between {spawnchance} messages\n").format(
+            spawnchance=humanize_list([x for x in spawnchance])
+            if spawnchance
             else "None"
         )
         await ctx.send(msg)
