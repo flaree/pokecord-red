@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from redbot.core import Config
+from redbot.core import Config, commands
 from redbot.core.bot import Red
 
 
@@ -32,3 +32,9 @@ class MixinMeta(ABC):
     @abstractmethod
     def get_name(self):
         raise NotImplementedError
+
+    @commands.group(name="poke")
+    async def poke(self, ctx: commands.Context):
+        """
+        Pokecord commands
+        """

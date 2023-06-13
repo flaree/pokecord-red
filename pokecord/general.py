@@ -1,6 +1,7 @@
 import asyncio
 import copy
 import json
+from typing import Union
 
 import discord
 import tabulate
@@ -13,8 +14,9 @@ from .abc import MixinMeta
 from .converters import Args
 from .functions import chunks, poke_embed
 from .menus import GenericMenu, PokedexFormat, PokeList, PokeListMenu, SearchFormat
-from .pokemixin import poke
 from .statements import *
+
+poke = MixinMeta.poke
 
 _ = Translator("Pokecord", __file__)
 

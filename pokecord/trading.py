@@ -10,8 +10,9 @@ from redbot.core.utils.chat_formatting import *
 from redbot.core.utils.predicates import MessagePredicate
 
 from .abc import MixinMeta
-from .pokemixin import poke
 from .statements import *
+
+poke = MixinMeta.poke
 
 _ = Translator("Pokecord", __file__)
 

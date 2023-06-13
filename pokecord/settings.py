@@ -4,7 +4,8 @@ from redbot.core.i18n import Translator
 from redbot.core.utils.chat_formatting import humanize_list
 
 from .abc import MixinMeta
-from .pokemixin import poke
+
+poke = MixinMeta.poke
 
 _ = Translator("Pokecord", __file__)
 
