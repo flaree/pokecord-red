@@ -17,7 +17,6 @@ from redbot.core.utils.chat_formatting import escape, humanize_list
 
 from .dev import Dev
 from .general import GeneralMixin
-from .pokemixin import PokeMixin
 from .settings import SettingsMixin
 from .statements import *
 from .trading import TradeMixin
@@ -44,7 +43,6 @@ class Pokecord(
     TradeMixin,
     SettingsMixin,
     GeneralMixin,
-    PokeMixin,
     commands.Cog,
     metaclass=CompositeMetaClass,
 ):

@@ -7,6 +7,7 @@
     "disabled": false,
     "short": "Pokecord for Red.",
     "description": "Pokecord for Red.",
+    "min_bot_version": "3.5.0",
     "tags": [
         "pokemon",
         "pokecord"
