@@ -124,6 +124,8 @@ class Pokecord(
             gdata = json.load(f)
         with open(f"{self.datapath}/hisuian.json", encoding="utf-8") as f:
             gdata = json.load(f)
+        with open(f"{self.datapath}/paldea.json", encoding="utf-8") as f:
+            gdata = json.load(f)
         with open(f"{self.datapath}/alolan.json", encoding="utf-8") as f:
             adata = json.load(f)
         with open(f"{self.datapath}/megas.json", encoding="utf-8") as f:
@@ -167,7 +169,6 @@ class Pokecord(
                     for data in result:
                         poke = json.loads(data[0])
                         if str(poke["id"]) not in pokeids:
-
                             pokeids[str(poke["id"])] = 1
                         else:
                             pokeids[str(poke["id"])] += 1

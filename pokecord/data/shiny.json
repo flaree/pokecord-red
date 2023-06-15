@@ -21681,5 +21681,347 @@
         "url": "https://archives.bulbagarden.net/media/upload/3/31/HOME058H_s.png",
         "variant": "Shiny",
         "alias": "Shiny Hisuian Growlithe"
+    },
+    {
+        "id": 915,
+        "name": {
+            "english": "Lechonk",
+            "japanese": "グルトン",
+            "chinese": "爱吃豚",
+            "french": "Gourmelet"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 54,
+            "Attack": 45,
+            "Defence": 40,
+            "Sp. Atk": 35,
+            "Sp. Def": 45,
+            "Speed": 35
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/915.png",
+        "variant": "Shiny",
+        "alias": "Shiny Lechonk"
+    },
+    {
+        "id": 916,
+        "name": {
+            "english": "Oinkologne",
+            "japanese": "パフュートン",
+            "chinese": "飘香豚",
+            "french": "Fragrunz"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 110,
+            "Attack": 100,
+            "Defence": 75,
+            "Sp. Atk": 59,
+            "Sp. Def": 80,
+            "Speed": 65
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/916.png",
+        "variant": "Shiny",
+        "alias": "Shiny Oinkologne"
+    },
+    {
+        "id": 917,
+        "name": {
+            "english": "Tarountula",
+            "japanese": "タマンチュラ",
+            "chinese": "团珠蛛",
+            "french": "Tissenboule"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 35,
+            "Attack": 41,
+            "Defence": 45,
+            "Sp. Atk": 29,
+            "Sp. Def": 40,
+            "Speed": 20
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/917.png",
+        "variant": "Shiny",
+        "alias": "Shiny Tarountula"
+    },
+    {
+        "id": 918,
+        "name": {
+            "english": "Spidops",
+            "japanese": "ワナイダー",
+            "chinese": "操陷蛛",
+            "french": "Filentrappe"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 79,
+            "Defence": 92,
+            "Sp. Atk": 52,
+            "Sp. Def": 86,
+            "Speed": 35
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/918.png",
+        "variant": "Shiny",
+        "alias": "Shiny Spidops"
+    },
+    {
+        "id": 919,
+        "name": {
+            "english": "Nymble",
+            "japanese": "マメバッタ",
+            "chinese": "豆蟋蟀",
+            "french": "Lilliterelle"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 33,
+            "Attack": 46,
+            "Defence": 40,
+            "Sp. Atk": 21,
+            "Sp. Def": 25,
+            "Speed": 45
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/919.png",
+        "variant": "Shiny",
+        "alias": "Shiny Nymble"
+    },
+    {
+        "id": 920,
+        "name": {
+            "english": "Lokix",
+            "japanese": "エクスレッグ",
+            "chinese": "烈腿蝗",
+            "french": "Gambex"
+        },
+        "type": [
+            "bug",
+            "dark"
+        ],
+        "stats": {
+            "HP": 71,
+            "Attack": 102,
+            "Defence": 78,
+            "Sp. Atk": 52,
+            "Sp. Def": 55,
+            "Speed": 92
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/920.png",
+        "variant": "Shiny",
+        "alias": "Shiny Lokix"
+    },
+    {
+        "id": 921,
+        "name": {
+            "english": "Pawmi",
+            "japanese": "パモ",
+            "chinese": "布拨",
+            "french": "Pohm"
+        },
+        "type": [
+            "electric"
+        ],
+        "stats": {
+            "HP": 45,
+            "Attack": 50,
+            "Defence": 20,
+            "Sp. Atk": 40,
+            "Sp. Def": 25,
+            "Speed": 60
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/921.png",
+        "variant": "Shiny",
+        "alias": "Shiny Pawmi"
+    },
+    {
+        "id": 922,
+        "name": {
+            "english": "Pawmo",
+            "japanese": "パモット",
+            "chinese": "布土拨",
+            "french": "Pohmotte"
+        },
+        "type": [
+            "electric",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 75,
+            "Defence": 40,
+            "Sp. Atk": 50,
+            "Sp. Def": 40,
+            "Speed": 85
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/922.png",
+        "variant": "Shiny",
+        "alias": "Shiny Pawmo"
+    },
+    {
+        "id": 923,
+        "name": {
+            "english": "Pawmot",
+            "japanese": "パーモット",
+            "chinese": "巴布土拨",
+            "french": "Pohmarmotte"
+        },
+        "type": [
+            "electric",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 115,
+            "Defence": 70,
+            "Sp. Atk": 70,
+            "Sp. Def": 60,
+            "Speed": 105
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/923.png",
+        "variant": "Shiny",
+        "alias": "Shiny Pawmot"
+    },
+    {
+        "id": 926,
+        "name": {
+            "english": "Fidough",
+            "japanese": "パピモッチ",
+            "chinese": "狗仔包",
+            "french": "Pâtachiot"
+        },
+        "type": [
+            "fairy"
+        ],
+        "stats": {
+            "HP": 37,
+            "Attack": 55,
+            "Defence": 70,
+            "Sp. Atk": 30,
+            "Sp. Def": 55,
+            "Speed": 65
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/926.png",
+        "variant": "Shiny",
+        "alias": "Shiny Fidough"
+    },
+    {
+        "id": 927,
+        "name": {
+            "english": "Dachsbun",
+            "japanese": "バウッツェル",
+            "chinese": "麻花犬",
+            "french": "Briochien"
+        },
+        "type": [
+            "fairy"
+        ],
+        "stats": {
+            "HP": 57,
+            "Attack": 80,
+            "Defence": 115,
+            "Sp. Atk": 50,
+            "Sp. Def": 80,
+            "Speed": 95
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/927.png",
+        "variant": "Shiny",
+        "alias": "Shiny Dachsbun"
+    },
+    {
+        "id": 928,
+        "name": {
+            "english": "Smoliv",
+            "japanese": "ミニーブ",
+            "chinese": "迷你芙",
+            "french": "Olivini"
+        },
+        "type": [
+            "grass",
+            "normal"
+        ],
+        "stats": {
+            "HP": 41,
+            "Attack": 35,
+            "Defence": 45,
+            "Sp. Atk": 58,
+            "Sp. Def": 51,
+            "Speed": 30
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/928.png",
+        "variant": "Shiny",
+        "alias": "Shiny Smoliv"
+    },
+    {
+        "id": 929,
+        "name": {
+            "english": "Dolliv",
+            "japanese": "オリーニョ",
+            "chinese": "奥利纽",
+            "french": "Olivado"
+        },
+        "type": [
+            "grass",
+            "normal"
+        ],
+        "stats": {
+            "HP": 52,
+            "Attack": 53,
+            "Defence": 60,
+            "Sp. Atk": 78,
+            "Sp. Def": 78,
+            "Speed": 33
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/929.png",
+        "variant": "Shiny",
+        "alias": "Shiny Dolliv"
+    },
+    {
+        "id": 930,
+        "name": {
+            "english": "Arboliva",
+            "japanese": "オリーヴァ",
+            "chinese": "奥利瓦",
+            "french": "Arboliva"
+        },
+        "type": [
+            "grass",
+            "normal"
+        ],
+        "stats": {
+            "HP": 78,
+            "Attack": 69,
+            "Defence": 90,
+            "Sp. Atk": 125,
+            "Sp. Def": 109,
+            "Speed": 39
+        },
+        "spawnchance": 0.003,
+        "url": "https://www.serebii.net/Shiny/SV/new/930.png",
+        "variant": "Shiny",
+        "alias": "Shiny Arboliva"
     }
 ]
