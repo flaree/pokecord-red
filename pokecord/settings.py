@@ -156,9 +156,7 @@ class SettingsMixin(MixinMeta):
             else "None"
         )
         msg += _("**Spawnchance**: between {spawnchance} messages\n").format(
-            spawnchance=humanize_list([x for x in spawnchance])
-            if spawnchance
-            else "None"
+            spawnchance=humanize_list([x for x in spawnchance]) if spawnchance else "None"
         )
         await ctx.send(msg)
 

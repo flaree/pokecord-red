@@ -1,0 +1,2238 @@
+[
+    {
+        "id": 906,
+        "name": {
+            "english": "Sprigatito",
+            "japanese": "ニャオハ",
+            "chinese": "新叶喵",
+            "french": "Poussacha"
+        },
+        "type": [
+            "grass"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 61,
+            "Defence": 54,
+            "Sp. Atk": 45,
+            "Sp. Def": 45,
+            "Speed": 65
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 907,
+        "name": {
+            "english": "Floragato",
+            "japanese": "ニャローテ",
+            "chinese": "草猫宝可梦",
+            "french": "Matourgeon"
+        },
+        "type": [
+            "grass"
+        ],
+        "stats": {
+            "HP": 61,
+            "Attack": 80,
+            "Defence": 63,
+            "Sp. Atk": 60,
+            "Sp. Def": 63,
+            "Speed": 83
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 908,
+        "name": {
+            "english": "Meowscarada",
+            "japanese": "マスカーニャ",
+            "chinese": "魔幻假面喵",
+            "french": "Miascarade"
+        },
+        "type": [
+            "grass",
+            "dark"
+        ],
+        "stats": {
+            "HP": 76,
+            "Attack": 110,
+            "Defence": 70,
+            "Sp. Atk": 81,
+            "Sp. Def": 70,
+            "Speed": 123
+        },
+        "spawnchance": 0.24,
+        "variant": "Paldea"
+    },
+    {
+        "id": 909,
+        "name": {
+            "english": "Fuecoco",
+            "japanese": "ホゲータ",
+            "chinese": "呆火鳄",
+            "french": "Chochodile"
+        },
+        "type": [
+            "fire"
+        ],
+        "stats": {
+            "HP": 67,
+            "Attack": 45,
+            "Defence": 59,
+            "Sp. Atk": 63,
+            "Sp. Def": 40,
+            "Speed": 36
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 910,
+        "name": {
+            "english": "Crocalor",
+            "japanese": "アチゲータ",
+            "chinese": "炙烫鳄",
+            "french": "Crocogril"
+        },
+        "type": [
+            "fire"
+        ],
+        "stats": {
+            "HP": 81,
+            "Attack": 55,
+            "Defence": 78,
+            "Sp. Atk": 90,
+            "Sp. Def": 58,
+            "Speed": 49
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 911,
+        "name": {
+            "english": "Skeledirge",
+            "japanese": "ラウドボーン",
+            "chinese": "骨纹巨声鳄",
+            "french": "Flâmigator"
+        },
+        "type": [
+            "fire",
+            "ghost"
+        ],
+        "stats": {
+            "HP": 104,
+            "Attack": 75,
+            "Defence": 100,
+            "Sp. Atk": 110,
+            "Sp. Def": 75,
+            "Speed": 66
+        },
+        "spawnchance": 0.24,
+        "variant": "Paldea"
+    },
+    {
+        "id": 912,
+        "name": {
+            "english": "Quaxly",
+            "japanese": "クワッス",
+            "chinese": "润水鸭",
+            "french": "Coiffeton"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 65,
+            "Defence": 45,
+            "Sp. Atk": 50,
+            "Sp. Def": 45,
+            "Speed": 50
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 913,
+        "name": {
+            "english": "Quaxwell",
+            "japanese": "ウェルカモ",
+            "chinese": "涌跃鸭",
+            "french": "Canarbello"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 85,
+            "Defence": 65,
+            "Sp. Atk": 65,
+            "Sp. Def": 60,
+            "Speed": 65
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 914,
+        "name": {
+            "english": "Quaquaval",
+            "japanese": "ウェーニバル",
+            "chinese": "狂欢浪舞鸭",
+            "french": "Palmaval"
+        },
+        "type": [
+            "water",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 120,
+            "Defence": 80,
+            "Sp. Atk": 85,
+            "Sp. Def": 75,
+            "Speed": 85
+        },
+        "spawnchance": 0.24,
+        "variant": "Paldea"
+    },
+    {
+        "id": 915,
+        "name": {
+            "english": "Lechonk",
+            "japanese": "グルトン",
+            "chinese": "爱吃豚",
+            "french": "Gourmelet"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 54,
+            "Attack": 45,
+            "Defence": 40,
+            "Sp. Atk": 35,
+            "Sp. Def": 45,
+            "Speed": 35
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 916,
+        "name": {
+            "english": "Oinkologne",
+            "japanese": "パフュートン",
+            "chinese": "飘香豚",
+            "french": "Fragrunz"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 110,
+            "Attack": 100,
+            "Defence": 75,
+            "Sp. Atk": 59,
+            "Sp. Def": 80,
+            "Speed": 65
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 917,
+        "name": {
+            "english": "Tarountula",
+            "japanese": "タマンチュラ",
+            "chinese": "团珠蛛",
+            "french": "Tissenboule"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 35,
+            "Attack": 41,
+            "Defence": 45,
+            "Sp. Atk": 29,
+            "Sp. Def": 40,
+            "Speed": 20
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 918,
+        "name": {
+            "english": "Spidops",
+            "japanese": "ワナイダー",
+            "chinese": "操陷蛛",
+            "french": "Filentrappe"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 79,
+            "Defence": 92,
+            "Sp. Atk": 52,
+            "Sp. Def": 86,
+            "Speed": 35
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 919,
+        "name": {
+            "english": "Nymble",
+            "japanese": "マメバッタ",
+            "chinese": "豆蟋蟀",
+            "french": "Lilliterelle"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 33,
+            "Attack": 46,
+            "Defence": 40,
+            "Sp. Atk": 21,
+            "Sp. Def": 25,
+            "Speed": 45
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 920,
+        "name": {
+            "english": "Lokix",
+            "japanese": "エクスレッグ",
+            "chinese": "烈腿蝗",
+            "french": "Gambex"
+        },
+        "type": [
+            "bug",
+            "dark"
+        ],
+        "stats": {
+            "HP": 71,
+            "Attack": 102,
+            "Defence": 78,
+            "Sp. Atk": 52,
+            "Sp. Def": 55,
+            "Speed": 92
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 921,
+        "name": {
+            "english": "Pawmi",
+            "japanese": "パモ",
+            "chinese": "布拨",
+            "french": "Pohm"
+        },
+        "type": [
+            "electric"
+        ],
+        "stats": {
+            "HP": 45,
+            "Attack": 50,
+            "Defence": 20,
+            "Sp. Atk": 40,
+            "Sp. Def": 25,
+            "Speed": 60
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 922,
+        "name": {
+            "english": "Pawmo",
+            "japanese": "パモット",
+            "chinese": "布土拨",
+            "french": "Pohmotte"
+        },
+        "type": [
+            "electric",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 75,
+            "Defence": 40,
+            "Sp. Atk": 50,
+            "Sp. Def": 40,
+            "Speed": 85
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 923,
+        "name": {
+            "english": "Pawmot",
+            "japanese": "パーモット",
+            "chinese": "巴布土拨",
+            "french": "Pohmarmotte"
+        },
+        "type": [
+            "electric",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 115,
+            "Defence": 70,
+            "Sp. Atk": 70,
+            "Sp. Def": 60,
+            "Speed": 105
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 924,
+        "name": {
+            "english": "Tandemaus",
+            "japanese": "ワッカネズミ",
+            "chinese": "一对鼠",
+            "french": "Compagnol"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 50,
+            "Attack": 50,
+            "Defence": 45,
+            "Sp. Atk": 40,
+            "Sp. Def": 45,
+            "Speed": 75
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 925,
+        "name": {
+            "english": "Maushold",
+            "japanese": "イッカネズミ",
+            "chinese": "一家鼠",
+            "french": "Famignol"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 74,
+            "Attack": 75,
+            "Defence": 70,
+            "Sp. Atk": 65,
+            "Sp. Def": 75,
+            "Speed": 111
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 926,
+        "name": {
+            "english": "Fidough",
+            "japanese": "パピモッチ",
+            "chinese": "狗仔包",
+            "french": "Pâtachiot"
+        },
+        "type": [
+            "fairy"
+        ],
+        "stats": {
+            "HP": 37,
+            "Attack": 55,
+            "Defence": 70,
+            "Sp. Atk": 30,
+            "Sp. Def": 55,
+            "Speed": 65
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 927,
+        "name": {
+            "english": "Dachsbun",
+            "japanese": "バウッツェル",
+            "chinese": "麻花犬",
+            "french": "Briochien"
+        },
+        "type": [
+            "fairy"
+        ],
+        "stats": {
+            "HP": 57,
+            "Attack": 80,
+            "Defence": 115,
+            "Sp. Atk": 50,
+            "Sp. Def": 80,
+            "Speed": 95
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 928,
+        "name": {
+            "english": "Smoliv",
+            "japanese": "ミニーブ",
+            "chinese": "迷你芙",
+            "french": "Olivini"
+        },
+        "type": [
+            "grass",
+            "normal"
+        ],
+        "stats": {
+            "HP": 41,
+            "Attack": 35,
+            "Defence": 45,
+            "Sp. Atk": 58,
+            "Sp. Def": 51,
+            "Speed": 30
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 929,
+        "name": {
+            "english": "Dolliv",
+            "japanese": "オリーニョ",
+            "chinese": "奥利纽",
+            "french": "Olivado"
+        },
+        "type": [
+            "grass",
+            "normal"
+        ],
+        "stats": {
+            "HP": 52,
+            "Attack": 53,
+            "Defence": 60,
+            "Sp. Atk": 78,
+            "Sp. Def": 78,
+            "Speed": 33
+        },
+        "spawnchance": 0.16,
+        "variant": "Paldea"
+    },
+    {
+        "id": 930,
+        "name": {
+            "english": "Arboliva",
+            "japanese": "オリーヴァ",
+            "chinese": "奥利瓦",
+            "french": "Arboliva"
+        },
+        "type": [
+            "grass",
+            "normal"
+        ],
+        "stats": {
+            "HP": 78,
+            "Attack": 69,
+            "Defence": 90,
+            "Sp. Atk": 125,
+            "Sp. Def": 109,
+            "Speed": 39
+        },
+        "spawnchance": 0.18,
+        "variant": "Paldea"
+    },
+    {
+        "id": 931,
+        "name": {
+            "english": "Squawkabilly",
+            "japanese": "イキリンコ",
+            "chinese": "怒鹦哥",
+            "french": "Tapatoès"
+        },
+        "type": [
+            "flying",
+            "normal"
+        ],
+        "stats": {
+            "HP": 82,
+            "Attack": 96,
+            "Defence": 51,
+            "Sp. Atk": 45,
+            "Sp. Def": 51,
+            "Speed": 92
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 932,
+        "name": {
+            "english": "Nacli",
+            "japanese": "コジオ",
+            "chinese": "盐石宝",
+            "french": "Selutin"
+        },
+        "type": [
+            "rock"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 55,
+            "Defence": 75,
+            "Sp. Atk": 35,
+            "Sp. Def": 35,
+            "Speed": 25
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 933,
+        "name": {
+            "english": "Naclstack",
+            "japanese": "ジオヅム",
+            "chinese": "盐石垒",
+            "french": "Amassel"
+        },
+        "type": [
+            "rock"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 60,
+            "Defence": 100,
+            "Sp. Atk": 35,
+            "Sp. Def": 65,
+            "Speed": 35
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 934,
+        "name": {
+            "english": "Garganacl",
+            "japanese": "キョジオーン",
+            "chinese": "盐石巨灵",
+            "french": "Gigansel"
+        },
+        "type": [
+            "rock"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 100,
+            "Defence": 130,
+            "Sp. Atk": 45,
+            "Sp. Def": 90,
+            "Speed": 35
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 935,
+        "name": {
+            "english": "Charcadet",
+            "japanese": "カルボウ",
+            "chinese": "炭小侍",
+            "french": "Charbambin"
+        },
+        "type": [
+            "fire"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 50,
+            "Defence": 40,
+            "Sp. Atk": 50,
+            "Sp. Def": 40,
+            "Speed": 35
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 936,
+        "name": {
+            "english": "Armarouge",
+            "japanese": "グレンアルマ",
+            "chinese": "红莲铠骑",
+            "french": "Carmadura"
+        },
+        "type": [
+            "fire",
+            "psychic"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 60,
+            "Defence": 100,
+            "Sp. Atk": 125,
+            "Sp. Def": 80,
+            "Speed": 75
+        },
+        "spawnchance": 0.14,
+        "variant": "Paldea"
+    },
+    {
+        "id": 937,
+        "name": {
+            "english": "Ceruledge",
+            "japanese": "ソウブレイズ",
+            "chinese": "苍炎刃鬼",
+            "french": "Malvalame"
+        },
+        "type": [
+            "fire",
+            "ghost"
+        ],
+        "stats": {
+            "HP": 75,
+            "Attack": 125,
+            "Defence": 80,
+            "Sp. Atk": 60,
+            "Sp. Def": 100,
+            "Speed": 85
+        },
+        "spawnchance": 0.12,
+        "variant": "Paldea"
+    },
+    {
+        "id": 938,
+        "name": {
+            "english": "Tadbulb",
+            "japanese": "ズピカ",
+            "chinese": "光蚪仔",
+            "french": "Têtampoule"
+        },
+        "type": [
+            "electric"
+        ],
+        "stats": {
+            "HP": 61,
+            "Attack": 31,
+            "Defence": 41,
+            "Sp. Atk": 59,
+            "Sp. Def": 35,
+            "Speed": 45
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 939,
+        "name": {
+            "english": "Bellibolt",
+            "japanese": "ハラバリー",
+            "chinese": "电肚蛙",
+            "french": "Ampibidou"
+        },
+        "type": [
+            "electric"
+        ],
+        "stats": {
+            "HP": 109,
+            "Attack": 64,
+            "Defence": 91,
+            "Sp. Atk": 103,
+            "Sp. Def": 83,
+            "Speed": 45
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 940,
+        "name": {
+            "english": "Wattrel",
+            "japanese": "カイデン",
+            "chinese": "电海燕",
+            "french": "Zapétrel"
+        },
+        "type": [
+            "electric",
+            "flying"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 40,
+            "Defence": 35,
+            "Sp. Atk": 55,
+            "Sp. Def": 40,
+            "Speed": 70
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 941,
+        "name": {
+            "english": "Kilowattrel",
+            "japanese": "タイカイデン",
+            "chinese": "大电海燕",
+            "french": "Fulgulairo"
+        },
+        "type": [
+            "electric",
+            "flying"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 70,
+            "Defence": 60,
+            "Sp. Atk": 105,
+            "Sp. Def": 60,
+            "Speed": 125
+        },
+        "spawnchance": 0.10,
+        "variant": "Paldea"
+    },
+    {
+        "id": 942,
+        "name": {
+            "english": "Maschiff",
+            "japanese": "オラチフ",
+            "chinese": "偶叫獒",
+            "french": "Grondogue"
+        },
+        "type": [
+            "dark"
+        ],
+        "stats": {
+            "HP": 60,
+            "Attack": 78,
+            "Defence": 60,
+            "Sp. Atk": 40,
+            "Sp. Def": 51,
+            "Speed": 51
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 943,
+        "name": {
+            "english": "Mabosstiff",
+            "japanese": "マフィティフ",
+            "chinese": "獒教父",
+            "french": "Dogrino"
+        },
+        "type": [
+            "dark"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 120,
+            "Defence": 90,
+            "Sp. Atk": 60,
+            "Sp. Def": 70,
+            "Speed": 85
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 944,
+        "name": {
+            "english": "Shroodle",
+            "japanese": "シルシュルー",
+            "chinese": "滋汁鼹",
+            "french": "Gribouraigne"
+        },
+        "type": [
+            "poison",
+            "normal"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 65,
+            "Defence": 35,
+            "Sp. Atk": 40,
+            "Sp. Def": 35,
+            "Speed": 75
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 945,
+        "name": {
+            "english": "Grafaiai",
+            "japanese": "タギングル",
+            "chinese": "涂标客",
+            "french": "Tag-Tag"
+        },
+        "type": [
+            "poison",
+            "normal"
+        ],
+        "stats": {
+            "HP": 63,
+            "Attack": 95,
+            "Defence": 65,
+            "Sp. Atk": 80,
+            "Sp. Def": 72,
+            "Speed": 110
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 946,
+        "name": {
+            "english": "Bramblin",
+            "japanese": "アノクサ",
+            "chinese": "纳噬草",
+            "french": "Virovent"
+        },
+        "type": [
+            "grass",
+            "ghost"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 65,
+            "Defence": 30,
+            "Sp. Atk": 45,
+            "Sp. Def": 35,
+            "Speed": 60
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 947,
+        "name": {
+            "english": "Brambleghast",
+            "japanese": "アノホラグサ",
+            "chinese": "怖纳噬草",
+            "french": "Virevorreur"
+        },
+        "type": [
+            "grass",
+            "ghost"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 115,
+            "Defence": 70,
+            "Sp. Atk": 80,
+            "Sp. Def": 70,
+            "Speed": 90
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 948,
+        "name": {
+            "english": "Toedscool",
+            "japanese": "ノノクラゲ",
+            "chinese": "原野水母",
+            "french": "Terracool"
+        },
+        "type": [
+            "grass",
+            "ground"
+        ],
+        "stats": {
+            "HP": 40,
+            "Attack": 40,
+            "Defence": 35,
+            "Sp. Atk": 50,
+            "Sp. Def": 100,
+            "Speed": 70
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 949,
+        "name": {
+            "english": "Toedscruel",
+            "japanese": "リククラゲ",
+            "chinese": "陆地水母",
+            "french": "Terracruel"
+        },
+        "type": [
+            "grass",
+            "ground"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 70,
+            "Defence": 65,
+            "Sp. Atk": 80,
+            "Sp. Def": 120,
+            "Speed": 100
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 950,
+        "name": {
+            "english": "Klawf",
+            "japanese": "ガケガニ",
+            "chinese": "毛崖蟹",
+            "french": "Craparoi"
+        },
+        "type": [
+            "rock"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 100,
+            "Defence": 115,
+            "Sp. Atk": 35,
+            "Sp. Def": 55,
+            "Speed": 75
+        },
+        "spawnchance": 0.13,
+        "variant": "Titan"
+    },
+    {
+        "id": 951,
+        "name": {
+            "english": "Capsakid",
+            "japanese": "カプサイジ",
+            "chinese": "热辣娃",
+            "french": "Pimito"
+        },
+        "type": [
+            "grass"
+        ],
+        "stats": {
+            "HP": 50,
+            "Attack": 62,
+            "Defence": 40,
+            "Sp. Atk": 62,
+            "Sp. Def": 40,
+            "Speed": 50
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 952,
+        "name": {
+            "english": "Scovillain",
+            "japanese": "スコヴィラン",
+            "chinese": "狠辣椒",
+            "french": "Scovilain"
+        },
+        "type": [
+            "grass",
+            "fire"
+        ],
+        "stats": {
+            "HP": 65,
+            "Attack": 108,
+            "Defence": 65,
+            "Sp. Atk": 108,
+            "Sp. Def": 65,
+            "Speed": 75
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 953,
+        "name": {
+            "english": "Rellor",
+            "japanese": "シガロコ",
+            "chinese": "虫滚泥",
+            "french": "Léboulérou"
+        },
+        "type": [
+            "bug"
+        ],
+        "stats": {
+            "HP": 41,
+            "Attack": 50,
+            "Defence": 60,
+            "Sp. Atk": 31,
+            "Sp. Def": 58,
+            "Speed": 30
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 954,
+        "name": {
+            "english": "Rabsca",
+            "japanese": "ベラカス",
+            "chinese": "虫甲圣",
+            "french": "Bérasca"
+        },
+        "type": [
+            "bug",
+            "psychic"
+        ],
+        "stats": {
+            "HP": 75,
+            "Attack": 50,
+            "Defence": 85,
+            "Sp. Atk": 115,
+            "Sp. Def": 100,
+            "Speed": 45
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 955,
+        "name": {
+            "english": "Flittle",
+            "japanese": "ヒラヒナ",
+            "chinese": "飘飘雏",
+            "french": "Flotillon"
+        },
+        "type": [
+            "psychic"
+        ],
+        "stats": {
+            "HP": 30,
+            "Attack": 35,
+            "Defence": 30,
+            "Sp. Atk": 55,
+            "Sp. Def": 30,
+            "Speed": 75
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 956,
+        "name": {
+            "english": "Espathra",
+            "japanese": "クエスパトラ",
+            "chinese": "超能艳鸵",
+            "french": "Cléopsytra"
+        },
+        "type": [
+            "psychic"
+        ],
+        "stats": {
+            "HP": 95,
+            "Attack": 60,
+            "Defence": 60,
+            "Sp. Atk": 101,
+            "Sp. Def": 60,
+            "Speed": 105
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 957,
+        "name": {
+            "english": "Tinkatink",
+            "japanese": "カヌチャン",
+            "chinese": "小锻匠",
+            "french": "Forgerette"
+        },
+        "type": [
+            "steel",
+            "fairy"
+        ],
+        "stats": {
+            "HP": 50,
+            "Attack": 45,
+            "Defence": 45,
+            "Sp. Atk": 35,
+            "Sp. Def": 64,
+            "Speed": 58
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 958,
+        "name": {
+            "english": "Tinkatuff",
+            "japanese": "ナカヌチャン",
+            "chinese": "巧锻匠",
+            "french": "Forgella"
+        },
+        "type": [
+            "steel",
+            "fairy"
+        ],
+        "stats": {
+            "HP": 65,
+            "Attack": 55,
+            "Defence": 55,
+            "Sp. Atk": 45,
+            "Sp. Def": 82,
+            "Speed": 78
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 959,
+        "name": {
+            "english": "Tinkaton",
+            "japanese": "デカヌチャン",
+            "chinese": "巨锻匠",
+            "french": "Forgelina"
+        },
+        "type": [
+            "steel",
+            "fairy"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 75,
+            "Defence": 77,
+            "Sp. Atk": 70,
+            "Sp. Def": 105,
+            "Speed": 94
+        },
+        "spawnchance": 0.13,
+        "variant": "Paldea"
+    },
+    {
+        "id": 960,
+        "name": {
+            "english": "Wiglett",
+            "japanese": "ウミディグダ",
+            "chinese": "海地鼠",
+            "french": "Taupikeau"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 10,
+            "Attack": 55,
+            "Defence": 25,
+            "Sp. Atk": 35,
+            "Sp. Def": 25,
+            "Speed": 95
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 961,
+        "name": {
+            "english": "Wugtrio",
+            "japanese": "ウミトリオ",
+            "chinese": "三海地鼠",
+            "french": "Triopikeau"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 35,
+            "Attack": 100,
+            "Defence": 50,
+            "Sp. Atk": 50,
+            "Sp. Def": 70,
+            "Speed": 120
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 962,
+        "name": {
+            "english": "Bombirdier",
+            "japanese": "オトシドリ",
+            "chinese": "下石鸟",
+            "french": "Lestombaile"
+        },
+        "type": [
+            "rock",
+            "dark"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 103,
+            "Defence": 85,
+            "Sp. Atk": 60,
+            "Sp. Def": 85,
+            "Speed": 82
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 963,
+        "name": {
+            "english": "Finizen",
+            "japanese": "ナミイルカ",
+            "chinese": "波普海豚",
+            "french": "Dofin"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 45,
+            "Defence": 40,
+            "Sp. Atk": 45,
+            "Sp. Def": 40,
+            "Speed": 75
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 964,
+        "name": {
+            "english": "Palafin",
+            "japanese": "イルカマン",
+            "chinese": "海豚侠",
+            "french": "Superdofin"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 70,
+            "Defence": 72,
+            "Sp. Atk": 53,
+            "Sp. Def": 62,
+            "Speed": 100
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 965,
+        "name": {
+            "english": "Varoom",
+            "japanese": "ブロロン",
+            "chinese": "噗隆隆",
+            "french": "Vrombi"
+        },
+        "type": [
+            "steel",
+            "poison"
+        ],
+        "stats": {
+            "HP": 45,
+            "Attack": 70,
+            "Defence": 63,
+            "Sp. Atk": 30,
+            "Sp. Def": 45,
+            "Speed": 47
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 966,
+        "name": {
+            "english": "Revavroom",
+            "japanese": "ブロロローム",
+            "chinese": "普隆隆姆",
+            "french": "Vrombotor"
+        },
+        "type": [
+            "steel",
+            "poison"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 119,
+            "Defence": 90,
+            "Sp. Atk": 54,
+            "Sp. Def": 67,
+            "Speed": 90
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 967,
+        "name": {
+            "english": "Cyclizar",
+            "japanese": "モトトカゲ",
+            "chinese": "摩托蜥",
+            "french": "Motorizard"
+        },
+        "type": [
+            "dragon",
+            "normal"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 95,
+            "Defence": 65,
+            "Sp. Atk": 85,
+            "Sp. Def": 65,
+            "Speed": 121
+        },
+        "spawnchance": 0.13,
+        "variant": "Paldea"
+    },
+    {
+        "id": 968,
+        "name": {
+            "english": "Orthworm",
+            "japanese": "ミミズズ",
+            "chinese": "拖拖蚓",
+            "french": "Ferdeter"
+        },
+        "type": [
+            "steel"
+        ],
+        "stats": {
+            "HP": 70,
+            "Attack": 85,
+            "Defence": 145,
+            "Sp. Atk": 60,
+            "Sp. Def": 55,
+            "Speed": 65
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 969,
+        "name": {
+            "english": "Glimmet",
+            "japanese": "キラーメ",
+            "chinese": "晶光芽",
+            "french": "Germéclat"
+        },
+        "type": [
+            "rock",
+            "poison"
+        ],
+        "stats": {
+            "HP": 48,
+            "Attack": 35,
+            "Defence": 42,
+            "Sp. Atk": 105,
+            "Sp. Def": 60,
+            "Speed": 60
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 970,
+        "name": {
+            "english": "Glimmora",
+            "japanese": "キラフロル",
+            "chinese": "晶光花",
+            "french": "Floréclat"
+        },
+        "type": [
+            "rock",
+            "poison"
+        ],
+        "stats": {
+            "HP": 83,
+            "Attack": 55,
+            "Defence": 90,
+            "Sp. Atk": 130,
+            "Sp. Def": 81,
+            "Speed": 86
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 971,
+        "name": {
+            "english": "Greavard",
+            "japanese": "ボチ",
+            "chinese": "墓仔狗",
+            "french": "Toutombe"
+        },
+        "type": [
+            "ghost"
+        ],
+        "stats": {
+            "HP": 50,
+            "Attack": 61,
+            "Defence": 60,
+            "Sp. Atk": 30,
+            "Sp. Def": 55,
+            "Speed": 34
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 972,
+        "name": {
+            "english": "Houndstone",
+            "japanese": "ハカドッグ",
+            "chinese": "墓扬犬",
+            "french": "Tomberro"
+        },
+        "type": [
+            "ghost"
+        ],
+        "stats": {
+            "HP": 72,
+            "Attack": 101,
+            "Defence": 100,
+            "Sp. Atk": 50,
+            "Sp. Def": 97,
+            "Speed": 68
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 973,
+        "name": {
+            "english": "Flamigo",
+            "japanese": "カラミンゴ",
+            "chinese": "缠红鹤",
+            "french": "Flamenroule"
+        },
+        "type": [
+            "fighting",
+            "flying"
+        ],
+        "stats": {
+            "HP": 82,
+            "Attack": 115,
+            "Defence": 74,
+            "Sp. Atk": 75,
+            "Sp. Def": 64,
+            "Speed": 90
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 974,
+        "name": {
+            "english": "Cetoddle",
+            "japanese": "アルクジラ",
+            "chinese": "走鲸",
+            "french": "Piétacé"
+        },
+        "type": [
+            "ice"
+        ],
+        "stats": {
+            "HP": 108,
+            "Attack": 68,
+            "Defence": 45,
+            "Sp. Atk": 30,
+            "Sp. Def": 40,
+            "Speed": 43
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 975,
+        "name": {
+            "english": "Cetitan",
+            "japanese": "ハルクジラ",
+            "chinese": "浩大鲸",
+            "french": "Balbalèze"
+        },
+        "type": [
+            "ice"
+        ],
+        "stats": {
+            "HP": 170,
+            "Attack": 113,
+            "Defence": 65,
+            "Sp. Atk": 45,
+            "Sp. Def": 55,
+            "Speed": 73
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 976,
+        "name": {
+            "english": "Veluza",
+            "japanese": "ミガルーサ",
+            "chinese": "轻身鳕",
+            "french": "Délestin"
+        },
+        "type": [
+            "water",
+            "psychic"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 102,
+            "Defence": 73,
+            "Sp. Atk": 78,
+            "Sp. Def": 65,
+            "Speed": 70
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 977,
+        "name": {
+            "english": "Dondozo",
+            "japanese": "ヘイラッシャ",
+            "chinese": "吃吼霸",
+            "french": "Oyacata"
+        },
+        "type": [
+            "water"
+        ],
+        "stats": {
+            "HP": 150,
+            "Attack": 100,
+            "Defence": 115,
+            "Sp. Atk": 65,
+            "Sp. Def": 65,
+            "Speed": 35
+        },
+        "spawnchance": 0.007,
+        "variant": "Titan"
+    },
+    {
+        "id": 978,
+        "name": {
+            "english": "Tatsugiri",
+            "japanese": "シャリタツ",
+            "chinese": "米立龙",
+            "french": "Nigirigon"
+        },
+        "type": [
+            "dragon",
+            "water"
+        ],
+        "stats": {
+            "HP": 68,
+            "Attack": 50,
+            "Defence": 60,
+            "Sp. Atk": 120,
+            "Sp. Def": 95,
+            "Speed": 82
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 979,
+        "name": {
+            "english": "Annihilape",
+            "japanese": "コノヨザル",
+            "chinese": "弃世猴",
+            "french": "Courrousinge"
+        },
+        "type": [
+            "ghost",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 110,
+            "Attack": 115,
+            "Defence": 80,
+            "Sp. Atk": 50,
+            "Sp. Def": 90,
+            "Speed": 90
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 980,
+        "name": {
+            "english": "Clodsire",
+            "japanese": "ドオー",
+            "chinese": "土王",
+            "french": "Terraiste"
+        },
+        "type": [
+            "poison",
+            "ground"
+        ],
+        "stats": {
+            "HP": 130,
+            "Attack": 75,
+            "Defence": 60,
+            "Sp. Atk": 45,
+            "Sp. Def": 100,
+            "Speed": 20
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 981,
+        "name": {
+            "english": "Farigiraf",
+            "japanese": "リキキリン",
+            "chinese": "奇麒麟",
+            "french": "Farigiraf"
+        },
+        "type": [
+            "normal",
+            "psychic"
+        ],
+        "stats": {
+            "HP": 120,
+            "Attack": 90,
+            "Defence": 70,
+            "Sp. Atk": 110,
+            "Sp. Def": 70,
+            "Speed": 60
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 982,
+        "name": {
+            "english": "Dudunsparce",
+            "japanese": "ノココッチ",
+            "chinese": "土龙节节",
+            "french": "Deusolourdo"
+        },
+        "type": [
+            "normal"
+        ],
+        "stats": {
+            "HP": 125,
+            "Attack": 100,
+            "Defence": 80,
+            "Sp. Atk": 85,
+            "Sp. Def": 75,
+            "Speed": 55
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 983,
+        "name": {
+            "english": "Kingambit",
+            "japanese": "ドドゲザン",
+            "chinese": "仆刀将军",
+            "french": "Scalpereur"
+        },
+        "type": [
+            "steel",
+            "dark"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 135,
+            "Defence": 120,
+            "Sp. Atk": 60,
+            "Sp. Def": 85,
+            "Speed": 50
+        },
+        "spawnchance": 0.20,
+        "variant": "Paldea"
+    },
+    {
+        "id": 984,
+        "name": {
+            "english": "Great Tusk",
+            "japanese": "イダイナキバ",
+            "chinese": "雄伟牙",
+            "french": "Fort-Ivoire"
+        },
+        "type": [
+            "ground",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 115,
+            "Attack": 131,
+            "Defence": 131,
+            "Sp. Atk": 53,
+            "Sp. Def": 53,
+            "Speed": 87
+        },
+        "spawnchance": 0.008,
+        "variant": "Titan"
+    },
+    {
+        "id": 985,
+        "name": {
+            "english": "Scream Tail",
+            "japanese": "サケブシッポ",
+            "chinese": "吼叫尾",
+            "french": "Hurle-Queue"
+        },
+        "type": [
+            "fairy",
+            "psychic"
+        ],
+        "stats": {
+            "HP": 115,
+            "Attack": 65,
+            "Defence": 99,
+            "Sp. Atk": 65,
+            "Sp. Def": 115,
+            "Speed": 111
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 986,
+        "name": {
+            "english": "Brute Bonnet",
+            "japanese": "アラブルタケ",
+            "chinese": "猛恶菇",
+            "french": "Fongus-Furie"
+        },
+        "type": [
+            "grass",
+            "dark"
+        ],
+        "stats": {
+            "HP": 111,
+            "Attack": 127,
+            "Defence": 99,
+            "Sp. Atk": 79,
+            "Sp. Def": 99,
+            "Speed": 55
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 987,
+        "name": {
+            "english": "Flutter Mane",
+            "japanese": "ハバタクカミ",
+            "chinese": "振翼发",
+            "french": "Flotte-Mèche"
+        },
+        "type": [
+            "ghost",
+            "fairy"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 55,
+            "Defence": 55,
+            "Sp. Atk": 135,
+            "Sp. Def": 135,
+            "Speed": 135
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 988,
+        "name": {
+            "english": "Slither Wing",
+            "japanese": "チヲハウハネ",
+            "chinese": "爬地翅",
+            "french": "Rampe-Ailes"
+        },
+        "type": [
+            "bug",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 135,
+            "Defence": 79,
+            "Sp. Atk": 85,
+            "Sp. Def": 105,
+            "Speed": 81
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 989,
+        "name": {
+            "english": "Sandy Shocks",
+            "japanese": "スナノケガワ",
+            "chinese": "沙铁皮",
+            "french": "Pelage-Sablé"
+        },
+        "type": [
+            "ground",
+            "electric"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 81,
+            "Defence": 97,
+            "Sp. Atk": 121,
+            "Sp. Def": 85,
+            "Speed": 101
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 990,
+        "name": {
+            "english": "Iron Treads",
+            "japanese": "テツノワダチ",
+            "chinese": "铁辙迹",
+            "french": "Roue-de-Fer"
+        },
+        "type": [
+            "steel",
+            "ground"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 112,
+            "Defence": 120,
+            "Sp. Atk": 72,
+            "Sp. Def": 70,
+            "Speed": 106
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 991,
+        "name": {
+            "english": "Iron Bundle",
+            "japanese": "テツノツツミ",
+            "chinese": "铁包袱",
+            "french": "Hotte-de-Fer"
+        },
+        "type": [
+            "ice",
+            "water"
+        ],
+        "stats": {
+            "HP": 56,
+            "Attack": 80,
+            "Defence": 114,
+            "Sp. Atk": 124,
+            "Sp. Def": 60,
+            "Speed": 136
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 992,
+        "name": {
+            "english": "Iron Hands",
+            "japanese": "テツノカイナ",
+            "chinese": "铁臂膀",
+            "french": "Paume-de-Fer"
+        },
+        "type": [
+            "electric",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 154,
+            "Attack": 140,
+            "Defence": 108,
+            "Sp. Atk": 50,
+            "Sp. Def": 68,
+            "Speed": 50
+        },
+        "spawnchance": 0.10,
+        "variant": "Paldea"
+    },
+    {
+        "id": 993,
+        "name": {
+            "english": "Iron Jugulis",
+            "japanese": "テツノコウベ",
+            "chinese": "铁脖颈",
+            "french": "Têtes-de-Fer"
+        },
+        "type": [
+            "dark",
+            "flying"
+        ],
+        "stats": {
+            "HP": 94,
+            "Attack": 80,
+            "Defence": 86,
+            "Sp. Atk": 122,
+            "Sp. Def": 80,
+            "Speed": 108
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 994,
+        "name": {
+            "english": "Iron Moth",
+            "japanese": "テツノドクガ",
+            "chinese": "铁毒蛾",
+            "french": "Mite-de-Fer"
+        },
+        "type": [
+            "fire",
+            "poison"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 70,
+            "Defence": 60,
+            "Sp. Atk": 140,
+            "Sp. Def": 110,
+            "Speed": 110
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 995,
+        "name": {
+            "english": "Iron Thorns",
+            "japanese": "テツノイバラ",
+            "chinese": "铁荆棘",
+            "french": "Épine-de-Fer"
+        },
+        "type": [
+            "rock",
+            "electric"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 134,
+            "Defence": 110,
+            "Sp. Atk": 70,
+            "Sp. Def": 84,
+            "Speed": 72
+        },
+        "spawnchance": 0.15,
+        "variant": "Paldea"
+    },
+    {
+        "id": 996,
+        "name": {
+            "english": "Frigibax",
+            "japanese": "セビエ",
+            "chinese": "凉脊龙",
+            "french": "Frigodo"
+        },
+        "type": [
+            "ice",
+            "dragon"
+        ],
+        "stats": {
+            "HP": 65,
+            "Attack": 75,
+            "Defence": 45,
+            "Sp. Atk": 35,
+            "Sp. Def": 45,
+            "Speed": 55
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 997,
+        "name": {
+            "english": "Arctibax",
+            "japanese": "セゴール",
+            "chinese": "冻脊龙",
+            "french": "Cryodo"
+        },
+        "type": [
+            "ice",
+            "dragon"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 95,
+            "Defence": 66,
+            "Sp. Atk": 45,
+            "Sp. Def": 65,
+            "Speed": 62
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 998,
+        "name": {
+            "english": "Baxcalibur",
+            "japanese": "セグレイブ",
+            "chinese": "戟脊龙",
+            "french": "Glaivodo"
+        },
+        "type": [
+            "ice",
+            "dragon"
+        ],
+        "stats": {
+            "HP": 115,
+            "Attack": 145,
+            "Defence": 92,
+            "Sp. Atk": 75,
+            "Sp. Def": 86,
+            "Speed": 87
+        },
+        "spawnchance": 0.25,
+        "variant": "Paldea"
+    },
+    {
+        "id": 999,
+        "name": {
+            "english": "Gimmighoul",
+            "japanese": "コレクレー",
+            "chinese": "索财灵",
+            "french": "Mordudor"
+        },
+        "type": [
+            "ghost"
+        ],
+        "stats": {
+            "HP": 45,
+            "Attack": 30,
+            "Defence": 70,
+            "Sp. Atk": 75,
+            "Sp. Def": 70,
+            "Speed": 10
+        },
+        "spawnchance": 0.14,
+        "variant": "Paldea"
+    },
+    {
+        "id": 1000,
+        "name": {
+            "english": "Gholdengo",
+            "japanese": "サーフゴー",
+            "chinese": "赛富豪",
+            "french": "Gromago"
+        },
+        "type": [
+            "ghost",
+            "steel"
+        ],
+        "stats": {
+            "HP": 87,
+            "Attack": 60,
+            "Defence": 95,
+            "Sp. Atk": 133,
+            "Sp. Def": 91,
+            "Speed": 84
+        },
+        "spawnchance": 0.14,
+        "variant": "Paldea"
+    },
+    {
+        "id": 1005,
+        "name": {
+            "english": "Roaring Moon",
+            "japanese": "トドロクツキ",
+            "chinese": "轰鸣月",
+            "french": "Rugit-Lune"
+        },
+        "type": [
+            "dragon",
+            "dark"
+        ],
+        "stats": {
+            "HP": 105,
+            "Attack": 139,
+            "Defence": 71,
+            "Sp. Atk": 55,
+            "Sp. Def": 101,
+            "Speed": 119
+        },
+        "spawnchance": 0.23,
+        "variant": "Paldea"
+    },
+    {
+        "id": 1006,
+        "name": {
+            "english": "Iron Valiant",
+            "japanese": "テツノブジン",
+            "chinese": "铁武者",
+            "french": "Garde-de-Fer"
+        },
+        "type": [
+            "fairy",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 74,
+            "Attack": 130,
+            "Defence": 90,
+            "Sp. Atk": 120,
+            "Sp. Def": 60,
+            "Speed": 116
+        },
+        "spawnchance": 0.23,
+        "variant": "Paldea"
+    },
+    {
+        "id": 1009,
+        "name": {
+            "english": "Walking Wake",
+            "japanese": "ウネルミナモ",
+            "chinese": "波荡水",
+            "french": "Serpente-Eau"
+        },
+        "type": [
+            "water",
+            "dragon"
+        ],
+        "stats": {
+            "HP": 99,
+            "Attack": 83,
+            "Defence": 91,
+            "Sp. Atk": 125,
+            "Sp. Def": 83,
+            "Speed": 109
+        },
+        "spawnchance": 0.13,
+        "variant": "Paldea"
+    },
+    {
+        "id": 1010,
+        "name": {
+            "english": "Iron Leaves",
+            "japanese": "テツノイサハ",
+            "chinese": "铁斑叶",
+            "french": "Vert-de-Fer"
+        },
+        "type": [
+            "grass",
+            "psychic"
+        ],
+        "stats": {
+            "HP": 90,
+            "Attack": 130,
+            "Defence": 88,
+            "Sp. Atk": 70,
+            "Sp. Def": 108,
+            "Speed": 104
+        },
+        "spawnchance": 0.13,
+        "variant": "Paldea"
+    }
+]

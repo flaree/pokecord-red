@@ -1373,5 +1373,143 @@
         },
         "spawnchance": 0.003,
         "variant": "Legendary"
+    },
+    {
+        "id": 1001,
+        "name": {
+            "english": "Wo-Chien",
+            "japanese": "チオンジェン",
+            "chinese": "古简蜗",
+            "french": "Chongjian"
+        },
+        "type": [
+            "dark",
+            "grass"
+        ],
+        "stats": {
+            "HP": 85,
+            "Attack": 85,
+            "Defence": 100,
+            "Sp. Atk": 95,
+            "Sp. Def": 135,
+            "Speed": 70
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 1002,
+        "name": {
+            "english": "Chien-Pao",
+            "japanese": "パオジアン",
+            "chinese": "古剑豹",
+            "french": "Baojian"
+        },
+        "type": [
+            "dark",
+            "ice"
+        ],
+        "stats": {
+            "HP": 80,
+            "Attack": 120,
+            "Defence": 80,
+            "Sp. Atk": 90,
+            "Sp. Def": 65,
+            "Speed": 135
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 1003,
+        "name": {
+            "english": "Ting-Lu",
+            "japanese": "ディンルー",
+            "chinese": "古鼎鹿",
+            "french": "Dinglu"
+        },
+        "type": [
+            "dark",
+            "ground"
+        ],
+        "stats": {
+            "HP": 155,
+            "Attack": 110,
+            "Defence": 125,
+            "Sp. Atk": 55,
+            "Sp. Def": 80,
+            "Speed": 45
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 1004,
+        "name": {
+            "english": "Chi-Yu",
+            "japanese": "イーユイ",
+            "chinese": "古玉鱼",
+            "french": "Yuyu"
+        },
+        "type": [
+            "dark",
+            "fire"
+        ],
+        "stats": {
+            "HP": 55,
+            "Attack": 80,
+            "Defence": 80,
+            "Sp. Atk": 135,
+            "Sp. Def": 120,
+            "Speed": 100
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 1007,
+        "name": {
+            "english": "Koraidon",
+            "japanese": "コライドン",
+            "chinese": "故勒顿",
+            "french": "Koraidon"
+        },
+        "type": [
+            "dragon",
+            "fighting"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 135,
+            "Defence": 115,
+            "Sp. Atk": 85,
+            "Sp. Def": 100,
+            "Speed": 135
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
+    },
+    {
+        "id": 1008,
+        "name": {
+            "english": "Miraidon",
+            "japanese": "ミライドン",
+            "chinese": "密勒顿",
+            "french": "Miraidon"
+        },
+        "type": [
+            "dragon",
+            "electric"
+        ],
+        "stats": {
+            "HP": 100,
+            "Attack": 85,
+            "Defence": 100,
+            "Sp. Atk": 135,
+            "Sp. Def": 115,
+            "Speed": 135
+        },
+        "spawnchance": 0.003,
+        "variant": "Legendary"
     }
 ]
