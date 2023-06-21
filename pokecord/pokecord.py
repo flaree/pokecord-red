@@ -12,7 +12,7 @@ import discord
 from databases import Database
 from redbot.core import Config, commands
 from redbot.core.data_manager import bundled_data_path, cog_data_path
-from redbot.core.i18n import Translator, cog_i18n
+from redbot.core.i18n import Translator, cog_i18n, set_contextual_locales_from_guild
 from redbot.core.utils.chat_formatting import escape, humanize_list
 
 from .dev import Dev
@@ -522,6 +522,7 @@ class Pokecord(
             channel = message.guild.get_channel(int(random.choice(guildcache["activechannels"])))
             if channel is None:
                 return  # TODO: Remove channel from config
+        await set_contextual_locales_from_guild(self.bot, message.guild)
         await self.spawn_pokemon(channel)
 
     async def spawn_pokemon(self, channel, *, pokemon=None):
