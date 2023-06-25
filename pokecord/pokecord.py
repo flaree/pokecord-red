@@ -307,6 +307,7 @@ class Pokecord(
                 "**Generation 6**\nChespin, Fennekin, Froakie\n"
                 "**Generation 7**\nRowlet, Litten, Popplio\n"
                 "**Generation 8**\nGrookey, Scorbunny, Sobble\n"
+                "**Generation 9**\nSprigatito, Fuecoco, Quaxly\n"
             )
             msg += _("\nTo pick a pokemon, type {prefix}starter <pokemon>").format(
                 prefix=ctx.clean_prefix
@@ -338,6 +339,9 @@ class Pokecord(
             "grookey": self.pokemondata[740],
             "scorbunny": self.pokemondata[743],
             "sobble": self.pokemondata[746],
+            "sprigatito": self.pokemondata[906],
+            "fuecoco": self.pokemondata[909],
+            "quaxly": self.pokemondata[912],
         }
 
         for starter in starter_pokemon.values():
